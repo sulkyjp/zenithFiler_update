@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/sulkyjp/zenithFiler_update/main/assets/icon.png" width="80" alt="Zenith Filer icon">
+  <img width="2022" height="863" alt="image" src="https://github.com/user-attachments/assets/6452538c-e111-4e6a-92b3-67034978ee22" />
 </p>
 
 <h1 align="center">Zenith Filer</h1>
