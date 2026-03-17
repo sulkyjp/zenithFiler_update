@@ -235,6 +235,12 @@
 | 位置・サイズ記憶 | 終了時の状態を復元 |
 | マルチディスプレイ対応 | ディスプレイ切断時の自動レスキュー |
 
+<br>
+2画面モード<br>
+<img width="1949" height="989" alt="image" src="https://github.com/user-attachments/assets/887c8d99-9d15-4324-8e98-695cc8a26dc2" />
+<br><br>
+1画面モード<br>
+<img width="1949" height="989" alt="image" src="https://github.com/user-attachments/assets/5d8aaca4-77e9-4391-87c5-288e1fe9814b" />
 </details>
 
 <details>
@@ -247,6 +253,9 @@
 | スキャンバー | 大量ファイルフォルダスキャン時の進捗表示 |
 | フィードバック送信 | アプリ内から GitHub へ直接投稿 |
 
+<br>
+アプリ設定からフィードバックを送信<br>
+<img width="1758" height="989" alt="image" src="https://github.com/user-attachments/assets/8c687bf5-a1e7-47f6-833f-f58199e5fb09" />
 </details>
 
 <details>
