@@ -257,6 +257,7 @@
 | 統合ドキュメントビューア | マニュアル・変更履歴をアプリ内で閲覧 |
 | Markdown レンダリング | 目次自動生成、キーワード検索、2 カラム表示 |
 | 日英自動切替 | UI 言語に応じてドキュメント言語を自動選択 |
+
 <br>
 マニュアルページ<br>
 <img width="1386" height="910" alt="image" src="https://github.com/user-attachments/assets/17a139d7-330d-4a0e-be55-f38c875abfec" />
@@ -266,8 +267,6 @@
 <br><br>
 言語設定が「英語」の際のマニュアル<br>
 <img width="1386" height="893" alt="image" src="https://github.com/user-attachments/assets/ef44ceb1-a1f6-4ea4-841c-c334990c318d" />
-
-
 </details>
 
 <details>
@@ -281,6 +280,19 @@
 | 常駐モード | タスクトレイ常駐 |
 | アイコンバッチ読込 | 200 件単位+5ms インターバルで UI フリーズ回避 |
 
+<br>
+アプリ独自のコンテキストメニュー<br>
+<img width="318" height="378" alt="image" src="https://github.com/user-attachments/assets/8e236a0b-6a1b-45a9-ac46-4a0450921a5e" />
+<br><br>
+アプリ独自メニューとエクスプローラ互換メニューの切り替え<br>
+<img width="644" height="307" alt="image" src="https://github.com/user-attachments/assets/b9409b21-eb70-4f77-8117-49fdcd7318b3" />
+<br><br>
+自動アップデート機能により再ダウンロード不要<br>
+<img width="1948" height="936" alt="image" src="https://github.com/user-attachments/assets/73b23852-1f9e-4928-a505-e4c1f0bf078d" />
+<br><br>
+常駐オプションONにより、アプリ終了後はタスクバーに格納<br>
+<img width="419" height="238" alt="image" src="https://github.com/user-attachments/assets/fca2c198-ca9e-4f34-8dea-47b727c41082" />
+<img width="227" height="37" alt="image" src="https://github.com/user-attachments/assets/c7a3aa17-4ee4-406a-8942-82a84825391d" />
 </details>
 
 ---
