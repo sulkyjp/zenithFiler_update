@@ -41,11 +41,17 @@
 
 **[Latest Release をダウンロード](https://github.com/sulkyjp/zenithFiler_update/releases/latest)**
 
+<!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_vX.Y.Z.zip` | アプリ本体 (self-contained / .NET ランタイム同梱) |
+| `ZenithFiler_v0.36.1.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.36.1_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+<!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
+
+<!-- latest-changes:begin -->
+<!-- latest-changes:end -->
 
 ---
 
