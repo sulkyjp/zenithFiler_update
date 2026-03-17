@@ -257,6 +257,16 @@
 | 統合ドキュメントビューア | マニュアル・変更履歴をアプリ内で閲覧 |
 | Markdown レンダリング | 目次自動生成、キーワード検索、2 カラム表示 |
 | 日英自動切替 | UI 言語に応じてドキュメント言語を自動選択 |
+<br>
+マニュアルページ<br>
+<img width="1386" height="910" alt="image" src="https://github.com/user-attachments/assets/17a139d7-330d-4a0e-be55-f38c875abfec" />
+<br><br>
+修正履歴ページ<br>
+<img width="1386" height="910" alt="image" src="https://github.com/user-attachments/assets/ca2dd9fb-411e-4742-ab45-ec502ad72dc7" />
+<br><br>
+言語設定が「英語」の際のマニュアル<br>
+<img width="1386" height="893" alt="image" src="https://github.com/user-attachments/assets/ef44ceb1-a1f6-4ea4-841c-c334990c318d" />
+
 
 </details>
 
