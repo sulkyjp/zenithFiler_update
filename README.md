@@ -44,20 +44,19 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.40.3.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.40.3_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.40.3_delta_from_0.40.2.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.40.4.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.40.4_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.40.4_delta_from_0.40.3.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.40.3] - 2026-03-26 : AIお気に入り整理修正 + リアルタイム更新
+## Latest Changes — [0.40.4] - 2026-03-26 : 左ペイン幅調整修正 + メモリリーク修正
 
 ### Fixed
-- **最近開いたフォルダのリアルタイム更新:** フォルダ移動時に「最近開いたフォルダ」ビューが即座に更新されない問題を修正。HistoryChanged イベントで自動リフレッシュするように変更
-- **AIお気に入り整理のJSONパースエラー修正:** AIがWindowsパス内のバックスラッシュを不正なJSONエスケープとして返す問題を修正。不正エスケープシーケンスを自動修復するロジックを追加
-- **AIお気に入り整理のエラーメッセージ修正:** 「AI分析に失敗しました」→「AIお気に入り整理に失敗しました」に修正（全10言語）
+- **左ペインのGridSplitterが一部環境で反応しない問題を修正:** カーソルが変化せずドラッグできない問題に対し、ResizeDirection・Cursor の明示指定、HorizontalAlignment を Stretch に変更、Panel.ZIndex によるヒットテスト優先度の確保を実施
+- **長時間使用時のパフォーマンス劣化を修正:** タブ開閉時にグローバルイベント（キーバインド変更・言語変更）の購読が解除されず蓄積するメモリリークを修正。ホバーサムネイルタイマーの停止漏れも併せて修正
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
