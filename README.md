@@ -44,18 +44,21 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.40.10.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.40.10_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.40.10_delta_from_0.40.9.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.40.11.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.40.11_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.40.11_delta_from_0.40.10.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.40.10] - 2026-03-27 : パフォーマンス診断ログ機能
+## Latest Changes — [0.40.11] - 2026-03-27 : 二つ名バナー + インデックス性能改善
 
 ### Added
-- **パフォーマンス診断ログ:** デバッグメニューにトグルボタンを追加。2秒間隔でCPU・メモリ・GC・スレッド・インデックス状態・Luceneロック待ち・UI遅延・フォルダ読み込み時間を JSON Lines (.jsonl) に記録。停止時にサマリー行を自動出力。AI による分析・性能改善に活用
+- **二つ名バナー:** チャレンジで獲得した AI 二つ名をヘッダバーにアクセントカラーで常時表示。設定でオン/オフ切替可能
+
+### Fixed
+- **インデックス作成中のアプリ全体の動作低下を修正:** SearcherManager（NRTリーダープール）を導入し、検索が Writer ロックと完全に独立して動作するように改善。毎回の FSDirectory/DirectoryReader 新規作成を廃止。UpdateDocument の冗長な外部ロックを除去（IndexWriter はスレッドセーフ）。Commit 間隔をローカル500→2000・ネットワーク100→500に拡大し、I/O ブロック時間を大幅に削減
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
