@@ -44,22 +44,18 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.40.9.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.40.9_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.40.9_delta_from_0.40.8.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.40.10.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.40.10_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.40.10_delta_from_0.40.9.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.40.9] - 2026-03-27 : AI トラッキング統一 + MaxTokens 再設計 + チャレンジ精度向上
+## Latest Changes — [0.40.10] - 2026-03-27 : パフォーマンス診断ログ機能
 
-### Changed
-- **AI MaxTokens 設計見直し:** お気に入り300件規模に耐えるよう全AI機能の出力上限を再設計。お気に入り整理・フォルダ分析を65536に拡大、テーマ系を8192に、短文系も2〜4倍に緩和。途切れエラーの根本的排除を優先
-- **バックストーリー生成プロンプト改善:** 150〜200文字で必ず完結するようSystemPrompt・MaxTokensを強化。途中切れ防止
-- **AI チャレンジカウントを全AI機能で共通化:** AiService.SendAsync の成功パスに一括トリガーを配置。お気に入り整理・フォルダ分析・テーマ生成・マニュアルQ&A・リネーム提案・グリーティング等、全AI呼び出しが自動カウント
-- **AI チャレンジティア再設計:** Tier10=10000に拡大（1→10→30→80→200→500→1000→2500→5000→10000）
-- **旧API CompleteChallengeIfNeeded を廃止:** 全トリガーを TrackChallengeAction に統一
+### Added
+- **パフォーマンス診断ログ:** デバッグメニューにトグルボタンを追加。2秒間隔でCPU・メモリ・GC・スレッド・インデックス状態・Luceneロック待ち・UI遅延・フォルダ読み込み時間を JSON Lines (.jsonl) に記録。停止時にサマリー行を自動出力。AI による分析・性能改善に活用
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
