@@ -44,21 +44,19 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.40.11.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.40.11_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.40.11_delta_from_0.40.10.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.40.12.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.40.12_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.40.12_delta_from_0.40.11.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.40.11] - 2026-03-27 : 二つ名バナー + インデックス性能改善
-
-### Added
-- **二つ名バナー:** チャレンジで獲得した AI 二つ名をヘッダバーにアクセントカラーで常時表示。設定でオン/オフ切替可能
+## Latest Changes — [0.40.12] - 2026-03-27 : 診断リーク修正 + マルチディスプレイ DPI 修正
 
 ### Fixed
-- **インデックス作成中のアプリ全体の動作低下を修正:** SearcherManager（NRTリーダープール）を導入し、検索が Writer ロックと完全に独立して動作するように改善。毎回の FSDirectory/DirectoryReader 新規作成を廃止。UpdateDocument の冗長な外部ロックを除去（IndexWriter はスレッドセーフ）。Commit 間隔をローカル500→2000・ネットワーク100→500に拡大し、I/O ブロック時間を大幅に削減
+- **パフォーマンス診断機能のリソースリーク修正:** イベントハンドラが OFF 時に解除されずトグルごとに積み上がる問題を修正。Process.GetCurrentProcess() の OS ハンドルリークも修正
+- **マルチディスプレイ切り離し時のウィンドウ復帰が動作しない問題を修正:** Screen.WorkingArea（物理ピクセル）と WPF 論理座標の不一致により、高 DPI 環境でウィンドウが画面外にあっても「画面内」と誤判定されていた。DPI スケールを考慮した座標変換を追加
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
