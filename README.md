@@ -44,36 +44,21 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.40.15.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.40.15_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.40.15_delta_from_0.40.14.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.40.16.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.40.16_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.40.16_delta_from_0.40.15.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.40.15] - 2026-03-29 : チャレンジ拡張 + 機能推薦 + ターミナル修正 + 起動高速化
-
-### Added
-- **チャレンジ新区分4種追加:** ワーキングセット（📋）・ターミナル（💻）・コンペア（⚖）・新規作成（✏）を追加。全15区分×10 Tier = 150チャレンジ、10言語対応
-- **チャレンジ区分アンカーリンク:** 二つ名枠と実績一覧の間に各区分へのジャンプリンクを追加（ホバーで達成状況ツールチップ表示）。15区分のスクロール負担を軽減
-- **Tier 別ビジュアル演出:** チャレンジノードの Tier に応じてボーダー・グロウ・シャドウが段階的に豪華に。Tier 10 は金色グロウで最高位の威圧感を演出
-- **機能推薦システム（Just-in-time Tips）:** 3層構成の機能発見促進システム。層1: 初回アクション時のヒント（8件）、層2: 未使用機能のランダム推薦（15件）、層3: 使用パターンに基づくクロス推薦（21件）。プロパティ設定からトグル＋間隔スライダー（1〜60分）で調整可能。10言語対応
-- **チャレンジページのスティッキーアンカー:** スクロールでアンカーリンクが画面外に出ると上部に固定表示され、どの位置からでも区分ジャンプ可能に
+## Latest Changes — [0.40.16] - 2026-03-29 : パフォーマンス最適化 + レベルバナー修正
 
 ### Changed
-- **設定ヘッダーにチャレンジタイトル追加:** チャレンジページ選択時にヘッダーが「チャレンジ」に変わり、AI アイコン（Sparkles）を表示
-- **チャレンジ区分の並び順を最適化:** 日常操作（ナビゲーション→検索→新規作成→プレビュー）→整理・カスタマイズ→上級機能→ニッチの順に再配置
+- **パフォーマンス最適化:** ConfigureAwait(false) を Box API・起動初期化パスに追加しデッドロックリスクを排除。インデックス走査の文字列生成を最適化（TrimEnd+連結→string.Concat）。プロパティ集計を3パスLINQ→1パスループに変更。フォルダサイズ取得のLINQ ToList()を直接列挙に置換。PathHelper の Substring をレンジ構文+string.Concat に最適化
 
 ### Fixed
-- **ターミナルでキーボード入力ができない問題を修正:** TerminalSurface の OnKeyDown が常に e.Handled=true を設定していたため、WPF の TextInput パイプラインがブロックされ通常の文字入力が消失していた。特殊キーのみ Handled に変更。加えて MainWindow の PreviewKeyDown がナビペインのターミナルを認識しない問題、InitMessage が HitTest を遮る問題も修正
-- **サイドバーターミナルでキーボード入力ができない問題を修正:** MainWindow の PreviewKeyDown がサイドバーのターミナルを認識せずキー入力を横取りしていた。TerminalSurface にフォーカスがある場合はキーイベントをスルーするよう修正
-- **設定メニューがウィンドウ縮小時に切れる問題を修正:** 左ナビにスクロールバーを追加。ウィンドウが小さくても全メニュー項目にアクセス可能に
-- **設定ページ切替時のフリーズを修正:** AI・ショートカット・チャレンジ・統計ページで UI スレッド上の同期ディスク I/O（WindowSettings.Load）と ObservableCollection 逐次操作がフリーズの原因だった。ディスク I/O を非同期化し、全コレクション（StatItems/TopFolders/RecentFileRecords/AiTokenByModel 等）を IReadOnlyList 一括差し替えに変更
-- **ウィンドウ位置の正確な復元:** 終了時に Win32 GetWindowPlacement でネイティブ座標を保存し、起動時に SetWindowPos で復元。DPI 丸めによる位置ズレを解消
-- **起動高速化:** タブ復元を選択タブのみ同期・残りを遅延復元に変更。ナビゲーションカウンターのトラッキング箇所を修正（LoadDirectoryAsync から NavigateAsync に移動）
-- **チャレンジページ表示時に AI 二つ名が繰り返し再生成される問題を修正:** RefreshChallenges が毎回 AutoGenerateTitleIfNeededAsync を呼んでいた。二つ名が既に存在する場合はスキップ
-- **AI トークン統計に二つ名・バックストーリー生成が計上されない問題を修正:** SendAsync に featureKey（AiChallengeTitle / AiChallengeBackstory）を追加
+- **レベルバナーのツールチップが起動時に正しく表示されない問題を修正:** 起動時ロードで Total XP・Next XP・レベル進捗が計算されず初期値のままだった。全 XP/レベル関連プロパティを起動時に一括計算するよう修正
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
