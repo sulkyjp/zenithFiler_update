@@ -44,18 +44,21 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.40.20.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.40.20_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.40.20_delta_from_0.40.19.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.40.21.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.40.21_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.40.21_delta_from_0.40.20.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.40.20] - 2026-03-30 : テーマ高速化 + バグ修正 (#86, #87)
+## Latest Changes — [0.40.21] - 2026-03-30 : テーマ超高速化 + テーマ JSON 修正 + バグ修正 (#86, #87)
 
 ### Changed
-- **テーマ切替の高速化:** トランジションアニメーションを 130ms→50ms / 250ms→120ms に短縮。テーマ JSON のプリロードを切替時に自動実行
+- **テーマ切替の超高速化:** リソース更新を MergedDictionaries 差し替え方式に変更し、DynamicResource 通知を1回に集約（200回→1回）。トランジションアニメーションを廃止しテーマ即時適用。JSON プリロードを切替時に自動実行
+
+### Fixed
+- **全50テーマ JSON のカンマ欠落を修正:** TitleBadgeColor の後にカンマがなく JSON パースエラーが発生。テーマの説明・カラーパターンが表示されなかった問題を全テーマ一括修正
 
 ### Fixed
 - **バージョンアップ後にテーマページが正しく表示されない問題を修正 (#87):** テーマページ表示時に RefreshThemes を実行し、最新のテーマ情報を再スキャンするよう変更。built-in テーマの自動更新で community endpoint に 404 リクエストが発生する問題も修正（GitHub raw を優先するよう変更）
