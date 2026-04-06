@@ -44,22 +44,18 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.41.3.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.41.3_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.41.3_delta_from_0.41.2.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.41.4.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.41.4_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.41.4_delta_from_0.41.3.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.41.3] - 2026-04-06 : ファイル競合ダイアログ・スキャンバー修正・自動更新改善
+## Latest Changes — [0.41.4] - 2026-04-06 : ラバーバンド選択
 
 ### Added
-- **ファイル競合ダイアログ:** コピー/移動時に同名ファイルが存在する場合、上書き・スキップ・リネーム・新しい方を残す・大きい方を残すを選択できるダイアログを表示。「すべてに適用」で一括操作も可能
-
-### Fixed
-- **スキャンバーを起動時のみに限定:** フォルダ移動や検索など起動後の操作でスキャンバーアニメーションが発火していた問題を修正
-- **自動更新の誤判定修正:** Worker がエラーレスポンスを返した際にバージョン解析失敗で「最新バージョンです」と誤表示していた問題を修正。エラー時は GitHub API に直接フォールバックするよう改善
+- **ラバーバンド選択:** ファイル一覧の空きスペースをドラッグして矩形選択が可能に。Details/Icon 両モード対応。Ctrl+ドラッグで追加選択、端付近で自動スクロール
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
