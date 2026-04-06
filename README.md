@@ -44,23 +44,18 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.41.4.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.41.4_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.41.4_delta_from_0.41.3.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.41.5.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.41.5_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.41.5_delta_from_0.41.4.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.41.4] - 2026-04-06 : ラバーバンド選択・自動更新修正
+## Latest Changes — [0.41.5] - 2026-04-06 : 称号カード X 共有
 
 ### Added
-- **ラバーバンド選択:** ファイル一覧の空きスペースをドラッグして矩形選択が可能に。Details/Icon 両モード対応。Ctrl+ドラッグで追加選択、端付近で自動スクロール
-
-### Fixed
-- **自動更新サービス未起動の修正:** Task.Run 内で Dispatcher.CurrentDispatcher を使用していたため、UpdateService・TrayService の初期化が実行されていなかった問題を修正
-- **自動更新チェックのログ強化:** Initialize/定期チェック/スキップ/Worker応答/バージョン比較の全分岐に詳細ログを追加
-- **Worker の GitHub API rate limit 対策:** バージョン確認 Worker に Cache API（30分 TTL）を導入し、GitHub API rate limit による常時失敗を解消
+- **称号カード X 共有:** チャレンジページの称号カード（二つ名・バックストーリー・レベル）を画像としてクリップボードにコピーし、X の投稿画面を自動で開く。画像は Ctrl+V で貼り付け
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
