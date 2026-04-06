@@ -52,10 +52,15 @@
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.41.4] - 2026-04-06 : ラバーバンド選択
+## Latest Changes — [0.41.4] - 2026-04-06 : ラバーバンド選択・自動更新修正
 
 ### Added
 - **ラバーバンド選択:** ファイル一覧の空きスペースをドラッグして矩形選択が可能に。Details/Icon 両モード対応。Ctrl+ドラッグで追加選択、端付近で自動スクロール
+
+### Fixed
+- **自動更新サービス未起動の修正:** Task.Run 内で Dispatcher.CurrentDispatcher を使用していたため、UpdateService・TrayService の初期化が実行されていなかった問題を修正
+- **自動更新チェックのログ強化:** Initialize/定期チェック/スキップ/Worker応答/バージョン比較の全分岐に詳細ログを追加
+- **Worker の GitHub API rate limit 対策:** バージョン確認 Worker に Cache API（30分 TTL）を導入し、GitHub API rate limit による常時失敗を解消
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
