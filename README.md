@@ -44,29 +44,32 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.44.1.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.44.1_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.44.1_delta_from_0.44.0.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.45.0.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.45.0_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.45.0_delta_from_0.44.1.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.44.1] - 2026-04-11 : Stickman 行動パターン全面リデザイン・67ポーズ・後光・眷属演出
+## Latest Changes — [0.45.0] - 2026-04-12 : テーマカスタマイズ ライブプレビュー刷新・色反映の包括修正
 
 ### Added
-- **Stickman 行動パターン全面リデザイン:** 報酬150件の行動パターンを全面的に作り直し。45種の新規ポーズ（think, point, wave, fly, march 等）を追加し、既存22種と合わせて67種のポーズで各パターンに固有の動きを付与
-- **Stickman 高さ演出（yOffset）:** フェーズごとにベース高度を設定可能に。浮遊・上昇・降下・高所移動など、高さを活かしたダイナミックな演出を実現
-- **Stickman 後光（Aura）演出:** 高Tierパターンで頭の周りに回転・脈動する放射線を表示。Tier 9〜10 の威厳を視覚的に演出
-- **Stickman 眷属の段階的増加:** Tier 8→9→10 で眷属が 2→4→7 と段階的に増え、ランダム配置で自然な群れを形成。特殊アクション時はその場にかしづいて停止
+- **Stickman 行動パターンのローカライズ:** 全165件（ベース15件＋報酬150件）の行動パターン description を10言語対応。テーマJSONと同じ `description.{locale}` 方式で、ユーザー作成JSONは `description` のみで後方互換
+- **テーマカスタマイズ: テキスト色13項目追加:** 背景色に対応する専用テキスト色を追加（SelectionTextColor, StatusBarTextColor 等）。テーマ設定項目が117→130に拡大
+- **テーマカスタマイズUI: 色タイプアイコン＋フィルタ:** 各色項目に用途アイコン（背景/テキスト/ボーダー/アイコン/アクセント）を表示。タイプ別クイックフィルタボタンを追加
+- **アップデート完了ポップアップ:** 自動アップデートのダウンロード完了後、ステータスバー上部にバナー通知を表示。再起動ボタンと閉じるボタン付き
 
 ### Changed
-- **Stickman 眷属配置のランダム化:** 等間隔並びからリーダーからの個別ランダム距離に変更。重複を許容し、Tier が上がるほど広い範囲に散らばる
-- **Stickman 報酬パターンの旧ファイル退避:** リデザイン前のパターンは stickman/archive/ に保存。将来のストア配布用に活用可能
+- **テーマカスタマイズ: AddressBarTextColor 独立化:** PrimaryTextColor の子から独立キーに変更。AddressBarSeparatorColor を新規追加し、アドレスバー関連5キー（テキスト・セパレーター・編集/お気に入り/コピーアイコン）を1グループに集約
+- **テーマカスタマイズ: 検索カラー親子関係整理:** NormalSearch を親として Grep/Index/Filter を子に設定。検索バー背景・アイコン・フォーカス枠・モード選択の各グループで継承構造を統一
+- **テーマカスタマイズ: ナビペインテキスト色の全ビュー適用:** NavPaneCellTextStyle を新設し、履歴・ドライブ・最近開いたフォルダ等のナビペイン全ビューで NavItemTextColor/HoverTextColor/SelectedTextColor が反映されるよう修正
 
 ### Fixed
-- **Outlookメール格納エラー修正:** Outlook からのメールドラッグ&ドロップ時に発生していた DV_E_LINDEX エラーを修正。WPF の GetData が無効な lindex を使用していた問題を、COM 経由の正しいインデックス指定取得に統一
-- **AIフォルダ作成ダイアログのツールチップ即時切替:** 重視ポイントの4ボタン間でホバー時にツールチップが即座に切り替わるよう BetweenShowDelay=0 を設定。下部アクションボタンにもツールチップを追加
+- **テーマカスタマイズ: ライブプレビュー基盤修正:** カラーピッカーでの色変更がアプリに即時反映されるよう、ApplyToResources 方式に統一。テーマ読み込み時の継承解決、親→子カスケード、バッチ処理を実装
+- **テーマカスタマイズ: FocusedPaneTextBrush 上書き問題の修正:** Style.Trigger の FocusedPaneTextBrush が ListTextBrush/AddressBarTextBrush/FileListHeaderBrush 等を無条件上書きしていた問題を修正。各要素が専用のテーマカラーを直接参照するよう変更
+- **テーマカスタマイズ: ファイル一覧の選択/ホバーテキスト色:** ActivePaneCellTextStyle に選択（ListSelectedTextBrush）・ホバー（ListHoverTextBrush）トリガーを追加。TextElement.Foreground で GridViewRowPresenter に確実に伝播
+- **テーマカスタマイズ: 未接続ブラシの修正:** ButtonHoverText/CheckboxHoverText/DeckItemHoverText/DeckItemSelectedText/FilterActiveIndicator 等のブラシをXAML要素に接続
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
