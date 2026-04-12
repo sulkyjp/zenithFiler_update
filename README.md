@@ -44,32 +44,31 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.45.0.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.45.0_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.45.0_delta_from_0.44.1.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.45.1.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.45.1_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.45.1_delta_from_0.45.0.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.45.0] - 2026-04-12 : テーマカスタマイズ ライブプレビュー刷新・色反映の包括修正
+## Latest Changes — [0.45.1] - 2026-04-13 : Stickman レアイベント・テーマ適用モード切替修正・MANUAL 全面改訂
 
 ### Added
-- **Stickman 行動パターンのローカライズ:** 全165件（ベース15件＋報酬150件）の行動パターン description を10言語対応。テーマJSONと同じ `description.{locale}` 方式で、ユーザー作成JSONは `description` のみで後方互換
-- **テーマカスタマイズ: テキスト色13項目追加:** 背景色に対応する専用テキスト色を追加（SelectionTextColor, StatusBarTextColor 等）。テーマ設定項目が117→130に拡大
-- **テーマカスタマイズUI: 色タイプアイコン＋フィルタ:** 各色項目に用途アイコン（背景/テキスト/ボーダー/アイコン/アクセント）を表示。タイプ別クイックフィルタボタンを追加
-- **アップデート完了ポップアップ:** 自動アップデートのダウンロード完了後、ステータスバー上部にバナー通知を表示。再起動ボタンと閉じるボタン付き
-
-### Changed
-- **テーマカスタマイズ: AddressBarTextColor 独立化:** PrimaryTextColor の子から独立キーに変更。AddressBarSeparatorColor を新規追加し、アドレスバー関連5キー（テキスト・セパレーター・編集/お気に入り/コピーアイコン）を1グループに集約
-- **テーマカスタマイズ: 検索カラー親子関係整理:** NormalSearch を親として Grep/Index/Filter を子に設定。検索バー背景・アイコン・フォーカス枠・モード選択の各グループで継承構造を統一
-- **テーマカスタマイズ: ナビペインテキスト色の全ビュー適用:** NavPaneCellTextStyle を新設し、履歴・ドライブ・最近開いたフォルダ等のナビペイン全ビューで NavItemTextColor/HoverTextColor/SelectedTextColor が反映されるよう修正
+- **Stickman レアイベント「クマ出没」:** 行動選出ごとに 1% の確率で、ペット（犬）が一時的にクマに変身し Stickman を追いかけるレアイベントを追加。黄色の「⚠ クマ出没注意」看板が前方にフェード IN し、終了時に犬の姿に戻る。新規行動定義 `stickman/rare_bear_chase.json`、クマ色は AccentBrush を暗くして動的生成
+- **テーマカスタマイズ: Stickman プレビュー背景色:** Stickman 設定内プレビュー枠の背景色を専用テーマカラー `StickmanPreviewBackgroundColor` として追加。カスタマイズダイアログの「Stickman・お気に入り・プロパティ」グループから変更可能
 
 ### Fixed
-- **テーマカスタマイズ: ライブプレビュー基盤修正:** カラーピッカーでの色変更がアプリに即時反映されるよう、ApplyToResources 方式に統一。テーマ読み込み時の継承解決、親→子カスケード、バッチ処理を実装
-- **テーマカスタマイズ: FocusedPaneTextBrush 上書き問題の修正:** Style.Trigger の FocusedPaneTextBrush が ListTextBrush/AddressBarTextBrush/FileListHeaderBrush 等を無条件上書きしていた問題を修正。各要素が専用のテーマカラーを直接参照するよう変更
-- **テーマカスタマイズ: ファイル一覧の選択/ホバーテキスト色:** ActivePaneCellTextStyle に選択（ListSelectedTextBrush）・ホバー（ListHoverTextBrush）トリガーを追加。TextElement.Foreground で GridViewRowPresenter に確実に伝播
-- **テーマカスタマイズ: 未接続ブラシの修正:** ButtonHoverText/CheckboxHoverText/DeckItemHoverText/DeckItemSelectedText/FilterActiveIndicator 等のブラシをXAML要素に接続
+- **Stickman リロケートアニメーション不発の修正:** ControlDeck 初回オープン時や高負荷時に、マスコットの引っ越しモーションが途中で停止し `ApplyMascotPosition` が呼ばれずオーバーレイ背後に隠れて見えなくなる不具合を修正。Tick ハンドラ先頭の早期 return を歩行ロジックのみに限定し、位置切替イベントを Progress 閾値で確実に一度発火させるフラグ方式に変更
+- **テーマ適用モード切替の即時反映:** 「ペイン個別適用」から他モード（パーソナライズ／自動／スケジュール）へ切り替えた際、再起動するまでペインごとのテーマ色が残り続けていた不具合を修正。モード切替時点で現在モードのテーマ構成（グローバル統一／ペイン別）が即座に再適用されるよう変更
+- **再起動ポップアップが表示されない問題:** 自動アップデート後、ユーザーがポップアップを見る前にアプリを閉じた場合でも更新が黙って適用されていた不具合を修正。ユーザーが明示的に「再起動」を選択した場合のみ終了時適用を実行するよう変更
+
+### Changed
+- **アップデート経路のログ拡充:** ダウンロード＆展開完了、StateChanged 発火、ApplyOnExit、再起動ポップアップ表示の各ポイントで明示ログを出力し、問題切り分けを容易化
+- **MANUAL.md 技術者向けブラッシュアップ（Phase 1・日本語のみ先行）:** AI マニュアルによる要約閲覧を前提に、MANUAL 本体を技術リファレンスへ振り直す改訂を開始。今回は「3-4 テーマ」「第10章 マスコット」「9-3 自動アップデート」の3節をカテゴリ判定基準表・性格/Tier 対応表・チェックフロー/同意ゲート仕様などで詳細化。英語版は別途同期予定
+- **MANUAL.md 技術者向けブラッシュアップ（Phase 2・日本語のみ）:** 「1-0 起動シーケンス」に実測値付きフェーズ構成表・非同期チェーン・起動パス禁則事項・DWM フリーズ回避を追加。「3-2-1 演出カテゴリ」として Effects 12 カテゴリ表（設定プロパティ / 対象 UI / マイグレーション）を新設。「第4章 インデックス」に要旨と「4-8-11 アイドル実行」節（CpuIdleService 判定フロー・ネットワーク軽量処理・フル再構築最短間隔）を追加
+- **MANUAL.md レイアウト修正（日本語）:** 1 行に全設定を詰め込んで可読性が壊滅していた箇所（Control Deck 全 11 カテゴリ／ペインヘッダー 2 行／表示モード切替／インデックス検索設定ビュー）を、見出し・箇条書き階層・改行で適切に分解。新設した **1-3-1 アプリ設定（Control Deck）の全項目** に 11 カテゴリを独立見出しで再構成
+- **MANUAL.md 技術者向けブラッシュアップ（Phase 3-5・日本語のみ）:** Phase 3 で「7-1 キーバインド技術詳細」「9-1 フォルダ構成（ユーザーデータ/実行ファイル分離とログプレフィックス）」「9-5 常駐モード操作対応表」を追加。Phase 4 で未記載だった「2-3-1 ラバーバンド選択」「2-3-2 ファイル競合ダイアログ」「8-2-1 XP 配分とランキング 3 択」「8-3 二つ名生成仕様」「9-6 プリセット 3 種」「9-7 スクリーンキャプチャ（Pro）」を新設。Phase 5 で付録 A（関連ドキュメント索引）・B（設定ファイル構造）・C（ログ仕様）を巻末に統合
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
