@@ -44,67 +44,19 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.46.0.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.46.0_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.46.0_delta_from_0.45.2.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.46.1.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.46.1_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.46.1_delta_from_0.46.0.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.46.0] - 2026-04-14 : Stickman AI 行動生成 + ストア拡張 + 内部リファクタ
+## Latest Changes — [0.46.1] - 2026-04-14 : Stickman 解放条件をチャレンジレベル基準に変更
 
 ### Changed
-- **内部リファクタ: UI 応答性と I/O 軽減:**
-  - チャレンジバックストーリーの再取得で毎回 `WindowSettings.Load()` を呼んでいた処理を、起動時ロード済みの静的キャッシュ参照に変更
-  - ストア／マイアップロード／テーマ評価マージの `Dispatcher.Invoke`（同期）を `InvokeAsync` に置換し UI スレッドブロックを排除
-  - 未使用ローカル変数 `bx`（Stickman 描画）と `comData` の null 警告（D&D FileContents 経路）を整理
-
-### Changed
-- **Stickman ストアの既定ソート順を「新着順」に変更:** アップロード直後の投稿を見つけやすくするため、並び順の先頭を新着に差し替え
-
-### Fixed
-- **Stickman ストアの作者名が userId 表示になる問題を根本修正（サーバ側）:** Cloudflare Worker の D1 スキーマに `author_name` カラムを追加し、アップロード時に `authorName`/`author`/behavior.author から表示名を永続化。community 応答で `author_name` があればそれを返すよう変更。既存レコードは `user_id` フォールバックで表示、再アップロード or 更新で上書きされる
-
-### Fixed
-- **アップロード時に作者名をサーバへ確実に送る:** `StickmanStoreService.UploadBehaviorAsync` で送信直前に behavior JSON をパースし `author` / `authorName` を `GetEffectiveAuthorName()` で必ず上書き。経路（AI 生成 / ファイル選択 / カード右クリック）を問わず、サーバに届く JSON が必ず表示名を持つ。これに伴い暫定の「匿名ユーザー」マスキング・GUID 検知ロジックを撤去
-- **Stickman ストアの投稿一覧取得失敗を修正:** サーバが返す `uploadDate` の日時フォーマット（SQLite 形式 / unix 秒 / ISO）差で `GetMyUploadsAsync` と `GetCommunityBehaviorsAsync` のデシリアライズが失敗し、アップロード後もマイアップロード・ストアに反映されなかった。柔軟な DateTime コンバーターを導入して解消
-- **Stickman ストアへのアップロード結果が見えない問題を修正:** 投稿成功時に StickmanStore ページへ自動遷移し、マイアップロードセクションを自動展開するようにした。既存のファイル選択版でもマイアップロードが展開される
-
-### Changed
-- **Stickman ナビ・AI 生成ボタンに生成AI アイコン追加:** 左メニューの Stickman 項目に Sparkles（AI バッジ）、「AI で行動パターンを生成」ボタンに BrainCircuit + Sparkles を付与
-- **自作行動パターンのバッジを MAKE に:** DL バッジはストア配布品のみ。自分が AI 生成して保存した行動パターンには Sparkles + MAKE バッジ（JSON の `origin: "user"` で判定）
-- **Stickman ページ行動パターンカードの操作拡張:** 右クリックメニューに「編集」「ストアにアップロード」を追加。自作の行動パターンを AI ダイアログで後から調整したり、そのままストア共有したりできる
-- **AI 生成ボタンのラベル変更:** 「AI で行動を生成」→「AI で行動パターンを生成」
-
-### Added
-- **Stickman AI 行動生成（Phase 3）:** Stickman ページに「AI で行動を生成」ボタンを追加。自然言語で動きを説明（例: 「酔っ払いが千鳥足で歩く」）すると、`MascotBehaviorDto` スキーマに準拠した JSON を AI が生成してステータスバーで即プレビュー。結果ダイアログではフェーズ単位で pose/長さ/速度/移動/ジャンプ/犬の動作/小道具を UI から微調整可能。修正リクエストでの再生成・保存（`stickman/store/<name>.json`）に対応。ライセンスは `AiStickmanGenerate`（無料 2 回/日）
-
-### Changed
-- **Control Deck 左メニューの区分・並び順を整理:** 5 区分を維持しつつ中身を再編。**基本設定**（General/Language/Display/Tab/Shortcut/Effects）、**カスタマイズ**（Theme/Store/Stickman/StickmanStore）、**機能**（Search/Index/AI/Backup）、**実績・統計**（Challenges/Rewards/Statistics）、**その他**（License/Feedback/About/Debug）。項目追加・削除はなく並び替えのみ
-
-### Removed
-- **Stickman ページのストア予告ブロックを削除:** 別カテゴリ「Stickman ストア」が本実装されたため、Stickman ページ下部の近日公開予告を撤去
-
-### Changed
-- **Stickman ストアのレイアウト刷新:** テーマストアと同じデザインに揃えた。ヘッダーを「Stickmanストア」に修正（誤って「基本設定」表示になっていた不具合を解消）、「My アップロード」→「マイアップロード」表記を統一、マイアップロード直下に区切り線を追加、検索バー上部に「Stickmanの行動パターンを探す」サブ見出しを追加
-
-### Added
-- **Stickman ストア（Phase 2 / 閲覧・プレビュー対応）:** Control Deck に新カテゴリ「Stickman ストア」を追加。GitHub raw 経由で公式カタログ（`sulkyjp/zenithfiler-stickman`）を取得し、5 カテゴリ（Basic / Reactive / Reward / Showcase / Custom）でブラウズ可能。各カードから 1 サイクル分のステータスバープレビューを再生できる。**閲覧は全ユーザーに開放**、ダウンロードのみ「チャレンジ 3 件達成」で解放される実績ゲート付き
-- **カタログ生成スクリプト:** `tools/publish_stickman_archive.py` を追加。`stickman/archive/` の 150 モデルを分類して `published_stickman/` に `index.json` + 行動 JSON を出力。GitHub リポジトリへの手動 push で公式カタログ化される
-
-### Added
-- **報酬コレクションページ:** Control Deck に新カテゴリ「報酬」を追加。Stickman パターン／テーマ機能／AI Stickman（準備中）／ストア（準備中）の 4 カテゴリ別に、現在の解放状態と解放条件を一覧表示。未解放項目は進捗（例: `0/3` 回）を併記
-- **テーマ機能の段階解放:** ユーザーが自然に到達できるマイルストーンで機能を段階的に解放。**テーマカスタマイズ**（5 回）→**テーマストア閲覧**（10 回）→**AI テーマ生成**（30 回）→**テーマストア投稿**（50 回 + カスタマイズ保存 1 回）。未解放機能を使おうとすると現在の進捗を示すトーストが表示される
-- **報酬解放の演出:** 新規報酬解放時にトースト通知 + Stickman の `LevelUp` 祝福リアクションを発火
-
-### Changed
-- **Stickman 行動パターン説明文の簡素化:** Control Deck「行動パターン」セクションの説明から、UI カードに表示されない項目（重み・フェーズ）の解説 2 行を削除
-- **クマ形態のずんぐりリデザイン:** レアイベント「クマ出没」のクマを大柄ずんぐりフォルムに刷新。スケール 1.5→1.9、頭を一回り大きく、脚と首を短く、しっぽは切株状に、頭上に丸耳を追加。色は専用の暗色ブラシをやめ、テーマの StickmanBrush をそのまま使用してテーマ非互換を解消（暗色テーマでクマが見えなくなる問題の回避）
-- **レアイベント発動確率:** 1% → 3% に調整
-
-### Added
-- **テーマカテゴリ連動コンパニオン切替:** テーマのカテゴリに応じて Stickman の相棒が自動で切り替わる機能を追加。Standard→犬（従来通り）/ Lifestyle→猫（気まぐれに逆走・よく寝る）/ Professional→小型ロボット（等速・アイドリング微振動）/ Premium→大型犬（1.3 倍スケール・ゆったり歩行）/ RetroTech→ドット風ロボット（2px 量子化・カクカク動作）。テーマ切替時は即座に形態・挙動が変化する。レアイベント「クマ出没」は犬時のみ発火する既存仕様を維持
+- **Stickman 機能の解放条件をチャレンジレベル基準に統一:** Stickman ストアのダウンロードをチャレンジ Lv.100、アップロードを Lv.80、AI 行動パターン生成を Lv.60 で解放する形に変更。報酬コレクション画面の条件・進捗表示にも反映し、未達時はレベル表示のトーストで案内する（ストアの閲覧・プレビューは従来どおり全ユーザー可）
+- **報酬コレクションから重複していた「Stickman ストア」準備中カードを削除:** ダウンロード／アップロードの個別カードでストア機能を表現するため、まとめ役の未解放カードを撤去して画面をすっきりさせた
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
