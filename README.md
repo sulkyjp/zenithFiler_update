@@ -44,22 +44,27 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.46.4.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.46.4_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.46.4_delta_from_0.46.3.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.46.5.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.46.5_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.46.5_delta_from_0.46.4.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.46.4] - 2026-04-15 : 実績共有の修正 + 設定ボタンのスタイル統一
+## Latest Changes — [0.46.5] - 2026-04-15 : #160 ナビペイン修正 + ワーキングセット並び替え + PerfTrace + コイン経済 + PDF 変換改善
 
-### Changed
-- **設定画面のボタンを統一スタイルに:** 「テキストエディタ」セクションの `[参照]` / `[自動検出]`、および「実績の端末間共有」セクションの `[参照]` / `[今すぐ同期]` の 4 ボタンを、周囲の設定項目と同じ `TextButton` スタイルに変更して見た目を統一
+### Added
+- **管理者向け PerfTrace（計測ログ）を Debug メニューに追加 (#159 調査用):** フォルダ遷移 1 回あたりの内訳（列挙 / UI バインド）をミリ秒単位でログに出力する。管理者のみ表示、デフォルト OFF、再起動で OFF に戻る（誤って ON のまま配布されるのを防止）
+- **ワーキングセットの並び替えに対応 (#158):** ナビペインのワーキングセット一覧をドラッグ＆ドロップで任意の順番に並び替えできるようにした。並び順は即座に保存される
+- **チャレンジコイン経済:** チャレンジを 1 つ達成すると 🪙 1 枚獲得。Stickman ダウンロードが未解放（Lv.90 未満）でも、コイン 5 枚で Stickman を 1 件取得できる（累計 3 件まで）。エンドコンテンツ性を維持しつつ、早期ユーザーにも味見の機会を提供。Lv.90 達成後はコイン購入ボタンは非表示（通常 DL で無制限）。残高・購入数は settings.json に永続化され、実績の端末間共有でも max マージ対象
 
 ### Fixed
-- **実績の端末間共有で設定値が再起動後に消える不具合を修正:** `MainWindow_Closing` の設定引き継ぎブロックに `AchievementShareEnabled` / `AchievementSharePath` が含まれておらず、終了時に初期値で上書きされていた。両フィールドを引き継ぎ対象に追加
-- **実績の端末間共有後にレベルが微妙にずれる不具合を修正:** 起動時のマージ完了で settings.json は更新されていたが、`AppSettingsViewModel` の in-memory キャッシュ（`_countersCache` / `_completedCache`）が更新されず、以降のカウンター増分が古いキャッシュ + 差分で同期済みファイルを上書きしていた。`AchievementSyncService.Merged` イベントを新設し、ViewModel 側で再読込 → XP/Level/二つ名を即座に再計算するように修正。併せてペイロードに欠落していた `ChallengeBackstory` も同期対象に追加
+- **PDF 変換が失敗しやすい不具合を大幅改善 (#157):** 特に PowerPoint のバッチ変換で失敗が多発していた点を修正。(1) `Presentations.Open` を `WithWindow: true` に変更（動画・埋め込み・一部チャート等を含む PPT で発生する COM エラーの既知回避策）、(2) `Application.Visible = false` が拒否されるバージョンを考慮し例外を握り潰してウィンドウを最小化、(3) `ExportAsFixedFormat` 失敗時に 500ms 待って 1 回再試行 → それでも失敗なら `SaveCopyAs(ppSaveAsPDF)` にフォールバック、(4) タイムアウトを 60 秒 → 300 秒に延長、(5) バッチ変換時に Word/Excel/PowerPoint のインスタンスを使い回す `OfficeConversionSession` を導入（起動競合・プロセス残留による連鎖失敗を抑止）、(6) 一部ファイルが失敗してもバッチ全体を止めず残りを処理して部分成功を通知
+- **ナビペインのショートカットで所属ゾーンが無視される不具合を修正 (#160):** 左右 2 サイドバー × 上下 2 ゾーンに拡張後、ショートカット押下時に常に Top ゾーンへアクティブ化されていた。所属ゾーン（Top/Bottom）を判定して正しい位置で前面化するよう修正
+
+### Changed
+- **報酬コレクションを到達しやすい順に並び替え、Stickman 系のレベル閾値を 10 の倍数へ整理、各項目に目安文を追加:** AI Stickman 生成 Lv.60→**50** / Stickman アップロード Lv.80→**70** / Stickman ダウンロード Lv.100→**90**。表示順は「Stickman 行動パターン（最初のチャレンジで解放）→ テーマカスタマイズ → ストア閲覧 → AI テーマ生成 → ストア投稿 → AI Stickman → Stickman アップロード → ダウンロード」に変更。各カードに「日常的に使い込んで数週間」等の到達目安を併記して、次どこまで進むかの感覚を掴めるようにした
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
