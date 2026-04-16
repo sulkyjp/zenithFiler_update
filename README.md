@@ -44,20 +44,39 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.46.7.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.46.7_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.46.7_delta_from_0.46.6.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.46.8.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.46.8_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.46.8_delta_from_0.46.7.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.46.7] - 2026-04-16 : 自動アップデートの信頼性強化（二重起動防止 + バッチ堅牢化 + バージョン検証）
+## Latest Changes — [0.46.8] - 2026-04-16 : #161 UX 統一ブラッシュアップ（基盤 + 6 ボタンホバー + ControlDeck/NavPane/ダイアログ/タブ トランジション）
+
+### Added
+- **今回追加した全アニメーションを Effects 設定と連動させた (#161 アクセシビリティ):** ControlDeck / NavPane の wipe-in と 8 ダイアログ登場アニメを `ShowPaneTransitions` に、タブ追加スライドインを `ShowTabEffects` に紐づけ。OFF にするとアニメなしで即時表示される。モーション過敏の方・低スペック機・トランジションを好まない方に配慮
+- **ダイアログの登場アニメーションを追加 (#161 A-3):** 新設 `Helpers/DialogMotion.cs` の Attached Property `DialogMotion.EnableEntrance` を 8 ダイアログ（RenameDialog / AddFolderDialog / SelectFolderDialog / DescriptionEditDialog / AddToFavoritesDialog / FileConflictDialog / EmojiPickerDialog / AiManualDialog）に付与。Loaded 時に Window.Content を `Opacity 0→1` + `TranslateY +8→0` (220ms EaseOut) で下からふわっと登場させる
+- **タブ追加時にスライドインアニメーションを追加 (#161 A-3):** `TabListView.xaml` の `ItemBorder` に Loaded EventTrigger を仕込み、新規タブを `TranslateX -20→0` + `Opacity 0→1` (150ms EaseOut) で左からスライドイン。既存タブは影響なし。退場アニメ（タブクローズ / ダイアログ Close）は Close 直前に遅延処理が必要で実装複雑化するため今回は見送り
+- **Control Deck カテゴリ切替 / ナビペインビュー切替に wipe-in トランジション (#161 A-2):** `ActiveCategory` 変化時に Control Deck の ContentArea を `Opacity 0→1` + `TranslateX +8→0` (220ms, EaseOut) で右から滑らかに登場させる。ナビペイン（お気に入り / ツリー / 履歴 / インデックス検索）切替時も `RebuildLayout()` 完了後に同じ wipe-in を適用。初回レイアウトは起動負荷を避けるためスキップし、2 回目以降のみアニメーションする。`MotionHelper.AnimateDouble` を再利用して DRY に実装
+
+### Changed
+- **6 種類のボタンスタイルにホバースケールアニメーションを追加 (#161):** `IconButton` / `IconToggleButton` / `TextButton` / `AccentButton` / `TitleBarIconButton` / `CaptionCloseButton` の各 ControlTemplate に `ScaleTransform` を仕込み、`IsMouseOver` の EnterActions / ExitActions で `Motion.HoverScale` (1.03) ↔ 等倍を `Motion.Normal` (150ms) でなめらかにアニメーション。WelcomeWindow のテーマカード基準に合わせた "気持ちよさ" をアプリ全体のボタン操作へ展開。パフォーマンス観点で `DropShadowEffect` は含めず、`ScaleX/Y` のみをアニメーション対象とし大量インスタンス環境（ツールバー・ナビペイン等）でも GPU 負荷を抑えた
+- **ダイアログのキャンセル/セカンダリボタンに `TextButton` を明示化 (#161 B-4):** RenameDialog / AddFolderDialog / SelectFolderDialog / DescriptionEditDialog / AddToFavoritesDialog のキャンセルボタン、および FileConflictDialog の KeepNewer / KeepLarger / Skip / Rename ボタンに `Style="{StaticResource TextButton}"` を付与。OS 既定の WPF ボタンから統一スタイルへ引き上げ、テーマ連動と上記ホバーアニメーションを適用
 
 ### Fixed
-- **自動アップデートの二重適用バグを修正:** 「再起動して適用」押下後に `ApplyAndRestart` でバッチを起動した上で、アプリ終了処理の `ApplyOnExit` でも同じバッチが再起動され、約 2 秒差で 2 プロセスが `xcopy` を同時実行していた。`_batchLaunched` フラグ（`Interlocked` で保護）を導入し、二重起動を構造的に防止
-- **自動アップデート適用バッチを堅牢化:** (1) 親プロセスの終了を PID ポーリングで最大 30 秒待機（超過時は taskkill フォールバック）、(2) `xcopy` を `robocopy /E /R:5 /W:2 /IS /IT` に置換してファイルロック時の自動リトライを標準化（社用 PC の Defender / 企業 AV / Box Sync によるハンドル保持に対応）、(3) `robocopy` の exit code を 0–7 = 成功 / 8+ = 失敗で判定し、失敗時は `%TEMP%\ZenithFiler_update.failed` にマーカーを書いて App に通知、(4) バッチ全体の stdout/stderr を `%TEMP%\ZenithFiler_update.log` に追記してサイレント失敗をなくす、(5) `del "%~f0"` の race を `(goto) 2>nul & del "%~f0"` イディオムで回避
-- **アップデート後のバージョン検証を追加:** 再起動時に `--updated` を検出したら、ダウンロード完了時に `%TEMP%\ZenithFiler_update\expected_version.txt` に記録した期待バージョンと実行中アセンブリのバージョンを照合。不一致または失敗マーカー検出時は「アップデートの適用に失敗しました」トーストとログパスを表示し、成功時のみ従来通り成功トースト + 一時ファイル削除を行う
+- **`tools/jp_input/` の XAML が WPF 一時ビルドに混入してビルドを壊す問題を修正:** `ZenithFiler.csproj` で `tools\**\*.xaml` と `tools\**\*` (Page/ApplicationDefinition/Resource) を除外。外部小プロジェクトを `tools/` に同居させても SDK の自動 glob が拾わないようにした
+
+### Added
+- **UX 統一の基盤レイヤーを整備 (#161):** 今後段階的に適用する共通リソースを先行追加
+  - `AppResources.xaml` に **Motion リソース群** を新設: `Motion.Fast` / `Motion.Normal` / `Motion.Slow` (100/150/220ms) + `Motion.Ease` / `Motion.EaseInOut` (PowerEase Power=2) + `Motion.HoverScale` (1.03) / `Motion.PressScale` (0.97) + `Motion.IdleShadowOpacity` (0.10) / `Motion.HoverShadowOpacity` (0.22)
+  - `AppResources.xaml` に **タイポグラフィスケール** を新設: `FontSize.Display` (22) / `FontSize.Headline` (18) / `FontSize.Subheadline` (15) / `FontSize.Body` (13) / `FontSize.Small` (12) / `FontSize.Caption` (11)
+  - `Helpers/MotionHelper.cs` を新規作成し、WelcomeWindow 内で private static として埋もれていた `AnimateScale` / `AnimateDouble` を public static として抽出（WelcomeWindow 側は MotionHelper 呼び出しに置換、挙動は等価）
+  - `TargetType="ComboBox"` / `TargetType="PasswordBox"` の暗黙スタイルを追加し、全 73 箇所の ComboBox・API キー入力等 PasswordBox の色・余白・SelectionBrush・CaretBrush をテーマ連動化（Template 差替は regression リスクが高いため今回見送り、後続フェーズで対応）
+- **新テーマカラーキーを 4 つ追加:** `GoldAccentColor` / `OverlayBackgroundColor` / `OverlayTextColor` / `SubtleGlassColor`。全 50 テーマに `tools/add_theme_color.py` で一括投入済み、`ThemeService` の `_defaultPalette` と `_colorToBrushName` にも登録
+
+### Changed
+- **ハードコード色を `DynamicResource` 参照に置換 (#161):** FavoritesView の警告アイコン `#C4A03C` (2 箇所) → `GoldAccentBrush`、TabContentControl のカードオーバーレイ背景 `#A0000000` → `OverlayBackgroundBrush` と小字テキスト `#E0E0E0` → `OverlayTextBrush`、MainWindow / IndexSearchView のテレメトリ区切り線 `#30FFFFFF` → `SubtleGlassBrush`。今後のテーマ追加や配色見直しが一箇所で完結する
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
