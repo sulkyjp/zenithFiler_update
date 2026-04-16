@@ -44,30 +44,20 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.46.6.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.46.6_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.46.6_delta_from_0.46.5.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.46.7.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.46.7_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.46.7_delta_from_0.46.6.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.46.6] - 2026-04-16 : #76 初回起動オンボーディングツアー + ウェルカムウィンドウ圧縮 + マルチディスプレイ中央配置
-
-### Added
-- **初回起動オンボーディングツアー (#76):** 起動後の実 UI 上でスポットライト＋吹き出しの 6 ステップツアーを表示（2 画面ペイン / ナビペイン / テーマ / Stickman / AI / Control Deck）。`MainWindow.ContentRendered` 後に Background 優先度でフェードイン起動するため起動性能は維持。次へ／戻る／スキップと ←／→／Esc キー操作、完了で `HasSeenInitialTour` を保存し自動スキップ。Control Deck > 一般 の「ツアーをもう一度見る」からいつでも再表示できる。各ステップは実操作を伴う:
-  - Step2 ナビペイン: 吹き出し中央に 4 つのビルトインプリセット（標準 / コンパクト / デュアル / 作者構成）切替ボタン。選択でナビペインがリアルタイム切替、デュアル / 作者構成では右ナビペインも白抜き対象に追加。ステータスバーの Layers アイコンと ▾ ビュー追加メニューも同時にスポットライト・展開表示。本文に D&D 並べ替え + ▾ メニュー活用のヒント
-  - Step3 テーマ: Control Deck を自動でテーマページに開き、テーマカード一覧（ThemeListBox）までスクロールしてスポットライト。ステップ遷移時に自動で閉じる
-  - Step4 Stickman: 吹き出し内に「表示 / 非表示」トグル。ON でステータスバー上に Stickman が登場してスポットライト。ステップ離脱時は元の ShowMascotEffect 設定に復元
-  - Step5 AI: ステータスバーの AI ON/OFF トグル（Sparkles アイコン）をスポットライト
-- **ウェルカムウィンドウの必須セットアップ化:** 機能紹介 7 ページを起動後ツアーに移管し、ナビプリセット選択もツアー Step2 に統合したため、言語 / テーマ / EULA / 完了の 4 ページに圧縮
-- **ウェルカムウィンドウのテーマ選択を Apple 設定風にリデザイン:** ヒアリング（明 / 暗 → テイスト）を廃止し、Pill セグメント（✨ おすすめ / Standard / Lifestyle / Professional / Premium / RetroTech）で直接切替。各テーマは疑似ウィンドウのミニモックで雰囲気が一目で伝わる。カテゴリ切替はフェード＋スライドで遷移、カードはホバーでスケール拡大＋影強調、選択で他カードはディム
+## Latest Changes — [0.46.7] - 2026-04-16 : 自動アップデートの信頼性強化（二重起動防止 + バッチ堅牢化 + バージョン検証）
 
 ### Fixed
-- **初回起動時の本体ウィンドウをカーソルがあるモニタの中央に配置（マルチ DPI / マルチディスプレイ対応）:** `ContentRendered` で `GetCursorPos` + `MonitorFromPoint` によりカーソルのあるモニタを決定し、`GetMonitorInfo` で作業領域を物理ピクセルで取得して `SetWindowPos` で中央配置。ウィンドウは既定でプライマリモニタ上に生成されるため `MonitorFromWindow` では主モニタに固定されてしまう問題、および DPI スケール差でずれる問題を回避
-- **ツアー Step2 の ▾ プルダウン関連の複合不具合を修正:** (1) ContextMenu がフォーカス外で閉じてしまう → Closed イベントで自動再オープン、(2) 開いた状態で Next/Back/Skip ボタンが効かない → Closed 時のマウス位置を HitTest して該当ボタンなら Click を合成発火、(3) 吹き出しと ▾ メニューが重なる → Step2 では吹き出しを画面上中央に固定配置
-- **ナビペインプリセット切替時のクラッシュを修正:** 左右ナビペインで View オブジェクトを共有しているため、プリセット切替で片側から反対側へ View を移すときに `InvalidOperationException` が発生していた。View 追加の直前に現在の親（Panel / ContentControl / Decorator）から切り離す防御処理を追加
-- **ウェルカムウィンドウのテーマカードがクリックに反応しない問題を修正:** ウィンドウ DragMove が MouseUp を奪っていたためセグメント・カードが押せなかった。MouseDown 段階でイベント消費して解決。スクロールバーとカードの重なりも右側パディングで解消
+- **自動アップデートの二重適用バグを修正:** 「再起動して適用」押下後に `ApplyAndRestart` でバッチを起動した上で、アプリ終了処理の `ApplyOnExit` でも同じバッチが再起動され、約 2 秒差で 2 プロセスが `xcopy` を同時実行していた。`_batchLaunched` フラグ（`Interlocked` で保護）を導入し、二重起動を構造的に防止
+- **自動アップデート適用バッチを堅牢化:** (1) 親プロセスの終了を PID ポーリングで最大 30 秒待機（超過時は taskkill フォールバック）、(2) `xcopy` を `robocopy /E /R:5 /W:2 /IS /IT` に置換してファイルロック時の自動リトライを標準化（社用 PC の Defender / 企業 AV / Box Sync によるハンドル保持に対応）、(3) `robocopy` の exit code を 0–7 = 成功 / 8+ = 失敗で判定し、失敗時は `%TEMP%\ZenithFiler_update.failed` にマーカーを書いて App に通知、(4) バッチ全体の stdout/stderr を `%TEMP%\ZenithFiler_update.log` に追記してサイレント失敗をなくす、(5) `del "%~f0"` の race を `(goto) 2>nul & del "%~f0"` イディオムで回避
+- **アップデート後のバージョン検証を追加:** 再起動時に `--updated` を検出したら、ダウンロード完了時に `%TEMP%\ZenithFiler_update\expected_version.txt` に記録した期待バージョンと実行中アセンブリのバージョンを照合。不一致または失敗マーカー検出時は「アップデートの適用に失敗しました」トーストとログパスを表示し、成功時のみ従来通り成功トースト + 一時ファイル削除を行う
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
