@@ -44,18 +44,18 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.46.10.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.46.10_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.46.10_delta_from_0.46.9.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.46.11.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.46.11_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.46.11_delta_from_0.46.10.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.46.10] - 2026-04-18 : #164 ファイル/フォルダ移動・コピーの access denied を IFileOperation フォールバックで解消
+## Latest Changes — [0.46.11] - 2026-04-18 : #163 ConPTY ターミナル即死問題を修正（出力リーダー先行起動 + 子側パイプ Dispose 順序）
 
 ### Fixed
-- **ファイル/フォルダの移動・コピーが "アクセスが拒否されました" で失敗する問題を修正 (#164):** `TabItemViewModel.DropFilesInternal` が `.NET` の `Directory.Move` / `File.Move` / Turbo Copy を直接呼び出していたため、ボリューム跨ぎ移動・別プロセスにロックされたファイル・属性差異などで Explorer では成功する操作が `IOException` / `UnauthorizedAccessException` で落ちていた。`IOException` または `UnauthorizedAccessException` を捕捉したときに `Vanara.Windows.Shell.ShellFileOperations` (IFileOperation) へ自動フォールバックする `ShellMoveFallback` / `ShellCopyFallback` を追加し、Explorer と同等の堅牢性を確保。通常ケース（同一ボリューム・ロックなし）は従来通り Turbo Engine が動作するため速度劣化なし
+- **ターミナルが Windows 11 26200 + pwsh 7.5.5 の組み合わせで起動直後に即死する問題を修正 (#163):** `PtyService.cs` で (A) 出力リーダースレッドを `CreateProcess` の "後" に起動していたため、ConPTY が起動直後に書き出す初期化 VT シーケンスでパイプバッファが満杯になり、書き込みブロック → ConPTY 内部状態が壊れて子プロセスが `exitCode=0` で即死していた、(B) 子側パイプ端 (`_pipeInRead` / `_pipeOutWrite`) を `CreatePseudoConsole` の "直後" に Dispose していたため、Windows 11 24H2+ で厳密化された ConPTY 参照カウントと衝突し子の stdin/stdout が壊れていた、の 2 点を解消。出力リーダースレッドを `CreateProcess` の "前" に起動してパイプを即座にドレインし、子側パイプ端の Dispose は `CreateProcess` 成功 "後" に移動（Microsoft 公式ドキュメントの記載どおり）。cmd.exe でも同症状が出ていたのが裏付けとなり、シェル非依存の ConPTY ホスト側構造バグであることが確定
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
