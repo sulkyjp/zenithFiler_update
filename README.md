@@ -44,18 +44,27 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.46.11.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.46.11_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.46.11_delta_from_0.46.10.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.46.12.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.46.12_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.46.12_delta_from_0.46.11.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.46.11] - 2026-04-18 : #163 ConPTY ターミナル即死問題を修正（出力リーダー先行起動 + 子側パイプ Dispose 順序）
+## Latest Changes — [0.46.12] - 2026-04-21 : 起動・ホットパス大幅高速化（5.2s → 2.1s / −60%）+ 予防修正 + 起動計測点拡充
 
-### Fixed
-- **ターミナルが Windows 11 26200 + pwsh 7.5.5 の組み合わせで起動直後に即死する問題を修正 (#163):** `PtyService.cs` で (A) 出力リーダースレッドを `CreateProcess` の "後" に起動していたため、ConPTY が起動直後に書き出す初期化 VT シーケンスでパイプバッファが満杯になり、書き込みブロック → ConPTY 内部状態が壊れて子プロセスが `exitCode=0` で即死していた、(B) 子側パイプ端 (`_pipeInRead` / `_pipeOutWrite`) を `CreatePseudoConsole` の "直後" に Dispose していたため、Windows 11 24H2+ で厳密化された ConPTY 参照カウントと衝突し子の stdin/stdout が壊れていた、の 2 点を解消。出力リーダースレッドを `CreateProcess` の "前" に起動してパイプを即座にドレインし、子側パイプ端の Dispose は `CreateProcess` 成功 "後" に移動（Microsoft 公式ドキュメントの記載どおり）。cmd.exe でも同症状が出ていたのが裏付けとなり、シェル非依存の ConPTY ホスト側構造バグであることが確定
+### Changed
+- **起動時の左サイドバー「お気に入り」表示までの 969ms ギャップを解消（実測 `after-InitializeAsync` 581ms → `before-Favorites` 1550ms の空白区間）:** `MainWindow.Window_Loaded` がお気に入りロードを `Dispatcher.InvokeAsync(..., DispatcherPriority.Input)` (優先度 5) に積んでいたが、その直後に `MainWindow_ContentRendered` が `RebuildNavLayout + ApplyStartupPresets` を `DispatcherPriority.Loaded` (優先度 6) に積んでおり、Loaded > Input で Favorites が押されていた。`Favorites.LoadFromSettings` は実測 15ms の純メモリ操作なので `Window_Loaded` 内に同期インライン化。Window はこの時点で既に描画済みのため体感遅延は発生せず、起動後ブランク表示ではなく最初から埋まった状態で左サイドバーが出るように。合わせて `MainWindow_ContentRendered` に `[RENDERED-TIMING]` 計測点 6 箇所（start / before-RebuildNavLayout / after-RebuildNavLayout / before-ApplyStartupPresets / after-ApplyStartupPresets / end）を追加し、残余ボトルネック（`ApplyStartupPresets` 内の `WindowSettings.Load` 同期ファイル I/O 等）の次回計測を容易化
+- **起動パフォーマンス最適化 — バックグラウンド劣後化と遅延 NavView 生成で起動操作可能時間を短縮（実測ログで 5.2 秒を観測していたユーザー環境を 3.0〜3.5 秒想定に短縮）:**
+  - `App.xaml.cs` の `OnStartup` から `TrayAreaRefresher.Refresh` / `LogStartupDiagnostics` / `SettingsBackupService.CleanupOldBackupsAsync` / `ShellNewService.InitializeAsync` / `SettingsBackupService.UpgradeLatestSummaryAsync` / `AchievementSync.LoadAndMergeAsync` の 6 本の Task.Run を起動パスから外し、`Dispatcher.BeginInvoke(ApplicationIdle)` に一括遅延。Theme 初期スキャン (`autoThemeTask`) が他 BG Task と CPU 競合で 500ms 以上 UI スレッドを待たせていたのを解消
+  - `MainWindow.xaml.cs` の `InitializeNavViews` を「即時 5 ビュー (Favorites / Tree / History / IndexSearch / Properties) + 遅延 13 ビュー (WorkingSet / FrequentFolders / RecentFiles / Drives / SavedSearches / SearchHistory / BoxApi / Preview / Terminal / TabList / AiManual / AiFolderOrganizer / AiTabManagement)」に分割。遅延側は `ContentRendered` 後 4 チャンクで Background 優先度生成し、`EnsureNavViewCreated(id)` 冪等ヘルパーで必要時に同期生成する保険を追加。MainWindow ctor 中の XAML パース時間を 400〜700ms 削減
+  - `MainWindow.xaml.cs` の `App.IndexService.SetLocked` / `ConfigureIndexUpdate` 呼び出しを `ApplySettings` から `Window_Loaded` の BG に移動。Lucene アセンブリの初回 JIT を UI スレッドから退避
+  - `MainWindow.xaml.cs` / `MainViewModel.cs` の Favorites 復元優先度を Background → Input に引き上げ、残りタブの遅延復元を Background 優先度に固定。ユーザー操作系を先に体感できるよう並び替え
+  - `ApplySettings` 内に `[APPLY-TIMING]` 計測ポイント 4 箇所を追加し、次回以降の計測を容易化
+- **Thumbnail 取得にバックプレッシャを追加してスクロール中の体感を改善:** `ShellThumbnailService._queue` を FIFO から LIFO (`ConcurrentStack` ベースの `BlockingCollection`) に変更。スクロールで古くなった要求より現在表示中の行の要求を優先処理。STA スレッドは消費前に `item.Tcs.Task.IsCanceled` を確認し、ナビ/タブ切替で不要になった要求をスキップする
+- **ホットパスの列挙型 Converter を文字列比較から値比較に切り替えてアロケーション削減:** `EnumEqualityToBooleanConverter` / `EnumEqualityToVisibilityConverter` / `EnumEqualityToVisibilityInverseConverter` / `EnumEqualityToBooleanInverseConverter` の `value?.ToString() == parameter?.ToString()` を `Equals(value, parameter)` に変更。ListView 10,000 行級でも 1 行につき 2 個の文字列アロケーションが発生していたのを排除
+- **長時間利用で徐々に劣化しうる箇所の予防修正 (#159 再調査フォロー):** 監査で見つかった軽微な蓄積リスク 3 点をリファクタ。(1) `TourOverlay.xaml.cs` のツアー開閉を繰り返すと `PropertyChanged` / 自身と `_host` の `SizeChanged` 購読が解除されていなかったのを、名前付きハンドラ化 + `Unloaded` / `AnimateClose` の両経路で確実に `-=` するように変更、(2) `Helpers/DialogMotion.cs` の `OnLoaded` ハンドラが一度発火したら自己 `-=` するようにして、将来ダイアログが Hide/Show を繰り返す設計に変わっても購読累積しないよう予防、(3) `Views/NavPane/TabListView.xaml.cs` の `TabItemBorder_Loaded` に「既に `TranslateTransform` が付いていれば登場アニメ済みとみなしてスキップ」のガードを追加し、`ItemsControl` 仮想化リサイクルで同じ Border が Loaded 再発火しても `TranslateTransform` を都度 `new` しないようにして GC 圧を削減。#159 自体は現状再発報告なし（v0.46.10 の `IFileOperation` フォールバック・v0.46.7 の `UpdateService` robocopy 化・v0.46.11 の `PtyService` Dispose 順序修正の副次効果で実効的に解消したと推定）
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
