@@ -44,18 +44,18 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.46.9.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.46.9_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.46.9_delta_from_0.46.8.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.46.10.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.46.10_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.46.10_delta_from_0.46.9.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.46.9] - 2026-04-17 : hotfix — タブ一覧起動時のクラッシュ修正
+## Latest Changes — [0.46.10] - 2026-04-18 : #164 ファイル/フォルダ移動・コピーの access denied を IFileOperation フォールバックで解消
 
 ### Fixed
-- **タブ一覧のロード時に `InvalidOperationException` で落ちるクラッシュを修正（v0.46.8 リグレッション）:** v0.46.8 で導入したタブ追加スライドインで、`TabListView.xaml` の DataTemplate 内に `<Border.RenderTransform><TranslateTransform/></Border.RenderTransform>` を宣言していたが、DataTemplate の Freezable が共有・凍結されるケースで `t.X = -20` の書き込みが読み取り専用エラーになっていた。XAML 宣言を削除し、`TabItemBorder_Loaded` ハンドラで毎回新規 `TranslateTransform` を割り当てる実装に変更（NavPane の wipe-in と同じ安全パターン）
+- **ファイル/フォルダの移動・コピーが "アクセスが拒否されました" で失敗する問題を修正 (#164):** `TabItemViewModel.DropFilesInternal` が `.NET` の `Directory.Move` / `File.Move` / Turbo Copy を直接呼び出していたため、ボリューム跨ぎ移動・別プロセスにロックされたファイル・属性差異などで Explorer では成功する操作が `IOException` / `UnauthorizedAccessException` で落ちていた。`IOException` または `UnauthorizedAccessException` を捕捉したときに `Vanara.Windows.Shell.ShellFileOperations` (IFileOperation) へ自動フォールバックする `ShellMoveFallback` / `ShellCopyFallback` を追加し、Explorer と同等の堅牢性を確保。通常ケース（同一ボリューム・ロックなし）は従来通り Turbo Engine が動作するため速度劣化なし
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
