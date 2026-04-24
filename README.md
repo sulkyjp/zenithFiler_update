@@ -44,21 +44,18 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.46.14.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.46.14_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.46.14_delta_from_0.46.13.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.47.0.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.47.0_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.47.0_delta_from_0.46.14.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.46.14] - 2026-04-24 : 長時間利用の遷移劣化解消 + Stickman の動きを滑らかに
+## Latest Changes — [0.47.0] - 2026-04-25 : テーマ全 51 本のデザイン品質大幅刷新 — 脱・原色 / 階層化コントラスト / 個性差別化 / Stickman 配色
 
 ### Fixed
-- **長時間利用でファイル遷移が段階的に重くなる問題を解消 — `TabActivity` テーブルにインデックスを追加:** タブ切替・フォルダ遷移のたびに `TabActivityService.UpdateDeactivationAsync` が `UPDATE TabActivity SET DeactivatedAt=?, DurationSeconds=? WHERE Path=? AND Pane=? AND DeactivatedAt IS NULL AND ActivatedAt=?` を発行していたが、`TabActivity` にインデックスが無く全表走査になっていた。長時間利用でレコードが数万件に達すると UPDATE に数十〜数百 ms かかり、SQLite は単一コネクションで書込みを直列化するため、同一の遷移パスで `await` している `TabItemViewModel.Navigate` 内の `GetContextPreferenceAsync` が待たされて UI 遷移が詰まる構造だった。`TabActivityService.InitializeAsync` で `CREATE INDEX IF NOT EXISTS` により (Path, Pane, DeactivatedAt) 複合インデックスと (ActivatedAt) 単独インデックスを追加。UPDATE の WHERE 評価が O(N) → O(log N) になり、書込みロックの保持時間も激減するため、長時間稼働後でも遷移応答が維持される。既存ユーザーは初回起動時に自動でインデックスが作成される（1 回限りのマイグレーション、データ移行は不要）
-
-### Changed
-- **Stickman の動きを滑らかに — サブピクセル位置 + EMA ローパスフィルタ:** `Behaviors/StatusBarMascotBehavior.cs` の全キャラクタ（棒人間本体・犬/companion・フォロワー最大 8 体）の位置指定を `Canvas.SetLeft/SetTop`（レイアウトパスで整数ピクセルに丸められる）から `TransformGroup(ScaleTransform + TranslateTransform)` 経由のサブピクセル指定に変更。`UseLayoutRounding=false` / `SnapsToDevicePixels=false` も合わせて設定し整数スナップを回避。加えて、物理エンジン出力（`state.X` / `state.YOffset`、`dog.X` / `dog.YOffset`、フォロワー追従位置）に τ=25ms の 1-pole EMA ローパスフィルタを適用し、フレーム間の微小ジッターを丸める。`JumpThreshold=50px` のワープ検出により、リロケートやリセット時は平滑化をバイパスして長い補間軌跡が発生するのを防ぐ。フォロワーが非表示化したときと `state.IsRelocating` 中は smooth 状態をリセットして次回出現時のスイープを回避。ヘルパー `SetFigurePosition(Canvas, x, y)` / `GetFigureScale(Canvas)` を追加してコード重複を排除
+- **テーマ JSON 定義色の反映漏れを解消 — `ThemeModel` のセクション分類を JSON 実配置に整合化:** `Models/ThemeModel.cs` の 17 カラーキー（`SelectionTextColor` / `InactiveSelectionTextColor` / `ButtonHoverTextColor` / `ButtonIdleTextColor` / `CheckboxHoverTextColor` / `OptionSelectedHoverTextColor` / `FilterToggleCheckedTextColor` / `FilterChipTextColor` / `DestructiveHoverTextColor` / `PropertyPathBackgroundColor` / `PropertyPathBorderColor` / `ChallengeCardTextColor` / `DeckItemHoverTextColor` / `DeckItemSelectedTextColor`、および `SettingsMenuHoverColor` / `SettingsMenuSelectedColor` の 2 キー、加えて `NavPane.DeckItemHoverColor` の重複削除）が、実際のテーマ JSON 配置と異なるセクションに宣言されていたため `System.Text.Json` のデシリアライズでサイレントに破棄され、`ThemeService` の `InheritanceMap` が親値（多くは `PrimaryTextColor`）で強制上書きしていた。結果としてテーマ作者がカスタム指定していた 22 テーマ × 130 色の意図値が無視されていた状態だったため、`ThemeModel` のプロパティ配置を JSON 実配置に揃える整合化を実施。Apricot のホバー時の茶色テキスト、CloudGray の選択時の濃紺テキストなど、各テーマのデザイン意図通りの色が初めて反映されるようになる。視覚的変化は主にボタン／チェックボックス／オプション／デッキアイテムのホバー・選択状態のテキスト色で、暖色・寒色テーマで特に顕著。活性化後にコントラスト不足となった 2 件（SkyCanvas `OptionSelectedHoverTextColor`、Snowfield `CheckboxHoverTextColor`）は `#FFFFFF` に差し替え、それぞれ 5.7:1 / 6.5:1 で AA 達成
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
