@@ -44,21 +44,21 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.46.13.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.46.13_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.46.13_delta_from_0.46.12.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.46.14.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.46.14_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.46.14_delta_from_0.46.13.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.46.13] - 2026-04-21 : 起動フローの残余チラつき解消 + APPLY/PRESETS 二重最適化（操作可能まで 5.2s → ~1.7s / −67%）
+## Latest Changes — [0.46.14] - 2026-04-24 : 長時間利用の遷移劣化解消 + Stickman の動きを滑らかに
+
+### Fixed
+- **長時間利用でファイル遷移が段階的に重くなる問題を解消 — `TabActivity` テーブルにインデックスを追加:** タブ切替・フォルダ遷移のたびに `TabActivityService.UpdateDeactivationAsync` が `UPDATE TabActivity SET DeactivatedAt=?, DurationSeconds=? WHERE Path=? AND Pane=? AND DeactivatedAt IS NULL AND ActivatedAt=?` を発行していたが、`TabActivity` にインデックスが無く全表走査になっていた。長時間利用でレコードが数万件に達すると UPDATE に数十〜数百 ms かかり、SQLite は単一コネクションで書込みを直列化するため、同一の遷移パスで `await` している `TabItemViewModel.Navigate` 内の `GetContextPreferenceAsync` が待たされて UI 遷移が詰まる構造だった。`TabActivityService.InitializeAsync` で `CREATE INDEX IF NOT EXISTS` により (Path, Pane, DeactivatedAt) 複合インデックスと (ActivatedAt) 単独インデックスを追加。UPDATE の WHERE 評価が O(N) → O(log N) になり、書込みロックの保持時間も激減するため、長時間稼働後でも遷移応答が維持される。既存ユーザーは初回起動時に自動でインデックスが作成される（1 回限りのマイグレーション、データ移行は不要）
 
 ### Changed
-- **起動時タブ復元のチラつきを解消 — 全タブを一括生成して画面切替を 1 回に統合:** 従来の `RestoreFirstTabAsync` + 300ms 遅延 + `RestoreRemainingTabsAsync` 分割方式は、(1) まず `paths[0]` が選択状態で表示、(2) 300ms 後に裏タブが `Tabs.Add` で 1 つずつ追加されてタブストリップが徐々に伸びる、(3) 最後に `SelectedTab = Tabs[selectedIndex]` でユーザーの実際の選択タブへコンテンツが切り替わる、の 3 段階チラつきを起こしていた。`MainViewModel.InitializeAsync` の呼び出しを既存の `FilePaneViewModel.RestoreTabsAsync` (全タブを `Task.WhenAll` で並列解決 → 1 ループで全タブ生成 → `SelectedTab` を 1 度だけ設定) に置き換え。TabItemViewModel ctor は軽量（フォルダ I/O を行わない）ため N 個生成しても UI ブロックにならず、裏タブのコンテンツは従来通り初回アクセス時に遅延ロードされる。結果: タブストリップが一発で最終状態に確定、コンテンツ切替も 1 回のみ、ユーザの実際の選択タブが最初から表示される。else 分岐（`RestoreTabsOnStartup=false`）も一貫性のため `RestoreTabsAsync` に統一
-- **起動時 `ApplyStartupPresets` の `WindowSettings.Load` 再呼び出しを排除し 200〜400ms 変動を解消:** `MainWindow_ContentRendered` 経由で `Loaded` 優先度実行される `ApplyStartupPresets` が、OnStartup で既に取得済みの `_settings` を使わず `WindowSettings.Load(applyFlags: false)` を再呼び出ししていたため、settings.json のディスク I/O + JSON デシリアライズで 200〜400ms のばらつきが発生していた（直近実測では 436ms 観測）。既存の `_settings` フィールドを参照するよう変更（null ガード付き）。合わせて新計測点 `[PRESETS-TIMING]` を 5 箇所（start / after-settings-load / after-window-layout / after-nav-preset / after-workingset）追加し、内訳を次回起動ログで可視化。想定削減 390ms（436ms → 30〜50ms）。guard-startup が副次的に発見した残課題として `MainViewModel.ApplyLayoutPreset` 内部に `SaveFavoritesOnly` + `SaveNavPaneLayout` の同期ファイル書き込みが 2 回あり、起動時プリセット適用時のみ発火するがこれも将来的な BG 化候補
-- **起動時に残っていた最後の 1 回のチラつきを Opacity フェードインで解消:** `RestoreTabsAsync` への置換で多段フリッカは既に解消済みだったが、`App.xaml.cs` で MainWindow を `Render` 優先度で `Visibility=Visible` に切り替えた直後はまだ空のペイン状態のため、そこから `InitializeAsync` 完了（~500ms 後）までのタイミングで「空ペイン表示 → タブ内容が流入」の 1 回だけチラつきが残っていた。`MainWindow.xaml` に `Opacity="0"` を追加して起動時は透明で開始し、`Window_Loaded` 内 `InitializeAsync` の ContinueWith コールバックでタブ復元が揃った時点で `DoubleAnimation` (150ms, EaseOut) によりフェードインする実装に変更。`Visibility=Hidden → Visible` の既存フローは一切触らないため `Window_Loaded` 発火タイミングは不変で、ContentRendered による位置復元ロジックにも影響しない。`WindowSettings.ShowStartupEffectsEnabled=false` のときはフェードを使わず即時 `Opacity=1` にしてアクセシビリティ配慮。保険として `Window_Loaded` 冒頭で 3 秒のフォールバックタイマーを仕込み、万一 `InitializeAsync` が例外/ハングで完了しなくても透明な亡霊 Window が残らないよう強制顕在化する。`RevealWindow(reason)` ヘルパーは `_isRevealed` フラグで複数経路からの呼び出しに対する冪等性を保証し、`[LOADED-TIMING] after-window-reveal` ログで顕在化タイミングを計測可能。ユーザー視点では「空ペインのフラッシュ → 内容流入」ではなく「暗転→すっと現れる」体験に変わる
-- **起動時 APPLY フェーズの 153ms を削減 — IndexSearch ステータス取得を BG 化:** 新ログで `after-ApplyPaneLayout:12ms → after-IndexSearchLoad:165ms` の **153ms** の正体が `IndexSearchSettings.RefreshStatus()` 経由の `App.IndexService` 同期クエリ（`IsRootLocked` / `IsRootInProgress` / `IsRootPending` / `IsRootIndexed` / `GetDocumentCountForRoot` / `GetLastIndexedTime` を対象パスごとに Lucene 同期クエリで取得）だと判明。`MainWindow.xaml.cs:2121-2123` のコメント「RefreshStatus/RebuildScopeItems は VM 内のコレクション操作のみで IndexService に触れないため即時実行」は事実と反しており、実際は Lucene を叩いていた。`IndexSearchSettingsViewModel.LoadPaths` 末尾の内部 `RefreshStatus()` 呼び出しを削除し、`ApplySettings` からも `RefreshStatus()` と `RebuildScopeItems(scopePaths)` を除去。これらは `Window_Loaded` の既存 IndexService BG 初期化タスクに移動し、`ConfigureIndexUpdate` + `SetLocked` 完了後に `Dispatcher.InvokeAsync(Background)` で UI スレッドに戻して実行する。新計測点 `[LOADED-TIMING] after-IndexStatusRefreshed` を追加。想定改善: 起動「操作可能まで」の体感 2.1s → ~1.95s
+- **Stickman の動きを滑らかに — サブピクセル位置 + EMA ローパスフィルタ:** `Behaviors/StatusBarMascotBehavior.cs` の全キャラクタ（棒人間本体・犬/companion・フォロワー最大 8 体）の位置指定を `Canvas.SetLeft/SetTop`（レイアウトパスで整数ピクセルに丸められる）から `TransformGroup(ScaleTransform + TranslateTransform)` 経由のサブピクセル指定に変更。`UseLayoutRounding=false` / `SnapsToDevicePixels=false` も合わせて設定し整数スナップを回避。加えて、物理エンジン出力（`state.X` / `state.YOffset`、`dog.X` / `dog.YOffset`、フォロワー追従位置）に τ=25ms の 1-pole EMA ローパスフィルタを適用し、フレーム間の微小ジッターを丸める。`JumpThreshold=50px` のワープ検出により、リロケートやリセット時は平滑化をバイパスして長い補間軌跡が発生するのを防ぐ。フォロワーが非表示化したときと `state.IsRelocating` 中は smooth 状態をリセットして次回出現時のスイープを回避。ヘルパー `SetFigurePosition(Canvas, x, y)` / `GetFigureScale(Canvas)` を追加してコード重複を排除
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
