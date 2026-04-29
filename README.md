@@ -44,18 +44,26 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.47.0.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.47.0_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.47.0_delta_from_0.46.14.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.48.0.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.48.0_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.48.0_delta_from_0.47.0.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.47.0] - 2026-04-25 : テーマ全 51 本のデザイン品質大幅刷新 — 脱・原色 / 階層化コントラスト / 個性差別化 / Stickman 配色
+## Latest Changes — [0.48.0] - 2026-04-29 : 長期動作ログ精査からの安定性・性能総合改善 — 例外抑止 4 件 / メモリリーク予防 2 件 / I/O 安定化 + AI と Box 暖気の応答性改善
 
 ### Fixed
-- **テーマ JSON 定義色の反映漏れを解消 — `ThemeModel` のセクション分類を JSON 実配置に整合化:** `Models/ThemeModel.cs` の 17 カラーキー（`SelectionTextColor` / `InactiveSelectionTextColor` / `ButtonHoverTextColor` / `ButtonIdleTextColor` / `CheckboxHoverTextColor` / `OptionSelectedHoverTextColor` / `FilterToggleCheckedTextColor` / `FilterChipTextColor` / `DestructiveHoverTextColor` / `PropertyPathBackgroundColor` / `PropertyPathBorderColor` / `ChallengeCardTextColor` / `DeckItemHoverTextColor` / `DeckItemSelectedTextColor`、および `SettingsMenuHoverColor` / `SettingsMenuSelectedColor` の 2 キー、加えて `NavPane.DeckItemHoverColor` の重複削除）が、実際のテーマ JSON 配置と異なるセクションに宣言されていたため `System.Text.Json` のデシリアライズでサイレントに破棄され、`ThemeService` の `InheritanceMap` が親値（多くは `PrimaryTextColor`）で強制上書きしていた。結果としてテーマ作者がカスタム指定していた 22 テーマ × 130 色の意図値が無視されていた状態だったため、`ThemeModel` のプロパティ配置を JSON 実配置に揃える整合化を実施。Apricot のホバー時の茶色テキスト、CloudGray の選択時の濃紺テキストなど、各テーマのデザイン意図通りの色が初めて反映されるようになる。視覚的変化は主にボタン／チェックボックス／オプション／デッキアイテムのホバー・選択状態のテキスト色で、暖色・寒色テーマで特に顕著。活性化後にコントラスト不足となった 2 件（SkyCanvas `OptionSelectedHoverTextColor`、Snowfield `CheckboxHoverTextColor`）は `#FFFFFF` に差し替え、それぞれ 5.7:1 / 6.5:1 で AA 達成
+- **ナビペインのドラッグ＆ドロップ後にレイアウト再構築で稀発していた `InvalidOperationException`「指定された要素は、既に別の要素の論理子です」を抑止:** `Views/NavPane/NavPaneControl.xaml.cs` の `RebuildLayout()` に `_isRebuildingLayout` 再入防止フラグを追加し、左右ペインの並行 `RebuildLayout` で同一インスタンスが二重に走るのを直列化。加えて `UpdateViewHeader` / `CreateViewHeader` での共有 `HeaderActions` の親切り離しを `Panel` 限定から `DetachFromAnyParent`（`Panel` / `ContentControl` / `Decorator` をすべて対象）に統一して、反対側ペインのヘッダ配下にぶら下がっていた `actions` を確実にデタッチしてから新しい親に追加するようにした。長期動作ログで複数日にわたり観測されたドロップ操作直後の例外が解消する
+- **タブを閉じた直後に表示中フォルダが更新されたときに発生していた `ObjectDisposedException` (`SemaphoreSlim`) を抑止:** `ViewModels/TabItemViewModel.cs` に `_disposed` フラグを追加し、`LoadDirectoryAsync` の入り口で破棄済みタブを早期 return。`_loadDirectorySemaphore.WaitAsync` を `try`/`catch (ObjectDisposedException)` で囲み、`finally` の `Release()` も `ObjectDisposedException` / `SemaphoreFullException` を吸収。`Dispose()` 冒頭で `_disposed = true` を立てて以降の入り直しを完全遮断する。タブ削除→残存タブ再読込の競合タイミングで稀に発生していたクラッシュを除去
+- **`settings.json` の保存に Windows のロック競合（`HRESULT 0x80070020` / `0x80070497`）で失敗するケースを抑止 — `File.Replace` を 50ms / 100ms / 200ms の指数バックオフで最大 3 回リトライ:** `Models/WindowSettings.cs` の `Save()` / `SaveAsync()` 内のアトミック・スワップを `AtomicSwapWithRetry` / `AtomicSwapWithRetryAsync` 共通ヘルパーに切り出し、`IOException` / `UnauthorizedAccessException` 発生時に再試行する。OneDrive・FileSystemWatcher・セキュリティソフトの一時ロックで「設定が保存できない」状態がログに頻出していた事象が解消する
+- **長時間運用でアイコンキャッシュが無制限に膨らむのを防止 — `Helpers/ShellIconHelper.cs` の `_realCache` / `_genericCache` に件数上限（500 件）を導入:** Frozen な `BitmapSource` をキャッシュ値として保持しているため、無制限のままだと運用時間に比例してプロセスメモリが増えていた。`TrimCacheIfNeeded` で上限超過時に 50 件単位のバッチ掃き出しを行い、メモリ消費を頭打ちにする
+- **`FavoritesViewModel` / `ProjectSetsViewModel` の `Items.CollectionChanged` 購読解除漏れを修正 — 両 ViewModel に `IDisposable` を実装:** `FavoritesViewModel` はラムダで購読していた `CollectionChanged` を `OnItemsCollectionChanged` メソッドに切り出して `Dispose` 時に確実に `-=` で解除（`_lockWarningCts` の解放も同 `Dispose` で実施）。`ProjectSetsViewModel` も同様に `IDisposable` を実装。共有 `ObservableCollection` 上にハンドラが積もるのを防ぎ、ViewModel 寿命越しのリークを排除する
+
+### Changed
+- **クラウド AI リクエストのタイムアウトを 60 秒から 30 秒に短縮:** `Services/Ai/AiService.cs` の `RequestTimeout` を `TimeSpan.FromSeconds(60)` から `TimeSpan.FromSeconds(30)` に変更。応答が返らないプロバイダで 1 分間「考え中」のまま放置される体験を排除する。ローカル LLM (Ollama) は別途 `OllamaProvider` 内で長めのタイムアウトを保持するため影響なし
+- **Box Drive の暖気運転（warm-up）を非ブロック化 — 3 秒の軽量プローブ + 30 秒の総タイムアウト + 切断時スキップ:** `Services/IndexService.cs` の `WarmUpBoxDirectoryAsync` の入り口で `ProbePathAccessibleAsync`（`Task.Run` + `Task.WhenAny` による軽量到達性プローブ）を実行し、Box ドライブが 3 秒以内に応答しなければ warm-up 自体をスキップして警告ログを残す。プローブ通過後の本処理にも `CancellationTokenSource(TimeSpan.FromSeconds(30))` で総時間に上限を設定し、Box が途中で切断された場合もインデックス処理が無制限に待機しないようにした。長期動作ログで連発していた「Box warm-up error: デバイスが機能していません／操作を完了できませんでした」由来のインデックス処理ハングを除去する
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
