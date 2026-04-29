@@ -44,26 +44,18 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.48.0.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.48.0_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.48.0_delta_from_0.47.0.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.48.1.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.48.1_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.48.1_delta_from_0.48.0.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.48.0] - 2026-04-29 : 長期動作ログ精査からの安定性・性能総合改善 — 例外抑止 4 件 / メモリリーク予防 2 件 / I/O 安定化 + AI と Box 暖気の応答性改善
+## Latest Changes — [0.48.1] - 2026-04-29 : Outlook からのメール直接ドロップ無反応問題（#165）を修正
 
 ### Fixed
-- **ナビペインのドラッグ＆ドロップ後にレイアウト再構築で稀発していた `InvalidOperationException`「指定された要素は、既に別の要素の論理子です」を抑止:** `Views/NavPane/NavPaneControl.xaml.cs` の `RebuildLayout()` に `_isRebuildingLayout` 再入防止フラグを追加し、左右ペインの並行 `RebuildLayout` で同一インスタンスが二重に走るのを直列化。加えて `UpdateViewHeader` / `CreateViewHeader` での共有 `HeaderActions` の親切り離しを `Panel` 限定から `DetachFromAnyParent`（`Panel` / `ContentControl` / `Decorator` をすべて対象）に統一して、反対側ペインのヘッダ配下にぶら下がっていた `actions` を確実にデタッチしてから新しい親に追加するようにした。長期動作ログで複数日にわたり観測されたドロップ操作直後の例外が解消する
-- **タブを閉じた直後に表示中フォルダが更新されたときに発生していた `ObjectDisposedException` (`SemaphoreSlim`) を抑止:** `ViewModels/TabItemViewModel.cs` に `_disposed` フラグを追加し、`LoadDirectoryAsync` の入り口で破棄済みタブを早期 return。`_loadDirectorySemaphore.WaitAsync` を `try`/`catch (ObjectDisposedException)` で囲み、`finally` の `Release()` も `ObjectDisposedException` / `SemaphoreFullException` を吸収。`Dispose()` 冒頭で `_disposed = true` を立てて以降の入り直しを完全遮断する。タブ削除→残存タブ再読込の競合タイミングで稀に発生していたクラッシュを除去
-- **`settings.json` の保存に Windows のロック競合（`HRESULT 0x80070020` / `0x80070497`）で失敗するケースを抑止 — `File.Replace` を 50ms / 100ms / 200ms の指数バックオフで最大 3 回リトライ:** `Models/WindowSettings.cs` の `Save()` / `SaveAsync()` 内のアトミック・スワップを `AtomicSwapWithRetry` / `AtomicSwapWithRetryAsync` 共通ヘルパーに切り出し、`IOException` / `UnauthorizedAccessException` 発生時に再試行する。OneDrive・FileSystemWatcher・セキュリティソフトの一時ロックで「設定が保存できない」状態がログに頻出していた事象が解消する
-- **長時間運用でアイコンキャッシュが無制限に膨らむのを防止 — `Helpers/ShellIconHelper.cs` の `_realCache` / `_genericCache` に件数上限（500 件）を導入:** Frozen な `BitmapSource` をキャッシュ値として保持しているため、無制限のままだと運用時間に比例してプロセスメモリが増えていた。`TrimCacheIfNeeded` で上限超過時に 50 件単位のバッチ掃き出しを行い、メモリ消費を頭打ちにする
-- **`FavoritesViewModel` / `ProjectSetsViewModel` の `Items.CollectionChanged` 購読解除漏れを修正 — 両 ViewModel に `IDisposable` を実装:** `FavoritesViewModel` はラムダで購読していた `CollectionChanged` を `OnItemsCollectionChanged` メソッドに切り出して `Dispose` 時に確実に `-=` で解除（`_lockWarningCts` の解放も同 `Dispose` で実施）。`ProjectSetsViewModel` も同様に `IDisposable` を実装。共有 `ObservableCollection` 上にハンドラが積もるのを防ぎ、ViewModel 寿命越しのリークを排除する
-
-### Changed
-- **クラウド AI リクエストのタイムアウトを 60 秒から 30 秒に短縮:** `Services/Ai/AiService.cs` の `RequestTimeout` を `TimeSpan.FromSeconds(60)` から `TimeSpan.FromSeconds(30)` に変更。応答が返らないプロバイダで 1 分間「考え中」のまま放置される体験を排除する。ローカル LLM (Ollama) は別途 `OllamaProvider` 内で長めのタイムアウトを保持するため影響なし
-- **Box Drive の暖気運転（warm-up）を非ブロック化 — 3 秒の軽量プローブ + 30 秒の総タイムアウト + 切断時スキップ:** `Services/IndexService.cs` の `WarmUpBoxDirectoryAsync` の入り口で `ProbePathAccessibleAsync`（`Task.Run` + `Task.WhenAny` による軽量到達性プローブ）を実行し、Box ドライブが 3 秒以内に応答しなければ warm-up 自体をスキップして警告ログを残す。プローブ通過後の本処理にも `CancellationTokenSource(TimeSpan.FromSeconds(30))` で総時間に上限を設定し、Box が途中で切断された場合もインデックス処理が無制限に待機しないようにした。長期動作ログで連発していた「Box warm-up error: デバイスが機能していません／操作を完了できませんでした」由来のインデックス処理ハングを除去する
+- **Outlook からのメール直接ドロップが無反応のまま終わる問題を修正（#165）— `IDataObject.GetData` の TYMED 指定を逐次フォールバック化:** `ViewModels/TabItemViewModel.cs` の `GetFileContentsStream` が `TYMED_ISTREAM \| TYMED_HGLOBAL` の OR 値を一回で渡していたため、Outlook の COM 実装によっては `DV_E_FORMATETC (0x80040064)` を返して 1 件も取り出せず、ユーザー視点では「ドロップしても何も起こらない」状態になっていた。`TYMED_ISTREAM` → `TYMED_HGLOBAL` の順に単独 TYMED で逐次試行するよう変更し、`COMException.HResult` で `DV_E_FORMATETC` / `DV_E_TYMED` は次の TYMED で再試行、`DV_E_LINDEX (0x80040068)` は当該 index の欠落として安全に skip。`TYMED_HGLOBAL` 経由取得時に `STGMEDIUM` を `ole32!ReleaseStgMedium` で確実に解放するよう修正（小さなアンマネージドリーク要因も同時に解消）。加えて、ファイル名は受信できたのに 0 件しか保存できなかった場合に、Outlook 側の保護モードや別バージョンの可能性を案内する通知（`notify.tab.outlook_dnd_failed.title` / `body`、10 言語）を表示するようにし、無音失敗を排除した
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
