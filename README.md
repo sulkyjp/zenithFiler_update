@@ -44,19 +44,18 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.48.3.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.48.3_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.48.3_delta_from_0.48.2.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.49.0.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.49.0_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.49.0_delta_from_0.48.3.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.48.3] - 2026-05-13 : マルチディスプレイから単一ディスプレイへ切替時のウィンドウ画面外問題を 2 経路で抑止
+## Latest Changes — [0.49.0] - 2026-05-14 : ナビペインのエッジホバー自動表示モード追加
 
-### Fixed
-- **起動時ウィンドウレイアウトプリセットの保存先モニタが消えていると、ウィンドウが画面外へ移動する問題を抑止 — `ApplyWindowLayoutPreset` にプライマリ最大化フォールバックを追加:** 「起動時プリセット」を設定している状態でノート PC 単体（プリセット保存時のサブモニタなし）で起動すると、`Views/MainWindow.xaml.cs:3764` の `ApplyWindowLayoutPreset` が `MonitorDeviceName` / `MonitorIndex` のどちらでも対象モニタを特定できず（`targetScreen == null`）、Normal 状態のプリセットでは絶対座標 `preset.Left` / `preset.Top` をそのまま `this.Left/Top` に代入していたため、`MainWindow_ContentRendered` で直前に画面内に補正したばかりの位置をプリセット適用が再び画面外へ上書きしていた。`targetScreen == null` の場合は preset.State / Width / Height を尊重せず、トレイメニュー「メイン画面に移動」と同じ `MoveToMainMonitorMaximized()` を呼び出してプライマリで最大化させる（プリセットサイズをそのままプライマリ中央に置くと「ちょっとずれている」体感が残るため、確実に視認できる全画面化に統一）。フォールバック発火時は `[PLACEMENT-AUTO] Startup preset '<Name>' target monitor missing — maximizing on primary` をログに残す。Maximized 状態のプリセットおよびモニタが現存するケースの挙動は変更しない
-- **保存ディスプレイが存在しないノート単体起動時に、ウィンドウが画面外に消える問題を抑止 — 画面内判定を「点 + 拡張矩形」から「矩形交差面積」へ厳密化:** マルチディスプレイ運用で保存した位置（例: `Left=1929` の外部モニタ側）でノート PC 単体で起動すると、毎回手動で「メイン画面に移動」を押す必要があった。原因は `Views/MainWindow.xaml.cs` の `NormalizeWindowPlacement` と `IsNativeBoundsOnScreen` が、保存座標を各モニタの `WorkingArea` を ±200px / ±100px 拡張した矩形に「左上 1 点」が含まれるかで判定していたため、`1920` 幅プライマリ単体環境で `Left=1929` のようなほぼ画面外座標を「画面内」と誤判定し、自動補正の動線をスキップしていた（既存ログ `intersectsAny=True` で実証）。両関数を「ウィンドウ矩形と `WorkingArea` の交差面積が 200×100px 以上ある画面が一つでもあれば画面内」とする厳密な判定に置換し、満たさない場合は既存の `MoveToMainMonitorMaximized()`（トレイメニュー「メイン画面に移動」の実体）を自動発火させる。マルチディスプレイ運用で保存ディスプレイが現存する場合は引き続き保存位置で復元する（誤発火なし）。自動復帰の発火経路を grep しやすくするため `[PLACEMENT-AUTO]` ログマーカーを 2 経路（`ContentRendered` の NativeBounds 画面外 / `NormalizeWindowPlacement` 内の中央復帰）に付与
+### Added
+- **ナビペインのエッジホバー自動表示モード:** （実装中に発見した重要な内部修正: `NavPaneControl.WidthAutoRequested` の購読ハンドラが auto-hide ON 中も `SidebarColumn.Width` / `RightNavColumn.Width` を直接書き換えていたため、PropertiesView 等への内部切替で列幅が復活し画面右側に未使用空白が発生していた。auto-hide ON 時はオーバーレイ Border の `Width` だけ更新する分岐を追加し、列は 0 のまま保つよう修正） 左右のナビペインを通常は閉じておき、ウィンドウ端 4px の透明ホットゾーンにカーソルを近づけたときだけオーバーレイでスライドイン表示する新モードを追加。設定 → 基本設定 → 「ナビペイン」セクションに**左ナビペインを自動的に隠す** / **右ナビペインを自動的に隠す**の独立トグルを新設（既定 OFF）。実装方針として A/B ペインのレイアウトを変更せず（列幅 0 のまま）、`Panel.ZIndex=20` の Border を `Views/MainWindow.xaml` の Grid 内にオーバーレイとして配置し、コードビハインドの `EdgeHoverController` 状態機械（show 150ms / hide 400ms / アニメ 180ms）で `TranslateTransform.X` を双方向にアニメーション。`Views/MainWindow.xaml.cs:RebuildNavLayout` 内で `LeftNavPane` / `RightNavPane` の親要素を `SidebarBorder` / `RightNavBorder` ↔ `LeftNavOverlayHost` / `RightNavOverlayHost` の間で付け替える（インスタンス複製を避けることで View 状態を保持）。`Views/NavPane/NavPaneControl.xaml` の `ViewHeaderBorder` 右端にピン留めボタン（PackIconLucide Pin/PinOff）を追加し、自動表示中のオーバーレイをセッション内で固定可能（ピン状態は再起動でリセット）。D&D 中（`NavPaneDragSource.DragStarted/DragEnded` で検出）およびオーバーレイ配下の `ContextMenu.IsOpen` 時は hide タイマーを抑制してインタラクション中の不意な閉鎖を防止。スライド演出は既存の `ShowPaneTransitionsEnabled` カテゴリに連動（OFF 時は即時切替）
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
