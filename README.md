@@ -44,18 +44,23 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.48.1.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.48.1_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.48.1_delta_from_0.48.0.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.48.2.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.48.2_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.48.2_delta_from_0.48.1.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.48.1] - 2026-04-29 : Outlook からのメール直接ドロップ無反応問題（#165）を修正
+## Latest Changes — [0.48.2] - 2026-05-13 : クリップボード競合クラッシュ抑止（#167） / インデックス通知のクロススレッド例外抑止（#168） / ターミナル既定シェル切替
 
 ### Fixed
-- **Outlook からのメール直接ドロップが無反応のまま終わる問題を修正（#165）— `IDataObject.GetData` の TYMED 指定を逐次フォールバック化:** `ViewModels/TabItemViewModel.cs` の `GetFileContentsStream` が `TYMED_ISTREAM \| TYMED_HGLOBAL` の OR 値を一回で渡していたため、Outlook の COM 実装によっては `DV_E_FORMATETC (0x80040064)` を返して 1 件も取り出せず、ユーザー視点では「ドロップしても何も起こらない」状態になっていた。`TYMED_ISTREAM` → `TYMED_HGLOBAL` の順に単独 TYMED で逐次試行するよう変更し、`COMException.HResult` で `DV_E_FORMATETC` / `DV_E_TYMED` は次の TYMED で再試行、`DV_E_LINDEX (0x80040068)` は当該 index の欠落として安全に skip。`TYMED_HGLOBAL` 経由取得時に `STGMEDIUM` を `ole32!ReleaseStgMedium` で確実に解放するよう修正（小さなアンマネージドリーク要因も同時に解消）。加えて、ファイル名は受信できたのに 0 件しか保存できなかった場合に、Outlook 側の保護モードや別バージョンの可能性を案内する通知（`notify.tab.outlook_dnd_failed.title` / `body`、10 言語）を表示するようにし、無音失敗を排除した
+- **クリップボード書き込みの競合でアプリが落ちる問題を抑止（#167）— `ClipboardHelper` による指数バックオフ＋ローカライズ通知:** `ViewModels/TabItemViewModel.cs` の `CopyItems` / `CutItems` / `CopyAddress` で `Clipboard.SetFileDropList` / `SetDataObject` / `SetText` を未保護で呼んでおり、ブラウザ・IME・他社クリップボード管理ツールが瞬間的に `OpenClipboard` を保持していると `COMException 0x800401D0 (CLIPBRD_E_CANT_OPEN)` が UI スレッドまで伝播してプロセス強制終了に至っていた（v0.48.1 発生）。新規 `Helpers/ClipboardHelper.cs` で 50ms / 100ms / 200ms の指数バックオフ＋最終 1 回の合計 4 回試行に集約し、`COMException CLIPBRD_E_CANT_OPEN` と `ExternalException` を握って真に取れない場合のみ `notify.tab.clipboard_busy`（10 言語）でユーザーに案内して return。書き込み 3 箇所をこのヘルパー経由に差し替え、長期運用で観測されたクラッシュを排除する
+- **トースト表示中・インデックス進捗通知中のクラッシュ `InvalidOperationException`（呼び出しスレッドはこのオブジェクトにアクセスできません）を抑止（#167 / #168）— `Notification_PropertyChanged` をプロパティ名フィルタ＋UI スレッドマーシャルで安全化:** `Views/MainWindow.xaml.cs:1349` の `Notification_PropertyChanged` が `NotificationService.IsActionToastVisible` / `IsThemeToastVisible` / `IndexingStatusMessage` の変更通知を非 UI スレッドから受けた瞬間に `DataContext`（DependencyObject）へアクセスして死亡していた（#168 では `IndexService` の `Progress<IndexingProgress>` が 100ms 周期でワーカースレッドから `IndexingStatusMessage` を更新するため、インデックス実行中に高確率で発生）。当該ハンドラ冒頭で先に `e.PropertyName` を文字列比較し、関心のあるトースト系プロパティ以外は CheckAccess 前に弾く（10/sec のインデックス進捗通知で UI スレッドへ無駄に `BeginInvoke` しない最適化を兼ねる）。その上で、同ファイルの他の `Vm_PropertyChanged_*` 系で確立済みの `Dispatcher.CheckAccess()` ガード＋`Dispatcher.BeginInvoke` 再ディスパッチパターンを適用し、`Progress<T>.InvokeHandlers` 経由でワーカースレッドから発火した場合でも安全に UI スレッドへ載せ替えるようにした
+- **ターミナルで対話入力した文字が画面に表示されない問題を修正 — デフォルトシェルを `pwsh.exe` から `cmd.exe` に変更（#?）:** Win11 build 26200 + PowerShell 7.5.x + ConPTY の組み合わせで、ConPTY が起動直後に `\x1B[?9001h`（Win32 input mode 有効化）を出力するが、本アプリの自前ターミナル（NavPane の `TerminalSurface` および A/B ペインの WebView2 + xterm.js）はいずれも Win32 input format をサポートせず plain ASCII を送り続けるため、PSReadLine が入力をキーストロークとして解釈できず、文字 echo もプロンプト描画も完全に失敗していた（過去 v0.46.11 #163 で修正した「ConPTY 即死問題」と同根の Win11/ConPTY 互換性退化）。`Services/PtyService.cs` の `FindPowerShell()` を `FindShell()` にリネームし `cmd.exe` を返すように変更。あわせて起動時に流していた pwsh 専用初期化コマンド `function prompt { ... } / clear` を `Views/NavPane/TerminalView.xaml.cs` と `ViewModels/FilePaneViewModel.cs` の 4 箇所から削除し、Clear ボタンが送るコマンドを `clear` から cmd 互換の `cls` に変更（`Views/PaneTerminalControl.xaml.cs` と NavPane の Clear_Click）。Claude / Skip / Run / Publish / cd ボタン経由のコマンド送信は外部実行ファイル呼び出しなので cmd でもそのまま機能する
+
+### Changed
+- **ターミナル（PaneTerminal）のフォント描画をくっきり化:** WebView2 上の xterm.js (DOM レンダラ) で、`lineHeight: 1.1` 指定により行高が小数ピクセルになり HiDPI 環境ではサブピクセルにずれてグリフが滲んでいた。`Assets/terminal.html` で xterm の `lineHeight` を `1.0` に変更し、`fontWeight` / `fontWeightBold` / `allowTransparency: false` を明示。さらに `<style>` に `text-rendering: geometricPrecision` + `-webkit-font-smoothing: antialiased` + `font-feature-settings: "liga" 0, "calt" 0`（Cascadia Code の合字を切ってシェル表示で誤読しない）を追加し、`.xterm-screen / .xterm-rows / .xterm-rows > div` に `transform: translateZ(0)` で各行を独立したコンポジット層へ昇格させ整数ピクセルにスナップさせる。WebGL/Canvas アドオンを同梱せずに済む範囲での即効改善で、特に明緑文字 + 黒背景の組み合わせでエッジの滲みが大幅に減る
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
