@@ -44,28 +44,24 @@
 <!-- download-table:begin -->
 | ファイル | 内容 |
 |---|---|
-| `ZenithFiler_v0.49.1.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v0.49.1_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v0.49.1_delta_from_0.49.0.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v0.50.0.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v0.50.0_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v0.50.0_delta_from_0.49.1.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 > 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
 
 <!-- latest-changes:begin -->
-## Latest Changes — [0.49.1] - 2026-05-30 : 内部リファクタリング — 中核クラスから 7 サービス/ヘルパーを分離（挙動不変・テスト 137→201）
+## Latest Changes — [0.50.0] - 2026-05-31 : クイックジャンプを軌跡全体＋インデックスへ拡張／アドレスバーのOS標準操作対応／お気に入りのコンテキスト連動ハイライト／ツールバーのカスタマイズ（Pro）／起動最適化
+
+### Added
+- **お気に入りのコンテキスト連動ハイライト（#64）:** 今アクティブに開いているフォルダに関連するお気に入りを自動でハイライト表示する受動的な改善を追加。アクティブペインのフォルダと**祖先・子孫・完全一致**の関係にあるお気に入りを、左アクセントバー＋淡いアクセント背景で控えめに強調する（例: `C:\work\projectA` を開くと配下の `projectA\docs` が、サブフォルダを開くと祖先の `projectA` がハイライト）。フォルダ遷移・タブ切替・アクティブペイン切替に追従し、手動ツリー表示・ABC順表示・検索結果のいずれでも反映。判定はパスの祖先/子孫を文字列比較で行う軽量処理（I/O なし・同期 O(N)）で起動・操作をブロックしない。既存のタブのコンテキスト連動（関連タブのドット表示）と同一ロジックを `PathHelper.IsAncestorOrDescendant` に共通化
+- **クイックアクセスツールバーのカスタマイズ（#35・Pro機能）:** ペインヘッダーのツールバー（戻る/進む/更新・表示モード切替など）を、設定 → ツールバー から **ドラッグで並べ替え・ボタン単位で表示/非表示・区切り線（セパレータ）の任意追加/削除** ができるようにした。設定はアプリ全体（A/B 両ペイン）へ即時反映され、再起動後も保持される。実装はツールバーをデータ駆動化（各ボタン定義＋共有レイアウト）し、既存コマンドの実行・有効/無効（更新ボタンのアイコンビュー無効化等）・トグルの選択状態・ツールチップのショートカット併記・テーマ追従をすべて維持。デフォルト配置への復帰、最低1ボタンを残す担保つき。カスタマイズは Pro 機能で、無料版ではデフォルト固定（カスタマイズ画面はロック表示＋案内）
 
 ### Changed
-- **内部リファクタリング（中核クラスの責務分割・挙動変更なし）:** 肥大化していた `ViewModels/TabItemViewModel.cs`（約 3,870 行）を責務ごとの partial クラスに分割し、保守性を向上。ファイルシステム監視＋ディレクトリ読み込み（`TabItemViewModel.FileSystem.cs`）、ファイル作成/リネーム/クリップボード・Outlook 連携（`TabItemViewModel.FileOps.cs`）、コピー/移動/削除/高速転送（`TabItemViewModel.Transfer.cs`）、CSV/Excel/PDF エクスポート（`TabItemViewModel.Export.cs`）を抽出し、コア本体を約 960 行へ縮小。純粋なコード移動のみで、ロジック・公開 API・起動タイミングは不変（ビルド成功・全 137 テスト合格・コア整合性をバイト単位で検証済み）
-- **内部リファクタリング（MainViewModel の責務分割・挙動変更なし）:** `ViewModels/MainViewModel.cs`（約 2,314 行）を partial 分割。ナビペインのレイアウト/プリセット（`MainViewModel.NavLayout.cs`）、ペイン数・他ペインで開く/タブ移動（`MainViewModel.PaneOperations.cs`）、ナビ一覧（履歴/よく使う/最近/ドライブ/検索履歴）・ツリー操作・ウィンドウスナップ等のコマンド（`MainViewModel.NavCommands.cs`）を抽出し、コア本体を約 1,293 行へ縮小。起動クリティカルパス（コンストラクタ / `InitializeAsync` 等）はコアに据え置きバイト不変。純粋なコード移動のみ（build 成功・全 137 テスト合格・コア整合性をバイト単位で検証済み）
-- **内部リファクタリング（TabContentControl の責務分割・挙動変更なし）:** ファイル一覧の code-behind `Views/TabContentControl.xaml.cs`（約 4,553 行）を partial 分割。コンテキストメニュー構築（`.ContextMenu.cs`）、ドラッグ＆ドロップ／カスタムメニュー（`.DragDrop.cs`）、リストのキーボード操作・フォーカス・スクロール（`.ListInput.cs`）、ブレッドクラム＋検索バー／各種フィルタポップアップ（`.SearchBar.cs`）、ホバーサムネイルプレビュー（`.HoverThumbnail.cs`）を抽出し、コア本体を約 1,600 行へ縮小。フィールド・コンストラクタ・依存関係プロパティ・ライフサイクル・グリッド/選択/リフレッシュ処理はコアに据え置き。XAML から参照されるイベントハンドラの移動はコンパイラが検証済み。純粋なコード移動のみ（build 成功・全 137 テスト合格・コア整合性をバイト単位で検証済み）
-- **内部リファクタリング（MainWindow code-behind の責務分割・挙動変更なし）:** メインウィンドウの code-behind `Views/MainWindow.xaml.cs`（約 6,517 行）を partial 分割。各種アニメーション/トースト/コントロールデック開閉（`MainWindow.Animations.cs`）、レイアウト/ワーキングセット/ナビプリセットのポップアップ UI（`MainWindow.Presets.cs`）、クイックプレビュー＋テキスト差分（`MainWindow.Preview.cs`）を抽出し、コア本体を約 4,172 行へ縮小。起動クリティカルパス（コンストラクタ / InitializeComponent / ApplySettings / OnSourceInitialized / ContentRendered / Window_Loaded / Closing）はコアに据え置きバイト不変。純粋なコード移動のみで起動性能は不変（build 成功・全 137 テスト合格・コア整合性とすべての起動アンカーの存在をバイト単位で検証済み）
-- **内部リファクタリング（エクスポート責務をサービスへ分離・挙動変更なし）:** `TabItemViewModel` のファイル一覧エクスポート（CSV/Excel）とファイル→PDF 変換のコアロジック（スキャン・書き込み・変換）を新規 `Services/FileListExportService.cs` へ抽出。ViewModel 側（`TabItemViewModel.Export.cs`）には利用可否ゲート・進捗バーのイージング・例外分類・完了通知という UI/VM 固有のオーケストレーションのみを残し、`Task.Run` の中身をサービス呼び出しへ委譲。進捗通知は `Action<double,string>` シンク経由で旧来の Volatile セマンティクスと等価に保持。公開 API（`ExportSubtreeToCsvAsync` / `ExportSubtreeToExcelAsync` / `ConvertToPdfAsync`）と呼び出し元は不変。純粋関数（`CsvEscape` / `SanitizeSheetName`）にユニットテストを新設（テスト数 137→152、全合格）。挙動・起動性能は不変（参照文言の L10n キーをバイト単位で一致検証済み）
-- **内部リファクタリング（ファイル転送エンジンをサービスへ分離・挙動変更なし）:** `TabItemViewModel` のコピー/移動コアプリミティブ（Zenith Turbo Engine: ArrayPool による 4MB チャンクコピー `TurboCopyFileAsync`/`TurboCopyDirectoryAsync`、シェルフォールバック、競合解決 `ResolveConflictAction`、ユニークパス生成 `GetUniquePath`、転送速度整形）を新規 `Services/FileTransferService.cs`（インスタンス状態を持たない静的ユーティリティ）へ抽出。`TabItemViewModel.Transfer.cs`（815→591 行）には RelayCommand 群と `DropFilesInternal` のオーケストレーション（進捗バー・競合ダイアログ・Undo 登録・一覧リフレッシュ・選択復元）のみを残し、呼び出し元を委譲。純粋関数・実コピー（内容バイト一致／進捗バイト総数／更新日時保全）に xUnit テストを新設（テスト数 152→168、全合格）。公開コマンド・挙動・起動性能は不変（参照 L10n キー 26 件をバイト単位で一致検証済み）
-- **内部リファクタリング（Outlook データ抽出エンジンをサービスへ分離・挙動変更なし）:** `TabItemViewModel` の Outlook D&D／クリップボード処理（`FileGroupDescriptorW`/`FileContents` の COM IDataObject マーシャリング: `ExtractFileNamesFromDescriptor`/`GetFileContentsStream`、TYMED フォールバック、`ComStreamWrapper`、HGLOBAL コピー、ファイル名サニタイズ `SanitizeFileName`、ユニークファイル名生成 `GetUniqueFilePath`、関連 P/Invoke 群）を新規 `Services/OutlookDataExtractor.cs`（インスタンス状態を持たない静的ユーティリティ）へ抽出。`TabItemViewModel.FileOps.cs`（826→579 行）には `SaveOutlookDataAsync` のオーケストレーション（BeginBusy・保存ループ・一覧リフレッシュ・通知）のみを残し、下請けの低レベル COM 機構を委譲。純粋関数（`SanitizeFileName` / `GetUniqueFilePath`）に xUnit テストを新設（テスト数 168→174、全合格）。挙動・起動性能は不変（参照 L10n キー 30 件をバイト単位で一致検証済み）
-- **内部リファクタリング（テキストプレビュー読み込み＋エンコーディング判定をサービスへ分離・挙動変更なし）:** メインウィンドウ code-behind のテキスト/Markdown プレビュー読み込み（先頭 100KB 読み込み、BOM 検出 → UTF-8 妥当性検証 → Shift_JIS(932) フォールバックのエンコーディング自動判定）を新規 `Services/FilePreviewService.cs`（インスタンス・UI 非依存の静的ユーティリティ）へ抽出。`Views/MainWindow.Preview.cs` は `Task.Run` から `FilePreviewService.ReadFileForPreview` を呼ぶだけに変更。BOM/UTF-8/Shift_JIS 判定と実ファイル読み込み（ASCII 内容・空ファイル・100KB 超切り詰め）に xUnit テストを新設（テスト数 174→182、全合格）。挙動・起動性能は不変
-- **内部リファクタリング（D&D データ抽出をサービスへ分離・挙動変更なし）:** ファイル一覧 code-behind のドラッグ＆ドロップ URL/タイトル抽出（`UniformResourceLocatorW`/ANSI/Text からの URL 取得、`FileGroupDescriptor(W)` からのタイトル抽出、エンコーディング変換）を新規 `Services/DragDropDataExtractor.cs`（インスタンス・UI 非依存の静的ユーティリティ）へ抽出。`Views/TabContentControl.DragDrop.cs` は `DragDropDataExtractor.TryGetUrlAndTitle` を呼ぶだけに変更。純粋関数（`ExtractStringFromData` / `ExtractTitleFromFileGroupDescriptor`）に xUnit テストを新設（テスト数 182→187、全合格）。挙動・起動性能は不変
-- **内部リファクタリング（ファイル型判定ヘルパーを集約・挙動変更なし）:** ファイル一覧 code-behind に散在していた拡張子ベースのファイル型判定（`IsTextLike` / `IsImageLike` / `IsConvertibleToPdf` と補助の拡張子集合）を新規 `Helpers/FileTypeHelper.cs`（`FileExtensions` をラップする静的ユーティリティ）へ集約。`TabContentControl`（クロスクラス参照していた `IsTextLike` 含む）と `MainWindow.Preview.cs` の呼び出しを委譲。判定（テキスト/画像/PDF 変換対象）に xUnit テストを新設（テスト数 187→198、全合格）。挙動・起動性能は不変
-- **内部リファクタリング（ワーキングセットのツールチップ整形をヘルパーへ分離・挙動変更なし）:** メインウィンドウ code-behind のワーキングセット（A/B ペインのタブ構成）ツールチップ文字列生成を新規 `Helpers/WorkingSetFormatter.cs`（インスタンス・UI 非依存の静的ユーティリティ）へ分離。`Views/MainWindow.Presets.cs` の呼び出しを委譲。整形（両ペイン要約・単一ペイン時の B 省略・5件超過の "... +N"）に xUnit テストを新設（テスト数 198→201、全合格）。挙動・起動性能は不変
+- **クイックジャンプ（Ctrl+P）を「過去の軌跡全体＋インデックス」へ拡張:** 候補ソースをお気に入り・よく使う・最近フォルダに加え、**参照履歴の全件化・TabActivity（実際に開いたタブ＝滞在時間順）・最近開いたファイル・Lucene インデックス全体（入力に応じた動的検索）**へ拡大。ファイル候補（最近ファイル/インデックスのファイル）を選ぶと OS 既定アプリで開き、フォルダ候補は従来どおり遷移。静的ソースは開いた直後に非同期追記、インデックスは2文字以上で非同期検索（最新クエリのみ反映・stale 破棄）し、起動・UI スレッドをブロックしない。全ソース横断で正規化パス重複排除。さらに候補は**種別を問わずヒット確率（一致度）順に統一ランキング**（名前前方一致＞含有＞説明＞パス、非マッチは除外、ソース優先は同点時の小タイブレークのみ）し、各候補を**実ファイル/フォルダのシェルアイコン**で表示して種類を一目で判別できるようにした
+- **アドレスバー: パンくず余白クリックでフルパス編集（OS標準）＋ホバー解除で自動復帰:** 鉛筆アイコンを押さなくても、アドレスバーのパンくず余白（フォルダ名以外）をクリックするとフルパス編集モードに切り替わり、テキストが全選択される（そのまま Ctrl+C でコピー、編集も可）。アドレスバーからマウスが離れると自動でパンくず表示へ戻る。フォルダ名クリックは従来どおり遷移、鉛筆トグルも維持。余白クリックが不発だった不具合を、コンテンツ領域の透明化＋Preview イベントでのクリック元判定により確実化
+- **起動性能の最適化（ReadyToRun 事前コンパイル導入・挙動変更なし）:** Release 発行（self-contained）に ReadyToRun (R2R) を有効化し、起動時の JIT コンパイルを事前ネイティブコードへ置換。`InitializeComponent`・リソース読み込み・各コンストラクタなど起動パスの初回 JIT を削減し、配布ビルドの起動を高速化（開発時の `dotnet run` には影響なし）。アプリのロジック・挙動・公開動作は不変（IL セマンティクス不変）
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
