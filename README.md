@@ -32,11 +32,25 @@
 
 <table>
   <tr>
+    <td><img alt="アンバー系テーマ" src="assets/gallery_amber.png"/></td>
+    <td><img alt="クリムゾン系テーマ" src="assets/gallery_crimson.png"/></td>
+    <td><img alt="ブループリント系テーマ" src="assets/gallery_blue.png"/></td>
+  </tr>
+  <tr>
+    <td><img alt="ベージュ系テーマ" src="assets/gallery_beige.png"/></td>
+    <td><img alt="クリーム系テーマ" src="assets/gallery_cream.png"/></td>
+    <td><img alt="ローズ系テーマ" src="assets/gallery_rose.png"/></td>
+  </tr>
+</table>
+<p align="center"><sub>同じアプリ、別のテーマ — 内蔵 50 種からワンクリックで切替</sub></p>
+
+<table>
+  <tr>
     <td width="50%"><img alt="内蔵テーマ 50 種のカタログ" src="assets/theme_catalog.png"/></td>
     <td width="50%"><img alt="実績（チャレンジ）ページ" src="assets/challenges.png"/></td>
   </tr>
 </table>
-<p align="center"><sub>左: 内蔵テーマ 50 種のカタログからワンクリックで着せ替え　／　右: 使い込むほど解除される実績 150 種と AI が授ける「二つ名」</sub></p>
+<p align="center"><sub>左: 内蔵テーマ 50 種のカタログ　／　右: 使い込むほど解除される実績 150 種と AI が授ける「二つ名」</sub></p>
 
 ---
 
