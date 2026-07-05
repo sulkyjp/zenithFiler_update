@@ -30,22 +30,13 @@
 - 🎨 **着せ替えられる** — 内蔵テーマ 50 種＋コミュニティストア＋AI テーマ生成。左右のペインに別テーマも
 - 🏆 **育つ** — 使い込むほど実績 150 種が解除され、マスコット「Stickman」の行動レパートリーが増えていく
 
-<!-- ▼▼ TODO: テーマギャラリー — 同一画面の別テーマ 4 枚（例: Premium / RetroTech / Professional / Lifestyle）を撮影したら
-     下のコメントを外して src を差し替える。キャプション: 「同じアプリ、別のテーマ。内蔵 50 種からワンクリックで切替」
 <table>
   <tr>
-    <td><img alt="テーマ1" src=""/></td>
-    <td><img alt="テーマ2" src=""/></td>
-  </tr>
-  <tr>
-    <td><img alt="テーマ3" src=""/></td>
-    <td><img alt="テーマ4" src=""/></td>
+    <td width="50%"><img alt="内蔵テーマ 50 種のカタログ" src="assets/theme_catalog.png"/></td>
+    <td width="50%"><img alt="実績（チャレンジ）ページ" src="assets/challenges.png"/></td>
   </tr>
 </table>
-<p align="center"><sub>同じアプリ、別のテーマ。内蔵 50 種からワンクリックで切替</sub></p>
-▲▲ TODO ここまで ▲▲ -->
-
-<!-- TODO: 実績ページ + Stickman のスクショ 1〜2 枚をここに追加 -->
+<p align="center"><sub>左: 内蔵テーマ 50 種のカタログからワンクリックで着せ替え　／　右: 使い込むほど解除される実績 150 種と AI が授ける「二つ名」</sub></p>
 
 ---
 
@@ -213,6 +204,12 @@
 <summary><b>📸 スクリーンショット集</b></summary>
 
 <br>
+Stickman — 実績解除で行動レパートリーが増えていくマスコット<br>
+<img alt="Stickman 設定ページ" src="assets/stickman.png" />
+<br><br>
+AI が実績の組み合わせから生成する「二つ名」とその物語<br>
+<img alt="二つ名履歴" src="assets/title_history.png" />
+<br><br>
 2 画面モード<br>
 <img width="1949" height="989" alt="2画面モード" src="https://github.com/user-attachments/assets/887c8d99-9d15-4324-8e98-695cc8a26dc2" />
 <br><br>
