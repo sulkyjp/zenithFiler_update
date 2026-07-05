@@ -1,45 +1,57 @@
 <p align="center">
-  <img width="2022" height="863" alt="image" src="https://github.com/user-attachments/assets/6452538c-e111-4e6a-92b3-67034978ee22" />
+  <img width="2022" height="863" alt="Zenith Filer メインウィンドウ" src="https://github.com/user-attachments/assets/6452538c-e111-4e6a-92b3-67034978ee22" />
 </p>
 
 <h1 align="center">Zenith Filer</h1>
 
 <p align="center">
-  <b>Windows 向け Portable 2ペイン ファイラー</b><br>
-  A portable dual-pane file manager for Windows
+  <b>速くて、育てられる。Windows 用タブ型 2 ペインファイラー</b><br>
+  <sub>A fast, themeable dual-pane file manager for Windows — with an achievement system that grows as you use it.</sub>
 </p>
 
 <p align="center">
   <a href="https://github.com/sulkyjp/zenithFiler_update/releases/latest"><img src="https://img.shields.io/github/v/release/sulkyjp/zenithFiler_update?style=flat-square&color=blue" alt="Latest Release"></a>
   <img src="https://img.shields.io/badge/platform-Windows%2010%2F11-0078D6?style=flat-square&logo=windows" alt="Windows 10/11">
-  <img src="https://img.shields.io/badge/.NET-8.0-512BD4?style=flat-square&logo=dotnet" alt=".NET 8">
-  <img src="https://img.shields.io/badge/license-proprietary-gray?style=flat-square" alt="License">
+  <img src="https://img.shields.io/badge/install-不要%20(Portable)-brightgreen?style=flat-square" alt="Portable">
+  <img src="https://img.shields.io/badge/price-無料試用%20%2B%20Pro-orange?style=flat-square" alt="Free + Pro">
 </p>
 
-<!-- スクリーンショットをここに貼り付け -->
-<!-- ![Screenshot](assets/screenshot.png) -->
+<p align="center">
+  <a href="https://github.com/sulkyjp/zenithFiler_update/releases/latest"><b>⬇ ダウンロード（無料）</b></a>
+  ・
+  <a href="https://www.vector.co.jp/soft/winnt/util/se528637.html">Vector で入手</a>
+</p>
 
 ---
 
-## Highlights
+## 3 行でわかる Zenith Filer
 
-- **タブ付き 2ペイン + ナビペイン** — お気に入り・ツリー・履歴・インデックス検索に即アクセスできる 6 ビュー構成のサイドバー
-- **内蔵ターミナル (ConPTY)** — ペインのフォルダへ直接 cd でき、ファイル操作とコマンドライン作業をシームレスに行き来
-- **50 テーマ × 全カスタマイズ** — キーバインド・エフェクト 12 カテゴリの個別制御など、見た目も操作感も自分好みに
+- ⚡ **速い** — 起動約 1 秒・全操作を非同期化。ウイルス対策ソフトで重い社用 PC でも軽快に動くよう実測ベースで最適化
+- 🎨 **着せ替えられる** — 内蔵テーマ 50 種＋コミュニティストア＋AI テーマ生成。左右のペインに別テーマも
+- 🏆 **育つ** — 使い込むほど実績 150 種が解除され、マスコット「Stickman」の行動レパートリーが増えていく
+
+<!-- ▼▼ TODO: テーマギャラリー — 同一画面の別テーマ 4 枚（例: Premium / RetroTech / Professional / Lifestyle）を撮影したら
+     下のコメントを外して src を差し替える。キャプション: 「同じアプリ、別のテーマ。内蔵 50 種からワンクリックで切替」
+<table>
+  <tr>
+    <td><img alt="テーマ1" src=""/></td>
+    <td><img alt="テーマ2" src=""/></td>
+  </tr>
+  <tr>
+    <td><img alt="テーマ3" src=""/></td>
+    <td><img alt="テーマ4" src=""/></td>
+  </tr>
+</table>
+<p align="center"><sub>同じアプリ、別のテーマ。内蔵 50 種からワンクリックで切替</sub></p>
+▲▲ TODO ここまで ▲▲ -->
+
+<!-- TODO: 実績ページ + Stickman のスクショ 1〜2 枚をここに追加 -->
 
 ---
-
-## Requirements
-
-| | |
-|---|---|
-| **OS** | Windows 10 / 11 (x64) |
-| **Runtime** | .NET 8 Desktop Runtime |
-| **Install** | 不要 — ZIP を展開するだけで使えます (Portable) |
 
 ## Download
 
-**[Latest Release をダウンロード](https://github.com/sulkyjp/zenithFiler_update/releases/latest)**
+**[Latest Release をダウンロード](https://github.com/sulkyjp/zenithFiler_update/releases/latest)** — ZIP を展開するだけ。インストール不要
 
 <!-- download-table:begin -->
 | ファイル | 内容 |
@@ -49,7 +61,181 @@
 | `ZenithFiler_v1.4.4_delta_from_1.4.3.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
-> 過去のバージョンは [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) ページから取得できます。
+対応 OS: Windows 10 / 11 (x64)　|　導入後は差分自動アップデートで常に最新
+
+## 無料版と Pro
+
+すべての機能を**無料で試用できます**（一部機能に回数制限あり）。Pro ライセンスの購入で全機能が無制限になります。
+
+**[Vector で Pro ライセンスを購入](https://www.vector.co.jp/soft/winnt/util/se528637.html)**（ダウンロードも可能）
+
+---
+
+## 主な機能
+
+<details>
+<summary><b>🎨 テーマ — 内蔵 50 種・ストア・AI 生成</b></summary>
+
+| 機能 | 説明 |
+|---|---|
+| 50 テーマ内蔵 | 5 カテゴリ × 10（Standard / Lifestyle / Professional / Premium / RetroTech） |
+| テーマストア | コミュニティ製テーマのダウンロード・評価・自作テーマの投稿 |
+| AI テーマ生成 | 「夕暮れのサイバーパンク風」のような指示文からテーマを自動生成 |
+| ペイン別テーマ | A / B / ナビペインに異なるテーマを適用可能 |
+| カスタマイズ | 62 色キーを色単位で編集、非破壊保存 |
+| ランダム / スケジュール | 起動ごとのランダム切替、昼夜での自動切替 |
+| テーマ診断 | 6 問のアンケートでおすすめテーマを提案 |
+
+</details>
+
+<details>
+<summary><b>🏆 実績システム & Stickman マスコット</b></summary>
+
+| 機能 | 説明 |
+|---|---|
+| 実績 150 種 | 15 カテゴリ × 10 段階。日々のファイル操作で自然に解除 |
+| XP・レベル・二つ名 | 操作の蓄積でレベルアップ。AI が「二つ名」と物語を生成 |
+| Stickman | ステータスバーに住むマスコット。実績解除で行動レパートリーが増加 |
+| Stickman ストア | コミュニティ製の行動パターンをダウンロード・投稿 |
+| 実績のデバイス間共有 | 共有フォルダ経由で複数 PC の実績を統合 |
+
+</details>
+
+<details>
+<summary><b>🤖 AI 連携（任意・オフでも全機能利用可）</b></summary>
+
+| 機能 | 説明 |
+|---|---|
+| 対応プロバイダ | Claude / OpenAI / Azure OpenAI / Gemini / Ollama（ローカル LLM） |
+| ファイル操作系 | AI リネーム、フォルダ整理提案、フォルダ自動作成、お気に入り整理 |
+| 分析系 | 利用統計の AI 分析、タブ管理提案、バックアップ内容の要約 |
+| 生成系 | テーマ生成、Stickman 行動生成、実績二つ名の生成 |
+| マニュアル Q&A | 使い方をアプリ内で AI に質問 |
+
+</details>
+
+<details>
+<summary><b>⚙️ マクロ（JavaScript 自動化）</b></summary>
+
+| 機能 | 説明 |
+|---|---|
+| JavaScript エンジン | ファイル操作・ナビゲーションをスクリプトで自動化 |
+| ナビペイン統合 | マクロ一覧ビューから即実行 |
+
+</details>
+
+<details>
+<summary><b>📁 ファイル管理（コア）</b></summary>
+
+| 機能 | 説明 |
+|---|---|
+| デュアルペイン | A（中央）/ B（右）の独立した 2 画面ファイルブラウザ |
+| タブブラウジング | ペインごとに複数タブで別々のフォルダを表示 |
+| 表示モード | 詳細リスト / 大アイコン / 中アイコン / 小アイコン |
+| カラムソート | 名前・更新日・サイズ・拡張子で昇順/降順切替 |
+| ファイル操作 | コピー / 移動 / 削除 / リネーム（F2）、操作の取り消し |
+| ドラッグ＆ドロップ | ペイン間のファイル移動・コピー、右ドラッグで操作選択 |
+| シェルサムネイル | 画像ファイルのサムネイル自動生成・キャッシュ |
+
+</details>
+
+<details>
+<summary><b>🧭 ナビゲーション & ナビペイン（6 ビュー）</b></summary>
+
+| ビュー / 機能 | 詳細 |
+|---|---|
+| お気に入り | ブックマーク、説明タグ、仮想フォルダ、検索、D&D 登録、TOP5 表示 |
+| ディレクトリツリー | 全ドライブのツリー表示、遅延読込、リアルタイム同期 |
+| 最近使ったファイル | 直近 100 件のアクセス履歴、回数・日時表示 |
+| 参照履歴 | 日付グループ表示、キーワード検索 |
+| インデックス検索設定 | 対象フォルダ管理、差分/完全再構築、進捗表示 |
+| ターミナル | 埋め込みターミナル、複数タブ、A/B ペインパス連動、ANSI 256 色対応 |
+| ブレッドクラムバー | 階層パスナビ＋フォルダドロップダウン、テキスト入力切替 |
+
+</details>
+
+<details>
+<summary><b>🔍 検索 — 全文検索・grep・プリセット</b></summary>
+
+| 機能 | 説明 |
+|---|---|
+| インデックス検索 | Lucene.NET + 日本語形態素解析による全文検索 |
+| ファイル内容検索 | ripgrep エンジンによる高速 grep |
+| 検索プリセット | ビルトイン 8 種＋ユーザー作成（今日更新・巨大ファイル・画像 等） |
+| フィルタ | サイズ / 日付 / ファイル種別 |
+| インデックス更新 | 自動（リアルタイム監視）/ 定期 / 手動、アイドル時のみ実行、エコモード |
+
+</details>
+
+<details>
+<summary><b>👁 クイックプレビュー</b></summary>
+
+| 対応形式 | 説明 |
+|---|---|
+| テキスト / コード | .txt, .json, .bat, .ps1 等のリアルタイムプレビュー |
+| PDF / HTML / 画像 | ページ送り付き PDF、Web、jpeg/png/gif/webp 等 |
+| Office | Excel / CSV（シート選択）、Word、PowerPoint |
+| テキスト差分 | 2 ファイルの Diff 表示 |
+
+</details>
+
+<details>
+<summary><b>🎛 カスタマイズ — 設定・キーバインド・多言語</b></summary>
+
+| 機能 | 説明 |
+|---|---|
+| キーバインド | 25 以上のアクションを自由に変更、JSON エクスポート/インポート |
+| エフェクト 12 カテゴリ | アニメーションを部位別に ON/OFF |
+| 表示設定 | 行高 4 段階、拡張子・隠しファイル表示 |
+| 10 言語対応 | 日英中（簡/繁）韓独西仏露葡、再起動なしで切替 |
+| ワーキングセット | タブ構成・表示状態を丸ごと保存し、ワンクリック復元 |
+| レイアウトプリセット | ウィンドウ配置・ナビペイン構成の保存と起動時適用 |
+| 設定バックアップ | 説明付きスナップショット、ワンクリック復元 |
+
+</details>
+
+<details>
+<summary><b>🖥 システム統合 — 常駐・スナップ・Box 連携</b></summary>
+
+| 機能 | 説明 |
+|---|---|
+| 自動アップデート | デルタ / パッチ / フルの 3 段階更新。再ダウンロード不要 |
+| 常駐モード | タスクトレイ常駐、グローバルホットキーで即呼び出し |
+| ウィンドウスナップ | 8 方向配置、マルチディスプレイ切断時の自動レスキュー |
+| Explorer 連携 | シェルコンテキストメニュー統合（独自メニューと切替可） |
+| Box Drive 連携 | BOX:// パス検出、共有リンク取得、API 連携 |
+| 統計 | 21 項目の操作カウント、閲覧フォルダランキング |
+| 統合ドキュメント | マニュアル・変更履歴をアプリ内で閲覧（日英自動切替） |
+
+</details>
+
+<details>
+<summary><b>📸 スクリーンショット集</b></summary>
+
+<br>
+2 画面モード<br>
+<img width="1949" height="989" alt="2画面モード" src="https://github.com/user-attachments/assets/887c8d99-9d15-4324-8e98-695cc8a26dc2" />
+<br><br>
+1 画面モード<br>
+<img width="1949" height="989" alt="1画面モード" src="https://github.com/user-attachments/assets/5d8aaca4-77e9-4391-87c5-288e1fe9814b" />
+<br><br>
+アプリ内からフィードバックを送信<br>
+<img width="1758" height="989" alt="フィードバック送信" src="https://github.com/user-attachments/assets/8c687bf5-a1e7-47f6-833f-f58199e5fb09" />
+<br><br>
+マニュアルページ（言語設定に連動して日英切替）<br>
+<img width="1386" height="910" alt="マニュアル" src="https://github.com/user-attachments/assets/17a139d7-330d-4a0e-be55-f38c875abfec" />
+<br><br>
+独自コンテキストメニューとエクスプローラ互換メニュー<br>
+<img width="318" height="378" alt="コンテキストメニュー" src="https://github.com/user-attachments/assets/8e236a0b-6a1b-45a9-ac46-4a0450921a5e" />
+<img width="644" height="307" alt="メニュー切替" src="https://github.com/user-attachments/assets/b9409b21-eb70-4f77-8117-49fdcd7318b3" />
+<br><br>
+自動アップデート<br>
+<img width="1948" height="936" alt="自動アップデート" src="https://github.com/user-attachments/assets/73b23852-1f9e-4928-a505-e4c1f0bf078d" />
+
+</details>
+
+<details>
+<summary><b>📋 最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
 ## Latest Changes — [1.4.4] - 2026-07-06 : オプション画面（テーマ/実績ページ）の堅牢性・速度改善とお気に入り/ナビペインの安定化
@@ -86,259 +272,10 @@
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
 
----
-
-## Features — 全 16 カテゴリ・100 以上の機能
-
-<details>
-<summary><b>1. ファイル管理（コア）</b></summary>
-
-| 機能 | 説明 |
-|---|---|
-| デュアルペイン | A（中央）/ B（右）の独立した 2 画面ファイルブラウザ |
-| タブブラウジング | ペインごとに複数タブで別々のフォルダを表示 |
-| 表示モード | 詳細リスト / 大アイコン / 中アイコン / 小アイコン |
-| カラムソート | 名前・更新日・サイズ・拡張子で昇順/降順切替 |
-| ファイル操作 | コピー / 移動 / 削除 / リネーム（F2） |
-| ドラッグ＆ドロップ | ペイン間のファイル移動・コピー、右ドラッグで操作選択 |
-| 操作の取り消し | ファイル操作のアンドゥ |
-| シェルサムネイル | 画像ファイルのサムネイル自動生成・キャッシュ |
-| 削除確認ダイアログ | ごみ箱移動前の確認（ON/OFF 可） |
-
-</details>
-
-<details>
-<summary><b>2. ナビゲーション</b></summary>
-
-| 機能 | 説明 |
-|---|---|
-| ブレッドクラムバー | 階層パスナビゲーション＋フォルダドロップダウン |
-| パス直接入力 | ブレッドクラムとテキスト入力モードの切替 |
-| 戻る/進む | フォルダ閲覧履歴のナビゲーション |
-| 親フォルダ移動 | ワンクリックで上位ディレクトリへ |
-| クイックショートカット | ホーム / デスクトップ / ダウンロードへの即時アクセス |
-| 1画面/2画面切替 | ペインレイアウトのトグル |
-| タイトルバーパス表示 | 現在フォルダの完全パスを表示（ON/OFF 可） |
-
-</details>
-
-<details>
-<summary><b>3. ナビペイン（サイドバー）— 6 つのビュー</b></summary>
-
-| ビュー | 詳細 |
-|---|---|
-| お気に入り | フォルダ/ファイルのブックマーク、説明タグ、仮想フォルダ、検索、D&D 登録、★ボタンで即登録、TOP5 表示、ロック機能 |
-| ディレクトリツリー | 全ドライブのツリー表示、遅延読込、リアルタイム同期、ツリーロック、Ctrl+ダブルクリックで反対ペインに開く |
-| 最近使ったファイル | 直近 100 件のファイルアクセス履歴、アクセス回数・日時表示、ソート・検索 |
-| 参照履歴 | 閲覧フォルダの日付グループ表示、キーワード検索、クリックでナビゲート |
-| インデックス検索設定 | インデックス対象フォルダ管理、差分/完全再構築、進捗表示、一時停止/再開 |
-| ターミナル | 埋め込み PowerShell（WPF ネイティブ描画）、複数タブ、A/B ペインパス連動ボタン、ANSI 256 色+RGB 対応、CJK 全角対応 |
-
-</details>
-
-<details>
-<summary><b>4. クイックプレビュー</b></summary>
-
-| 対応形式 | 説明 |
-|---|---|
-| テキストファイル | .txt, .json, .bat, .ps1 等のリアルタイムプレビュー |
-| PDF | ページ送りつきの PDF ビューア |
-| HTML | Web コンテンツプレビュー |
-| 画像 | jpeg, png, bmp, gif, webp 等 |
-| Excel/CSV | CSV, TSV, XLS, XLSX（シート選択対応） |
-| Office ドキュメント | Word (.docx), PowerPoint (.pptx) |
-
-</details>
-
-<details>
-<summary><b>5. 検索・フィルタリング</b></summary>
-
-| 機能 | 説明 |
-|---|---|
-| 通常検索 | キーワードによるファイル検索 |
-| ファイル内容検索（grep） | ripgrep エンジンによる高速なファイル内容検索 |
-| インデックス検索 | Lucene.NET + Kuromoji（日本語形態素解析）による全文検索 |
-| 検索プリセット | ビルトイン 8 種（今日更新・7日間・30日間・巨大ファイル・画像・Office・実行ファイル・小ファイル）＋ユーザー作成 |
-| 検索履歴 | 直近 100 件の検索履歴（通常/インデックス別） |
-| サイズフィルタ | 最小/最大ファイルサイズ指定 |
-| 日付フィルタ | 更新日の範囲指定 |
-| ファイル種別フィルタ | フォルダ, Excel, Word, PPT, PDF, TXT, EXE, 画像 等 |
-| 検索動作設定 | 同一ペイン/反対ペイン/即時検索の 3 モード |
-
-</details>
-
-<details>
-<summary><b>6. インデックスエンジン</b></summary>
-
-| 機能 | 説明 |
-|---|---|
-| Lucene.NET 全文検索 | プロフェッショナルな検索バックエンド |
-| 差分インデックス更新 | 新規/変更ファイルのみの効率的な更新 |
-| 更新モード | 自動（リアルタイム監視）/ 定期（1〜24 時間間隔）/ 手動 |
-| エコモード | CPU/ディスク負荷軽減モード |
-| ネットワークドライブ対応 | リモート共有向けの軽量処理 |
-| アイドル時のみ実行 | CPU 使用率閾値による自動制御 |
-| インデックスロック | アーカイブフォルダの自動更新除外 |
-
-</details>
-
-<details>
-<summary><b>7. テーマシステム</b></summary>
-
-| 機能 | 説明 |
-|---|---|
-| 50 テーマ内蔵 | 5 カテゴリ × 10（Standard / Lifestyle / Professional / Premium / RetroTech） |
-| 62 色キー | テーマあたり 62 色のきめ細かな配色定義 |
-| ペイン別テーマ | A/B/ナビペインに異なるテーマを適用可能 |
-| テーマカスタマイズ | 色単位での編集、非破壊保存 |
-| ランダムテーマ | 全テーマ or カテゴリ内でランダム切替 |
-| テーマ診断 | 6 問のアンケートでおすすめテーマを提案 |
-
-</details>
-
-<details>
-<summary><b>8. 外観・エフェクト設定</b></summary>
-
-| 機能 | 説明 |
-|---|---|
-| 行の高さ | 4 段階（20/24/32/40px） |
-| 拡張子表示 | ON/OFF 切替 |
-| 隠しファイル表示 | ON/OFF 切替 |
-| エフェクト 12 カテゴリ | 起動 / GlowBar / スキャンバー / タブ / ペイン遷移 / テーマ変更 / ステータスバー / プレビュー / リスト / ナビペイン / コントロールデッキ / D&D の個別 ON/OFF |
-
-</details>
-
-<details>
-<summary><b>9. 設定・カスタマイズ（Control Deck）</b></summary>
-
-| カテゴリ | 主な設定項目 |
-|---|---|
-| 一般 | コンテキストメニュー方式、シングルクリック動作、タブ復元、常駐モード、通知時間、ホームフォルダ |
-| 検索 | 検索動作モード、パスクリック動作、自動 1 画面切替 |
-| インデックス | 更新タイミング、アイドル実行、エコモード、ネットワークドライブ |
-| バックアップ | 設定のバックアップ/復元、説明つきスナップショット |
-| テーマ | テーマ選択・カスタマイズ・ペイン割当 |
-| 表示 | 行高・拡張子・隠しファイル・ソート順 |
-| エフェクト | 12 カテゴリのアニメーション ON/OFF |
-| ショートカット | 25 以上のアクションのキーバインド変更、JSON エクスポート/インポート |
-| 統計 | 21 項目の操作カウント、TOP50 閲覧フォルダランキング |
-| 言語 | 10 ヶ国語の即時切替（再起動不要） |
-
-</details>
-
-<details>
-<summary><b>10. 多言語対応（i18n）</b></summary>
-
-| 機能 | 説明 |
-|---|---|
-| 10 言語サポート | 日本語, 英語, 中国語(簡/繁), 韓国語, ドイツ語, スペイン語, フランス語, ロシア語, ポルトガル語 |
-| ホットスイッチ | 再起動なしで言語切替 |
-| 動的検出 | ユーザー追加の言語ファイル自動認識 |
-| フォールバック | 未翻訳キーは日本語にフォールバック |
-
-</details>
-
-<details>
-<summary><b>11. プロジェクトセット（ワーキングセット）</b></summary>
-
-| 機能 | 説明 |
-|---|---|
-| ワークスペース保存 | ペイン数、開いているタブ、表示モード、ソート順を丸ごと保存 |
-| ワンクリック復元 | 保存したプロジェクト環境を即座にロード |
-
-</details>
-
-<details>
-<summary><b>12. Box Drive 連携</b></summary>
-
-| 機能 | 説明 |
-|---|---|
-| Box パスマッピング | BOX:// パスの自動検出 |
-| 共有リンク取得 | クリップボード監視で box.com URL をキャプチャ |
-| Box API 連携 | OAuth 認証で Box API と接続 |
-
-</details>
-
-<details>
-<summary><b>13. ウィンドウ管理</b></summary>
-
-| 機能 | 説明 |
-|---|---|
-| ウィンドウスナップ | 8 方向（半分×4、4分割×4）の配置 |
-| 位置・サイズ記憶 | 終了時の状態を復元 |
-| マルチディスプレイ対応 | ディスプレイ切断時の自動レスキュー |
-
-<br>
-2画面モード<br>
-<img width="1949" height="989" alt="image" src="https://github.com/user-attachments/assets/887c8d99-9d15-4324-8e98-695cc8a26dc2" />
-<br><br>
-1画面モード<br>
-<img width="1949" height="989" alt="image" src="https://github.com/user-attachments/assets/5d8aaca4-77e9-4391-87c5-288e1fe9814b" />
-</details>
-
-<details>
-<summary><b>14. 通知・進捗表示</b></summary>
-
-| 機能 | 説明 |
-|---|---|
-| トースト通知 | コピー/移動/削除等の結果通知 |
-| GlowBar | コピー/移動のリアルタイム速度表示つき進捗バー |
-| スキャンバー | 大量ファイルフォルダスキャン時の進捗表示 |
-| フィードバック送信 | アプリ内から GitHub へ直接投稿 |
-
-<br>
-アプリ設定からフィードバックを送信<br>
-<img width="1758" height="989" alt="image" src="https://github.com/user-attachments/assets/8c687bf5-a1e7-47f6-833f-f58199e5fb09" />
-</details>
-
-<details>
-<summary><b>15. ドキュメント・ヘルプ</b></summary>
-
-| 機能 | 説明 |
-|---|---|
-| 統合ドキュメントビューア | マニュアル・変更履歴をアプリ内で閲覧 |
-| Markdown レンダリング | 目次自動生成、キーワード検索、2 カラム表示 |
-| 日英自動切替 | UI 言語に応じてドキュメント言語を自動選択 |
-
-<br>
-マニュアルページ<br>
-<img width="1386" height="910" alt="image" src="https://github.com/user-attachments/assets/17a139d7-330d-4a0e-be55-f38c875abfec" />
-<br><br>
-修正履歴ページ<br>
-<img width="1386" height="910" alt="image" src="https://github.com/user-attachments/assets/ca2dd9fb-411e-4742-ab45-ec502ad72dc7" />
-<br><br>
-言語設定が「英語」の際のマニュアル<br>
-<img width="1386" height="893" alt="image" src="https://github.com/user-attachments/assets/ef44ceb1-a1f6-4ea4-841c-c334990c318d" />
-</details>
-
-<details>
-<summary><b>16. システム統合・パフォーマンス</b></summary>
-
-| 機能 | 説明 |
-|---|---|
-| シェルアイコン抽出 | Windows ネイティブアイコン取得 |
-| Explorer コンテキストメニュー | シェル拡張との統合 |
-| 自動アップデート | デルタ/パッチ/フルの 3 段階更新戦略 |
-| 常駐モード | タスクトレイ常駐 |
-| アイコンバッチ読込 | 200 件単位+5ms インターバルで UI フリーズ回避 |
-
-<br>
-アプリ独自のコンテキストメニュー<br>
-<img width="318" height="378" alt="image" src="https://github.com/user-attachments/assets/8e236a0b-6a1b-45a9-ac46-4a0450921a5e" />
-<br><br>
-アプリ独自メニューとエクスプローラ互換メニューの切り替え<br>
-<img width="644" height="307" alt="image" src="https://github.com/user-attachments/assets/b9409b21-eb70-4f77-8117-49fdcd7318b3" />
-<br><br>
-自動アップデート機能により再ダウンロード不要<br>
-<img width="1948" height="936" alt="image" src="https://github.com/user-attachments/assets/73b23852-1f9e-4928-a505-e4c1f0bf078d" />
-<br><br>
-常駐オプションONにより、アプリ終了後はタスクバーに格納<br>
-<img width="419" height="238" alt="image" src="https://github.com/user-attachments/assets/fca2c198-ca9e-4f34-8dea-47b727c41082" />
-<img width="227" height="37" alt="image" src="https://github.com/user-attachments/assets/c7a3aa17-4ee4-406a-8942-82a84825391d" />
 </details>
 
 ---
 
 <p align="center">
-  <sub>Developed by <a href="https://github.com/sulkyjp">sulkyjp</a></sub>
+  <sub>Developed by <a href="https://github.com/sulkyjp">sulkyjp</a> ・ <a href="https://github.com/sulkyjp/zenithFiler_feedback/issues">フィードバック・不具合報告</a></sub>
 </p>
