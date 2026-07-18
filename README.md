@@ -54,27 +54,19 @@
 
 ---
 
-## Download
+## Download / ダウンロード
 
-**[Download the latest release](https://github.com/sulkyjp/zenithFiler_update/releases/latest)** — just unzip the ZIP. No installation required.<br>**[Latest Release をダウンロード](https://github.com/sulkyjp/zenithFiler_update/releases/latest)** — ZIP を展開するだけ。インストール不要
+**[Download the latest release / 最新版をダウンロード](https://github.com/sulkyjp/zenithFiler_update/releases/latest)** — just unzip the ZIP, no installation required<br>ZIP を展開するだけ、インストール不要
 
 <!-- download-table:begin -->
-| File | Description |
+| File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.8.6.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine |
-| `ZenithFiler_v1.8.6_patch.zip` | **Lightweight** — excludes the runtime. For updating an existing installation |
-| `ZenithFiler_v1.8.6_delta_from_1.8.5.zip` | **Delta** — only the files that changed since the previous version |
-
----
-
-| ファイル | 内容 |
-|---|---|
-| `ZenithFiler_v1.8.6.zip` | **完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.8.6_patch.zip` | **軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v1.8.6_delta_from_1.8.5.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.8.6.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.8.6_patch.zip` | **Lightweight** — excludes the runtime. For updating an existing installation<br>**軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v1.8.6_delta_from_1.8.5.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
-Supported OS: Windows 10 / 11 (x64) | Stays current via automatic delta updates<br>対応 OS: Windows 10 / 11 (x64)　|　導入後は差分自動アップデートで常に最新
+Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
 
 ## Free & Pro / 無料版と Pro
 
