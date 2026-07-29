@@ -61,9 +61,9 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.10.3.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.10.3_patch.zip` | **Lightweight** — excludes the runtime. For updating an existing installation<br>**軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v1.10.3_delta_from_1.10.2.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.10.4.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.10.4_patch.zip` | **Lightweight** — excludes the runtime. For updating an existing installation<br>**軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v1.10.4_delta_from_1.10.3.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -264,27 +264,21 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.10.3] - 2026-07-28 : Added three file-list mouse gestures (middle-click for a new tab, slow-click for inline rename, double-click empty space to go up) and semi-transparent display for cut items
+## Latest Changes — [1.10.4] - 2026-07-29 : Fixed a stranded drag hint and a focus jump when canceling a cut with Esc
 
-### Added
-- **Added three mouse gestures to the file list (Issue #202 — each can be toggled under Settings → General → Operation):**
-  - **Middle-click a folder to open it in a new tab** (on by default): clicking a folder with the wheel button adds a tab in the background while the current folder stays in view. Same behavior as a web browser, so you can click through several folders and open them all at once. Middle-clicking a file or empty space does nothing.
-  - **Rename with a slow second click** (off by default): clicking an already-selected item again after a pause lets you **edit the name in place, right in the list** — the same inline rename as Explorer. For files, only the part before the extension starts out selected, so typing replaces the name and keeps the extension. Enter commits, Esc cancels, and clicking elsewhere also commits. It ships off by default in case you'd rather not risk starting a rename by accident. It does not trigger on a fast double-click (which opens the item), when you click and then drag, or while multiple items are selected. Works in both the details and icon views. (The rename dialog is still available from F2 and the right-click menu, so AI name suggestions remain accessible there.)
-  - **Double-click empty space to go up one folder** (on by default): double-clicking a blank area of the list navigates to the parent folder. The folder you came from is selected on arrival, so you can immediately see where you were.
-- **Cut (Ctrl+X) items are now shown semi-transparent in the list, matching Windows Explorer.** Previously nothing changed visually when you cut something, so there was no way to tell what had been cut — or whether the cut had worked at all. The icon and label of cut items are now faded so they stand out (the selection and hover background colors are not faded, so a cut item that is also selected still reads clearly). Both the details and icon views are supported, and when the same folder is open in both the A and B panes, the fade appears in both. The fade clears when the paste completes, when Esc is pressed, when another cut or copy is performed, or when another application replaces the clipboard contents.
+### Fixed
+- **Fixed the drag hint ("Drop the N item(s) on the copy/move destination") sometimes staying on screen after the operation was over.** While renaming an item in place in the list, dragging across the text to select it made the app mistake the gesture for the start of a file drag and show the hint; continuing from there could leave the hint stranded on screen. A drag can no longer start from a click that is not a valid drag origin — such as one inside the inline rename box or on a scrollbar — and the path where a second drag could start on top of an in-flight one, stranding the first hint, was closed as well. As a side effect, dragging to select text while renaming now works correctly.
+- **Fixed keyboard focus sometimes jumping to the first item in the list after pressing Esc to cancel a cut (Ctrl+X).** The semi-transparent display itself cleared correctly, but a separate, later focus-restore path could win the race and land on the first item instead. Pressing Esc now re-focuses the item that was actually selected. Also fixed Esc not being able to cancel a cut at all while in icon (thumbnail) view.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.10.3] - 2026-07-28 : 一覧のマウス操作を3つ追加（ミドルクリックで新しいタブ・ゆっくりクリックでインライン名前変更・空白ダブルクリックで一つ上へ）、切り取り中のアイテムを半透明表示
+## 最新の変更履歴 — [1.10.4] - 2026-07-29 : ドラッグヒントの残留と、切り取りをEscキャンセルした際のフォーカス飛びを修正
 
-### Added
-- **一覧のマウス操作を3つ追加した（Issue #202・すべて設定画面「基本設定 → 操作」でオン/オフ可能）:**
-  - **ミドルクリックでフォルダを新しいタブで開く**（既定オン）: ホイールボタンでフォルダをクリックすると、表示は今のフォルダのまま裏で新しいタブが増える。ブラウザと同じ挙動なので、気になるフォルダを次々とクリックしてまとめて開ける。ファイルや何もない場所をミドルクリックしたときは何も起きない
-  - **ゆっくりクリックで名前を変更する**（既定オフ）: 選択済みの項目を、間を置いてもう一度クリックすると、**一覧上でその場で名前を編集できる**（エクスプローラーと同じインライン編集）。ファイルは拡張子を除いた部分だけが選択された状態で始まるので、そのまま入力すれば拡張子は残る。Enter で確定、Esc で取り消し、ほかの場所をクリックしても確定する。誤って名前変更が始まるのを嫌う場合に備えて既定はオフにしてある。素早いダブルクリック（＝開く操作）や、クリックしてそのままドラッグした場合には発動しない。複数選択中も発動しない。詳細ビュー・アイコンビューの両方で使える（従来の名前変更ダイアログは F2 と右クリックメニューに残っているため、AI による名前の提案などはそちらから利用できる）
-  - **何もない場所のダブルクリックで一つ上へ移動する**（既定オン）: 一覧の空白部分をダブルクリックすると親フォルダへ移動する。移動後は元いたフォルダが選択された状態になるので、どこから来たかがすぐ分かる
-- **切り取り（Ctrl+X）したアイテムを、エクスプローラーと同じように一覧上で半透明表示するようにした:** これまで切り取りを実行しても見た目に変化がなく、何を切り取ったのか・そもそも切り取れているのかが分からなかった。切り取り対象のアイコンと文字を半透明にして視覚的に区別できるようにした（選択やマウスホバーの背景色は薄くならないため、切り取り中でも選択状態は従来どおり見分けられる）。詳細ビュー・アイコンビューの両方に対応し、A/Bペインで同じフォルダを開いている場合は両方に反映される。半透明表示は、貼り付けが完了したとき・Esc キーを押したとき・別の切り取りやコピーを行ったとき・他のアプリがクリップボードを書き換えたときに解除される
+### Fixed
+- **ドラッグ中に出るヒント（「n件の項目をコピー/移動先にドロップしてください」）が、操作を終えても画面に残り続けることがある問題を修正:** 一覧上でその場で名前を変更している最中に、編集中の文字をマウスでドラッグして選択すると、アプリがそれを「ファイルのドラッグ開始」と取り違えてヒントを表示してしまい、その状態で操作を続けるとヒントだけが画面に取り残されることがあった。名前の編集中やスクロールバー操作中など、ドラッグの起点として無効なクリックからはドラッグが始まらないようにし、あわせてドラッグ中に二重にドラッグが始まってヒントが取り残される経路も塞いだ。この修正により、編集中の文字をドラッグして範囲選択する操作も正しく行えるようになる
+- **切り取り（Ctrl+X）を Esc でキャンセルしたとき、フォーカスが一覧の先頭アイテムへ飛んでしまうことがある問題を修正:** 半透明表示の解除自体は正しく行われていたが、フォーカスの復帰処理が別経路で遅れて走ることがあり、そちらが先頭アイテムへの復帰を優先してしまっていた。Esc での解除時に選択中のアイテムへ確実にフォーカスを再固定するようにした。あわせて、アイコン表示（サムネイル一覧）では Esc を押しても切り取りをキャンセルできなかった問題も修正
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
