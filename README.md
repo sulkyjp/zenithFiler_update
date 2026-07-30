@@ -61,9 +61,9 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.10.4.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.10.4_patch.zip` | **Lightweight** — excludes the runtime. For updating an existing installation<br>**軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v1.10.4_delta_from_1.10.3.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.10.5.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.10.5_patch.zip` | **Lightweight** — excludes the runtime. For updating an existing installation<br>**軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v1.10.5_delta_from_1.10.4.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -264,21 +264,27 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.10.4] - 2026-07-29 : Fixed a stranded drag hint and a focus jump when canceling a cut with Esc
+## Latest Changes — [1.10.5] - 2026-07-30 : The manual and changelog can now stay open while you use the app (modeless, with remembered placement); fixed the settings window losing its placement on exit and blurry terminal text
+
+### Changed
+- **The manual and changelog no longer lock up the rest of the app while open (Issue #203).** The manual used to open as a modal window that blocked the main window, so while it was up you could not touch the file list or the menus — you had to close the manual before you could try anything it described. The manual is now modeless: you can read a procedure and carry it out in the app at the same time. Its size and position are remembered as well, so once you park it on a second monitor or off to one side, that is where it opens next time. Choosing it from the menu again brings the existing window to the front instead of opening another one (and switches to the Changelog tab if that is what you picked), which also makes it noticeably faster to bring up after the first time.
 
 ### Fixed
-- **Fixed the drag hint ("Drop the N item(s) on the copy/move destination") sometimes staying on screen after the operation was over.** While renaming an item in place in the list, dragging across the text to select it made the app mistake the gesture for the start of a file drag and show the hint; continuing from there could leave the hint stranded on screen. A drag can no longer start from a click that is not a valid drag origin — such as one inside the inline rename box or on a scrollbar — and the path where a second drag could start on top of an in-flight one, stranding the first hint, was closed as well. As a side effect, dragging to select text while renaming now works correctly.
-- **Fixed keyboard focus sometimes jumping to the first item in the list after pressing Esc to cancel a cut (Ctrl+X).** The semi-transparent display itself cleared correctly, but a separate, later focus-restore path could win the race and land on the first item instead. Pressing Esc now re-focuses the item that was actually selected. Also fixed Esc not being able to cancel a cut at all while in icon (thumbnail) view.
+- **Fixed the settings window's size and position resetting to the defaults on the next launch.** Moving or resizing the settings window did save the new bounds, but the bulk settings save on app exit did not carry them over and overwrote them with the defaults. The current size and position are now preserved on exit.
+- **Fixed terminal text looking blurry.** Terminal glyphs used to be rendered as HTML text, which could land their outlines on fractional pixels — especially on high-DPI displays — and smear them. The terminal now uses WebGL rendering (the same approach as VS Code), drawing each glyph aligned to the screen's physical pixels for a crisp outline. On systems where WebGL is unavailable (e.g. remote desktop), the terminal automatically falls back to the previous rendering.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.10.4] - 2026-07-29 : ドラッグヒントの残留と、切り取りをEscキャンセルした際のフォーカス飛びを修正
+## 最新の変更履歴 — [1.10.5] - 2026-07-30 : マニュアル・更新履歴を開いたまま本体を操作できるようにした（モードレス化＋位置記憶）、設定画面の位置が終了時に失われる問題とターミナル文字のぼやけを修正
+
+### Changed
+- **マニュアル／更新履歴を開いている間、本体が操作できなくなる挙動を改めた（Issue #203）:** これまでマニュアルは本体をブロックする形（モーダル）で開いていたため、開いている間はファイル一覧もメニューも一切触れず、マニュアルを閉じないと説明どおりに操作を試せなかった。マニュアルを開いたまま本体を操作できるようにし、「手順を読みながらその場で試す」という使い方ができるようにした。あわせて、マニュアルウィンドウのサイズと位置を記憶するようにしたので、サブモニタや画面の端など好きな場所へ一度置けば次回もそこに開く。マニュアルはメニューから再度開くと新しく開き直さずに前面に出るようになり、「更新履歴」を選んだ場合はそのタブに切り替わる（2回目以降は読み込みが発生しないぶん表示も速い）
 
 ### Fixed
-- **ドラッグ中に出るヒント（「n件の項目をコピー/移動先にドロップしてください」）が、操作を終えても画面に残り続けることがある問題を修正:** 一覧上でその場で名前を変更している最中に、編集中の文字をマウスでドラッグして選択すると、アプリがそれを「ファイルのドラッグ開始」と取り違えてヒントを表示してしまい、その状態で操作を続けるとヒントだけが画面に取り残されることがあった。名前の編集中やスクロールバー操作中など、ドラッグの起点として無効なクリックからはドラッグが始まらないようにし、あわせてドラッグ中に二重にドラッグが始まってヒントが取り残される経路も塞いだ。この修正により、編集中の文字をドラッグして範囲選択する操作も正しく行えるようになる
-- **切り取り（Ctrl+X）を Esc でキャンセルしたとき、フォーカスが一覧の先頭アイテムへ飛んでしまうことがある問題を修正:** 半透明表示の解除自体は正しく行われていたが、フォーカスの復帰処理が別経路で遅れて走ることがあり、そちらが先頭アイテムへの復帰を優先してしまっていた。Esc での解除時に選択中のアイテムへ確実にフォーカスを再固定するようにした。あわせて、アイコン表示（サムネイル一覧）では Esc を押しても切り取りをキャンセルできなかった問題も修正
+- **設定画面のサイズと位置が、アプリを終了すると次回起動時に既定へ戻ってしまう問題を修正:** 設定画面を動かしたりリサイズしたりした時点では保存されていたが、アプリ終了時の設定一括保存でその値が引き継がれずに既定値で上書きされていた。終了時も現在のサイズ・位置を保持するようにした
+- **ターミナルの文字がぼやけて見える問題を修正:** これまでターミナルの文字は HTML テキストとして描画されており、高 DPI 環境などで文字の輪郭が小数ピクセルに乗って滲むことがあった。VS Code と同方式の WebGL 描画に切り替え、画面の実ピクセルに合わせて文字を描くようにしたことで、輪郭がきりっと表示されるようになった。WebGL が使えない環境（リモートデスクトップなど）では従来の描画方式で自動的に動作する
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
