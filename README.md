@@ -61,9 +61,9 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.10.7.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.10.7_patch.zip` | **Lightweight** — excludes the runtime. For updating an existing installation<br>**軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v1.10.7_delta_from_1.10.6.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.10.8.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.10.8_patch.zip` | **Lightweight** — excludes the runtime. For updating an existing installation<br>**軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v1.10.8_delta_from_1.10.7.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -264,87 +264,91 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.10.7] - 2026-08-02 : Deeper Claude Code integration in the terminal (usage readout, workspace picker, prompt history, image paste, Enter for a newline), Quick Preview and Text Compare in their own windows, and a name field for the XP ranking
+## Latest Changes — [1.10.8] - 2026-08-02 : All four nav-pane slots from one cross-shaped window, up to four nav-pane terminals at once, Claude Code controls on the action bar
 
 ### Added
-- **The terminal font list now covers every font installed on your system.** It used to be a fixed list of 11 candidates, narrowed down to whichever of them were present — so a monospace font you had installed yourself never appeared and could not be picked. The font list in the settings popup now offers every installed font family. It is split into two groups, **Monospace (recommended)** and **All fonts**, so the terminal-friendly choices are still right at the top. With the dropdown open, typing the first letters of a name jumps straight to it. The list is built **the first time you open the settings (gear)**, and it is prepared in the background, so neither startup nor the terminal itself ever waits on it — even with a large font collection installed.
+- **All four nav-pane slots can now be set from a single cross-shaped window.** Deciding what goes in the top and bottom of the left nav pane and the same on the right meant working through four separate `∨` menus, and with something like four terminals it was easy to lose track of which slot you were editing. A **single window split into quadrants** now shows all four at once, so a layout comes together in one pass.
+    - It is a **window of its own**, so it can be moved and resized — widen it and long view names fit. **The size you set is remembered** for next time.
+    - The **checkbox** on each row is whether to list that view in the side's icon bar, exactly as the old `∨` menu did. **Clicking the row makes it the view shown in that slot**, marked with the accent colour and a `◀` (the same look as the nav pane layout preset preview).
+    - There are two ways in. Opening it from a pane's **`∨` button gives that quadrant a faint tinted face with an accent outline and heading**, so you can see which slot you started from without the fill getting in the way of the view names. The **nav pane layout presets** button in the status bar opens the same window with no quadrant highlighted.
+    - **Every colour comes from the theme.** Background, text, checkboxes and buttons all come from the same theme set, so nothing becomes unreadable whichever of the 50 themes is in use. Hovering a row lays down the same band the file list uses, showing exactly how far the clickable area reaches.
+    - **The same view cannot be shown in two slots**, so choosing it elsewhere clears it from where it was. Terminals are the exception — each side has its own — so one can sit on each side. To stack two on the same side, use "Terminal" and "Terminal 2".
+    - **You can see which rule applies before clicking.** A row already showing in another slot — one that clicking would move here — carries **a badge with an arrow and where it currently sits** ("↰ Top Left" and so on). A terminal on the opposite side is never contested, so it carries no badge. The three cases — contested, not contested, contested only within a side — are therefore distinguishable at a glance. The cue is **an icon and words rather than colour or opacity**, so it reads on any theme.
+    - Nothing takes effect **until you press Apply**, so cancelling (or pressing Esc) leaves the layout exactly as it was.
+    - Setting the top-right slot to "None" hides the right nav pane while remembering its icon bar, so showing it again brings everything back.
 
-- **Claude Code usage can now be shown just above the terminal's action bar.** When you use Claude Code in the terminal it can report the current model, context usage and how much of the 5-hour and weekly windows you have spent — but that line is drawn as terminal text, so depending on the font you picked the bar characters came out garbled and hard to read. The same information is now drawn by the app itself, so it stays crisp whatever font you use. It reads `Opus 5 │ ctx ■□□□□□□□□□ 8% │ 5h … (2h33m left) │ 7d … (2d3h left)`, shifting from green to amber to red as usage climbs; hovering shows the exact reset times and which `/status` row each figure corresponds to.
+- **Up to four nav-pane terminals can now be shown at once, across the left and right panes and split top and bottom.** The nav pane could only ever hold **one terminal for the whole app**, so putting one in the left pane and another in the right made the first disappear. Terminals now get their own instance per slot, so you can have one above and one below in each nav pane — four in total. Together with the terminal tabs in the A and B panes, that comes to **six at once**.
+    - To allow two in the same pane, a **"Terminal 2"** entry has been added to the view list. Pick "Terminal" for the upper slot and "Terminal 2" for the lower one.
+    - All four are **fully independent**. Run Claude Code in different folders with different models and each shows its own usage readout.
+    - Choosing a terminal in the right nav pane **no longer removes the one on the left** (adding a view used to move it from wherever it already was).
+    - Font, colours and the other settings stay shared across every terminal, as before.
 
-    **Each terminal reports on itself.** Run Fable in the A pane, Opus in the B pane and Sonnet in the nav pane, and each terminal shows the model name and context usage of the Claude Code session running *in that terminal*. Switching tabs switches the reading with it.
+- **Terminal tabs can now be opened from the Tab Management view.** The only button for opening a terminal tab lived on the pane's tab bar, so showing "Tab Management" in the nav pane hid that bar and left **no way to open a new terminal at all**. There is now a terminal button in the "Pane A" and "Pane B" headings of the Tab Management view.
 
-    When the gauges appear they **sweep all the way up and settle back to the real figure, like a car's speedometer at ignition**, with each of the three starting a beat after the last. With Windows animation effects turned off, or in lightweight mode, the sweep is skipped and the final values show immediately.
+- **"Enter inserts a newline" can now be toggled from the action bar too.** Whether Enter should insert a newline depends on what you are writing, yet changing it meant opening the settings (the gear) every time. There is now a **newline-icon button (Newline)** in the action bar to switch it on the spot. It stays lit while it is on, and it stays in sync with the checkbox in the settings.
 
-    The look is configurable: **8 gauge designs** (blocks, fine sub-cell blocks, dots, diamonds, arrows, braille and more — braille splits each cell in two for twice the resolution), **4 color schemes** (by usage / gradient / rainbow / theme color) and **2 reset-time formats** (time left / clock time). The default "by usage" shifts green → amber → red **continuously** as it approaches 100%.
-
-    To turn it on, just press **Register hook** once under "Claude Code usage" in the terminal settings (the gear) — no separate tool to install. **If you already have your own status line set up, it keeps working**: the app does not take it over, it calls your original command and passes the result through. Unregistering restores your settings exactly. Note that registration only takes effect in terminals opened afterwards, not in ones already running.
-
-- **The keys available in the terminal can now be looked up from the action bar.** There was nowhere to check which keys do something in the terminal short of opening the manual. The keyboard icon in the action bar (next to the gear; at the right of the tab bar in the nav pane) now opens a list of the main ones: `→` to accept an inline suggestion, `Ctrl+R` for history, `Ctrl+↑ / Ctrl+↓` to move between commands, `Ctrl+C / Ctrl+V`, and `Ctrl+F` to search. It also makes clear how `Ctrl+C / Ctrl+V` differs from `Ctrl+Shift+C / Ctrl+Shift+V` (the latter works even with the setting turned off). It also states that **any key not listed goes straight to Command Prompt**, so the line between what the app intercepts and what it does not is clear.
-
-- **Folders you have used Claude Code in before can now be picked from a list.** To open Claude Code on another project you had to `cd` your way to the folder and then type `claude`, which for a deeply nested path was a lot of typing. The **∨** button next to "Claude" in the action bar now lists every folder you have started Claude Code in, **most recently used first**; picking one changes to that folder and launches. Entries show the folder name, with the full path on hover. **Sessions you started in a terminal outside this app are included too**, since the list comes from Claude Code's own records. Folders that no longer exist are left out.
-
-- **Pasting an image into the terminal now saves it to a file and types the path instead.** Claude Code running in a terminal cannot take an image directly, so a screenshot was unusable until you had saved it somewhere yourself and typed out the path. When the clipboard holds an image but no text, the image is now saved as a PNG and **the quoted path is pasted in its place**. Snip with `Win + Shift + S` and paste straight away, and Claude Code can read it. The files go to a temporary folder, and anything older than seven days is cleaned up automatically — enough of a window to refer back to an image later in a conversation.
-
-- **The prompts you have sent to Claude Code can now be picked from a list and reused.** To give an instruction similar to an earlier one, you had to type the whole thing again. The **speech-bubble icon** in the action bar now lists the prompts you have sent to Claude Code, **newest first, each with its date and time**; picking one drops it into the input. **Picking does not send it**, so you can adjust the wording first. Hovering shows the full text and the folder it came from. The list is read from Claude Code's own conversation logs, so **prompts you typed outside this app are included** and they survive a reinstall. Identical wording is collapsed to its most recent entry, and the 30 most recent are shown.
-
-- **The skip-permissions launcher (Skip) got a workspace list too.** Just like the normal launcher, the **∨** next to "Skip" lets you pick a previous folder and launch there with permissions skipped.
-
-- **Enter can now be swapped to insert a newline, with Ctrl+Enter to send, while Claude Code is running (setting).** Writing a longer instruction for Claude Code, Enter sends by default, so reaching for a line break would fire off a half-written message. Turn this on in the terminal settings (the gear) and **for as long as Claude Code is running** Enter inserts a newline and Ctrl+Enter sends. **At the Command Prompt, Enter still runs the command as always**, so you can never end up unable to type a command. Off by default.
-
-- **The name you appear under on the XP ranking can now be set in the ranking card itself.** That name was taken from the "author name" on the license/store page — far enough from the ranking that **it was hard to tell what to edit to change how you show up**. There is now a **name field directly under the "View" button**, so you can decide it on the spot, and what you type is what gets sent on your next level-up. The field starts out holding the name currently in use (your author name, if you have set one). While "Upload anonymously" is selected no name is sent, so the field is disabled.
+- **The Claude Code usage readout can now be toggled from a button in the terminal's action bar.** Turning it on and off used to live deep inside the settings (the gear), so plenty of people never discovered the feature existed at all. There is now a **gauge-icon button (Usage)** in the action bar that switches the readout on and off in one press. **When you switch it on, the hook is registered too if it is not already** — no need to open the settings and work through the steps (if registration is not needed, the readout simply appears). The button stays lit while it is on. Switching it off **leaves the hook registered**, so the figures come straight back the next time you turn it on; to remove the hook entirely, unregister it under "Claude Code usage" in the settings as before. Registering or unregistering from the settings keeps the button in sync. Right after you switch it on, the button animates along with the gauge sweep.
 
 ### Changed
-- **Quick Preview now opens in its own window.** It used to be drawn over the main window, so with a terminal shown in a pane the preview slipped underneath it and became unreadable. As a separate window that no longer happens, and the preview gains ordinary window behaviour — move, resize, double-click the header to maximise, and snap to screen edges. The backdrop is no longer dimmed, so the file list stays visible while a preview is open.
-- **Quick Preview has a clearer layout.** The header, the line-number column and the body are now painted as three distinct surfaces, with a shadow under the header so the boundaries read at a glance, and the window itself has a drop shadow. Files with no syntax definition (`.txt`, `.log` and the like) are now colour-coded too — paths, numbers, quoted strings, `Label:` prefixes, comment lines and words that signal errors. Every colour comes from the active theme, so it fits whichever one you use.
-- **Text Compare (Diff) now opens in its own window too.** It suffered the same problem as Quick Preview — with a terminal on screen the comparison slipped underneath it. It is now a separate window that can be moved, resized and maximised by double-clicking the header, and a shadow under the header marks where the diff view begins.
-- **The nav pane preview now matches.** The line-number column and body are painted as separate surfaces there too, and files with no syntax definition get the same colour-coding, so the two previews no longer look different from each other.
-- **The default terminal font is now Consolas.** This matches what VS Code uses on Windows out of the box (`editor.fontFamily` = `Consolas, 'Courier New', monospace`); the previous default was Cascadia Code. If you have ever picked a font in the settings popup, your choice is kept.
+- **The usage gauges now stretch to fill the width available.** They were a fixed ten cells wide, which made it hard to see where 100% sat — and therefore how far along you were. The space left on the line is now shared out among the gauges, so the wider the pane, the longer the gauge and the easier it is to read as a scale. Resizing the window or the pane redraws it automatically. Where there is not enough room it falls back to the original length, so the readout is never lost.
+- **The gauges gained a subtle outline.** The unfilled portion was just characters, leaving no clear sense of where the 100% box ended. A faint border now runs around each gauge so its full extent reads at a glance. The colour comes from the active theme, kept light enough not to compete with the bar itself.
+- **With "Enter inserts a newline" turned on, choices and slash commands still go through on plain Enter.** The setting makes long instructions much easier to write, but it also meant that **confirming a choice** — "Do you want to proceed? 1. Yes / 2. No" — and **running a command** like `/status` took Ctrl+Enter as well, which cost more than the setting gained. The swap is now suspended in two situations, so **Enter confirms and runs as it always did**:
+    - **While a list of choices is on screen**: yes/no prompts, model selection, `@` file suggestions and everywhere else Claude Code asks you to pick.
+    - **While you are typing a slash command**: when the input is just a command such as `/status`. There is never a reason to break a command across lines, so Enter runs it even after the suggestion list has narrowed away. Ordinary text that happens to start with a slash, like `/path/to/file — take a look`, is not affected and still takes a newline.
+
+    The check runs only at the moment you press Enter and looks at the cursor's line and below it. The conversation above is never scanned, so stray symbols in the output cannot trigger it, and typing stays as responsive as before.
+- **The nav pane's `∨` menu now opens the cross-shaped layout window.** It used to be a checkbox list covering only that pane and that half, with no view of what the other slots held. The same button now shows all four slots at once, and the view show/hide the checkboxes offered carries over unchanged.
+- **The "Top Left" / "Top Right" headings in the nav pane layout preset preview are now translated.** They were hard-coded in Japanese.
+- **The "Skip" button in the action bar is now labelled "Permission Skip".** The old label gave no hint as to what was being skipped; the new one makes clear it launches with permission prompts bypassed.
+- **Nav-pane terminals no longer steal the keyboard at startup or when a tab closes.** As soon as a terminal appeared, typing went to it even though you had not asked for that — so keys pressed for the file list did nothing until you clicked back. Focus now moves to the terminal **only when you add a tab or click one yourself**.
 
 ### Fixed
-- **Fixed the terminal becoming unresponsive after pressing End.** Pressing End left the terminal unable to accept input; clicking it did not bring it back, and the app stayed unusable for a while. The End keystroke never reaches the terminal view, yet it was also passing straight through the app without anything using it, and immediately afterwards the terminal lost its standing as the input target. It is now caught inside the terminal itself. Accepting an inline suggestion is no longer bound to End either — **→** (with the cursor at the end of the line) is now the only key for it, and it works as before.
+- **Fixed nav-pane terminals not being cleaned up on exit, which could leave browser-engine processes running.** Terminals in the A and B panes were disposed at shutdown, but the ones in the nav pane were missed.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.10.7] - 2026-08-02 : ターミナルの Claude Code 連携を強化（使用率表示・ワークスペース選択・プロンプト履歴・画像の貼り付け・Enter で改行）、クイックプレビューとテキスト比較をウィンドウ化、XP ランキングの名前設定
+## 最新の変更履歴 — [1.10.8] - 2026-08-02 : ナビペインの4枠を十字の1画面でまとめて設定、ナビペインのターミナルを最大4面同時表示、Claude Code 連携を操作バーから操作
 
 ### Added
-- **ターミナルで選べるフォントを、OS に入っている全フォントに広げた:** これまではあらかじめ用意した11種類の中から、その環境に入っているものだけが並ぶ仕組みだった。そのため自分でインストールした等幅フォントを使いたくても一覧に出てこず、選びようがなかった。設定ポップアップのフォント一覧に OS の全フォントを並べるようにしたので、入れてあるフォントはそのまま選べる。一覧は**等幅フォント（推奨）**と**すべてのフォント**の2グループに分かれていて、ターミナル向きのフォントは従来どおり先頭から選べる。ドロップダウンを開いた状態で頭文字を打てば目的のフォントまで飛べる。なお一覧は**設定（歯車）を開いたときに初めて作る**ようにしてあり、しかも裏側で用意するので、フォントを多数入れている環境でも起動やターミナルの表示が待たされることはない
+- **ナビペインの4つの枠を、十字に区切った1つのウィンドウでまとめて設定できるようにした:** 左ナビの上下・右ナビの上下にそれぞれ何を表示するかは、これまで枠ごとの `∨` メニューを4回行き来しないと決められなかった。特にターミナルを4面並べるような構成では、どこを設定しているのか見失いやすかった。**十字に区切った1つのウィンドウ**で4枠を見渡しながら選べるようにしたので、1回の操作で組み上がる。
+    - **独立したウィンドウ**なので、移動もサイズ変更もできる。ビュー名が長くて読みにくいときは横に広げれば全部見える。**変更したサイズは次に開いたときも保たれる**
+    - 各行の**チェック**はそのサイドのアイコンバーに並べるかどうかで、これまで `∨` メニューでできたことと同じ。**行をクリックするとその枠に表示するビューになり**、アクセント色と `◀` で示される（ナビペイン配置プリセットのプレビューと同じ見た目）
+    - 開き方は2通り。**各ペインの `∨` ボタン**から開くと、**その枠に薄い面が敷かれ、アクセント色の枠線と見出し**で「いまここを設定している」と分かる。塗りつぶさないので、枠の中のビュー名は下の色に邪魔されない。ステータスバー右下の**ナビペイン配置プリセット**からも開ける（この場合はどの枠も強調しない）
+    - **配色はすべてテーマから取っている。** 背景・文字・チェックボックス・ボタンが同じテーマの組で揃うので、50 あるテーマのどれを選んでも読めなくならない。行にカーソルを乗せると一覧と同じ帯が付き、押せる範囲がそのまま見える
+    - **同じビューを2箇所には表示できない**ため、別の枠で選ぶと元の枠は自動的に外れる。ターミナルだけは左右で中身が別なので、左右に1つずつ置ける。同じ側の上下に並べたいときは「ターミナル」と「ターミナル 2」を使う
+    - **どのビューがどういう扱いになるかは、押す前に見て分かる。** すでに別の枠に表示していて、ここで選ぶとそちらから移動することになる行には、**矢印アイコンと移動元（「↰ 左上」など）のバッジが付く**。左右に1つずつ置けるターミナルは、反対側に出ていても取り合いにならないのでバッジは付かない。つまり「取り合う」「取り合わない」「同じ側だけ取り合う」の3通りが見た目で区別できる。色や濃さではなく**アイコンと文字で示している**ので、どのテーマでも読み取れる
+    - 選んだ内容は**「適用」を押すまで反映されない**ので、途中で気が変わってもキャンセル（または Esc）で元のままにできる
+    - 右上を「なし」にすると右ナビが隠れる。このときアイコンバーの並びは記憶したままなので、また表示したときに元どおりになる
 
-- **Claude Code の使用率を、ターミナルの操作バーのすぐ上に表示できるようにした:** Claude Code をターミナルで使っていると、いま使っているモデル・コンテキストの使用率・5時間枠と週次枠の消費具合を出せるが、これはターミナルの文字として描かれるため、選んだフォントによってはバーの記号が崩れて読みにくくなっていた。同じ内容をアプリ側で描くようにしたので、フォントに関係なく整った表示になる。`Opus 5 │ ctx ■□□□□□□□□□ 8% │ 5h … (あと2h33m) │ 7d … (あと2d3h)` の形で、使用率に応じて緑→黄→赤に色が変わる。マウスを乗せると各枠のリセット時刻と、`/status` のどの項目に対応するかが出る。
+- **ナビペインのターミナルを、左右・上下の最大4面まで同時に表示できるようにした:** これまでナビペインのターミナルは**アプリ全体で1つ**しか持てず、左ナビと右ナビの両方に出そうとすると片方から消えてしまっていた。ターミナルだけは表示する枠ごとに別々に持つようにしたので、左右のナビペインそれぞれで上下に1つずつ、合わせて4面まで並べられる。A/Bペインのターミナルタブと合わせると**最大6面**になる。
+    - 上下に2つ置けるようにするため、ビューの一覧に**「ターミナル 2」**を追加した。上段に「ターミナル」、下段に「ターミナル 2」を選べば1つのナビペインで2面になる
+    - 4面はそれぞれ**完全に独立**している。別々のフォルダ・別々のモデルで Claude Code を動かせば、使用率の表示もそれぞれのものが出る
+    - 右ナビペインでターミナルを選んでも、**左ナビペインのターミナルは消えない**（従来はビューをもう片方へ移動する動きだったため消えていた）
+    - フォント・色などの設定は従来どおり全ターミナル共通
 
-    表示は**ターミナルごとに独立している**。A ペインで Fable、B ペインで Opus、ナビペインで Sonnet というように別々のモデルで動かしていれば、それぞれのターミナルに**そのターミナルで動いている Claude Code 自身の**モデル名とコンテキスト使用率が出る。タブを切り替えれば表示もそのタブのものに切り替わる。
+- **タブ管理ビューからターミナルタブを開けるようにした:** ターミナルタブを開くボタンはペインのタブバーにしか無かったため、ナビペインに「タブ管理」を表示しているとタブバーが見えなくなり、**ターミナルを新しく開く手段が無くなっていた**。タブ管理ビューの「Aペイン」「Bペイン」それぞれの見出しにもターミナルのボタンを置いたので、そこから直接開ける
 
-    ゲージが現れるときは、**車のエンジンをかけたときの速度計のように、いったん振り切ってから実際の値へ落ち着く**。3本のゲージが少しずつ間を置いて動き出す。Windows の「アニメーション効果」がオフのときと軽量モードのときは、この演出は行わず即座に最終値で表示する
+- **「Enter で改行」の切り替えも、操作バーのボタンでできるようにした:** Enter を改行にするかどうかは、書いている内容によって切り替えたくなる設定なのに、これまでは設定（歯車）を開かないと変えられなかった。操作バーに**改行アイコンのボタン（Newline）**を置いたので、その場で切り替えられる。オンの間はボタンが点灯する。設定側のチェックとも連動する
 
-    見た目は設定で選べる。**ゲージのデザイン**8種（四角・細かいブロック・ドット・ダイヤ・矢印・点字など。点字は1マスを左右に分けるので倍の細かさで表せる）、**ゲージの配色**4種（使用率で変化／グラデーション／レインボー／テーマの色）、**リセット時刻の表記**2種（残り時間／時刻）。既定の「使用率で変化」は、100%に近づくほど緑→黄→赤へ**連続的に**変わる
-
-    表示するにはターミナルの設定（歯車）の「Claude Code 使用率」で**フックを登録**を一度押すだけでよく、別途ツールを入れる必要はない。**すでに独自の表示を設定している場合はそれもそのまま動く**（アプリが横取りせず、元の設定を呼び出して結果を通す）。解除すれば元の設定に戻る。なお、登録が効くのは**次に開くターミナル**からで、すでに開いているターミナルでは表示されない
-
-- **ターミナルで使えるキーの一覧を、アクションバーから開けるようにした:** ターミナル上で何のキーが効くのかを確かめる場所がこれまで無く、マニュアルを開くしかなかった。アクションバーのキーボードアイコン（歯車の隣。ナビペインでは上部のタブバー右）を押すと、`→` での入力候補の確定、`Ctrl+R` の履歴、`Ctrl+↑ / Ctrl+↓` のコマンド単位移動、`Ctrl+C / Ctrl+V`、`Ctrl+F` の検索といった主なキーが一覧で出る。`Ctrl+C / Ctrl+V` と `Ctrl+Shift+C / Ctrl+Shift+V` の使い分け（後者は設定でオフにしていても常に使える）も分かるようにした。**ここに載っていないキーはすべてコマンドプロンプトへそのまま渡る**ことも明記しているので、アプリが横取りしているキーとそうでないキーの境目が分かる
-
-- **過去に Claude Code を使ったフォルダを、一覧から選んで起動できるようにした:** 別のプロジェクトで Claude Code を開きたいとき、これまでは目的のフォルダまで `cd` で移動してから `claude` と打つ必要があり、深い階層だとパスを打ち込むだけで手間だった。操作バーの「Claude」ボタンの隣にある **∨** を押すと、これまで Claude Code を起動したことのあるフォルダが**最近使った順**に並ぶので、選ぶだけでそのフォルダへ移動して起動できる。一覧はフォルダ名で表示し、マウスを乗せるとフルパスが出る。**このアプリの外のターミナルで起動した分も含まれる**（Claude Code 自身の記録を読んでいるため）。すでに消したフォルダは並ばない
-
-- **ターミナルに画像を貼り付けると、ファイルとして保存してそのパスを入力するようにした:** ターミナルで動く Claude Code は画像を直接受け取れないため、スクリーンショットを撮っても貼り付けようがなく、いったん自分でファイルに保存してからパスを打ち込む必要があった。クリップボードに文字が無く画像だけがあるときは、その画像を PNG として保存し、**引用符で囲んだパスを代わりに貼り付ける**ようにした。Windows の `Win + Shift + S` で切り取った直後にそのまま貼り付ければ、Claude Code がその画像を読める。保存先は一時フォルダで、7日より古いものは自動で片付ける（会話の途中で見返せる猶予を残している）
-
-- **Claude Code へ入力したプロンプトの履歴を、一覧から選んで再利用できるようにした:** 以前と似た指示をもう一度出したいとき、これまでは同じ内容を一から打ち直すしかなかった。操作バーの**吹き出しアイコン**を押すと、これまで Claude Code に入力したプロンプトが**新しい順に日時つき**で並ぶので、選ぶだけで入力欄に入ります。**選んでも送信はしない**ので、少し直してから送れる。マウスを乗せると本文の全体とそのときのフォルダが出る。一覧は Claude Code 自身の会話ログから読んでいるため、**このアプリの外で打ったプロンプトも含まれ**、アプリを入れ直しても残る。同じ文面は最新の1件にまとめ、直近30件を表示する
-
-- **権限スキップ起動（Skip）にもワークスペースの一覧を付けた:** 通常起動と同じように、「Skip」ボタンの隣の **∨** から過去のフォルダを選んで、そのまま権限スキップで起動できる
-
-- **Claude Code の入力中だけ、Enter を改行・Ctrl+Enter を送信に入れ替えられるようにした（設定）:** Claude Code に長めの指示を書くとき、標準では Enter がそのまま送信になるため、途中で改行しようとして書きかけのまま送ってしまうことがあった。ターミナルの設定（歯車）でオンにすると、**Claude Code が動いている間だけ** Enter が改行、Ctrl+Enter が送信になる。**コマンドプロンプトの入力では従来どおり Enter で実行**されるので、コマンドが打てなくなることはない。既定はオフ
-
-- **XP ランキングに出す名前を、ランキングの欄で直接設定できるようにした:** ランキングに表示される名前は、これまでライセンス／ストアの「作者名」を流用していた。設定する場所がランキングから離れていたため、**どこを直せば表示名が変わるのかが分かりにくかった**。「見る」ボタンのすぐ下に**名前の入力欄**を置いたので、その場で決められる。入力した名前はレベルアップ時の送信にそのまま使われる。欄には現在使われている名前が最初から入っている（作者名を設定済みならそれが出る）。「匿名でアップロードする」を選んでいる間は名前を送らないため、入力欄は編集できない状態になる
+- **Claude Code 使用率の表示を、ターミナルの操作バーのボタンで切り替えられるようにした:** これまで表示のオン／オフは設定（歯車）の奥にあり、そもそもこういう表示ができること自体に気づかないままの人が多かった。操作バーに**メーターのアイコンのボタン（Usage）**を置いたので、押すだけで表示を切り替えられる。**オンにしたときは、まだフックが登録されていなければ登録もまとめて行う**ので、設定を開いて手順を踏む必要はない（登録が要らない状態ならそのまま表示される）。オンの間はボタンが点灯する。オフにしても**フックの登録はそのまま残る**ので、次にオンにしたときはすぐ数値が出る。フックを完全に外したいときは、これまでどおり設定の「Claude Code 使用率」から解除する。設定側で登録・解除したときもボタンの点灯は連動する。オンにした直後は、メーターが振り切れる動きに合わせてボタンも一緒に動く
 
 ### Changed
-- **クイックプレビューを独立したウィンドウにした:** これまでは画面に重ねて表示していたため、ペインにターミナルを出していると、プレビューがターミナルの下に潜って読めなくなっていた。独立したウィンドウにしたことでこれが起きなくなり、あわせて**移動・サイズ変更・ヘッダーのダブルクリックで最大化・画面端へのスナップ**といった通常のウィンドウ操作ができるようになった。背後を暗くする演出はなくなり、プレビューを開いたままでもファイル一覧が見える
-- **クイックプレビューの見た目を整理した:** ヘッダー・行番号の列・本文をそれぞれ別の面の色で塗り分け、ヘッダーの下に影を落として境目が一目で分かるようにした。ウィンドウの外周にも影が付く。あわせて、構文の定義を持たないファイル（`.txt` や `.log` など）でも、パス・数値・引用符で囲んだ文字列・「項目名:」のラベル・注釈行・エラーを表す語を色分けして表示するようにした。色はすべてテーマから取るので、どのテーマでも馴染む
-- **テキスト比較（Diff）も独立したウィンドウになった:** クイックプレビューと同じ理由で、ターミナルを表示していると比較画面が下に潜って読めなくなっていた。こちらも独立したウィンドウにして解消し、移動・サイズ変更・ダブルクリックでの最大化ができるようにした。ヘッダーと差分表示の境目にも影を落として区切りを分かりやすくした
-- **ナビペインのプレビューも同じ見た目に揃えた:** 行番号の列と本文の塗り分け、構文定義を持たないファイルの語句の色分けを、ナビペイン側のプレビューにも適用した。同じ種類の表示で見た目が食い違わないようにしている
-- **ターミナルの既定フォントを Consolas に変更した:** VS Code が Windows で既定にしているフォント（`editor.fontFamily` = `Consolas, 'Courier New', monospace`）に合わせた。これまでの既定は Cascadia Code だった。設定ポップアップでフォントを選んだことがある場合は、その選択がそのまま使われる
+- **使用率のゲージを、表示できる幅いっぱいまで伸ばすようにした:** これまでゲージは10マス固定で、100%がどこまでなのか＝いま何割なのかが読み取りにくかった。行に残っている幅をゲージへ配り切るようにしたので、ペインを広げるほどゲージも長くなり、目盛りとして読みやすくなる。ウィンドウやペインの幅を変えると自動で引き直す。幅が足りないときは従来の長さまで縮めて、必ず表示は保つ
+- **ゲージに控えめな外枠を付けた:** 塗られていない部分は記号だけで、どこまでが100%の箱なのかが分かりにくかった。ゲージの周りに薄い枠線を引いて、箱の範囲が一目で分かるようにした。枠の色はテーマから取り、主張しすぎない濃さに抑えている
+- **「Enter で改行」を有効にしていても、選択肢の決定とスラッシュコマンドの実行は Enter のままにした:** この設定を入れると長い指示は書きやすくなる一方、「続けますか？ 1. はい / 2. いいえ」のような**選択肢の決定や、`/status` のようなコマンドの実行にまで Ctrl+Enter が必要**になり、かえって使いづらくなっていた。次の場面では入れ替えを止めて、**そのまま Enter で決定・実行できる**ようにした。
+    - **選択肢が出ているとき**: Yes/No の確認、モデルの選択、`@` によるファイル指定の候補など、Claude Code が選ばせてくる場面全般
+    - **スラッシュコマンドを打っているとき**: 入力が `/status` のようにコマンド 1 つだけのとき。コマンドの途中で改行したい場面は無いため、候補の一覧が消えたあとでも Enter で実行できる。`/path/to/file を見て` のように `/` で始まる普通の文章は対象外で、これまでどおり Enter で改行できる
+
+    判定は Enter を押した瞬間に、カーソルのある行とその下だけを見ている。会話の本文は見ないので、出力に記号が紛れていても誤動作せず、入力の反応が遅くなることもない
+- **ナビペインの `∨` メニューを、十字の配置ウィンドウに置き換えた:** これまでの `∨` はそのペインのその段だけを対象にしたチェックボックスの一覧で、他の枠がどうなっているかは見えなかった。押すと4枠すべてを見渡せる配置ウィンドウが開くようにしたので、同じ操作でより広く見渡せる。チェックボックスでできたビューの出し入れはそのまま引き継いでいる
+- **ナビペイン配置プリセットのプレビューに出る「左上」「右上」などの見出しを、各言語で表示するようにした:** 日本語のまま固定されていた
+- **操作バーの「Skip」ボタンの表記を「Permission Skip」に変えた:** 何をスキップするボタンなのかが名前から分かりにくかったため、権限確認をスキップして起動することが分かる表記にした
+- **ナビペインのターミナルが、起動直後やタブを閉じたときに入力先を横取りしなくなった:** これまでは起動してターミナルが表示されると、こちらが何もしていないのに入力先がターミナルへ移っていた。そのためファイル一覧を操作しようとキーを押しても効かず、一度クリックし直す必要があった。**自分でタブを追加したりタブをクリックしたときだけ**入力先が移るようにした
 
 ### Fixed
-- **ターミナルで End キーを押すと操作を受け付けなくなる問題を修正:** End を押すとターミナルが入力を受け取らなくなり、クリックしても戻らず、しばらく操作できない状態になっていた。End の打鍵はターミナルの表示部分には届いておらず、かといってアプリ側でも使われないまま素通りしていて、その直後にターミナルが入力先としての位置づけを失うのが原因だった。ターミナルの内側で End を確実に受け止めるようにして解消した。あわせて、入力予測を End で確定する割り当てをやめ、確定は **→ キー**（カーソルが行末にあるとき）のみとした。→ での確定は従来どおり動作する
+- **アプリを終了してもナビペインのターミナルが後片付けされず、ブラウザエンジンのプロセスが残ることがある問題を修正:** A/Bペインのターミナルは終了時に片付けていたが、ナビペインのターミナルだけが対象から漏れていた
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
