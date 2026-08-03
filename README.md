@@ -61,9 +61,9 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.10.8.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.10.8_patch.zip` | **Lightweight** — excludes the runtime. For updating an existing installation<br>**軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v1.10.8_delta_from_1.10.7.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.10.9.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.10.9_patch.zip` | **Lightweight** — excludes the runtime. For updating an existing installation<br>**軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v1.10.9_delta_from_1.10.8.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -264,91 +264,57 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.10.8] - 2026-08-02 : All four nav-pane slots from one cross-shaped window, up to four nav-pane terminals at once, Claude Code controls on the action bar
+## Latest Changes — [1.10.9] - 2026-08-04 : Click a path in the terminal to open it in a pane, and no more freezes on slow cloud storage
 
 ### Added
-- **All four nav-pane slots can now be set from a single cross-shaped window.** Deciding what goes in the top and bottom of the left nav pane and the same on the right meant working through four separate `∨` menus, and with something like four terminals it was easy to lose track of which slot you were editing. A **single window split into quadrants** now shows all four at once, so a layout comes together in one pass.
-    - It is a **window of its own**, so it can be moved and resized — widen it and long view names fit. **The size you set is remembered** for next time.
-    - The **checkbox** on each row is whether to list that view in the side's icon bar, exactly as the old `∨` menu did. **Clicking the row makes it the view shown in that slot**, marked with the accent colour and a `◀` (the same look as the nav pane layout preset preview).
-    - There are two ways in. Opening it from a pane's **`∨` button gives that quadrant a faint tinted face with an accent outline and heading**, so you can see which slot you started from without the fill getting in the way of the view names. The **nav pane layout presets** button in the status bar opens the same window with no quadrant highlighted.
-    - **Every colour comes from the theme.** Background, text, checkboxes and buttons all come from the same theme set, so nothing becomes unreadable whichever of the 50 themes is in use. Hovering a row lays down the same band the file list uses, showing exactly how far the clickable area reaches.
-    - **The same view cannot be shown in two slots**, so choosing it elsewhere clears it from where it was. Terminals are the exception — each side has its own — so one can sit on each side. To stack two on the same side, use "Terminal" and "Terminal 2".
-    - **You can see which rule applies before clicking.** A row already showing in another slot — one that clicking would move here — carries **a badge with an arrow and where it currently sits** ("↰ Top Left" and so on). A terminal on the opposite side is never contested, so it carries no badge. The three cases — contested, not contested, contested only within a side — are therefore distinguishable at a glance. The cue is **an icon and words rather than colour or opacity**, so it reads on any theme.
-    - Nothing takes effect **until you press Apply**, so cancelling (or pressing Esc) leaves the layout exactly as it was.
-    - Setting the top-right slot to "None" hides the right nav pane while remembering its icon bar, so showing it again brings everything back.
 
-- **Up to four nav-pane terminals can now be shown at once, across the left and right panes and split top and bottom.** The nav pane could only ever hold **one terminal for the whole app**, so putting one in the left pane and another in the right made the first disappear. Terminals now get their own instance per slot, so you can have one above and one below in each nav pane — four in total. Together with the terminal tabs in the A and B panes, that comes to **six at once**.
-    - To allow two in the same pane, a **"Terminal 2"** entry has been added to the view list. Pick "Terminal" for the upper slot and "Terminal 2" for the lower one.
-    - All four are **fully independent**. Run Claude Code in different folders with different models and each shows its own usage readout.
-    - Choosing a terminal in the right nav pane **no longer removes the one on the left** (adding a view used to move it from wherever it already was).
-    - Font, colours and the other settings stay shared across every terminal, as before.
-
-- **Terminal tabs can now be opened from the Tab Management view.** The only button for opening a terminal tab lived on the pane's tab bar, so showing "Tab Management" in the nav pane hid that bar and left **no way to open a new terminal at all**. There is now a terminal button in the "Pane A" and "Pane B" headings of the Tab Management view.
-
-- **"Enter inserts a newline" can now be toggled from the action bar too.** Whether Enter should insert a newline depends on what you are writing, yet changing it meant opening the settings (the gear) every time. There is now a **newline-icon button (Newline)** in the action bar to switch it on the spot. It stays lit while it is on, and it stays in sync with the checkbox in the settings.
-
-- **The Claude Code usage readout can now be toggled from a button in the terminal's action bar.** Turning it on and off used to live deep inside the settings (the gear), so plenty of people never discovered the feature existed at all. There is now a **gauge-icon button (Usage)** in the action bar that switches the readout on and off in one press. **When you switch it on, the hook is registered too if it is not already** — no need to open the settings and work through the steps (if registration is not needed, the readout simply appears). The button stays lit while it is on. Switching it off **leaves the hook registered**, so the figures come straight back the next time you turn it on; to remove the hook entirely, unregister it under "Claude Code usage" in the settings as before. Registering or unregistering from the settings keeps the button in sync. Right after you switch it on, the button animates along with the gauge sweep.
+- **Paths printed in the terminal can now be clicked to open them in pane A or B.** A path shown by the shell or by Claude Code previously had to be selected, copied and pasted into the address bar by hand. **Paths that actually exist are now underlined, and one click opens that folder.**
+    - **Click for pane A, Ctrl+click for pane B.** Hovering shows the resolved full path along with the hint.
+    - **Relative paths work too** (`src/Foo.cs`, `..\other` and so on), resolved against that terminal's current directory — so paths keep working after you `cd`.
+    - **Line-number forms such as `Services/Foo.cs:123`** (Claude Code, compilers) are recognised as just the path part. Surrounding brackets and punctuation are excluded from the link as well.
+    - **A path pointing at a file opens its parent folder with that file selected.**
+    - **Only paths that exist are underlined.** Verification is asynchronous and runs only for the line under the cursor, so it never stalls the terminal — including on cloud storage.
+    - Paths containing spaces are recognised when quoted. URLs continue to open in the browser as before.
 
 ### Changed
-- **The usage gauges now stretch to fill the width available.** They were a fixed ten cells wide, which made it hard to see where 100% sat — and therefore how far along you were. The space left on the line is now shared out among the gauges, so the wider the pane, the longer the gauge and the easier it is to read as a scale. Resizing the window or the pane redraws it automatically. Where there is not enough room it falls back to the original length, so the readout is never lost.
-- **The gauges gained a subtle outline.** The unfilled portion was just characters, leaving no clear sense of where the 100% box ended. A faint border now runs around each gauge so its full extent reads at a glance. The colour comes from the active theme, kept light enough not to compete with the bar itself.
-- **With "Enter inserts a newline" turned on, choices and slash commands still go through on plain Enter.** The setting makes long instructions much easier to write, but it also meant that **confirming a choice** — "Do you want to proceed? 1. Yes / 2. No" — and **running a command** like `/status` took Ctrl+Enter as well, which cost more than the setting gained. The swap is now suspended in two situations, so **Enter confirms and runs as it always did**:
-    - **While a list of choices is on screen**: yes/no prompts, model selection, `@` file suggestions and everywhere else Claude Code asks you to pick.
-    - **While you are typing a slash command**: when the input is just a command such as `/status`. There is never a reason to break a command across lines, so Enter runs it even after the suggestion list has narrowed away. Ordinary text that happens to start with a slash, like `/path/to/file — take a look`, is not affected and still takes a newline.
 
-    The check runs only at the moment you press Enter and looks at the cursor's line and below it. The conversation above is never scanned, so stray symbols in the output cannot trigger it, and typing stays as responsive as before.
-- **The nav pane's `∨` menu now opens the cross-shaped layout window.** It used to be a checkbox list covering only that pane and that half, with no view of what the other slots held. The same button now shows all four slots at once, and the view show/hide the checkboxes offered carries over unchanged.
-- **The "Top Left" / "Top Right" headings in the nav pane layout preset preview are now translated.** They were hard-coded in Japanese.
-- **The "Skip" button in the action bar is now labelled "Permission Skip".** The old label gave no hint as to what was being skipped; the new one makes clear it launches with permission prompts bypassed.
-- **Nav-pane terminals no longer steal the keyboard at startup or when a tab closes.** As soon as a terminal appeared, typing went to it even though you had not asked for that — so keys pressed for the file list did nothing until you clicked back. Focus now moves to the terminal **only when you add a tab or click one yourself**.
+- **Better recording when the UI freezes.** A freeze was only ever written to the log *after* it recovered, so **force-quitting while still frozen left no evidence at all**. A line is now written once the UI has been unresponsive for ten seconds, so even a session killed mid-freeze records when it started. If a cloud storage menu lookup was running at the same time, how long it had been running is noted alongside it.
 
 ### Fixed
-- **Fixed nav-pane terminals not being cleaned up on exit, which could leave browser-engine processes running.** Terminals in the A and B panes were disposed at shutdown, but the ones in the nav pane were missed.
+
+- **Fixed the app becoming unresponsive for long stretches simply from moving between folders on cloud storage.** Entering a cloud storage folder (Box / OneDrive) prefetched the entries for its right-click menu. That prefetch calls into the OS shell extension, so when the cloud side was unhealthy **it could fail to return, taking the whole app down with it** — one measured case took 1 minute 51 seconds. Lookup times are now measured continuously, and **the prefetch alone switches itself off** as soon as they turn slow or stop returning. It comes back on its own, waiting longer each time the problem recurs. Looking up the menu when you actually right-click is unchanged, so nothing is lost.
+- **Fixed prefetches piling up when moving through folders quickly.** Navigating rapidly — holding down "up", for instance — fired a prefetch for every folder merely passed through. It now waits briefly and only prefetches the folder you landed on. The extra directory scan that existed solely for the prefetch is gone as well; it reuses what the file list already read.
+- **Fixed cloud menu lookups never recovering for a folder once one got stuck.** When a lookup was skipped because too many were already in flight, internal state was left behind and **that folder's cloud menu stayed empty until the app was restarted**. Both the skipped case and the timed-out case now clean up correctly.
+- **Fixed deeply nested cloud menu entries acting on a different file than the one selected.** When reusing prefetched entries, the target file was only substituted for the top couple of levels, leaving **entries further down still pointing at the file used for the prefetch**.
+- **Fixed the terminal failing to start the first time on slower machines.** The startup wait was too short, so on machines where security software makes the first launch slow it **sometimes took several attempts to open**. The wait is now more generous, and a failed launch reliably shuts down the process it left running in the background.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.10.8] - 2026-08-02 : ナビペインの4枠を十字の1画面でまとめて設定、ナビペインのターミナルを最大4面同時表示、Claude Code 連携を操作バーから操作
+## 最新の変更履歴 — [1.10.9] - 2026-08-04 : ターミナルのパスをクリックしてペインで開く、クラウドストレージが遅い環境でのフリーズを解消
 
 ### Added
-- **ナビペインの4つの枠を、十字に区切った1つのウィンドウでまとめて設定できるようにした:** 左ナビの上下・右ナビの上下にそれぞれ何を表示するかは、これまで枠ごとの `∨` メニューを4回行き来しないと決められなかった。特にターミナルを4面並べるような構成では、どこを設定しているのか見失いやすかった。**十字に区切った1つのウィンドウ**で4枠を見渡しながら選べるようにしたので、1回の操作で組み上がる。
-    - **独立したウィンドウ**なので、移動もサイズ変更もできる。ビュー名が長くて読みにくいときは横に広げれば全部見える。**変更したサイズは次に開いたときも保たれる**
-    - 各行の**チェック**はそのサイドのアイコンバーに並べるかどうかで、これまで `∨` メニューでできたことと同じ。**行をクリックするとその枠に表示するビューになり**、アクセント色と `◀` で示される（ナビペイン配置プリセットのプレビューと同じ見た目）
-    - 開き方は2通り。**各ペインの `∨` ボタン**から開くと、**その枠に薄い面が敷かれ、アクセント色の枠線と見出し**で「いまここを設定している」と分かる。塗りつぶさないので、枠の中のビュー名は下の色に邪魔されない。ステータスバー右下の**ナビペイン配置プリセット**からも開ける（この場合はどの枠も強調しない）
-    - **配色はすべてテーマから取っている。** 背景・文字・チェックボックス・ボタンが同じテーマの組で揃うので、50 あるテーマのどれを選んでも読めなくならない。行にカーソルを乗せると一覧と同じ帯が付き、押せる範囲がそのまま見える
-    - **同じビューを2箇所には表示できない**ため、別の枠で選ぶと元の枠は自動的に外れる。ターミナルだけは左右で中身が別なので、左右に1つずつ置ける。同じ側の上下に並べたいときは「ターミナル」と「ターミナル 2」を使う
-    - **どのビューがどういう扱いになるかは、押す前に見て分かる。** すでに別の枠に表示していて、ここで選ぶとそちらから移動することになる行には、**矢印アイコンと移動元（「↰ 左上」など）のバッジが付く**。左右に1つずつ置けるターミナルは、反対側に出ていても取り合いにならないのでバッジは付かない。つまり「取り合う」「取り合わない」「同じ側だけ取り合う」の3通りが見た目で区別できる。色や濃さではなく**アイコンと文字で示している**ので、どのテーマでも読み取れる
-    - 選んだ内容は**「適用」を押すまで反映されない**ので、途中で気が変わってもキャンセル（または Esc）で元のままにできる
-    - 右上を「なし」にすると右ナビが隠れる。このときアイコンバーの並びは記憶したままなので、また表示したときに元どおりになる
 
-- **ナビペインのターミナルを、左右・上下の最大4面まで同時に表示できるようにした:** これまでナビペインのターミナルは**アプリ全体で1つ**しか持てず、左ナビと右ナビの両方に出そうとすると片方から消えてしまっていた。ターミナルだけは表示する枠ごとに別々に持つようにしたので、左右のナビペインそれぞれで上下に1つずつ、合わせて4面まで並べられる。A/Bペインのターミナルタブと合わせると**最大6面**になる。
-    - 上下に2つ置けるようにするため、ビューの一覧に**「ターミナル 2」**を追加した。上段に「ターミナル」、下段に「ターミナル 2」を選べば1つのナビペインで2面になる
-    - 4面はそれぞれ**完全に独立**している。別々のフォルダ・別々のモデルで Claude Code を動かせば、使用率の表示もそれぞれのものが出る
-    - 右ナビペインでターミナルを選んでも、**左ナビペインのターミナルは消えない**（従来はビューをもう片方へ移動する動きだったため消えていた）
-    - フォント・色などの設定は従来どおり全ターミナル共通
-
-- **タブ管理ビューからターミナルタブを開けるようにした:** ターミナルタブを開くボタンはペインのタブバーにしか無かったため、ナビペインに「タブ管理」を表示しているとタブバーが見えなくなり、**ターミナルを新しく開く手段が無くなっていた**。タブ管理ビューの「Aペイン」「Bペイン」それぞれの見出しにもターミナルのボタンを置いたので、そこから直接開ける
-
-- **「Enter で改行」の切り替えも、操作バーのボタンでできるようにした:** Enter を改行にするかどうかは、書いている内容によって切り替えたくなる設定なのに、これまでは設定（歯車）を開かないと変えられなかった。操作バーに**改行アイコンのボタン（Newline）**を置いたので、その場で切り替えられる。オンの間はボタンが点灯する。設定側のチェックとも連動する
-
-- **Claude Code 使用率の表示を、ターミナルの操作バーのボタンで切り替えられるようにした:** これまで表示のオン／オフは設定（歯車）の奥にあり、そもそもこういう表示ができること自体に気づかないままの人が多かった。操作バーに**メーターのアイコンのボタン（Usage）**を置いたので、押すだけで表示を切り替えられる。**オンにしたときは、まだフックが登録されていなければ登録もまとめて行う**ので、設定を開いて手順を踏む必要はない（登録が要らない状態ならそのまま表示される）。オンの間はボタンが点灯する。オフにしても**フックの登録はそのまま残る**ので、次にオンにしたときはすぐ数値が出る。フックを完全に外したいときは、これまでどおり設定の「Claude Code 使用率」から解除する。設定側で登録・解除したときもボタンの点灯は連動する。オンにした直後は、メーターが振り切れる動きに合わせてボタンも一緒に動く
+- **ターミナルに表示されたパスをクリックして、A / B ペインで開けるようにした:** ターミナルや Claude Code が出したパスは、これまで手で選択してコピーし、アドレス欄に貼り付けるしかなかった。**実在するパスには下線が付き、クリックするだけでそのフォルダが開く**。
+    - **クリックで A ペイン、Ctrl+クリックで B ペイン**に表示する。マウスを乗せると解決後のフルパスと操作の案内が出る
+    - **相対パスにも対応**（`src/Foo.cs` や `..\other` など）。基準はそのターミナルの現在のディレクトリなので、`cd` した先での表示もそのまま辿れる
+    - **`Services/Foo.cs:123` のような行番号付きの表記**（Claude Code やコンパイラの出力）でも、パスの部分だけを正しく認識する。前後の括弧や句読点も範囲から外す
+    - **ファイルを指している場合は、親フォルダを開いてそのファイルを選択状態にする**
+    - **実在するものにだけ下線が付く。** マウスを乗せた行だけを非同期で確認するため、クラウドストレージ上でも操作を止めない
+    - 空白を含むパスは引用符で囲まれていれば認識する。URL は従来どおりブラウザで開く
 
 ### Changed
-- **使用率のゲージを、表示できる幅いっぱいまで伸ばすようにした:** これまでゲージは10マス固定で、100%がどこまでなのか＝いま何割なのかが読み取りにくかった。行に残っている幅をゲージへ配り切るようにしたので、ペインを広げるほどゲージも長くなり、目盛りとして読みやすくなる。ウィンドウやペインの幅を変えると自動で引き直す。幅が足りないときは従来の長さまで縮めて、必ず表示は保つ
-- **ゲージに控えめな外枠を付けた:** 塗られていない部分は記号だけで、どこまでが100%の箱なのかが分かりにくかった。ゲージの周りに薄い枠線を引いて、箱の範囲が一目で分かるようにした。枠の色はテーマから取り、主張しすぎない濃さに抑えている
-- **「Enter で改行」を有効にしていても、選択肢の決定とスラッシュコマンドの実行は Enter のままにした:** この設定を入れると長い指示は書きやすくなる一方、「続けますか？ 1. はい / 2. いいえ」のような**選択肢の決定や、`/status` のようなコマンドの実行にまで Ctrl+Enter が必要**になり、かえって使いづらくなっていた。次の場面では入れ替えを止めて、**そのまま Enter で決定・実行できる**ようにした。
-    - **選択肢が出ているとき**: Yes/No の確認、モデルの選択、`@` によるファイル指定の候補など、Claude Code が選ばせてくる場面全般
-    - **スラッシュコマンドを打っているとき**: 入力が `/status` のようにコマンド 1 つだけのとき。コマンドの途中で改行したい場面は無いため、候補の一覧が消えたあとでも Enter で実行できる。`/path/to/file を見て` のように `/` で始まる普通の文章は対象外で、これまでどおり Enter で改行できる
 
-    判定は Enter を押した瞬間に、カーソルのある行とその下だけを見ている。会話の本文は見ないので、出力に記号が紛れていても誤動作せず、入力の反応が遅くなることもない
-- **ナビペインの `∨` メニューを、十字の配置ウィンドウに置き換えた:** これまでの `∨` はそのペインのその段だけを対象にしたチェックボックスの一覧で、他の枠がどうなっているかは見えなかった。押すと4枠すべてを見渡せる配置ウィンドウが開くようにしたので、同じ操作でより広く見渡せる。チェックボックスでできたビューの出し入れはそのまま引き継いでいる
-- **ナビペイン配置プリセットのプレビューに出る「左上」「右上」などの見出しを、各言語で表示するようにした:** 日本語のまま固定されていた
-- **操作バーの「Skip」ボタンの表記を「Permission Skip」に変えた:** 何をスキップするボタンなのかが名前から分かりにくかったため、権限確認をスキップして起動することが分かる表記にした
-- **ナビペインのターミナルが、起動直後やタブを閉じたときに入力先を横取りしなくなった:** これまでは起動してターミナルが表示されると、こちらが何もしていないのに入力先がターミナルへ移っていた。そのためファイル一覧を操作しようとキーを押しても効かず、一度クリックし直す必要があった。**自分でタブを追加したりタブをクリックしたときだけ**入力先が移るようにした
+- **UI が固まったときの記録を強化した:** これまでは「固まって、復帰した後」にしか記録が残らなかったため、**固まったままアプリを強制終了すると証拠が何も残らなかった**。10秒以上応答しない時点で先に1行書き出すようにしたので、復帰を待たずに終了させた場合でも「いつから固まったか」が残る。あわせて、クラウドストレージのメニュー取得が同時に走っていた場合はその経過時間も併記するようにした
 
 ### Fixed
-- **アプリを終了してもナビペインのターミナルが後片付けされず、ブラウザエンジンのプロセスが残ることがある問題を修正:** A/Bペインのターミナルは終了時に片付けていたが、ナビペインのターミナルだけが対象から漏れていた
+
+- **クラウドストレージ上でフォルダを移動しただけで、アプリが長時間反応しなくなることがある問題を修正:** クラウドストレージ（Box / OneDrive）のフォルダに入るたび、右クリックメニューに出す項目を先読みしていた。この先読みは OS のシェル拡張を呼ぶため、クラウド側が不調だと**戻ってこないことがあり、その間アプリ全体が巻き込まれて固まっていた**（実測で 1 分 51 秒返らなかった例あり）。取得にかかった時間を常時測り、遅い・返ってこないと判った時点で**先読みだけを自動的に止める**ようにした。復帰は自動で、再発するたびに止める時間を延ばす。右クリックしたときの取得は従来どおり行うので、使える機能は変わらない
+- **フォルダを続けて移動したときの先読みが積み上がる問題を修正:** 上の階層へ連打するなど素早く移動すると、通り過ぎただけのフォルダの分まで先読みが走っていた。少し待ってから最後に着いたフォルダだけを対象にするようにした。あわせて、先読みのためだけに行っていたフォルダ内の再列挙をやめ、一覧の読み込み結果を使い回すようにした
+- **クラウドメニューの取得が一度詰まると、以後そのフォルダでは二度と取得できなくなる問題を修正:** 取得が混み合って見送られたときの内部状態が残り続け、**アプリを再起動するまでそのフォルダのクラウドメニューが空のまま**になっていた。見送り時・待ちきれなかったときのいずれも内部状態を正しく戻すようにした
+- **クラウドメニューの深い階層の項目が、選んだファイルとは別のファイルに対して実行されることがある問題を修正:** 先読みしておいた内容を使う際、対象ファイルの差し替えが浅い階層で止まっていたため、**入れ子の奥にある項目だけが先読み時のファイルを指したまま**になっていた
+- **ターミナルの初回起動が、動作の重い環境で失敗する問題を修正:** 起動待ちの上限が短く、セキュリティ対策ソフトなどで初回だけ時間がかかる環境では**数回やり直さないと開けないことがあった**。待ち時間に余裕を持たせ、あわせて起動に失敗したときに裏で残り続けていたプロセスを確実に終了するようにした
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
