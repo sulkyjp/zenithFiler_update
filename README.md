@@ -61,9 +61,9 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.10.10.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.10.10_patch.zip` | **Lightweight** — excludes the runtime. For updating an existing installation<br>**軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v1.10.10_delta_from_1.10.9.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.10.11.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.10.11_patch.zip` | **Lightweight** — excludes the runtime. For updating an existing installation<br>**軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v1.10.11_delta_from_1.10.10.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -264,41 +264,57 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.10.10] - 2026-08-05 : More cloud storage freezes eliminated, and Box "Copy link with context" restored
+## Latest Changes — [1.10.11] - 2026-08-05 : Rare crashes and settings-loss paths closed off, and cloud storage stalls removed
+
+### Added
+
+- **Text shown in the settings screen can now be copied from the right-click menu.** Setting names and descriptions can't be selected, so there was no way to copy them. **Right-click on the text and "Copy text" appears.** Where a heading and its description form a pair, "Copy this whole item" is offered as well, so quoting a setting into an article or a support message takes one action. Places that already have their own right-click menu, such as theme cards, behave exactly as before.
 
 ### Changed
 
-- **Cloud storage right-click menus are no longer prefetched.** Entering a folder used to fetch its menu contents up front, whether or not you ever right-clicked. A full day of real use measured **561 lookups against 90 right-clicks** — close to nine in ten were fetched and thrown away. Because each lookup calls into the OS shell extension, a slow cloud service stalls the app for seconds. **The prefetch is gone entirely; lookups happen only when you right-click.** The menu still opens instantly and the cloud entries still fill in a moment later, so nothing changes in use.
+- **The selectable Gemini models are now current.** The default is `gemini-3.5-flash`, and the list is `gemini-3.5-flash` / `gemini-3.5-flash-lite` / `gemini-2.5-flash` / `gemini-2.5-flash-lite` / `gemini-2.5-pro`. **A retired model name left in your settings is mapped to its successor automatically**, so there is nothing to reconfigure.
 
 ### Fixed
 
-- **Fixed the app freezing for several seconds just from opening a new tab.** Before opening a tab, the folder set as Home was checked for existence — and **on cloud storage that check could take seconds to return, stalling the whole app** (6.6 and 6.9 seconds were measured). With Home on cloud storage it happened on every press of `+`. The check is now asynchronous with a time limit, and no longer holds up the operation when it can't answer in time. Adding a terminal tab and jumping to a folder from search results were fixed the same way.
-- **Fixed the app freezing for several seconds after moving between folders.** When re-arming the folder watcher, **the old watcher was disposed on the same thread that handles your input**. That disposal can take seconds on cloud storage or with security software present, stalling the app along with it. It now happens in the background (arming the watcher already did).
-- **Fixed the same folder being re-checked from scratch over and over.** A check that times out deliberately isn't remembered, so **checking the same folder again moments later started the full wait again** — waits that stacked up right after moving up a level, for instance. A timeout is now remembered for a few seconds and answered immediately, and a check that was abandoned but later finished now has its result reused.
-- **Fixed Box "Copy link with context" opening the share window without producing a link.** A Box Drive update changed both the structure and the names of its menu entries, so **the intended entry was never found and a different one was invoked instead**. The search now covers every level of the menu and recognises the new names. The menu is also **re-read and matched immediately before invoking**, so a future change on the Box side can no longer trigger the wrong command.
-- **The Box share window that opens after "Copy link with context" is now closed automatically.** A Box Drive update made copying a link also open the share window (the link itself is still copied as before). No setting is offered to revert that, so **the window opened by this action is now closed for you**. Only a window that appears after the action is closed, so Box windows you opened yourself are left alone.
-- **Fixed "Copy link with context" reporting success even when it failed.** A failure to obtain the link still showed the success notification, leaving you to **paste text with the link line silently missing**. It now says the link could not be obtained. Timing out after 20 seconds previously ended in silence; that is now reported too.
-- **Made "Copy link with context" faster.** A menu already fetched by the preceding right-click is reused. The wait limit also disagreed between two places — 3 seconds and 5 seconds — and on slow machines the 3-second side gave up first and wrongly reported the menu as missing. Both are now 5 seconds.
+- **Fixed errors surfacing during rename and file list interaction.** The rename dialog's history loading still used a pattern that **could take the whole app down**, and that is now corrected. Hover thumbnails in the file list, opening a new terminal tab, and the theme settings preview animations likewise turned unexpected errors into an error dialog; they are now recorded internally so you can carry on working.
+- **Fixed thumbnail generation and macro folder watching occasionally taking the whole app down.** These run continuously in the background, and the app was built such that an unexpected error there brought everything down with it — most likely **on cloud storage files or on machines running security software**. An error now skips only that one piece of work and the app keeps running. This also fixes thumbnail generation never recovering once it stopped, leaving no thumbnails for the rest of the session.
+- **Fixed rename, overwrite and delete having no effect in the status bar's working set list.** This list alone was built by re-reading the saved file, so **the entries on screen were separate objects from the ones the nav pane works with** and nothing reached the real list. Renaming was never saved, overwriting reported success while leaving the contents unchanged, and deleting appeared to work until the list was reopened. The list is now built from the same source as everywhere else, and all three take effect.
+- **Fixed a view added to the lower bar in the nav pane layout picker not appearing.** Ticking a view while the lower section didn't exist yet only placed it on the bar — nothing decided what the section should *show*, so **the section stayed collapsed and the view appeared nowhere**. Placing it meant showing it in the upper section first and then dragging it down. **Adding a view to a section that is showing nothing now shows that view there.** Sections that already show something, and views shown in another section, are left exactly as before.
+- **Fixed "Rate limit reached" appearing when testing a Gemini API key.** The connection test **sent a generation request to a model Google had retired**, so a perfectly valid key still came back as an error. **The test no longer depends on any particular model**, and now checks only whether the key itself is valid — unaffected by a model's availability or your remaining generation quota. Per-model availability is still checked by "Validate model" as before.
+- **AI errors no longer misattribute the cause.** Rate-limit errors now **include the provider's own explanation**, so causes other than "wait and retry" — no free tier for that model, billing not enabled, and so on — can be told apart. The error Gemini returns for an invalid key is also reported correctly as "invalid API key" instead of a raw status code.
+- **Fixed errors surfacing when plugging in or removing a USB drive.** The drive list rebuild that follows a device change **had nowhere to catch a failure**, so on machines where a disconnected network drive is still mapped, an error dialog could appear on every plug and unplug. It is now recorded internally and you can carry on working.
+- **Fixed edits being lost right after saving a nav pane layout preset.** Saving, listing, renaming and deleting each re-read the saved file, so **acting again within about a second of a save overwrote it with the stale copy and discarded the earlier change** — renaming another preset just after saving one, for instance, made the newly saved preset disappear. A preset also failing to show up when the menu was reopened immediately after saving is fixed by the same change.
+- **Reduced brief freezes on cloud storage and when switching tabs.** Folder existence checks and settings reads/writes **no longer run where you have to wait for them**; they go to the background with a time limit instead. This covers: ① **switching tabs** (with per-pane terminal settings, the settings file was re-read up to five times per switch), ② **adding to favourites** (star button and dialog) and opening a favourite in a pane or new tab, ③ **dropping a folder onto the tabs** (including the tab list), ④ **opening a new terminal tab** (working directory check), ⑤ **OK in the terminal and properties settings** (writing settings out), and ⑥ **AI folder organiser analysis** (scanning folder contents).
+- **Fixed the whole screen freezing while taking a screenshot.** Grabbing the screen, saving the PNG and copying the path all ran on the same thread as your interaction, leaving the app unresponsive throughout — and a failed copy **kept retrying for up to half a second**. That work now happens in the background, so you can keep working right after selecting a region.
+- **Fixed a path where a failed settings save could lose your settings.** Settings are saved by writing to a separate file first and then swapping it into place. **When that swap was retried, the existing file was deleted even if no backup copy could be created**, so if the following write failed as well, both the file and its backup were gone and every setting could be lost. If a backup cannot be created, the save is now skipped and the existing settings are always kept; the skipped change is written again on the next change and on exit.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.10.10] - 2026-08-05 : クラウドストレージのフリーズを追加で解消、Box の「リンク連携コピー」を復旧
+## 最新の変更履歴 — [1.10.11] - 2026-08-05 : まれな強制終了と設定消失の経路を塞ぎ、クラウドストレージでの引っかかりを解消
+
+### Added
+
+- **設定画面に表示されている文章を、右クリックからコピーできるようにした:** 設定項目の名前や説明文は選択できないため、これまでコピーする手段がなかった。**文字の上で右クリックすると「テキストをコピー」が出る**。見出しと説明がひと組になっている項目では「この項目をまとめてコピー」も選べるので、記事や問い合わせへの転記が一度で済む。テーマカードなど、もともと右クリックメニューがある場所の動作はこれまでどおり
 
 ### Changed
 
-- **クラウドストレージの右クリックメニューの先読みをやめた:** これまではフォルダに入るたび、右クリックされるかどうかに関わらずメニューの中身を先に取りに行っていた。実際の使用を1日計測したところ、**取得 561 回に対して右クリックは 90 回**で、9 割近くが使われないまま捨てられていた。この取得は OS のシェル拡張を呼ぶため、クラウド側が遅いとそのままアプリが数秒止まる。**先読みを完全にやめ、右クリックしたときだけ取得する**ようにした。メニュー自体はこれまでどおり即座に開き、クラウドの項目だけが少し遅れて増えるので、操作感は変わらない
+- **Gemini の選択できるモデルを現行のものに更新した:** 既定を `gemini-3.5-flash` に変え、一覧を `gemini-3.5-flash` / `gemini-3.5-flash-lite` / `gemini-2.5-flash` / `gemini-2.5-flash-lite` / `gemini-2.5-pro` にした。**設定に古いモデル名が保存されている場合は、後継のモデルへ自動で読み替える**ので、設定し直す必要はない
 
 ### Fixed
 
-- **新しいタブを開いただけでアプリが数秒固まる問題を修正:** タブを開く前に「ホームに設定したフォルダが実在するか」を確認していたが、**この確認がクラウドストレージ上だと数秒返らず、その間アプリ全体が止まっていた**（実測で 6.6 秒・6.9 秒）。ホームがクラウド上にあると `+` を押すたびに発生していた。確認を待ち時間つきの非同期方式に変え、間に合わなくても操作を止めないようにした。ターミナルタブの追加、検索結果からのフォルダジャンプも同様に直した
-- **フォルダを移動したあとにアプリが数秒固まることがある問題を修正:** フォルダの監視を張り替える際、**古い監視の破棄をアプリの操作と同じ場所で行っていた**。この破棄はクラウドストレージやセキュリティ対策ソフトのある環境では数秒かかることがあり、そのまま操作が止まっていた。破棄を裏に回した（監視の開始側は以前から裏で行っていた）
-- **同じフォルダの存在確認を何度も待ち直していた問題を修正:** 確認が時間切れになった場合、その結果は残さない仕様のため、**直後に同じフォルダをもう一度確認すると再び最初から待ち直していた**。上の階層へ移動した直後などに待ち時間が積み重なる原因になっていた。時間切れだったことを数秒だけ覚えておき、続けて聞かれた場合は待たずに返すようにした。また、待ちきれずに打ち切った確認が後から完了した場合も、その結果を次回に活かすようにした
-- **Box の「リンク連携コピー」で共有ウィンドウが開くだけになり、リンクが取得できない問題を修正:** Box Drive 側の更新でメニューの構成と項目名が変わり、**目的の項目を探しきれずに別の項目を実行していた**のが原因。メニューの探し方を全階層に広げ、新しい項目名にも対応した。あわせて**実行する直前にメニューを引き直して照合する**ようにしたので、今後 Box 側の構成が変わっても別の操作を誤って実行しない
-- **Box の「リンク連携コピー」実行後に開く共有ウィンドウを、自動的に閉じるようにした:** Box Drive の更新で、リンクをコピーすると同時に共有ウィンドウが開くようになった（リンク自体はこれまでどおりコピーされる）。この設定を戻す手段が提供されていないため、**この操作で開いた分だけをアプリ側で閉じる**ようにした。閉じるのは自分が実行した後に現れたものだけなので、自分で開いていた Box のウィンドウはそのまま残る
-- **「リンク連携コピー」が失敗しても「コピーしました」と表示される問題を修正:** リンクを取得できなかった場合でも成功の通知が出ていたため、**リンクの行が抜けたテキストをそのまま貼り付けてしまう**状態だった。取得できなかったことを伝えるようにした。20 秒待っても取得できずに終わる場合も、これまでは何も表示せず終わっていたので通知を出すようにした
-- **「リンク連携コピー」を速くした:** 直前の右クリックで取得済みのメニューがあればそれを使い回すようにした。また待ち時間の上限が場所によって 3 秒と 5 秒で食い違っており、遅い環境では 3 秒側が先に諦めて「メニューが見つからない」と誤判定していたため 5 秒に揃えた
+- **名前の変更やファイル一覧の操作中に、エラーが表に出てしまうことがある問題を修正:** 名前の変更ダイアログの履歴読み込みで**アプリごと終了しかねない書き方**が残っていたので直した。あわせて、ファイル一覧でマウスを乗せたときのサムネイル表示、ターミナルの新規タブ、テーマ設定のプレビュー動作でも、想定外のエラーがそのままエラー画面として出ていたのを、内部の記録に留めて操作を続けられるようにした
+- **サムネイル生成やマクロのフォルダ監視で、まれにアプリごと終了してしまうことがある問題を修正:** これらは裏で動き続ける処理のため、そこで想定外のエラーが起きるとアプリ全体が巻き込まれて落ちる作りになっていた。**クラウドストレージ上のファイルやセキュリティ対策ソフトのある環境**で起こりやすい。エラーが起きてもその処理だけを見送り、アプリは動き続けるようにした。あわせて、サムネイル生成が一度止まると復帰せず、以降サムネイルが出なくなる状態も解消した
+- **ステータスバーのワーキングセット一覧で、名前変更・上書き保存・削除が反映されない問題を修正:** この一覧だけ保存内容を読み直して作っていたため、**画面に並ぶ項目がナビペイン側とは別物**になっており、操作しても本体には届いていなかった。名前変更は保存されず、上書き保存は「保存しました」と出るのに中身が変わらず、削除は一覧から消えたように見えて次に開くと戻っている状態だった。一覧を本体と同じものから作るようにして、3つとも正しく反映されるようにした
+- **ナビペインの配置画面で、下段にビューを追加しても表示されない問題を修正:** 下段がまだ無い状態でチェックを入れると、そのビューはバーに並ぶだけで「そこに何を表示するか」が決まらず、**下段が畳まれたままなので追加したビューがどこにも出てこなかった**。いったん上段に表示してから下段へドラッグする、という手順を踏まないと置けない状態だった。**何も表示していない枠に追加した場合は、そのビューをそのまま表示する**ようにした。すでに何か表示している枠や、他の枠に出ているビューの表示は従来どおり変わらない
+- **Gemini の API キーを設定してテストすると「レート制限に達しました」と表示される問題を修正:** 接続テストが **Google 側で提供の終わったモデルに文章生成を投げていた**のが原因で、キー自体は正しくてもエラーになっていた。**テストの方法をモデルに依存しない方式に変えた**ので、特定のモデルの提供状況や生成の残量に左右されず、キーが有効かどうかだけを確かめられる。モデルごとの可否は従来どおり「モデル検証」で確認できる
+- **AI のエラー表示が原因を取り違えていた点を改善:** レート制限のエラーには**プロバイダからの説明を併記する**ようにした。「待てば直る」以外の原因（そのモデルに無料枠がない、課金が有効でない等）を切り分けられる。あわせて、Gemini が無効なキーに対して返すエラーを正しく「APIキーが無効です」と表示するようにした（従来は生のエラー番号が出ていた）
+- **USB メモリなどを抜き差ししたときに、エラーが表に出てしまうことがある問題を修正:** 抜き差しを検知してドライブ一覧を作り直す処理に**エラーの受け皿が無かった**ため、切断されたままのネットワークドライブが割り当てられている環境などでは、抜き差しのたびにエラー画面が出ることがあった。内部の記録に留めて、そのまま操作を続けられるようにした
+- **ナビペインの配置プリセットで、保存した直後の操作が失われることがある問題を修正:** 保存・一覧表示・名前変更・削除がそれぞれ保存内容を読み直していたため、**保存してから約1秒以内に別の操作をすると、読み直した古い内容で上書きされて先の変更が消えて**いた（保存した直後に別のプリセットの名前を変えると、保存したばかりのプリセットが消えるなど）。保存直後にメニューを開き直しても一覧に出てこない問題も同時に解消した
+- **クラウドストレージ上での操作やタブ切替で、UI が一瞬固まることがある問題を改善:** 次の操作で、フォルダの存在確認や設定の読み書きを**待たされる場所で行っていた**のをやめ、待ち時間の上限つきで裏に回すようにした。①**タブの切り替え**（ペインごとにターミナルの設定を変えている場合、切り替えのたびに設定ファイルを最大5回読み直していた）②**お気に入りへの登録**（★ボタン・登録ダイアログ）と、お気に入りからペイン・新規タブで開く操作 ③**タブへのフォルダのドロップ**（タブ一覧へのドロップを含む）④**ターミナルの新規タブ**（作業フォルダの確認）⑤**ターミナル設定・プロパティ設定の「OK」**（設定の書き出し）⑥**AI フォルダ整理の解析**（フォルダの中身の走査）
+- **スクリーンショットの撮影中に画面全体が固まることがある問題を修正:** 画面の取り込み・PNG への保存・保存先パスのコピーをすべて操作と同じ場所で行っていたため、その間アプリが反応しなくなっていた。特にコピーに失敗した場合は**最大 0.5 秒待ち続ける**作りだった。これらを裏に回し、範囲を選んだあとも操作を続けられるようにした
+- **設定ファイルの保存に失敗した際に、設定が失われることがある経路を修正:** 設定はいったん別ファイルに書き出してから本体と入れ替えて保存している。**この入れ替えのやり直しで控え（バックアップ）を作れなかった場合でも本体を削除していた**ため、続く書き込みも失敗すると本体と控えの両方を失い、設定が丸ごと失われる可能性があった。控えを作れないときは保存自体を見送り、既存の設定を必ず残すようにした。見送った分は次の変更時と終了時に保存し直される
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
