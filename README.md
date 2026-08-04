@@ -61,9 +61,9 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.10.9.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.10.9_patch.zip` | **Lightweight** — excludes the runtime. For updating an existing installation<br>**軽量版** — ランタイム除外。既存環境のアップデートに |
-| `ZenithFiler_v1.10.9_delta_from_1.10.8.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.10.10.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.10.10_patch.zip` | **Lightweight** — excludes the runtime. For updating an existing installation<br>**軽量版** — ランタイム除外。既存環境のアップデートに |
+| `ZenithFiler_v1.10.10_delta_from_1.10.9.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -264,57 +264,41 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.10.9] - 2026-08-04 : Click a path in the terminal to open it in a pane, and no more freezes on slow cloud storage
-
-### Added
-
-- **Paths printed in the terminal can now be clicked to open them in pane A or B.** A path shown by the shell or by Claude Code previously had to be selected, copied and pasted into the address bar by hand. **Paths that actually exist are now underlined, and one click opens that folder.**
-    - **Click for pane A, Ctrl+click for pane B.** Hovering shows the resolved full path along with the hint.
-    - **Relative paths work too** (`src/Foo.cs`, `..\other` and so on), resolved against that terminal's current directory — so paths keep working after you `cd`.
-    - **Line-number forms such as `Services/Foo.cs:123`** (Claude Code, compilers) are recognised as just the path part. Surrounding brackets and punctuation are excluded from the link as well.
-    - **A path pointing at a file opens its parent folder with that file selected.**
-    - **Only paths that exist are underlined.** Verification is asynchronous and runs only for the line under the cursor, so it never stalls the terminal — including on cloud storage.
-    - Paths containing spaces are recognised when quoted. URLs continue to open in the browser as before.
+## Latest Changes — [1.10.10] - 2026-08-05 : More cloud storage freezes eliminated, and Box "Copy link with context" restored
 
 ### Changed
 
-- **Better recording when the UI freezes.** A freeze was only ever written to the log *after* it recovered, so **force-quitting while still frozen left no evidence at all**. A line is now written once the UI has been unresponsive for ten seconds, so even a session killed mid-freeze records when it started. If a cloud storage menu lookup was running at the same time, how long it had been running is noted alongside it.
+- **Cloud storage right-click menus are no longer prefetched.** Entering a folder used to fetch its menu contents up front, whether or not you ever right-clicked. A full day of real use measured **561 lookups against 90 right-clicks** — close to nine in ten were fetched and thrown away. Because each lookup calls into the OS shell extension, a slow cloud service stalls the app for seconds. **The prefetch is gone entirely; lookups happen only when you right-click.** The menu still opens instantly and the cloud entries still fill in a moment later, so nothing changes in use.
 
 ### Fixed
 
-- **Fixed the app becoming unresponsive for long stretches simply from moving between folders on cloud storage.** Entering a cloud storage folder (Box / OneDrive) prefetched the entries for its right-click menu. That prefetch calls into the OS shell extension, so when the cloud side was unhealthy **it could fail to return, taking the whole app down with it** — one measured case took 1 minute 51 seconds. Lookup times are now measured continuously, and **the prefetch alone switches itself off** as soon as they turn slow or stop returning. It comes back on its own, waiting longer each time the problem recurs. Looking up the menu when you actually right-click is unchanged, so nothing is lost.
-- **Fixed prefetches piling up when moving through folders quickly.** Navigating rapidly — holding down "up", for instance — fired a prefetch for every folder merely passed through. It now waits briefly and only prefetches the folder you landed on. The extra directory scan that existed solely for the prefetch is gone as well; it reuses what the file list already read.
-- **Fixed cloud menu lookups never recovering for a folder once one got stuck.** When a lookup was skipped because too many were already in flight, internal state was left behind and **that folder's cloud menu stayed empty until the app was restarted**. Both the skipped case and the timed-out case now clean up correctly.
-- **Fixed deeply nested cloud menu entries acting on a different file than the one selected.** When reusing prefetched entries, the target file was only substituted for the top couple of levels, leaving **entries further down still pointing at the file used for the prefetch**.
-- **Fixed the terminal failing to start the first time on slower machines.** The startup wait was too short, so on machines where security software makes the first launch slow it **sometimes took several attempts to open**. The wait is now more generous, and a failed launch reliably shuts down the process it left running in the background.
+- **Fixed the app freezing for several seconds just from opening a new tab.** Before opening a tab, the folder set as Home was checked for existence — and **on cloud storage that check could take seconds to return, stalling the whole app** (6.6 and 6.9 seconds were measured). With Home on cloud storage it happened on every press of `+`. The check is now asynchronous with a time limit, and no longer holds up the operation when it can't answer in time. Adding a terminal tab and jumping to a folder from search results were fixed the same way.
+- **Fixed the app freezing for several seconds after moving between folders.** When re-arming the folder watcher, **the old watcher was disposed on the same thread that handles your input**. That disposal can take seconds on cloud storage or with security software present, stalling the app along with it. It now happens in the background (arming the watcher already did).
+- **Fixed the same folder being re-checked from scratch over and over.** A check that times out deliberately isn't remembered, so **checking the same folder again moments later started the full wait again** — waits that stacked up right after moving up a level, for instance. A timeout is now remembered for a few seconds and answered immediately, and a check that was abandoned but later finished now has its result reused.
+- **Fixed Box "Copy link with context" opening the share window without producing a link.** A Box Drive update changed both the structure and the names of its menu entries, so **the intended entry was never found and a different one was invoked instead**. The search now covers every level of the menu and recognises the new names. The menu is also **re-read and matched immediately before invoking**, so a future change on the Box side can no longer trigger the wrong command.
+- **The Box share window that opens after "Copy link with context" is now closed automatically.** A Box Drive update made copying a link also open the share window (the link itself is still copied as before). No setting is offered to revert that, so **the window opened by this action is now closed for you**. Only a window that appears after the action is closed, so Box windows you opened yourself are left alone.
+- **Fixed "Copy link with context" reporting success even when it failed.** A failure to obtain the link still showed the success notification, leaving you to **paste text with the link line silently missing**. It now says the link could not be obtained. Timing out after 20 seconds previously ended in silence; that is now reported too.
+- **Made "Copy link with context" faster.** A menu already fetched by the preceding right-click is reused. The wait limit also disagreed between two places — 3 seconds and 5 seconds — and on slow machines the 3-second side gave up first and wrongly reported the menu as missing. Both are now 5 seconds.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.10.9] - 2026-08-04 : ターミナルのパスをクリックしてペインで開く、クラウドストレージが遅い環境でのフリーズを解消
-
-### Added
-
-- **ターミナルに表示されたパスをクリックして、A / B ペインで開けるようにした:** ターミナルや Claude Code が出したパスは、これまで手で選択してコピーし、アドレス欄に貼り付けるしかなかった。**実在するパスには下線が付き、クリックするだけでそのフォルダが開く**。
-    - **クリックで A ペイン、Ctrl+クリックで B ペイン**に表示する。マウスを乗せると解決後のフルパスと操作の案内が出る
-    - **相対パスにも対応**（`src/Foo.cs` や `..\other` など）。基準はそのターミナルの現在のディレクトリなので、`cd` した先での表示もそのまま辿れる
-    - **`Services/Foo.cs:123` のような行番号付きの表記**（Claude Code やコンパイラの出力）でも、パスの部分だけを正しく認識する。前後の括弧や句読点も範囲から外す
-    - **ファイルを指している場合は、親フォルダを開いてそのファイルを選択状態にする**
-    - **実在するものにだけ下線が付く。** マウスを乗せた行だけを非同期で確認するため、クラウドストレージ上でも操作を止めない
-    - 空白を含むパスは引用符で囲まれていれば認識する。URL は従来どおりブラウザで開く
+## 最新の変更履歴 — [1.10.10] - 2026-08-05 : クラウドストレージのフリーズを追加で解消、Box の「リンク連携コピー」を復旧
 
 ### Changed
 
-- **UI が固まったときの記録を強化した:** これまでは「固まって、復帰した後」にしか記録が残らなかったため、**固まったままアプリを強制終了すると証拠が何も残らなかった**。10秒以上応答しない時点で先に1行書き出すようにしたので、復帰を待たずに終了させた場合でも「いつから固まったか」が残る。あわせて、クラウドストレージのメニュー取得が同時に走っていた場合はその経過時間も併記するようにした
+- **クラウドストレージの右クリックメニューの先読みをやめた:** これまではフォルダに入るたび、右クリックされるかどうかに関わらずメニューの中身を先に取りに行っていた。実際の使用を1日計測したところ、**取得 561 回に対して右クリックは 90 回**で、9 割近くが使われないまま捨てられていた。この取得は OS のシェル拡張を呼ぶため、クラウド側が遅いとそのままアプリが数秒止まる。**先読みを完全にやめ、右クリックしたときだけ取得する**ようにした。メニュー自体はこれまでどおり即座に開き、クラウドの項目だけが少し遅れて増えるので、操作感は変わらない
 
 ### Fixed
 
-- **クラウドストレージ上でフォルダを移動しただけで、アプリが長時間反応しなくなることがある問題を修正:** クラウドストレージ（Box / OneDrive）のフォルダに入るたび、右クリックメニューに出す項目を先読みしていた。この先読みは OS のシェル拡張を呼ぶため、クラウド側が不調だと**戻ってこないことがあり、その間アプリ全体が巻き込まれて固まっていた**（実測で 1 分 51 秒返らなかった例あり）。取得にかかった時間を常時測り、遅い・返ってこないと判った時点で**先読みだけを自動的に止める**ようにした。復帰は自動で、再発するたびに止める時間を延ばす。右クリックしたときの取得は従来どおり行うので、使える機能は変わらない
-- **フォルダを続けて移動したときの先読みが積み上がる問題を修正:** 上の階層へ連打するなど素早く移動すると、通り過ぎただけのフォルダの分まで先読みが走っていた。少し待ってから最後に着いたフォルダだけを対象にするようにした。あわせて、先読みのためだけに行っていたフォルダ内の再列挙をやめ、一覧の読み込み結果を使い回すようにした
-- **クラウドメニューの取得が一度詰まると、以後そのフォルダでは二度と取得できなくなる問題を修正:** 取得が混み合って見送られたときの内部状態が残り続け、**アプリを再起動するまでそのフォルダのクラウドメニューが空のまま**になっていた。見送り時・待ちきれなかったときのいずれも内部状態を正しく戻すようにした
-- **クラウドメニューの深い階層の項目が、選んだファイルとは別のファイルに対して実行されることがある問題を修正:** 先読みしておいた内容を使う際、対象ファイルの差し替えが浅い階層で止まっていたため、**入れ子の奥にある項目だけが先読み時のファイルを指したまま**になっていた
-- **ターミナルの初回起動が、動作の重い環境で失敗する問題を修正:** 起動待ちの上限が短く、セキュリティ対策ソフトなどで初回だけ時間がかかる環境では**数回やり直さないと開けないことがあった**。待ち時間に余裕を持たせ、あわせて起動に失敗したときに裏で残り続けていたプロセスを確実に終了するようにした
+- **新しいタブを開いただけでアプリが数秒固まる問題を修正:** タブを開く前に「ホームに設定したフォルダが実在するか」を確認していたが、**この確認がクラウドストレージ上だと数秒返らず、その間アプリ全体が止まっていた**（実測で 6.6 秒・6.9 秒）。ホームがクラウド上にあると `+` を押すたびに発生していた。確認を待ち時間つきの非同期方式に変え、間に合わなくても操作を止めないようにした。ターミナルタブの追加、検索結果からのフォルダジャンプも同様に直した
+- **フォルダを移動したあとにアプリが数秒固まることがある問題を修正:** フォルダの監視を張り替える際、**古い監視の破棄をアプリの操作と同じ場所で行っていた**。この破棄はクラウドストレージやセキュリティ対策ソフトのある環境では数秒かかることがあり、そのまま操作が止まっていた。破棄を裏に回した（監視の開始側は以前から裏で行っていた）
+- **同じフォルダの存在確認を何度も待ち直していた問題を修正:** 確認が時間切れになった場合、その結果は残さない仕様のため、**直後に同じフォルダをもう一度確認すると再び最初から待ち直していた**。上の階層へ移動した直後などに待ち時間が積み重なる原因になっていた。時間切れだったことを数秒だけ覚えておき、続けて聞かれた場合は待たずに返すようにした。また、待ちきれずに打ち切った確認が後から完了した場合も、その結果を次回に活かすようにした
+- **Box の「リンク連携コピー」で共有ウィンドウが開くだけになり、リンクが取得できない問題を修正:** Box Drive 側の更新でメニューの構成と項目名が変わり、**目的の項目を探しきれずに別の項目を実行していた**のが原因。メニューの探し方を全階層に広げ、新しい項目名にも対応した。あわせて**実行する直前にメニューを引き直して照合する**ようにしたので、今後 Box 側の構成が変わっても別の操作を誤って実行しない
+- **Box の「リンク連携コピー」実行後に開く共有ウィンドウを、自動的に閉じるようにした:** Box Drive の更新で、リンクをコピーすると同時に共有ウィンドウが開くようになった（リンク自体はこれまでどおりコピーされる）。この設定を戻す手段が提供されていないため、**この操作で開いた分だけをアプリ側で閉じる**ようにした。閉じるのは自分が実行した後に現れたものだけなので、自分で開いていた Box のウィンドウはそのまま残る
+- **「リンク連携コピー」が失敗しても「コピーしました」と表示される問題を修正:** リンクを取得できなかった場合でも成功の通知が出ていたため、**リンクの行が抜けたテキストをそのまま貼り付けてしまう**状態だった。取得できなかったことを伝えるようにした。20 秒待っても取得できずに終わる場合も、これまでは何も表示せず終わっていたので通知を出すようにした
+- **「リンク連携コピー」を速くした:** 直前の右クリックで取得済みのメニューがあればそれを使い回すようにした。また待ち時間の上限が場所によって 3 秒と 5 秒で食い違っており、遅い環境では 3 秒側が先に諦めて「メニューが見つからない」と誤判定していたため 5 秒に揃えた
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
