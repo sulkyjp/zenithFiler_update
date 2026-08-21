@@ -61,8 +61,8 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.13.0.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.13.0_delta_from_1.12.0.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.13.1.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.13.1_delta_from_1.13.0.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -263,47 +263,53 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.13.0] - 2026-08-21 : Video thumbnails, a reworked icon view, and sorting in it
+## Latest Changes — [1.13.1] - 2026-08-22 : Working sets from the keyboard, opening several files at once, and dropping onto a .bat
 
 ### Added
 
-- **Videos in formats Windows cannot handle can now have thumbnails too:** **Formats Windows supports — mp4, mov and so on — keep working with nothing to install.** For formats Windows cannot produce a thumbnail for, such as flv, you can now install "Video thumbnails (optional download)" from **Settings → Display**. Thumbnails for those formats appear only if you install it; nothing changes for anyone who does not. **It is not bundled with the app** because it is around 130 MB, and people who do not need it should not have to carry that size. The download is an LGPL build, used unmodified and invoked as a separate program, so it does not affect this app's licence.
-- **Sorting is now available in icon view:** Sorting could only be changed by clicking a column header in details view, so **icon view had no way to change it at all.** You can now sort by **name, date modified, size, or extension**, choose **ascending or descending**, and toggle **grouping folders first** — from "Sort by" on the right-click menu of empty space, or from the sort button on the toolbar. A check mark shows what the list is currently sorted by.
+- **Files can now be dropped onto a .bat or .exe to be passed to it as arguments:** Dropping files onto a `.bat`, `.cmd`, `.exe` or `.com` row in the list **launches that program with the dropped paths as its arguments.** Batch files written to take dropped files and do something with them — compress them, convert them — **used to sit there doing nothing at all.** The target row is highlighted and the cursor changes shape while you drag over it, so it cannot be mistaken for a copy or a move. Because launching cannot be undone, you are asked to confirm once before it runs; answering No copies and moves nothing either. Everything you selected is passed in one go.
+- **Your feedback history now shows what you actually sent:** Until now a history row carried **only the subject**, so there was **no way to check afterwards what you had actually written.** Opening a row now puts the text you sent at the top of the exchange, ahead of the developer's replies and your own, so the whole thing reads as one thread. Only the description you wrote appears — any system information or logs attached at send time are left out. Entries sent before this existed get their text filled in the next time you check for replies.
+- **Double-clicking empty space in the Tab List view now creates a tab:** The pane tab bars have always worked this way, but **showing the Tab List view hides those tab bars**, so the same reflex went nowhere. Double-clicking the empty area of either list now adds a tab to that pane. Tabs in the list can also be **closed with a middle click** — again matching the tab bars.
+- **Working sets can now be driven entirely from the keyboard:** `Ctrl+Shift+5` used to open the view **while leaving focus in the file list**, which meant reaching for the mouse anyway. Focus now lands in the list, so `↑` `↓` selects and `Enter` opens. Pressing `Enter` again on the previewed set commits it, and **committing hands focus back to the file list** — `Ctrl+Shift+5` → `↓` → `Enter` takes you from switching to working again. Also live inside the list: `Esc` (roll back, or leave the list), `Ctrl+S` (overwrite), `F2` (rename), `Delete` (delete), `Insert` (save the current state). The set being previewed is marked.
+- **A working set can now be overwritten straight from the list:** Each row gained a save button at its right end. **Overwriting previously meant opening the right-click menu.** `Ctrl+S` does the same thing for the selected row.
+- **The working set list can now be sorted by column:** Clicking the name, date or A-B heading moves through **sorted → reversed → off** (name starts ascending, date and A-B start descending). **Clicking used to do nothing at all.** Turning it off returns the list to the order you arranged by dragging. Sorting changes only what you see: the stored order and the quick access list stay as they were (while a sort is active, dragging to reorder is disabled so the stored order cannot be rewritten while the view refuses to move).
+- **Quick access to working sets is now numbered and reachable by digit keys:** The sets listed in the status bar's quick access (`Ctrl+Shift+S`) are numbered 1 to 9. `Ctrl+Shift+S` followed by a digit switches sets in two keystrokes.
 
 ### Changed
 
-- **Thumbnails in icon view now follow Explorer's layout:** Thumbnails used to fill the whole card, which **cropped the edges of the picture** and **hid the file name until you hovered over it**. The thumbnail now sits at the top at its original aspect ratio with the name below it — the same arrangement as folder and document cards. Names wrap onto up to 4 lines, so long file names remain distinguishable. Size and date modified still appear on hover.
+- **Deleting a working set now asks for confirmation:** The right-click "Delete" used to remove it on the spot. Rebuilding a set means saving it again from scratch, so it is worth one question first.
+- **Opening the working set already being previewed now commits it:** Clicking (or pressing `Enter` on) the same set replayed the whole pane transition even though nothing on screen would change.
 
 ### Fixed
 
-- **Fixed double-clicks landing on the wrong item above after scrolling:** In a folder with more items than fit in the pane, scrolling the list and then double-clicking **while keyboard focus was somewhere else** (the other pane, the search box, etc.) made the list snap back to its previous selection on the first click, so the second click hit **a different row that had scrolled in from above** (opening an unintended folder or selecting the wrong item). Entering the list with a click no longer snaps the view back — the item you pressed is the one that gets handled
-- **Fixed video files not getting thumbnails:** In icon view, images got thumbnails but videos kept showing a generic per-type icon. **Video thumbnails were always meant to work — an internal check that only let images through had been left in place, so not a single video thumbnail was ever generated.** Videos now get thumbnails in icon view, in the enlarged preview on hover, and in the navigation pane's preview. Videos whose format your PC has no playback support for (some mkv and webm files) keep showing the per-type icon as before. Videos that cannot produce a thumbnail are now remembered, so revisiting the same folder no longer retries them every time. `.ts` has been added to the recognised video extensions.
-- **Fixed a faint shadow floating over the first row of items in icon view:** Switching from details view to icon view left the shadow — which belongs directly under the toolbar — **stranded slightly lower down, overlapping the first row of cards.** The height of the column header row, which only exists in details view, was still being carried over after the switch. The shadow now sits right below the toolbar in both views. A position-syncing routine that kept running pointlessly in the background while in icon view has also been stopped.
-- **Fixed folder names being nearly unreadable in icon view under some themes:** With a light background, folder names were drawn in a colour almost as light as the background itself (measured contrast was only 1.09:1 — effectively illegible). A text colour meant for the dark address bar was being reused on the light file list. Folder names now use the same list text colour as details view.
-- **Fixed image and video file names only appearing on hover in icon view:** Names were hidden on exactly the files that got a thumbnail, so they gave no clue what they were when sitting next to folders and documents (which always show their names). **Names are now always shown.** Size and modification time still appear on hover, as before.
+- **Pressing Enter with several files selected opened only one of them:** Selecting 1.txt, 2.txt and 3.txt together and pressing Enter **opened only the first one.** Everything you selected now opens. They open **in the order they appear in the list (whatever sort order is active)** — not in the order you picked them, so with a name sort they open by name. In case you press Enter with far more selected than you meant to, **you are asked to confirm first, but only from 10 items up.** Folders in the selection open in new tabs, one each.
+- **Working sets created from AI tab suggestions showed an unreadable date:** They were saved in a format that did not match the rest, so a raw value like `2026-08-22T09:30:00.0000000` appeared in the column. That mismatch also meant sorting by date did not follow real chronological order; both are fixed.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.13.0] - 2026-08-21 : 動画サムネイルに対応し、アイコン表示を作り替えて並べ替えを追加
+## 最新の変更履歴 — [1.13.1] - 2026-08-22 : ワーキングセットをキーボードで完結し、複数ファイルの同時オープンと bat へのドロップに対応
 
 ### Added
 
-- **Windows が対応していない形式の動画でも、サムネイルを出せるようにした:** mp4 や mov など**Windows が扱える形式は今までどおり追加の導入なしで表示されます**。flv のように Windows がサムネイルを作れない形式のために、**設定 → 表示**から「動画サムネイル（追加ダウンロード）」を入れられるようにしました。入れた場合だけ、そうした形式でもサムネイルが出ます。入れていない環境の動作はまったく変わりません。**約 130MB あるため本体には同梱していません** — 使わない方に容量を負担させないためです。取得するのは LGPL 版で、改変せず別のプログラムとして呼び出すだけなので、本アプリのライセンスには影響しません
-- **アイコン表示でも並べ替えができるようにした:** これまで並べ替えは詳細表示の列見出しをクリックするしかなく、**アイコン表示では変える手段がありませんでした。** 一覧の空白を右クリックした「並べ替え」と、ツールバーの並べ替えボタンから、**名前・更新日時・サイズ・拡張子**での並べ替えと**昇順／降順**、**フォルダを先頭にまとめる**かを選べます。今どれで並んでいるかはチェックで分かります
+- **ファイルを bat や exe にドロップして、引数として渡せるようにした:** 一覧の中の `.bat`・`.cmd`・`.exe`・`.com` の行にファイルをドロップすると、**そのプログラムにファイルのパスを引数として渡して起動**します。ドロップされたファイルを受け取って処理する bat（まとめて圧縮する、変換する、といったもの）が、**これまでは落としても何も起きずに終わっていました。** ドラッグ中は対象の行が強調され、カーソルもコピー・移動のときとは違う形になるので、取り違えずに済みます。起動は取り消せないので、実行する前に一度だけ確認します（そこで「いいえ」を選んだ場合は、コピーも移動も行いません）。複数選んでいれば、すべてのパスをまとめて渡します
+- **フィードバックの送信履歴で、送った内容そのものを読み返せるようにした:** これまで履歴に出るのは**件名だけ**で、**具体的に何を書いて送ったのかを後から確かめられませんでした。** 行を開くと、ご自身が送った本文がやり取りの先頭に並びます。続く作者からの回答・ご自身の返信と合わせて、ひとつづきの流れとして読み返せます。並ぶのは**ご自身が書いた説明だけ**で、送信時に添付したシステム情報やログは含みません。この機能より前に送った履歴についても、「最新の状態を取得」したときに本文を補います
+- **タブ管理ビューの空きスペースをダブルクリックして、新しいタブを作れるようにした:** ペインのタブバーには前からあった操作ですが、**タブ管理ビューを出しているあいだはそのタブバーが見えなくなる**ため、同じ手癖が通りませんでした。A / B それぞれの一覧の余白をダブルクリックすると、そのペインにタブが増えます。あわせて、**一覧のタブを中ボタン（ホイールクリック）で閉じられる**ようにしました。こちらもタブバーと同じ操作です
+- **ワーキングセットをキーボードだけで扱えるようにした:** `Ctrl+Shift+5` で開いたとき、**これまではフォーカスがファイル一覧に残ったまま**で、結局マウスに持ち替える必要がありました。開くと同時に一覧へフォーカスが入り、`↑` `↓` で選んで `Enter` で開けます。下見中にもう一度 `Enter` を押せば確定し、**確定と同時にファイル一覧へフォーカスが戻る**ので、`Ctrl+Shift+5` → `↓` → `Enter` だけで切り替えから作業再開までが終わります。ほかに `Esc`（下見をやめる／一覧から抜ける）・`Ctrl+S`（上書き）・`F2`（名前の変更）・`Delete`（削除）・`Insert`（現在の状態を保存）が一覧の中で効きます。いま下見している行には目印が付きます
+- **ワーキングセットを一覧から直接上書きできるようにした:** 各行の右端に保存ボタンを付けました。**これまでは右クリックメニューを開かないと上書きできませんでした。** 選んだ状態で `Ctrl+S` でも同じことができます
+- **ワーキングセットの一覧を列で並べ替えられるようにした:** 名前・日時・A/B の見出しを押すと **並べ替え → 逆順 → 解除** と切り替わります（最初の向きは列によって変わり、名前は昇順から、日時と A/B は降順から始まります）。**これまでは押しても何も起きませんでした。** 解除すると自分がドラッグで並べた順に戻ります。並べ替えは見た目だけを変えるもので、保存される順序とクイックアクセスの並びはそのままです（並べ替えている間は、見た目が動かないまま保存順が書き換わるのを防ぐためドラッグでの並べ替えを止めます）
+- **ワーキングセットのクイックアクセスに番号を振り、数字キーで切り替えられるようにした:** ステータスバーのクイックアクセス（`Ctrl+Shift+S`）に並ぶセットへ 1〜9 の番号が付きます。`Ctrl+Shift+S` → 数字キーの 2 打鍵で切り替えが終わります
 
 ### Changed
 
-- **アイコン表示で、サムネイルの見せ方をエクスプローラーに寄せた:** これまではサムネイルをカード全面に敷いていたため、**絵の端が切り落とされる**うえ、**名前がマウスを乗せるまで出ませんでした**。サムネイルを上に置いて縦横比のまま全体を見せ、その下に名前を出す形にしています（フォルダや文書のカードと同じ並び）。名前は最大 4 行まで折り返すので、長いファイル名でも見分けが付きます。サイズ・更新日時はマウスを乗せたときに出ます
+- **ワーキングセットを削除する前に確認するようにした:** これまでは右クリックの「削除」で即座に消えていました。組み直すには保存し直しが必要なため、消す前に一度確かめます
+- **下見中のワーキングセットをもう一度開いたとき、その場で確定するようにした:** 同じセットをクリック（または `Enter`）すると、見えている状態は変わらないのにペインの切り替え演出だけがもう一度走っていました
 
 ### Fixed
 
-- **スクロール後のダブルクリックが上の項目にずれて当たる問題を修正:** ペインの表示範囲より項目が多いフォルダで、**フォーカスが別の場所（もう一方のペインや検索欄など）にある状態のまま**一覧をスクロールしてダブルクリックすると、1 回目のクリックの時点で一覧が元の選択位置まで巻き戻ってしまい、2 回目のクリックが**上のほうから流れてきた別の行**に当たっていました（意図しないフォルダが開く・別の項目が選ばれる）。クリックで一覧に入るときは巻き戻しをせず、押した項目をそのまま扱うようにしました
-- **動画ファイルのサムネイルが出ない問題を修正:** アイコン表示にしたとき、画像はサムネイルが出るのに、動画は種類ごとのアイコンのままでした。**動画のサムネイル表示は元々ある機能でしたが、内部で画像だけを対象にする判定が残っており、動画は一枚も作られない状態になっていました。** アイコン表示・マウスを乗せたときの拡大表示・ナビペインのプレビューのいずれでも、動画のサムネイルが出るようになります。パソコンにその形式の再生機能が入っていない動画（一部の mkv・webm など）は、これまでどおり種類ごとのアイコンで表示されます。あわせて、そうした「サムネイルを作れない動画」を覚えておくようにしたので、同じフォルダを行き来するたびに毎回作り直そうとすることがなくなりました。対象の拡張子に `.ts` を追加しています
-- **アイコン表示のとき、一覧の上部に薄い影が浮いて項目に重なる問題を修正:** 詳細表示からアイコン表示に切り替えると、本来はツールバーのすぐ下に出るはずの影が、**少し下がった位置に取り残されて 1 行目のカードに重なっていました。** 詳細表示のときだけ存在する列の見出し行の高さが、アイコン表示に切り替えたあとも内部に残り続けていたためです。切り替えてもツールバーの直下に出るようにしました。あわせて、アイコン表示のあいだ裏で無駄に走り続けていた位置合わせの処理も止めています
-- **アイコン表示で、フォルダ名がテーマによってはほとんど読めない問題を修正:** 明るい背景のテーマで、フォルダの名前が**背景とほぼ同じ明るさの文字色**になっていました（実測で明暗の差が 1.09 倍しかなく、ほぼ判読できない状態）。アドレスバーのような濃い背景に載せる前提の文字色を、明るい一覧の上でも使ってしまっていたためです。詳細表示と同じ一覧用の文字色に揃えました
-- **アイコン表示で、画像・動画のファイル名がマウスを乗せるまで出ない問題を修正:** サムネイルが出るファイルだけ名前が隠れており、フォルダや文書のカード（常に名前が出る）と並ぶと何のファイルか分かりませんでした。**名前を常に表示する**ようにしています。サイズ・更新日時はこれまでどおりマウスを乗せたときに出ます
+- **複数のファイルを選んで Enter を押しても、1 つしか開かない問題を修正:** 1.txt・2.txt・3.txt とまとめて選んで Enter を押しても、**先頭の 1 件しか開きませんでした。** 選んだものをすべて開くようにしています。開く順番は**一覧に並んでいる順（そのときの並べ替え順）**です — 選んだ順ではないので、名前順で並べていれば名前順に開きます。うっかり大量に選んだまま Enter を押してしまったとき用に、**10 件以上のときだけ開く前に確認**します。フォルダが混ざっているときは、そのフォルダはそれぞれ新しいタブで開きます
+- **AI のタブ提案から作ったワーキングセットで、日時の列が読みにくい表示になっていた問題を修正:** 保存に使う書式が他と揃っておらず、`2026-08-22T09:30:00.0000000` のような生の値がそのまま列に出ていました。あわせて、この形式が混ざっていると日時での並べ替えが正しい時系列にならない問題も直しています
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
