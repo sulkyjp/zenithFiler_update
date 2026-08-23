@@ -24,11 +24,12 @@
 
 ---
 
-## Zenith Filer in 3 Lines / 3 行でわかる Zenith Filer
+## Zenith Filer in 4 Lines / 4 行でわかる Zenith Filer
 
 - ⚡ **Fast** — starts in about 1 second, every operation runs asynchronously. Optimized on real measurements to stay snappy even on antivirus-laden corporate PCs<br>**速い** — 起動約 1 秒・全操作を非同期化。ウイルス対策ソフトで重い社用 PC でも軽快に動くよう実測ベースで最適化
-- 🎨 **Themeable** — 50 built-in themes + community store + AI theme generation. Even the left/right panes can run different themes<br>**着せ替えられる** — 内蔵テーマ 50 種＋コミュニティストア＋AI テーマ生成。左右のペインに別テーマも
-- 🏆 **Grows with you** — 150 achievements unlock as you use it, and your "Stickman" mascot's repertoire of actions keeps expanding<br>**育つ** — 使い込むほど実績 150 種が解除され、マスコット「Stickman」の行動レパートリーが増えていく
+- 🤖 **AI runs through the whole app** — 12 AI-powered features across 6 providers, including **Ollama for a fully local LLM** so nothing ever leaves your machine. Every feature still works with AI switched off<br>**AI がアプリ全体に効く** — 12 系統の AI 機能を 6 プロバイダで。**Ollama なら完全ローカル LLM** で動き、データは PC の外に出ない。AI をオフにしても全機能そのまま使える
+- 🖥 **A terminal and a scripting engine live inside it** — a ConPTY terminal in up to 4 panes at once, path-synced with the file panes, plus JavaScript macros with a visual node editor<br>**ターミナルとマクロが中にある** — ConPTY ターミナルを最大 4 面同時、ファイルペインとパス連動。JavaScript マクロはノードエディタ付き
+- 🎨 **Grows with you** — 50 built-in themes + community store + AI theme generation, plus 150 achievements that unlock as you use it<br>**育てられる** — 内蔵テーマ 50 種＋コミュニティストア＋AI テーマ生成、使い込むほど解除される実績 150 種
 
 <table>
   <tr>
@@ -79,7 +80,7 @@ Every feature can be **tried for free** (a handful of features have a usage-coun
 
 <sub>Click any item to expand details / 各項目をクリックで詳細表示</sub>
 
-<details>
+<details open>
 <summary><b>🎨 Themes — 50 built-in, store, AI generation<br>テーマ — 内蔵 50 種・ストア・AI 生成</b></summary>
 
 | Feature<br>機能 | Description<br>説明 |
@@ -107,7 +108,7 @@ Every feature can be **tried for free** (a handful of features have a usage-coun
 
 </details>
 
-<details>
+<details open>
 <summary><b>🤖 AI integration (optional — every feature works with it off)<br>AI 連携（任意・オフでも全機能利用可）</b></summary>
 
 | Feature<br>機能 | Description<br>説明 |
@@ -120,7 +121,20 @@ Every feature can be **tried for free** (a handful of features have a usage-coun
 
 </details>
 
-<details>
+<details open>
+<summary><b>🖥 Built-in terminal — up to 4 panes, ConPTY<br>内蔵ターミナル — 最大 4 面・ConPTY</b></summary>
+
+| | |
+|---|---|
+| Real shell<br>本物のシェル | Runs cmd.exe or PowerShell through ConPTY — not a fake console. ANSI 256-color and CJK character widths are handled correctly<br>ConPTY 経由で cmd.exe / PowerShell を動かす。ANSI 256 色・CJK 文字幅に対応 |
+| Up to 4 at once<br>最大 4 面同時 | Four terminals can be docked in the nav panes at the same time, each with its own working directory<br>ナビペインに 4 面まで同時配置でき、それぞれ別のディレクトリを持てる |
+| Path sync<br>パス連動 | `cd` in the terminal moves the A or B pane with it; click a path in the terminal output to open it in a pane<br>ターミナルで `cd` すると A / B ペインが追従。出力中のパスをクリックしてペインで開ける |
+| Shell integration<br>シェル統合 | Persistent command history with Ctrl+R search, per-command navigation (Ctrl+↑/↓), input prediction, and error lines marked in red<br>コマンド履歴の永続化と Ctrl+R 検索、コマンド単位移動（Ctrl+↑/↓）、入力予測、エラー行の赤表示 |
+| Claude Code integration<br>Claude Code 連携 | Usage gauge, workspace picker, prompt history, and pasted images converted to file paths automatically<br>使用率ゲージ、ワークスペース選択、プロンプト履歴、貼り付けた画像を自動でパスに変換 |
+
+</details>
+
+<details open>
 <summary><b>⚙️ Macros (JavaScript automation)<br>マクロ（JavaScript 自動化）</b></summary>
 
 | Feature<br>機能 | Description<br>説明 |
@@ -146,7 +160,7 @@ Every feature can be **tried for free** (a handful of features have a usage-coun
 </details>
 
 <details>
-<summary><b>🧭 Navigation & nav pane (6 views)<br>ナビゲーション & ナビペイン（6 ビュー）</b></summary>
+<summary><b>🧭 Navigation & nav pane (19 views)<br>ナビゲーション & ナビペイン（19 ビュー）</b></summary>
 
 | View / Feature<br>ビュー / 機能 | Details<br>詳細 |
 |---|---|
