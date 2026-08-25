@@ -62,8 +62,8 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.14.1.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.14.1_delta_from_1.14.0.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.14.2.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.14.2_delta_from_1.14.1.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -277,29 +277,51 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.14.1] - 2026-08-25 : Terminal fixes and a stale title bar on tab switches
+## Latest Changes — [1.14.2] - 2026-08-26 : Skins for Stickman, plus fixes for dark themes and the terminal
 
+### Added
+
+- **Stickman can now wear a skin:** Stickman has always been **the same stick figure for everyone**. Switch Appearance to Skin under Settings → Stickman and it grows a little and becomes a character. **Five skins are bundled** — Cat, Robot, Penguin, Ghost and Theme colour — and **hovering one is enough to see it**: the demo just below immediately animates wearing it. Drop a folder of your own into `stickman/skins/` and you can **make your own** as well: describe each body part as a shape, or supply your own artwork as images (the manual's "Wearing a skin" has the format). The companion is dressed to match. **The specification for building one out of artwork ships with the app too** — the "How to make a skin" button in the settings opens it. Alongside the skeleton's coordinates and the rules for how images are oriented and stretched, it carries **a brief you can hand straight to an image-generation AI**, so you can commission the artwork without drawing it yourself. Switching back to Stick figure returns it to **exactly what it looked like before**; taste in mascots varies, so the way back is always there. One more thing: **it crawls under a terminal**. Terminals paint over the app's own drawing, so a standing figure would lose the top of its head. Note that **this is a draft feature** — the format of a skin definition and the set of parts may still change, so a skin you build today is not guaranteed to keep working (the settings page and the specification say so too). **Edits to a skin take effect as soon as you reopen Settings → Stickman**, with no restart needed.
+
+- **A skin can now carry a side and a back view:** Until now each body part held a single drawing, so a skin **stayed front-facing even while walking** — a skin with a face on it crossed the screen staring straight at you. Parts now accept `imageSide` and `imageBack`, and the figure **turns to its profile while travelling and shows its back during work done at arm's length** such as sweeping or cooking. **One profile drawing, facing right, is all you need** — mirroring to the direction of travel was already automatic. **A facing you leave out falls back to the front image**, so every skin in use today, the five bundled ones included, looks exactly as it did. In your own behaviour files a phase can also set the facing outright with `"facing": "back"`. The bundled specification (the "How to make a skin" button in the settings) now carries **wording for commissioning the extra side and back artwork from an image-generation AI** as well.
+
+### Changed
+
+- **Settings is now the leftmost title-bar icon:** The command palette (the three lines) used to sit at the left with settings (the gear) beside it. **Settings is the icon you reach for most often**, and the one your hand learns the position of, so it now comes first. The three lines moved to its right.
+
+- **Folder Compare can now be sorted and its columns resized:** The **column widths were fixed**, so a long path that got cut off could not be widened. Drag the divider between columns to resize them. Clicking a header sorts by it, clicking again reverses it, and a third click returns to the original order. **The size columns sort by the actual byte count rather than the text on screen** — compared as text, "2.7 MB" would come before "165.0 B". Clicking the icon column at the far left **groups rows by the kind of difference**: present on one side only, differing content, and so on. The lists in Batch Stamp and Hash can have their columns resized as well.
 ### Fixed
 
-- **Fixed a terminal tab name not following `cd`:** Running something like `cd /d "C:\work\ClaudeCode" && claude` — **moving and then immediately starting a long-running program** — left the tab named after the folder you were in when you ran the command. The new location normally arrives as a notification from the shell, but that is emitted **each time the prompt is redrawn**, so nothing arrived until the long-running program exited (the tab name would finally change the moment you quit it). Zenith now also reads the destination out of the command that was run. It is only used **when the folder actually exists**, so a typo cannot send you somewhere unexpected, and pane following (if you have it enabled) happens at the same moment. It works whether you typed the command, pasted it, ran it from history, or **started it from the toolbar or the workspace picker**.
-- **Fixed the title bar path and the tree not following tab switches (#256):** They followed you when opening or going back through folders, but **switching tabs left them pointing at the previous folder**. Opening a new tab by middle-clicking a favourite had the same problem. A tab switch announces itself as "everything changed" rather than naming a single property, and the receiving side only compared names, so the update was skipped. The **current-location highlight in Favourites**, which was stale for the same reason, is fixed too.
-- **Fixed Enter sending your message even with "Enter inserts a newline" turned on (#257):** While Claude Code is showing a list of choices, Enter is passed straight through so you can confirm with it. That was decided by **whether the cursor's line started with a number such as `1.`** — so simply **beginning your message with "1. first do this"** was read as a choice list, and an Enter meant as a newline sent the message instead. A real list always has more than one option, so a line now only counts as a choice **when another option follows it**.
-- **Moving into a terminal with `F6` now lets you type straight away:** You landed in the zone, but **the terminal itself never received focus and the caret did not blink**. Typing did nothing, and the shortcuts were unavailable because they are set aside while a terminal is focused — a dead end that could only be escaped by clicking the terminal with the mouse. Arriving with `F6` now puts you in the terminal ready to type, both for the nav-pane terminal and for terminal tabs in the A/B panes.
-- **Fixed every shortcut going dead after leaving the terminal:** While the terminal has focus, Zenith temporarily removes its own shortcuts so it does not steal your keystrokes. They were **not always put back — leaving with `F6`, or closing a terminal tab while it still had focus, could leave them removed**. The result was not one broken key but **every shortcut failing at once**, with no way back short of switching to another window and returning, or restarting the app. Zenith now checks where the focus actually landed, both right after `F6` moves between zones and at the moment a terminal is closed, and restores the shortcuts accordingly.
+- **Fixed lists turning into a white box on dark themes, starting with Folder Compare (#259):** Opening a folder comparison on a dark theme left **the results list glaring white, with pale text on top of it** — unreadable. The list never declared a background of its own, so Windows' default white came through; the rows are transparent, so that white showed straight through them. It had gone unnoticed because **on light themes the default white happens to sit close to the background**, hiding the problem entirely. The lists in **Batch Stamp, Hash and "Select Explorer windows"**, written the same way, are fixed as well, and column headers now follow the theme too. A check now catches this omission mechanically so it cannot come back.
+
+- **Fixed the clipboard being overwritten while using the terminal (#258):** With a program that **continuously repaints the screen** — Claude Code, for instance — running in the terminal, taking a screenshot and pasting it could paste **text from the terminal** instead of the image. The cause was a selection made earlier by dragging, which never went away. A terminal selection only remembers a position — which row, which column — and not the content, so once the screen repaints, **the same position yields entirely different text**. Right-clicking in that state was read as "there is a selection, so copy", and the image you had just copied was overwritten. Only a selection you have **just made** now counts for copying; right-clicking with a stale selection pastes, as you would expect. This also fixes `Ctrl+C` turning into a copy when you meant to interrupt. `Ctrl+Shift+C` still copies at any time, as before.
+
+- **Fixed the minimise, maximise and close buttons disappearing off-screen with deep folders (#260):** The title bar shows the current path, and **a long path pushed everything to its right off the edge** — the level badge, the icon row and the window buttons all went out of view. The title now fits **within the space left over after the right-hand side**, with anything beyond that trimmed to an ellipsis. Hover the title to read it in full when it has been trimmed. Narrowing the window no longer costs you the window buttons. The name shown in the taskbar and the app switcher is still the full path, as before.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.14.1] - 2026-08-25 : ターミナル周りの取りこぼしと、タブ切替の追従を直した
+## 最新の変更履歴 — [1.14.2] - 2026-08-26 : Stickman にスキンを着せられるようにし、暗いテーマとターミナルの不具合を直した
 
+### Added
+
+- **Stickman にスキンを着せられるようにした:** これまで Stickman は**誰が使っても同じ棒人間**でした。設定 →「スティックマン」の「表示方式」を「スキン」に変えると、少し大きくなってキャラクターの姿になります。**ねこ・ロボット・ペンギン・おばけ・テーマ色の 5 つを同梱**しており、**選ぶ前にマウスを乗せるだけで、すぐ下のデモ欄がその姿で動きます**。`stickman/skins/` に自分のフォルダを置けば**自作のスキンも着せられます** — 部位ごとに図形を書いてもよいですし、描いた絵を画像で置いても構いません（書き方はマニュアルの「スキンを着せる」を参照）。相棒も一緒に着替えます。**画像で作り込むための仕様書もアプリに同梱**しました — 設定の「スキンの作り方」ボタンから開けます。骨格の座標や画像の向き・伸縮の決まりに加え、**画像生成 AI へそのまま渡せる発注テンプレート**を載せてあるので、絵が描けなくても素材を用意できます。**「棒人間」に戻せば、これまでとまったく同じ姿に戻ります** — 見た目の好みは分かれるので、逃げ道は残してあります。なお**ターミナルの下は匍匐前進で通り抜けます**。ターミナルはアプリの描画を上書きする作りのため、立ったままでは頭が欠けてしまうからです。 なお**この機能はドラフト版です** — 定義の書き方や部位の構成は今後変わることがあり、いま作ったスキンが将来もそのまま動く保証はありません（設定画面と仕様書にも明記しています）。**書き換えたスキンは、設定の［スティックマン］を開き直せばその場で反映されます**（アプリを再起動する必要はありません）。
+
+- **スキンに横顔と後ろ姿を持たせられるようにした:** これまでスキンの部位は 1 部位につき絵が 1 枚だけで、**歩いていても正面を向いたまま**でした。顔を描いたスキンだと、画面の端から端まで正面を向いたまま移動することになります。部位に `imageSide`（横向き）と `imageBack`（背面）を書けるようにし、**移動中は横顔へ、掃除や料理のように手元の作業をしている間は後ろ姿へ**自動で切り替わるようにしました。**横顔は右を向いた絵を 1 枚**用意すれば足ります（進行方向に合わせた反転は元から自動です）。**書かなかった向きは正面の絵がそのまま出る**ので、同梱の 5 種を含め、いま動いているスキンの見た目は変わりません。自作の行動パターンでは、フェーズに `"facing": "back"` のように書いて向きを直接指定することもできます。同梱の仕様書（設定の「スキンの作り方」から開けます）には、**画像生成 AI へ横顔と後ろ姿を追加で発注するための文面**も足してあります。
+
+### Changed
+
+- **タイトルバーのアイコンの並びを変え、設定を左端にした:** これまでコマンドパレット（三本線）が左端で、設定（歯車）はその右にありました。**設定はアイコン群のなかで押す頻度がもっとも高く、位置を覚えて手が伸びる先**になるため、左端へ移しています。三本線はその右隣になりました。
+
+- **フォルダ比較の一覧を、列見出しで並べ替え・列幅変更できるようにした:** これまで**列の幅が固定**で、長いパスが途中で切れても広げられませんでした。列の境目をドラッグして幅を変えられます。見出しを押すと並べ替わり、もう一度押すと逆順、三度目で元の並びに戻ります。**大きさの列は表示されている文字ではなく実際のバイト数で並びます**（文字として比べると「2.7 MB」が「165.0 B」より前に来てしまうため）。左端のアイコン列を押すと、片側にしかない行・中身が違う行といった**差分の種類でまとめられます**。一括スタンプとハッシュ計算の一覧でも、列幅を変えられるようにしています。
 ### Fixed
 
-- **ターミナルのタブ名が `cd` した先に付いてこない問題を修正:** `cd /d "C:\work\ClaudeCode" && claude` のように**移動してすぐ常駐するプログラムを起動する**と、タブ名がコマンドを打った時点のフォルダのままでした。移動先は普段シェルからの通知で受け取っていますが、あれは**プロンプトが描き直されるたび**に届く仕組みのため、常駐するプログラムが終わるまで通知が来ません（そのプログラムを終了させると、そこで初めてタブ名が変わる、という挙動になっていました）。実行されたコマンドからも移動先を読み取って補うようにしています。**実在するフォルダのときだけ**採用するので、打ち間違いで見当違いの場所を指すことはありません。ペインの追従（設定で有効にしている場合）も同じタイミングで動きます。キーボードで打った場合・貼り付けた場合・履歴から実行した場合・**ツールバーやワークスペース選択から実行した場合**のいずれでも働きます。
-- **タブを切り替えても、タイトルバーのパスとツリーの位置が付いてこない問題を修正 (#256):** フォルダを開く・戻るときは追従するのに、**タブを移ったときだけ元のフォルダを指したまま**でした。お気に入りから中クリックで新しいタブを開いたときも同様です。タブ切替の通知が「どれか特定のプロパティ」ではなく「全部変わった」という形で飛ぶため、受け側が名前だけで見ていて素通りしていました。あわせて、同じ理由でタブ切替に追従していなかった**お気に入りの現在地ハイライト**も直しています。
-- **「Enter で改行」にしているのに送信になることがある問題を修正 (#257):** Claude Code が選択肢を出している間は、Enter をそのまま決定として通しています。その判定が**「カーソルのある行が `1.` などの番号で始まっているか」**だったため、**指示を「1. まず〜」と箇条書きで書き始めただけ**でも選択肢と読み違え、改行のつもりの Enter が送信になっていました。選択肢は必ず 2 つ以上並ぶので、**下に別の候補があるときだけ**選択肢と見なすようにしました。
-- **`F6` でターミナルの枠に入ったとき、そのまま入力できるようにした:** これまでは枠には入るものの**ターミナル自体はフォーカスを受け取っておらず、入力カーソルが点滅しない**状態でした。文字を打っても入らず、かといってショートカットはターミナル用に外されているので効かない、という行き止まりになっていました。マウスでターミナルをクリックすれば直る、という回避が必要だったものです。`F6` で入った時点で入力できる状態になります。ナビペインのターミナルと、A/B ペインのターミナルタブの両方が対象です。
-- **ターミナルから抜けたあと、ショートカットが 1 つも効かなくなることがある問題を修正:** ターミナルにフォーカスがある間は、入力を横取りしないようにアプリ側のショートカットを一時的に外しています。ところが**ターミナルから `F6` で抜けたときや、フォーカスを持ったままターミナルのタブを閉じたときに、外したままになる**ことがありました。こうなると特定のキーではなく**すべてのショートカットが効かなくなり**、別のウィンドウへ切り替えて戻すか、アプリを再起動するまで直りませんでした。`F6` で枠を移した直後と、ターミナルが閉じられた時点で、実際のフォーカス位置を見て戻すようにしました。
+- **ダーク系テーマで、フォルダ比較などの一覧が白い箱になって読めない問題を修正 (#259):** 暗いテーマでフォルダの比較を開くと、**結果の一覧だけが白く抜け、その上に淡い色の文字が乗る**ため読めませんでした。一覧そのものに背景色を指定しておらず、Windows 標準の白がそのまま出ていたのが原因です。行の側は透明なので、下の白が透けて見えていました。**明るいテーマでは標準の白がたまたま背景に近く、破綻が見えない**ぶん、これまで気づかれずに残っていたものです。同じ書き方をしていた**一括スタンプ・ハッシュ計算・「エクスプローラーを選択」**の一覧もあわせて直しています。列見出しもテーマの色に揃うようになりました。今後この書き漏らしが起きないよう、機械的に検出する仕組みを入れてあります。
+
+- **ターミナル使用中にクリップボードの内容が勝手に書き換わる問題を修正 (#258):** Claude Code のように**画面を描き替え続けるプログラム**をターミナルで動かしていると、スクリーンショットを撮って貼り付けようとしても画像が貼れず、代わりに**ターミナル内の文章が貼り付く**ことがありました。原因は、以前ドラッグして作った選択範囲が消えずに残り続けることです。ターミナルの選択は「何行目の何文字目から」という位置だけを覚えていて中身は覚えていないため、画面が描き替わると**同じ位置から別の文章が取り出せてしまいます**。その状態で右クリックすると「選択中だからコピー」と判断され、直前にコピーした画像が上書きされていました。**利用者がいま選び直した範囲だけ**をコピーの対象にするようにしています。古い選択が残っているときの右クリックは、これまでどおり貼り付けとして動きます。中断のつもりで押した `Ctrl+C` がコピーに化ける問題も同時に直りました。`Ctrl+Shift+C` は従来どおり、いつでもコピーとして使えます。
+
+- **深いフォルダを開くと、タイトルバーの最小化・最大化・閉じるが画面外へ消える問題を修正 (#260):** タイトルバーにはパスを表示していますが、**パスが長くなるとその分だけ右側が押し出され**、レベル表示・アイコン群・ウィンドウ操作ボタンが見えなくなっていました。タイトルが**右側に必要な幅を残して収まる**ようにし、あふれる分は末尾を `…` で省略します。省略されたときは、タイトルにマウスを乗せると全文を読めます。ウィンドウを狭くしても操作ボタンは消えません。なおタスクバーやアプリ切り替えに出る名前は、これまでどおり全文のままです。
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
