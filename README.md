@@ -62,8 +62,8 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.14.5.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.14.5_delta_from_1.14.4.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.14.6.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.14.6_delta_from_1.14.5.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -277,49 +277,57 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.14.5] - 2026-09-01 : Things that were hard to grab or aim at, and a keymap that killed every shortcut
+## Latest Changes — [1.14.6] - 2026-09-02 : Windows 11-style context menu entries, and shell menus that no longer keep you waiting
 
 ### Added
 
-- **The Statistics page now counts files opened, pastes, and search tabs opened:** The page already counted **opening folders, copying, moving, deleting and renaming**, but **opening a file and pasting had never been counted at all** — both everyday actions. Opening search results in a new tab was not counted as opening a tab either, so it now has its own entry, **search tabs opened**. Opening a file is **counted separately from opening a folder**, since folder navigation already has its own entry. Opening several files at once counts as **one action**, not one per file, and a paste that ends because the clipboard could not be read is not counted.
+- **Context menu entries registered in the Windows 11 style are now supported (#272):** A growing number of applications — WinMerge among them — **only register their right-click entries in the newer Windows 11 style**. Until now **only Windows Explorer could display that style**, so those entries never appeared under **OS menu**. Re-registering them in the classic style from the application's own settings brought them back, but **needing the user to go change a setting was the wrong answer**. **OS menu now handles both styles**: the classic entries are followed by the newer ones, **with the name and icon the application registered**. When an application registers in both styles, **the duplicate is dropped and only one is shown**. Which entries appear is decided the same way Explorer decides it — by **the extension of what you selected, whether it is a folder, and whether you right-clicked the background**. Nothing is read until **you actually hover over OS menu**, and it is read **in parallel** with the classic entries, so the wait does not double. Results are remembered for ten minutes.
 
 ### Changed
 
-- **Fixed the scrollbar thumb becoming too thin to grab in large folders (#267):** Open a folder with several thousand files and the scrollbar thumb **shrank to about a millimetre**, leaving nothing to take hold of. A thumb's length is the visible portion over the whole, so it gets shorter as the count grows. There was a floor, but **the one Windows applies by default is tiny** — 8 points (screen units). **That floor is now 24 points**, exactly twice the width of the scrollbar and comfortable to grab. **Dragging still moves the list by the same amount as before**, and pulling the thumb to the bottom still reaches the end of the list — the floor does not throw the drag out of step. This covers **every scrollbar in the app**, not just the file list: the navigation pane views, the right-click menu and the search suggestion lists included.
+- **The Explorer-compatible menu now shows that it is working while it opens:** Bringing up the menu with `Shift+right-click` (or with the Explorer-compatible menu set as the default) can take **several seconds while the menu pieces registered by other applications load**. Until now nothing on screen changed during that wait, so it **looked as though the click had done nothing**. The cursor now shows a busy state while loading and **returns to normal the moment the menu appears** — including when loading fails and no menu comes up.
 
-- **Improved the nav pane not appearing when you aim for the edge (#269):** With the nav pane set to hide itself, it **only came out if you got the cursor into the 12px at the very edge of the window**, and missing meant trying again. It was harder still on a window that is not maximised, because the OS resize border sits on top of that same 12px. **The original 12px is unchanged; the band out to 32px has been added as a 'stay for a second and it opens' zone.** Land on the edge and it opens straight away as before; fall short and a moment's pause still brings it out. The one-second wait is there so that **merely passing through does not open it**. 32px is where the list's icon column ends and file names begin, so resting the cursor to read a name will not trigger it. **Leaving the window while still near the edge cancels it**, so the pane will not appear after you have moved on to another application. Both nav panes behave the same way.
+- **Items contributed by other applications are now remembered for longer:** The entries under **OS menu** and the cloud menu are built by reading the pieces other applications have registered with Windows. They were only remembered for **one minute**, so **coming back to the same folder a minute later meant waiting all over again**. That is now **ten minutes**, since these registrations do not change from one minute to the next.
+
+- **Stopped loading the same thing twice for the same folder:** In a cloud folder the **cloud menu** and the **OS menu** each ran their own load, **doing twice the work of one**. A single load now produces the entries for both. **The slower the environment, the more this shows.**
 
 ### Fixed
 
-- **Fixed the search bar showing a different mode from the one actually in use:** Entering index search with `Ctrl+Shift+F` or content search with `Ctrl+Shift+G` **left the mode indicator reading "normal"**. Recalling a saved search or reopening one from history did the same. Worse, moving between tabs in that state **silently dropped the mode you had just entered**. Only one of the four search modes can hold at a time, yet internally they were three independent on/off flags — and **two different places each believed they owned the answer**, the tab and the pane. The mode now belongs to the tab alone and the indicator simply reflects it, so **switching tabs keeps the mode** (which is what the behaviour was always described as doing). The rule for which mode wins when an older history entry has two of them set at once is now written down in one place and pinned by tests. Clearing the keyword still leaves you inside index search, as before.
+- **Addressed submenus such as "Send to" coming up empty in the Explorer-compatible menu, so nothing happens when you pick them:** What goes inside "Send to" is filled in by Windows at the moment the submenu opens. There are two routes for that handover, but **there was no fallback to the older one when the newer failed** — and no record was kept of the failure either. If one route fails the other is now used instead, and a failure of both is written to the log. Failing to build the menu at all, and closing it without choosing anything, are now also distinguishable.
 
-- **Fixed the window not moving when you grab the path in the title bar (#271):** The title bar shows the path of the folder you have open, but **the strip of text itself did not respond to being grabbed**, so the window would not move. Grabbing the icon just to its left, or the empty space to the right, worked — which made the gap easy to miss. It dated from v1.14.2, where the fix for window buttons being pushed off screen by a deep folder (#260) replaced the built-in path display with one of our own. Once a custom element sits there, Windows treats it as **something to interact with rather than something to grab by**, and it stops counting as title bar. The strip of path now moves the window. **Snapping it to an edge, and dragging a maximised window to restore it, behave exactly as they do anywhere else on the title bar, and double-clicking still maximises and restores.** Hovering to read a long path in full when it has been shortened (#260) is unchanged.
+- **Fixed an item under "Send to" whose name contains "delete" triggering the delete confirmation instead:** Whether the chosen command was a delete was also judged from its **display name**, and that check reached into submenu contents. So a shortcut under "Send to" **with "delete" in its name** (say `delete-pending.lnk`) would **bring up the app's delete confirmation instead of sending the file**. The name-based check is now limited to top-level items.
 
-- **Fixed the AFXW keymap preset killing every shortcut and erroring on each launch (#268):** Choosing **AFXW style** in the settings raised an error on the spot and **left not a single shortcut working**. The choice was saved, so **the next launch produced the same error and the same dead state**. Windows does not accept a letter or digit as a shortcut unless `Ctrl` or `Alt` is held with it, and 14 of the AFXW preset's 17 assignments are exactly that shape (`C` to copy, `M` to move, `D` to delete, and so on). Building the shortcut table stopped at the first of them, so **none of the assignments after it were ever registered**. **Those single keys now work, scoped to the file list** — select a file and press `C` and it copies, which is how AFXW behaves. **Anywhere you type text — the path box, the search box, an inline rename — they go in as characters**; getting that wrong would make typing itself impossible. Inside the list an assignment now **takes precedence over type-ahead**. If some other assignment is in a shape Windows will not take, only **that one is skipped** from now on, and the rest of the shortcuts are no longer dragged down with it.
+- **Fixed "No items available" appearing under OS menu while it was still loading:** If loading took more than six seconds, the submenu **claimed there was nothing there** even though it was still working. While loading continues it now says it is still loading, and **swaps in the real entries as soon as they arrive**.
+
+- **Fixed drag and drop being unavailable for a while after running another application's command from the menu:** Running something like an archive command from the menu left the app treating the menu as **still open until that application had finished cleaning up**. Dragging is suppressed in that state, so **items could not be picked up for some time after the menu had closed** — the cleanup wait runs up to ten minutes. The menu-open state is now released the moment the menu closes.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.14.5] - 2026-09-01 : 掴めない・当たらないを一通り直し、キーマップ適用でショートカットが全滅する問題を解消した
+## 最新の変更履歴 — [1.14.6] - 2026-09-02 : Windows 11 の新しい形式の右クリックメニューに対応し、シェルメニューの待ちと取りこぼしを直した
 
 ### Added
 
-- **設定の「統計」に、ファイルを開いた回数・貼り付けた回数・検索タブを開いた回数を追加した:** これまで統計は**フォルダを開く・コピー・移動・削除・名前の変更**などは数えていましたが、**ファイルを開く操作と貼り付けの操作は 1 度も数えていません**でした。どちらも日常的に使うものです。あわせて、検索結果を新しいタブで開いたときも「タブを開く」に計上されていなかったので、**検索タブを開く**として別に数えるようにしました。なお**フォルダを開いた回数とは分けて数えます** — 同じ「開く」でも、フォルダの移動は既に別項目があるためです。まとめて複数のファイルを開いたときは、ファイルの数ではなく**操作 1 回**として数えます。クリップボードが読めずに終わった貼り付けは数えません。
+- **Windows 11 の新しい形式で登録されたアプリの右クリックメニュー項目に対応した (#272):** WinMerge のように、**Windows 11 の新しい形式でしか右クリックメニューを登録しないアプリ**が増えています。この形式はこれまで **Windows のエクスプローラだけが表示できる**もので、Zenith Filer の「OS標準メニュー」には出てきませんでした。アプリ側の設定で従来の形式にも登録し直せば出せましたが、**利用者に設定を触らせないと使えない**のはおかしな話でした。**「OS標準メニュー」が両方の形式を扱うようにしました** — 従来からの項目に続けて、新しい形式の項目も**アプリが登録したとおりの名前とアイコンで**並びます。同じアプリが両方の形式で登録している場合は**重複を落として 1 つだけ**出します。項目の絞り込み方はエクスプローラと同じで、**選んだものの拡張子・フォルダかどうか・背景を右クリックしたか**で出し分けます。読み取りは**「OS標準メニュー」にカーソルを合わせた時点で初めて**行い、従来の項目の読み取りと**並行して**進めるので、待ち時間は 2 つ分に増えません。読み取った結果は 10 分間覚えておきます。
 
 ### Changed
 
-- **ファイル数の多いフォルダでスクロールバーのつまみが細くなりすぎる問題を修正 (#267):** 数千件のフォルダを開くと、スクロールバーのつまみが**1mm ほどまで縮んで掴めなく**なっていました。つまみの長さは「見えている量 ÷ 全体の量」で決まるので、件数が増えるほど短くなります。下限は用意されていたのですが、**Windows が既定で持っている下限がそもそも小さく**、8 ポイント（画面上の点）しかありませんでした。**下限を 24 ポイントに引き上げました** — スクロールバーの幅のちょうど 2 倍で、掴むのに困らない大きさです。**つまみを掴んで動かしたときの移動量はこれまでどおり**で、下端まで引けば一覧も末尾まで動きます（下限に張り付いた分だけドラッグの換算がずれる、ということは起きません）。ファイル一覧だけでなく、ナビペインの各ビュー・右クリックメニュー・検索の候補一覧など、**アプリ内のスクロールバー全部**が対象です。
+- **エクスプローラ互換メニューが開くまでの間、待っていることが分かるようにした:** `Shift+右クリック`（または設定でエクスプローラ互換メニューを既定にしている場合）でメニューを出すとき、**他のアプリが登録したメニュー部品の読み込みに数秒かかる**ことがあります。これまでその間は画面に何の変化も無く、**押しても反応していないように見えて**いました。読み込んでいる間はカーソルを待機表示にし、**メニューが出た時点で元に戻します**。読み込みに失敗してメニューが出なかった場合もカーソルは戻ります。
 
-- **ナビペインを隠しているとき、端に寄せても出てこないことがある問題を改善 (#269):** ナビペインを自動的に隠す設定にしていると、**ウィンドウの端 12px にカーソルを入れないと出てこず**、狙いを外して何度もやり直すことがありました。ウィンドウを最大化していないときはさらに厳しく、この 12px に OS のウィンドウ枠（つかんでリサイズする部分）が重なるためです。**今までの 12px はそのままに、その外側 32px までを「1 秒とどまると開く」範囲として足しました。** 端まできっちり寄せれば従来どおりすぐ開き、届かなくても少し待てば開きます。1 秒待たせているのは、**通りすがりに横切っただけで開かないようにする**ためです。32px にしているのは、一覧のアイコン列までに収まってファイル名の上には掛からない位置だからで、名前を読むためにカーソルを置いても誤って開きません。**端に寄せたままウィンドウの外へ出た場合は開きません** — 別のアプリへ移った後にナビペインだけが出てくる、ということは起きません。左右どちらのナビペインでも同じです。
+- **右クリックメニューに出す他アプリの項目を、一度読んだら長めに覚えておくようにした:** 「OS標準メニュー」やクラウドメニューに並ぶ項目は、Windows に登録された他アプリの部品を読み取って作っています。これを覚えておく時間が **1 分**しかなく、**1 分放置してからもう一度開くと、また同じだけ待たされて**いました。**10 分**に延ばしています。登録の内容は分単位で変わるものではないためです。
+
+- **同じフォルダに対して同じ読み込みを 2 回していたのをやめた:** クラウドフォルダでは「クラウドメニュー」と「OS標準メニュー」がそれぞれ別に読み込みを行っており、**1 回で済むものを 2 回**やっていました。1 回の読み込みから両方の項目を作るようにしました。**読み込みが遅い環境ほど効きます。**
 
 ### Fixed
 
-- **検索モードの表示と実体がずれる問題を修正:** `Ctrl+Shift+F`（索引検索）や `Ctrl+Shift+G`（本文検索）でモードに入っても、**検索バーのモード表示は「通常」のまま変わりません**でした。保存した検索条件を呼び出したときや、検索履歴から開き直したときも同じです。さらにその状態でタブを行き来すると、**入ったはずのモードが黙って解除されます**。検索モードは 4 つのうち 1 つしか成り立たないのに、内部では独立した 3 つのオン・オフで持たれていて、しかも**持ち主がタブとペインの 2 か所にいた**のが原因です。モードの持ち主をタブ 1 か所に決め、表示はそこを映すだけにしました。**タブを切り替えてもモードは維持されます**（もともとそう説明していた動作です）。あわせて、モードが 2 つ同時に立った古い履歴を開いたときにどちらで検索するかの決まりを 1 か所に集め、テストで固定しました。キーワードを消したときにインデックス検索の場から出ないことも、これまでどおりです。
+- **エクスプローラ互換メニューの「送る」などのサブメニューが空になり、押しても何も起きないことがある問題への対策:** 「送る」の中身は、そこを開いた瞬間に Windows 側が流し込む作りになっています。この受け渡しには 2 通りの経路があるのですが、**新しい方が失敗したときに古い方へ切り替える処理が無く**、しかも失敗した記録すら残っていませんでした。**片方が駄目ならもう一方で受け取り直す**ようにし、どちらも駄目だったときはログに残します。あわせて、メニューの組み立て自体に失敗した場合と、項目を選ばずに閉じた場合も区別できるようにしました。
 
-- **タイトルバーのパスの部分をつかんでもウィンドウを動かせない問題を修正 (#271):** タイトルバーにはいま開いているフォルダのパスを出していますが、**その文字が並んでいる帯だけはつかんでも反応せず**、ウィンドウを動かせませんでした。すぐ左のアイコンや、右の空いているところをつかめば動くので、気づきにくい形の抜けです。v1.14.2 で「深いフォルダを開くとウィンドウ操作ボタンが画面外へ消える」問題 (#260) を直したときに、パスの表示を組み込みのものから自前の部品へ差し替えたのが原因でした。自前の部品を置くと Windows 側はそこを**「つかむ場所」ではなく「操作したい中身」と見なす**ため、タイトルバーとしての扱いから外れます。パスの帯をつかんでウィンドウを動かせるようにしました。**画面の端に寄せて並べる操作（スナップ）も、最大化したまま引っ張って元の大きさへ戻す操作も、タイトルバーの他の場所とまったく同じです。ダブルクリックでの最大化・復元**もできます。省略された長いパスの全文をマウスを乗せて読める動作 (#260) は、これまでどおり残しています。
+- **「送る」の中に名前へ「削除」を含む項目があると、送る代わりに削除の確認が出る問題を修正:** 選ばれた項目が削除かどうかを**表示名**からも判断していましたが、この判定がサブメニューの中身にまで及んでいました。そのため「送る」の中に**名前に「削除」が入ったショートカット**（例: `削除待ち.lnk`）を置いていると、それを選んだときに**送る代わりにアプリの削除確認が出て**しまいます。表示名による判定は第一階層の項目に限るようにしました。
 
-- **キーマップの「あふw 風」を当てるとショートカットが全部効かなくなり、起動のたびにエラーが出る問題を修正 (#268):** 設定画面で **あふw 風** を選ぶと、その場でエラーが出て**ショートカットが 1 つ残らず効かなくなり**ました。しかも設定は保存されているので、**次に起動したときも同じエラーが出て同じ状態になります**。Windows は「`Ctrl` も `Alt` も伴わない英字・数字」をショートカットとして受け付けません。あふw 風は 17 件のうち 14 件がまさにその形（`C` でコピー、`M` で移動、`D` で削除…）なので、割り当てを組み立てる途中で止まってしまい、**そこから先の割り当てが 1 つも登録されないまま終わって**いました。**この 1 打鍵を、ファイル一覧にいるときだけ効く形で通しました** — あふw 風が本来そうであるように、一覧でファイルを選んで `C` を押せばコピーになります。**パス欄・検索欄・名前の変更のような文字を打つ場所では、そのまま文字として入ります**（ここを取り違えると入力そのものができなくなります）。一覧では**頭文字を打っての絞り込みより割り当ての方が優先**されます。Windows が受け付けない形の割り当てが他にあっても、以後は**その 1 件を見送るだけ**で、他のショートカットは巻き添えになりません。
+- **「OS標準メニュー」がまだ読み込み中なのに「利用できる項目がありません」と出ることがある問題を修正:** 読み込みに 6 秒以上かかると、まだ途中でも**項目が無いかのように表示**されていました。読み込みが続いている間は「読み込みに時間がかかっています」と出し、**届いた時点で中身に差し替える**ようにしました。
+
+- **右クリックメニューから他アプリの機能を実行した直後、しばらくドラッグ＆ドロップができない問題を修正:** メニューから圧縮などを実行すると、アプリは**そのアプリの後片付けが終わるまで**「メニューを表示中」の状態を続けていました。この状態ではドラッグ操作が抑えられるため、**メニューが閉じた後もしばらく掴めない**ことがありました（後片付けの待ちは最長 10 分）。メニューが閉じた時点で表示中の状態を解くようにしました。
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
