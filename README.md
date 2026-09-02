@@ -62,8 +62,8 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.14.6.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.14.6_delta_from_1.14.5.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.14.7.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.14.7_delta_from_1.14.6.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -277,57 +277,49 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.14.6] - 2026-09-02 : Windows 11-style context menu entries, and shell menus that no longer keep you waiting
+## Latest Changes — [1.14.7] - 2026-09-02 : Box share-link copy restored, plus fixes for confirmation window placement and primary button labels
 
 ### Added
 
-- **Context menu entries registered in the Windows 11 style are now supported (#272):** A growing number of applications — WinMerge among them — **only register their right-click entries in the newer Windows 11 style**. Until now **only Windows Explorer could display that style**, so those entries never appeared under **OS menu**. Re-registering them in the classic style from the application's own settings brought them back, but **needing the user to go change a setting was the wrong answer**. **OS menu now handles both styles**: the classic entries are followed by the newer ones, **with the name and icon the application registered**. When an application registers in both styles, **the duplicate is dropped and only one is shown**. Which entries appear is decided the same way Explorer decides it — by **the extension of what you selected, whether it is a folder, and whether you right-clicked the background**. Nothing is read until **you actually hover over OS menu**, and it is read **in parallel** with the classic entries, so the wait does not double. Results are remembered for ten minutes.
-
-### Changed
-
-- **The Explorer-compatible menu now shows that it is working while it opens:** Bringing up the menu with `Shift+right-click` (or with the Explorer-compatible menu set as the default) can take **several seconds while the menu pieces registered by other applications load**. Until now nothing on screen changed during that wait, so it **looked as though the click had done nothing**. The cursor now shows a busy state while loading and **returns to normal the moment the menu appears** — including when loading fails and no menu comes up.
-
-- **Items contributed by other applications are now remembered for longer:** The entries under **OS menu** and the cloud menu are built by reading the pieces other applications have registered with Windows. They were only remembered for **one minute**, so **coming back to the same folder a minute later meant waiting all over again**. That is now **ten minutes**, since these registrations do not change from one minute to the next.
-
-- **Stopped loading the same thing twice for the same folder:** In a cloud folder the **cloud menu** and the **OS menu** each ran their own load, **doing twice the work of one**. A single load now produces the entries for both. **The slower the environment, the more this shows.**
+- **Your own messages in the feedback thread are now tinted (#274):** Until now your replies and the author's answers were told apart **only by which side they sat on and the colour of their outline** — the inside of both bubbles was the same colour. Your own messages are now filled in, so you can tell them apart at a glance. The fill uses the theme's **selected-row colour**, so it fits in whichever theme you use, and the text switches to the colour that **stays readable on it** (this pairing is verified across all 50 themes).
 
 ### Fixed
 
-- **Addressed submenus such as "Send to" coming up empty in the Explorer-compatible menu, so nothing happens when you pick them:** What goes inside "Send to" is filled in by Windows at the moment the submenu opens. There are two routes for that handover, but **there was no fallback to the older one when the newer failed** — and no record was kept of the failure either. If one route fails the other is now used instead, and a failure of both is written to the log. Failing to build the menu at all, and closing it without choosing anything, are now also distinguishable.
+- **Fixed being unable to rename a file to just its extension, such as ".csv" (#275):** Renaming "hoge.csv" to ".csv" — handing over the name so a **new file can take it** — was not possible: clearing the name field and pressing OK simply closed the dialog **without doing anything**. An empty name is now accepted **as long as an extension remains** (".csv" is a valid file name on Windows). If both the name and the extension would be gone, it still does nothing, as before.
 
-- **Fixed an item under "Send to" whose name contains "delete" triggering the delete confirmation instead:** Whether the chosen command was a delete was also judged from its **display name**, and that check reached into submenu contents. So a shortcut under "Send to" **with "delete" in its name** (say `delete-pending.lnk`) would **bring up the app's delete confirmation instead of sending the file**. The name-based check is now limited to top-level items.
+- **Fixed confirmation windows appearing on a different display from the main window:** The confirmation prompts for deleting a favorite, and for overwriting during a copy or move, **reuse a single window**. Windows only applies the "center on the caller" placement **the first time** such a window is shown, so from the second time onward it reappeared **wherever it was last placed**. If you had since moved the main window to an extended display, the prompt would open **on a different display, nowhere in sight — making the app look frozen and unresponsive**. The window is now re-centred on the main window every time it is shown, and clamped to the working area of the display the main window is on. The overwrite prompt, which was built the same way, is fixed too.
 
-- **Fixed "No items available" appearing under OS menu while it was still loading:** If loading took more than six seconds, the submenu **claimed there was nothing there** even though it was still working. While loading continues it now says it is still loading, and **swaps in the real entries as soon as they arrive**.
+- **Fixed the "OK" / "Yes" label blending into the button on confirmation windows:** Button labels are supposed to take the colour the theme defines for them, but on screens where **the buttons are built in code**, that colour never reached the label and the **app-wide text colour** was used instead. Since the button is filled with the theme's accent colour, some combinations left the label nearly invisible. This had already been fixed once, and **the markup files are guarded by an automated check** — but the check never looked at code, so the confirmation windows slipped through. While here, the "Cancel" / "No" side of those windows had **no appearance set at all** and fell back to the default pale grey, which is hard to read on dark themes; that is fixed as well. The colour picker's OK / Cancel had the same problem and is included.
 
-- **Fixed drag and drop being unavailable for a while after running another application's command from the menu:** Running something like an archive command from the menu left the app treating the menu as **still open until that application had finished cleaning up**. Dragging is suppressed in that state, so **items could not be picked up for some time after the menu had closed** — the cleanup wait runs up to ten minutes. The menu-open state is now released the moment the menu closes.
+- **Fixed the primary button being painted in a different colour from the one its contrast is checked against:** Both the theme colour audit and the runtime safeguard against unreadable text check the label against the **primary button colour**. The button was actually painted with the **accent colour**, so **the surface being checked was not the surface being drawn**. Of the 50 bundled themes, **16 define these as two different colours**, which means the audit could report no problem while the label was unreadable in practice. The button now uses the primary button colour that the checks are built around. **The 34 themes that do not define it separately look exactly the same as before.**
+
+- **Fixed "Copy Share Link" for Box failing after a long wait (#273):** Box Drive now creates the link **in its share window**, and Zenith Filer had been hiding that window to keep it off your screen. But hiding it **also stopped the work going on inside it**, so the link was never created and we just kept waiting. The share window is now only **moved off-screen** and left running, so it can finish its job (you still never see it). On top of that, if the link still hasn't arrived after **8 seconds, the share window is brought back into view and placed in front**, with a prompt to copy the link there. **If you then copy it by hand, it is still formatted into the usual path / URL / file name block** — we keep watching the clipboard. The overall wait limit went from 30 to 45 seconds, but that extra time is **room for you to act**; when the link arrives automatically it finishes sooner than before.
+
+- **Fixed missing diagnostics when the link could not be obtained (#273):** When someone reported that "Copy Share Link" fails, **none of those failures appeared in the log attached to the report**, so there was nothing to investigate. The failures were being recorded at a level the report never collects. They are now recorded at a level that is collected, together with **which stage failed, which menu entry was run, and how long the menu took to load**.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.14.6] - 2026-09-02 : Windows 11 の新しい形式の右クリックメニューに対応し、シェルメニューの待ちと取りこぼしを直した
+## 最新の変更履歴 — [1.14.7] - 2026-09-02 : Box のリンク連携コピーを復旧し、確認ウィンドウの表示位置と主ボタンの文字色を直した
 
 ### Added
 
-- **Windows 11 の新しい形式で登録されたアプリの右クリックメニュー項目に対応した (#272):** WinMerge のように、**Windows 11 の新しい形式でしか右クリックメニューを登録しないアプリ**が増えています。この形式はこれまで **Windows のエクスプローラだけが表示できる**もので、Zenith Filer の「OS標準メニュー」には出てきませんでした。アプリ側の設定で従来の形式にも登録し直せば出せましたが、**利用者に設定を触らせないと使えない**のはおかしな話でした。**「OS標準メニュー」が両方の形式を扱うようにしました** — 従来からの項目に続けて、新しい形式の項目も**アプリが登録したとおりの名前とアイコンで**並びます。同じアプリが両方の形式で登録している場合は**重複を落として 1 つだけ**出します。項目の絞り込み方はエクスプローラと同じで、**選んだものの拡張子・フォルダかどうか・背景を右クリックしたか**で出し分けます。読み取りは**「OS標準メニュー」にカーソルを合わせた時点で初めて**行い、従来の項目の読み取りと**並行して**進めるので、待ち時間は 2 つ分に増えません。読み取った結果は 10 分間覚えておきます。
-
-### Changed
-
-- **エクスプローラ互換メニューが開くまでの間、待っていることが分かるようにした:** `Shift+右クリック`（または設定でエクスプローラ互換メニューを既定にしている場合）でメニューを出すとき、**他のアプリが登録したメニュー部品の読み込みに数秒かかる**ことがあります。これまでその間は画面に何の変化も無く、**押しても反応していないように見えて**いました。読み込んでいる間はカーソルを待機表示にし、**メニューが出た時点で元に戻します**。読み込みに失敗してメニューが出なかった場合もカーソルは戻ります。
-
-- **右クリックメニューに出す他アプリの項目を、一度読んだら長めに覚えておくようにした:** 「OS標準メニュー」やクラウドメニューに並ぶ項目は、Windows に登録された他アプリの部品を読み取って作っています。これを覚えておく時間が **1 分**しかなく、**1 分放置してからもう一度開くと、また同じだけ待たされて**いました。**10 分**に延ばしています。登録の内容は分単位で変わるものではないためです。
-
-- **同じフォルダに対して同じ読み込みを 2 回していたのをやめた:** クラウドフォルダでは「クラウドメニュー」と「OS標準メニュー」がそれぞれ別に読み込みを行っており、**1 回で済むものを 2 回**やっていました。1 回の読み込みから両方の項目を作るようにしました。**読み込みが遅い環境ほど効きます。**
+- **フィードバックのやり取りで、自分が送った内容に色が付くようにした (#274):** これまで自分の返信と作者からの回答は、**左右の寄せ方と枠線の色だけ**で区別していて、**吹き出しの中の色はどちらも同じ**でした。自分が送ったほうを塗り分けて、ひと目で見分けられるようにしています。塗る色はテーマが持つ**選択中の行の色**を使うので、テーマを変えても馴染みます。文字色も**その色の上で読める組み合わせ**に切り替わります（この 2 色の組み合わせは全 50 テーマで検査済み）。
 
 ### Fixed
 
-- **エクスプローラ互換メニューの「送る」などのサブメニューが空になり、押しても何も起きないことがある問題への対策:** 「送る」の中身は、そこを開いた瞬間に Windows 側が流し込む作りになっています。この受け渡しには 2 通りの経路があるのですが、**新しい方が失敗したときに古い方へ切り替える処理が無く**、しかも失敗した記録すら残っていませんでした。**片方が駄目ならもう一方で受け取り直す**ようにし、どちらも駄目だったときはログに残します。あわせて、メニューの組み立て自体に失敗した場合と、項目を選ばずに閉じた場合も区別できるようにしました。
+- **ファイル名を拡張子だけ（「.csv」など）に変更できない問題を修正 (#275):** 「hoge.csv」を「.csv」へ改名して名前を明け渡し、**同じ名前の新しいファイルを置く**という使い方ができませんでした。名前の部分を空にして OK を押しても、**何も起きずに閉じるだけ**だったためです。名前の欄が空でも**拡張子が残っていればそのまま実行する**ようにしました（「.csv」は Windows 上で正当なファイル名です）。名前も拡張子も無くなる場合は、これまでどおり実行しません。
 
-- **「送る」の中に名前へ「削除」を含む項目があると、送る代わりに削除の確認が出る問題を修正:** 選ばれた項目が削除かどうかを**表示名**からも判断していましたが、この判定がサブメニューの中身にまで及んでいました。そのため「送る」の中に**名前に「削除」が入ったショートカット**（例: `削除待ち.lnk`）を置いていると、それを選んだときに**送る代わりにアプリの削除確認が出て**しまいます。表示名による判定は第一階層の項目に限るようにしました。
+- **確認ウィンドウが、アプリ本体とは別のディスプレイに出ることがある問題を修正:** お気に入りの削除確認や、コピー・移動時の上書き確認は、**一度作ったウィンドウを使い回して**表示しています。ところが Windows の「呼び出し元の中央に出す」指定は**最初の 1 回にしか効かない**ため、2 回目以降は**前に表示したときの位置**にそのまま出ていました。本体を拡張ディスプレイへ移した後に確認ウィンドウを出すと、**本体とは別のディスプレイに出て画面上のどこにも見えず、押しても何も起きない（固まった）ように見える**状態になっていました。表示のたびに本体の中央へ置き直し、本体があるディスプレイの表示領域内へ収めるようにしました。同じ作りだった上書き確認のウィンドウもあわせて直しています。
 
-- **「OS標準メニュー」がまだ読み込み中なのに「利用できる項目がありません」と出ることがある問題を修正:** 読み込みに 6 秒以上かかると、まだ途中でも**項目が無いかのように表示**されていました。読み込みが続いている間は「読み込みに時間がかかっています」と出し、**届いた時点で中身に差し替える**ようにしました。
+- **確認ウィンドウの「OK」「はい」の文字が、ボタンの色と同化して読めない問題を修正:** ボタンの文字色は本来テーマが決めた色になりますが、**プログラム側でボタンを組み立てている画面**では、その指定が届かず**アプリ全体の文字色**が使われていました。背景がテーマのアクセント色で塗られるため、色の組み合わせによっては文字がほとんど見えなくなります。この問題自体は以前に対策済みで、**画面定義ファイル側は自動検査で守られていました**が、検査がプログラム側を見ていなかったため、確認ウィンドウだけが対策から漏れていました。あわせて、確認ウィンドウの「キャンセル」「いいえ」側は**見た目の指定が無く Windows 標準の淡いグレー**になっており、暗いテーマで読みづらい状態だったのも直しています。カラーピッカーの OK / キャンセルにも同じ問題があったため、まとめて直しました。
 
-- **右クリックメニューから他アプリの機能を実行した直後、しばらくドラッグ＆ドロップができない問題を修正:** メニューから圧縮などを実行すると、アプリは**そのアプリの後片付けが終わるまで**「メニューを表示中」の状態を続けていました。この状態ではドラッグ操作が抑えられるため、**メニューが閉じた後もしばらく掴めない**ことがありました（後片付けの待ちは最長 10 分）。メニューが閉じた時点で表示中の状態を解くようにしました。
+- **主ボタンの文字色が、テーマの品質検査で守られていた色と食い違っていた問題を修正:** テーマの色検査と、実行時に文字が読めなくなるのを防ぐ仕組みは、どちらも**「主ボタン用の色」**を背景として文字色の見やすさを確かめています。ところが実際にボタンを塗っていたのは**アクセント色**のほうで、**検査していた面と実際に塗る面が違って**いました。同梱している 50 種類のテーマのうち **16 種類はこの 2 つに別々の色**を持つため、検査は問題なしと出るのに実機では読めない、という状態が起きえます。実際に塗る色を、検査が見ている「主ボタン用の色」へ揃えました。**この色を独自に持たない 34 種類のテーマでは見た目は変わりません。**
+
+- **Box の「リンク連携コピー」でリンクが取れず、待たされた末に失敗する問題を修正 (#273):** Box Drive はリンクを**共有ウィンドウ側で作る**作りに変わっており、Zenith Filer はそのウィンドウを画面に出さないよう伏せていました。ところが**伏せるとウィンドウの中身の処理ごと止まってしまい**、リンクが作られないまま待ち続けていました。共有ウィンドウは**画面の外へ動かすだけ**にして、生かしたまま処理を進めさせるようにしました（見え方はこれまでどおり、画面には出ません）。あわせて、**8 秒経っても自動で取れないときは共有ウィンドウを画面に出して手前に置き**、「共有ウィンドウでリンクをコピーしてください」と案内するようにしました。**その後で手でコピーした場合も、これまでどおりパス・URL・ファイル名の形に整形されます**（監視を続けているため）。待ち時間の上限は 30 秒から 45 秒に延ばしていますが、これは**手で操作するための猶予**で、自動で取れる場合はこれまでより速く終わります。
+
+- **リンクが取れなかったときに、原因の分かる記録が残らない問題を修正 (#273):** 「リンク連携コピーが失敗する」という報告を受けても、**失敗した記録がアプリの報告用ログに一切載らず**、原因を追えない状態でした。失敗の記録が調査対象になる区分で残っていなかったためです。**どの段階で失敗したか・どのメニュー項目を実行したか・読み込みに何秒かかったか**を残すようにしました。
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
