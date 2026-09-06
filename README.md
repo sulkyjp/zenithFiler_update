@@ -62,8 +62,8 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.14.10.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.14.10_delta_from_1.14.9.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.14.11.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.14.11_delta_from_1.14.10.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -277,65 +277,53 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.14.10] - 2026-09-05 : Thumbnails resize freely with Ctrl+wheel, and the XP ranking became a level distribution
-
-### Added
-
-- **Other people's titles can be browsed on the ranking again:** One of the reasons to open the ranking was **to look around at what titles everyone else had earned**. Rebuilding the screen as a distribution dropped that list entirely, so it is back as **"Everyone's titles"**. Entries are ordered by level, and identical titles are folded into one row with a count such as "×3". **Folding them is what makes the rare ones stand out** — in the live data, 71 people hold 39 distinct titles, and 23 of those are held by exactly one person. The row holding your own title is tinted. The level is shown alongside so you can see **how much play a given title was built from**.
-
-- **The XP ranking is now a level distribution rather than a ranked list:** "View" used to open **the top 100 laid out as a list**. With participants numbering in the dozens and the upper places held steadily by long-used machines, that screen amounted to **a column of unreachable numbers for anyone who had just started**. It now shows a **level distribution**: where you sit as a **top-percentage and a rank**, a bar chart of how many people are in each level band, and **a marker on the band you are in**. Alongside it, the view shows **the XP remaining to your next level and roughly where reaching it would place you**. **Seeing how far a single level moves you** gives everyone a target that means something, wherever they are. The footer lists the number of participants, the highest level, and how many have launched within 30 days. The whole design **holds up while you participate anonymously**.
-
-- **Level-up notifications now carry your standing:** The toast shown on levelling up said only the level, such as `Lv.5`. **If a ranking is ever going to matter, it is at that moment** — yet seeing your standing meant opening the settings screen again. The toast now includes **your top-percentage at that moment**. With submission turned off, or while offline, it shows the level alone as before.
-
-- **A one-time notice that you are taking part anonymously:** Anonymous submission became the default in v0.41.8, but **no on-screen notice was built at the time**. It was documented in the manual, which left people **submitting without ever noticing**. A toast on first launch now says so once, with **a shortcut straight to the setting**. It does not appear if you have chosen a submission mode yourself. What gets sent is unchanged: display name, title, XP, level, and a randomly generated per-device identifier.
-
-- **Thumbnail size is now freely adjustable with Ctrl+wheel (#289):** Icon view came in **three fixed sizes only** - small, medium, large - with no way to say "a little bigger" or "extra large, but only for this photo folder." **Hold Ctrl and turn the wheel over the file list** and the size changes, just like in Explorer. There are **15 steps from 32px to 256px**, so you can go 2.6x beyond what "large" used to be. It is continuous with list view as well: **scrolling up with Ctrl over the list drops you into the smallest icons, and scrolling down past the smallest icons returns you to the list** - switching views no longer means reaching for a button. The small/medium/large toolbar buttons become **presets that snap back to their size** (widen to 128px, press "Large," and you land on 96px). **The size is remembered per pane and per folder** - photo folders extra large, document folders small, and it survives a restart. Working sets store it too.
-
-- **Folder and document icons stay sharp at large sizes (#289):** Icon view was drawing **16px icons**. Even at "large" they were stretched 4x, so photo thumbnails looked fine while **folders and documents came out blurry**. While icon view is active, the app now **fetches a high-resolution icon from Windows** instead. **This fixes the look of today's "large icons" too.** Each distinct icon is fetched only once (200 folders share a single icon), so nothing gets slower.
+## Latest Changes — [1.14.11] - 2026-09-06 : Large folders open far faster; navigation stalls and unreadable buttons are fixed
 
 ### Changed
 
-- **Ranking submission now also runs once a day at startup:** Submission previously happened **only on level-up**, which left the server knowing nothing beyond "when this person last gained a level" — so **someone still using the app could not be told apart from someone who stopped months ago**, and the participant count did not reflect actual use. A submission now also goes out at startup, at most once a day (whenever 20 hours have passed since the last one). It runs in the background after startup settles, so **it does not affect how fast the app starts**.
+- **Icon view thumbnails are now fetched for what is on screen, in order (#291):** Until now the app fetched **the first 200 thumbnails of a folder in one go when it opened**. In a large folder **which 200 that was had nothing to do with the sort order**, so you could be looking at the top of the list with not a single picture in it, and anything past the 200th stayed a generic icon forever (a folder of 1,271 PNGs showed nothing but generic icons). The app now fetches **only the rows in view plus two rows on either side**, and re-evaluates on every scroll, resize, re-sort and pane-width change. Requests that scroll out of view are cancelled and requests are issued in display order, so **the pictures arrive where you are looking first**. The per-folder cap is gone. The requested size now follows the display size using the tiers Windows keeps natively (96px / 256px), which also makes fetching lighter at small sizes.
 
-- **The developer's own machines are excluded from ranks, counts and the distribution:** The top two entries were **the machines used to build the app**, driven to levels ordinary use does not reach by repeating operations while developing features. With those at the head of the list, **the highest level actually reached by a participant was invisible**. They are now out of every rank, count and distribution. An excluded device shows "This device is excluded from the tally" in place of a rank, so **being out of the tally cannot be mistaken for having no data**.
+- **Opening a large folder in icon view is much faster (#291):** Icon view used to **build a card for every item in the folder before drawing anything**. In a folder of 1,271 PNGs that meant **12–21 seconds (measured) between the list being swapped in and the screen settling down**, during which neither scrolling nor clicking responded. It now virtualizes like the details view: **only the cards for the rows in view are created**, and cards that scroll away are recycled. However many thousand items a folder holds, only a screenful of cards ever exists. The same folder now settles in **1.5–3 seconds**, with the first thumbnail appearing in about 0.1 seconds. Rubber-band selection, keyboard navigation, inline rename and drag & drop behave as before.
+
+- **Opening folders with many files is far lighter on the UI (#293):** **Everything that scaled with the number of items has moved off the screen thread.** Sorting, carrying over previously loaded artwork, the cut-item styling, the "new" highlight and the size-bar baseline all used to run while the window was frozen, and together took close to a second in a folder of 30,000. The screen thread's only job now is to swap in a finished list, so **the pause barely grows with the item count** (measured: 4–8 ms of screen-thread work in a folder of 30,000 items, the same as for 1,271). Sort comparisons are cheaper too (four strings allocated per comparison, now none), and thumbnails are fetched **at a resolution that matches how large they are drawn** instead of always at maximum, which stops the memory spikes.
 
 ### Fixed
 
-- **The manual's description of ranking submission now matches what the app does:** It stated "submitted every 24 hours" and "only a hashed identifier", and **neither the interval nor the handling of the identifier matched the implementation**. What triggers a submission, how often it happens, and what it contains have been rewritten to match the code, in both languages.
+- **Fixed a delay on every folder change after visiting the Challenges page (#296):** Opening Settings → Challenges once left the app **pausing for about a second on every subsequent folder change** (547–797 ms measured). It happened regardless of how many items the folder held, even with only a handful. The progress tracking that runs on each folder change was **rebuilding several hundred challenge cards that were no longer on screen**, because the "is the Challenges page showing?" check never considered whether the settings window was still open. **The cards are no longer rebuilt just to bump a progress number.** A rebuild now happens only the moment a challenge is newly earned, where the card still changes together with the notification. Progress numbers catch up the next time you enter the Challenges page. The impact was larger still for anyone using a screen reader or similar assistive tool, since the accessibility tree was rebuilt along with the cards.
 
-- **A display name and title on the ranking could be overwritten with defaults:** Submitting before the title had been assembled, such as immediately after startup, could **blank out a title already registered on the server**. The values are now loaded before submission, and the server **no longer overwrites an existing title with an empty one**.
+- **Fixed the app freezing for seconds when opening a folder while indexing (#293):** Opening any folder while an index was being built could **lock the app up for two to three seconds regardless of how many items the folder held** (2,828 ms measured). The check for "is this folder indexed?" that runs when a folder opens was **queued behind the index's own write to disk**. On a 100,000-item index that write takes seconds, and opening a folder had to wait for it. The lookup queue is now separate from the write queue, and the lookup itself moved off the UI thread, so **folders open without stalling even while an index is being built**.
+
+- **Fixed thumbnails not appearing for OneDrive Files On-Demand files that were already downloaded (#291):** Files with a local copy were excluded from thumbnails wholesale. Only online-only files, which would trigger a download, are excluded now; downloaded ones show thumbnails just as Explorer does.
+
+- **Fixed the selected option's label being unreadable on the Challenges page (#292):** The previous fix corrected the colour machinery, but **the three options on the Challenges page never went through it**. Their labels were passed differently from every other screen, so the text WPF builds internally used the app-wide text colour instead of the selected-option colour. On themes with a dark selected fill (such as Graphite) it stayed black on black. The markup now matches the other screens, and **a test was added that catches this mistake mechanically** (it checks all 76 buttons of this kind; these three were the only offenders).
+
+- **Fixed the label of a selected option being unreadable in some themes (#292):** In Graphite, a **selected option (radio button) such as "Don't upload" on Settings → Challenges was drawn black on black**. A selected option carries separate keys for its fill and its text; Graphite darkened the fill but never defined the text colour, so the text **inherited the dark colour used for a selected row**. The same gap existed on two more surfaces — a selected option under the mouse, and a checkbox under the mouse — and among the bundled themes 4 and 16 of them respectively were hard to read there. The safeguard added in v1.14.3 that **lifts text brightness when it sinks into its background, which until now only covered buttons and the settings menu**, now covers these three surfaces as well. Graphite's own colours were corrected, and AI theme generation and the quality audit now check the selected-option surface too.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.14.10] - 2026-09-05 : サムネイルの大きさを Ctrl+ホイールで自由に変えられるようにし、XP ランキングを順位表からレベルの分布へ変えた
-
-### Added
-
-- **ランキングで他の人の二つ名を眺められるようにした:** ランキングを見に行く理由のひとつは、**他の人がどんな二つ名を持っているかを見て回ること**でした。分布表示へ作り替えたときに一覧ごと落としてしまっていたので、**「みんなの二つ名」として戻しています**。レベルの高い順に並び、同じ称号は 1 行にまとめて「×3」のように人数を添えます。**まとめることで、1 人しか持っていない珍しい称号が際立ちます**（実データでは 71 人ぶんが 39 種になり、うち 23 種は 1 人だけの称号でした）。自分の称号がある行には色が付きます。レベルを添えているのは、**その称号がどれだけの積み重ねから生まれたのかが分かる**ようにするためです。
-
-- **XP ランキングを順位表からレベルの分布へ変えた:** 「見る」で開く画面は、これまで**上位 100 人をそのまま並べた一覧**でした。参加している方が数十人規模で、しかも上位に長く使っている端末が固定的に居座るため、**始めたばかりの人にとっては届かない数字が並ぶだけ**の画面になっていました。表示を**レベルの分布**に変えています。自分が全体のどのあたりかを**上位パーセントと順位**で示し、レベル帯ごとの人数を棒グラフで並べ、**自分がいる帯に印**を付けます。あわせて **次のレベルまでの残り XP と、そこへ届いたときのおおよその位置**を出すようにしました。**ひとつ上がるだけで自分がどこまで動くかが見える**ので、どの段階の方にも意味のある目標になります。画面下部には参加人数・最高レベル・30 日以内に起動のあった人数が並びます。この形は**匿名のまま参加していても成立します**。
-
-- **レベルアップの通知に順位を添えるようにした:** レベルが上がったときのトーストは `Lv.5` のようにレベルだけを伝えていました。**ランキングを気にするとしたらこの瞬間**なのに、順位を知るには設定画面を開き直す必要がありました。トーストに**そのときの上位パーセント**を添えています。送信をオフにしている場合・オフラインの場合は、これまでどおりレベルだけを表示します。
-
-- **ランキングへ匿名で送っていることを初回に一度だけお知らせするようにした:** 送信の既定が「匿名で送信」になったのは v0.41.8 ですが、そのとき**画面上でお知らせする仕組みを用意していませんでした**。マニュアルには書いてあるものの、**気づかないまま送り続けている状態**が残っていたことになります。初回起動時にトーストで一度だけお知らせし、**そこから設定を開いてすぐ変更できる**ようにしました。ご自分で送信方法を選んだ場合は表示しません。送っている内容は表示名・称号・XP・レベルと、端末ごとにランダム生成される識別子だけで、これまでと変わりません。
-
-- **サムネイルの大きさを Ctrl+ホイールで自由に変えられるようにした (#289):** アイコン表示の大きさは**小・中・大の 3 段しかなく**、「もう少しだけ大きく」「この写真フォルダだけ特大で」といった調整ができませんでした。**一覧の上で Ctrl を押しながらホイールを回す**と、エクスプローラーと同じように大きさが変わります。**32px から 256px まで 15 段階**で、今までの「大」の 2.6 倍まで広げられます。一覧ビューとも地続きで、**一覧の上で Ctrl+ホイールを上へ回せば最小アイコンへ、最小アイコンからさらに下へ回せば一覧へ戻ります** — 表示の切り替えにボタンを押しに行かなくてよくなりました。ツールバーの小・中・大ボタンは**そのサイズへ戻すためのプリセット**になります（128px まで広げた状態で「大」を押すと 96px に戻ります）。**大きさはペインごと・フォルダごとに覚えます** — 写真フォルダは特大、書類フォルダは小、という使い分けが、次回起動後もそのまま残ります。ワーキングセットにも保存されます。
-
-- **フォルダや文書のアイコンが大きくしても綺麗に出るようにした (#289):** これまでアイコン表示に使っていたのは **16px の小さなアイコン**でした。「大」でも 4 倍に引き伸ばしていたため、写真のサムネイルは綺麗なのに**フォルダや文書だけ輪郭がぼやける**という状態です。アイコン表示のあいだだけ、Windows から**高解像度のアイコンを取り直す**ようにしました。**今までの「大アイコン」の見え方もこれで直ります。** 取得は同じ絵ごとに 1 回だけ行うので（フォルダが 200 個あってもアイコンの種類は 1 つ）、表示までの速さは変わりません。
+## 最新の変更履歴 — [1.14.11] - 2026-09-06 : 大きなフォルダを開くのを速くし、フォルダ移動の引っかかりと読めないボタンを直した
 
 ### Changed
 
-- **ランキングへの送信を 1 日 1 回の起動時にも行うようにした:** これまで送信は**レベルアップしたときだけ**でした。そのためサーバー側は「最後にレベルが上がった時刻」しか知らず、**使い続けている方と、しばらく起動していない方を区別できません**でした。ランキングの人数も、実際に使われている数を表していないことになります。起動時にも 1 日 1 回だけ送るようにしています（前回の送信から 20 時間経っていれば送ります）。送信は起動が落ち着いたあとに背景で行うため、**起動の速さには影響しません**。
+- **アイコン表示のサムネイルを、画面に見えている範囲から順に取得するようにした (#291):** これまでは**フォルダを開いた時点で先頭から 200 件まで**を一括で取得していました。件数の多いフォルダでは、**その 200 件が並び順と無関係に決まる**ため、先頭を見ているのに 1 枚も出ず、200 件を超えた分は永久に汎用のアイコンのままでした（PNG 1271 件のフォルダで全カードが汎用アイコンになった実例）。**いま見えている行とその前後 2 行**だけを取得し、スクロール・拡縮・並べ替え・ペイン幅の変更のたびに取り直す形へ変えています。画面外へ流れた分の取得は取り消し、要求は表示順で出すので、**見ている場所に絵が先に来ます**。件数の上限は撤廃しました。頼む大きさも表示サイズに合わせて Windows が持つ段（96px / 256px）から選ぶようにし、小さい表示では取得も軽くなります。
 
-- **ランキングの順位・人数・分布から開発者の端末を除外した:** 上位 2 件は**開発に使っている端末**で、機能を作りながら操作を繰り返すぶん、通常の使い方では届かないレベルになっていました。順位表の先頭がそれで埋まっていると、**参加している方の実際の最高レベルが見えません**。これらを順位・人数・分布のすべてから外しています。除外した端末では順位の代わりに「この端末は集計から除外されています」と出るので、**データが無いのか対象外なのかが読み分けられます**。
+- **大きなフォルダをアイコン表示で開くのが速くなった (#291):** アイコン表示は、**フォルダ内のすべてのカードを一度に作ってから**描いていました。PNG 1271 件のフォルダでは、一覧が差し替わってから画面が落ち着くまで**実測で 12〜21 秒**かかり、その間はスクロールもクリックも効きません。一覧ビューと同じく**見えている行のカードだけを作る**仮想化に変え、画面外へ流れたカードは使い回すようにしました。件数が何千件でも、作るカードは画面に収まる枚数だけです。同じフォルダで **1.5〜3 秒**まで縮み、最初のサムネイルは約 0.1 秒で出るようになりました。矩形選択・キー操作・名前変更・ドラッグ＆ドロップの動きは変わりません。
+
+- **ファイル数の多いフォルダを開く負担を大きく減らした (#293):** フォルダを開くとき、**中身の件数に比例する処理をすべて画面の裏側へ移しました**。並べ替え・前回の絵の引き継ぎ・切り取り中の表示・新着の判定・サイズバーの基準値は、いずれもこれまで画面を止めて行っていたもので、3 万件のフォルダでは合計 1 秒近くかかっていました。いまは画面側の仕事が「出来上がった一覧に差し替える」ことだけになり、**件数が増えても画面が止まる時間はほとんど変わりません**（実測: 3 万件のフォルダで画面側の処理は 4〜8 ミリ秒。1,271 件のときと同じ水準です）。並べ替えの比較も軽くし（1 回の比較あたり 4 つ作っていた文字列をゼロに）、サムネイルは**表示される大きさに合った解像度**で取るようにしたので（これまでは小さく表示していても常に最大解像度で取得）、メモリの山を作らなくなりました。
 
 ### Fixed
 
-- **マニュアルのランキング送信に関する記述を実際の動作へ合わせた:** 「24 時間間隔で送信」「ハッシュ化された識別子のみ」と書いていましたが、**実際の送信間隔も識別子の扱いも記述と違って**いました。送信の契機・頻度・送信する内容を、実装どおりに書き直しています（日英）。
+- **チャレンジの画面を開いたあと、フォルダ移動のたびに待たされる問題を修正 (#296):** 設定画面のチャレンジを一度開くと、**その後フォルダを移動するたびに約 1 秒待たされる**状態になっていました（実測 547〜797ms）。フォルダの中身の数とは関係なく、数個しか入っていないフォルダでも起きます。原因は、フォルダ移動のたびに走るチャレンジの進行記録が、**設定画面を閉じたあとも見えていないカードを数百枚作り直していた**ことです。「いまチャレンジの画面を見ているか」の判定に、設定ウィンドウが出ているかどうかが含まれていませんでした。**進捗の数字を増やすためだけにカードを作り直すのをやめました。** 作り直すのは新しくチャレンジを達成した瞬間だけで、そのときはこれまでどおりお知らせと同時にカードが変わります。数字の更新は、チャレンジのページに入り直したときにまとめて反映されます。なお読み上げソフトなどの支援技術を使っていると、この作り直しに合わせて画面構造の情報も作り直されるため、影響がさらに大きくなっていました。
 
-- **ランキングの表示名と称号が既定値で上書きされることがあった:** 起動直後など、称号がまだ組み上がっていない状態で送信すると、**サーバーに登録済みの称号が空で塗り潰される**可能性がありました。送信前に実体を読み込むようにし、サーバー側でも**空の称号では既存の値を書き換えない**ようにしています。
+- **インデックス作成中にフォルダを開くと数秒固まることがあった問題を修正 (#293):** インデックスを作っている最中にフォルダを開くと、**フォルダの件数に関係なく 2〜3 秒間、操作を一切受け付けなくなる**ことがありました（実測 2828ms）。フォルダを開くときに「このフォルダはインデックス済みか」を確かめる処理が、**インデックスの保存（ディスクへの書き出し）と同じ順番待ちの列に並んでいた**のが原因です。10 万件規模のインデックスでは書き出しに数秒かかるため、その間フォルダを開く操作ごと待たされていました。問い合わせと書き出しの列を分け、さらに問い合わせ自体を裏側へ移したので、**インデックスを作りながらでもフォルダの表示は止まりません**。
+
+- **OneDrive の「ファイル オンデマンド」でダウンロード済みのファイルにサムネイルが出なかった問題を修正 (#291):** 端末に実体があるファイルまで、一律にサムネイル対象外にしていました。ダウンロードを誘発する「オンラインのみ」のファイルだけを対象外にし、ダウンロード済みのものはエクスプローラーと同じように表示します。
+
+- **設定画面のチャレンジで、選択中の選択肢の文字が読めなかった問題を修正 (#292):** 前回の修正で色の仕組みは直しましたが、**チャレンジ画面の 3 つの選択肢だけがその仕組みを通っていませんでした**。ラベルの渡し方が他の画面と違い、内部で作られる文字が「選択中の文字色」ではなくアプリ共通の文字色を使っていたためです。選択中の背景が暗いテーマ（Graphite など）では、黒地に黒で読めないままでした。書き方を他の画面と揃えて修正し、**同じ間違いを機械的に見つけるテストを追加**しました（同種のボタン 76 か所を検査し、該当したのはこの 3 か所だけでした）。
+
+- **一部のテーマで、設定画面の選択中の選択肢の文字が読めなかった問題を修正 (#292):** Graphite で、設定画面 → チャレンジの「アップロードしない」のように**選択中の選択肢（ラジオボタン）が黒地に黒**になり、文字が読めませんでした。選択中の選択肢は背景色と文字色を別々のキーで持っていて、Graphite は背景だけを暗い色へ変えたのに文字色を定義しておらず、**選択行の文字色（暗い色）をそのまま継承**していたのが原因です。同じ形の穴は、選択中の選択肢にマウスを乗せたときの面と、チェックボックスにマウスを乗せたときの面にもありました（同梱テーマのうち前者は 4 テーマ、後者は 16 テーマで読みづらい状態でした）。v1.14.3 から**ボタンと設定画面の左メニューにだけ効いていた「文字が背景に沈んだら明度を自動で持ち上げる」仕組み**を、この 3 つの面へ広げています。Graphite 自体の配色も直し、AI テーマ生成と品質監査も選択中の選択肢の面を検査するようにしました。
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
