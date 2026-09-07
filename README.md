@@ -62,8 +62,8 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.14.11.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.14.11_delta_from_1.14.10.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.14.12.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.14.12_delta_from_1.14.11.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -277,53 +277,33 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.14.11] - 2026-09-06 : Large folders open far faster; navigation stalls and unreadable buttons are fixed
+## Latest Changes — [1.14.12] - 2026-09-08 : Phones and cameras can now be browsed; a window that could not be closed on a short display is fixed
 
-### Changed
+### Added
 
-- **Icon view thumbnails are now fetched for what is on screen, in order (#291):** Until now the app fetched **the first 200 thumbnails of a folder in one go when it opened**. In a large folder **which 200 that was had nothing to do with the sort order**, so you could be looking at the top of the list with not a single picture in it, and anything past the 200th stayed a generic icon forever (a folder of 1,271 PNGs showed nothing but generic icons). The app now fetches **only the rows in view plus two rows on either side**, and re-evaluates on every scroll, resize, re-sort and pane-width change. Requests that scroll out of view are cancelled and requests are issued in display order, so **the pictures arrive where you are looking first**. The per-folder cap is gone. The requested size now follows the display size using the tiers Windows keeps natively (96px / 256px), which also makes fetching lighter at small sizes.
+- **Phones and cameras now appear in the list and the tree (#297):** Connecting a Pixel or an iPhone showed nothing in the app, even though Explorer listed the device. Unlike a USB stick, these connect **without a drive letter**, so the app's drive enumeration could never see them. The app now reads the place where Windows keeps such devices, and they appear **both in the "PC" listing and in the folder tree**. You can go inside and browse folders such as your photos, and **file sizes and modified dates are listed too** (and can be sorted on). **Double-clicking a file opens it** — Windows pulls it off the device first, then hands it to the associated app. USB sticks with a drive letter behave exactly as before.
 
-- **Opening a large folder in icon view is much faster (#291):** Icon view used to **build a card for every item in the folder before drawing anything**. In a folder of 1,271 PNGs that meant **12–21 seconds (measured) between the list being swapped in and the screen settling down**, during which neither scrolling nor clicking responded. It now virtualizes like the details view: **only the cards for the rows in view are created**, and cards that scroll away are recycled. However many thousand items a folder holds, only a screenful of cards ever exists. The same folder now settles in **1.5–3 seconds**, with the first thumbnail appearing in about 0.1 seconds. Rubber-band selection, keyboard navigation, inline rename and drag & drop behave as before.
-
-- **Opening folders with many files is far lighter on the UI (#293):** **Everything that scaled with the number of items has moved off the screen thread.** Sorting, carrying over previously loaded artwork, the cut-item styling, the "new" highlight and the size-bar baseline all used to run while the window was frozen, and together took close to a second in a folder of 30,000. The screen thread's only job now is to swap in a finished list, so **the pause barely grows with the item count** (measured: 4–8 ms of screen-thread work in a folder of 30,000 items, the same as for 1,271). Sort comparisons are cheaper too (four strings allocated per comparison, now none), and thumbnails are fetched **at a resolution that matches how large they are drawn** instead of always at maximum, which stops the memory spikes.
+  Because these devices hold no real files on disk, they are **excluded from indexing, in-file search and the terminal**. Copying and deleting files on them is not supported yet.
 
 ### Fixed
 
-- **Fixed a delay on every folder change after visiting the Challenges page (#296):** Opening Settings → Challenges once left the app **pausing for about a second on every subsequent folder change** (547–797 ms measured). It happened regardless of how many items the folder held, even with only a handful. The progress tracking that runs on each folder change was **rebuilding several hundred challenge cards that were no longer on screen**, because the "is the Challenges page showing?" check never considered whether the settings window was still open. **The cards are no longer rebuilt just to bump a progress number.** A rebuild now happens only the moment a challenge is newly earned, where the card still changes together with the notification. Progress numbers catch up the next time you enter the Challenges page. The impact was larger still for anyone using a screen reader or similar assistive tool, since the accessibility tree was rebuilt along with the cards.
-
-- **Fixed the app freezing for seconds when opening a folder while indexing (#293):** Opening any folder while an index was being built could **lock the app up for two to three seconds regardless of how many items the folder held** (2,828 ms measured). The check for "is this folder indexed?" that runs when a folder opens was **queued behind the index's own write to disk**. On a 100,000-item index that write takes seconds, and opening a folder had to wait for it. The lookup queue is now separate from the write queue, and the lookup itself moved off the UI thread, so **folders open without stalling even while an index is being built**.
-
-- **Fixed thumbnails not appearing for OneDrive Files On-Demand files that were already downloaded (#291):** Files with a local copy were excluded from thumbnails wholesale. Only online-only files, which would trigger a download, are excluded now; downloaded ones show thumbnails just as Explorer does.
-
-- **Fixed the selected option's label being unreadable on the Challenges page (#292):** The previous fix corrected the colour machinery, but **the three options on the Challenges page never went through it**. Their labels were passed differently from every other screen, so the text WPF builds internally used the app-wide text colour instead of the selected-option colour. On themes with a dark selected fill (such as Graphite) it stayed black on black. The markup now matches the other screens, and **a test was added that catches this mistake mechanically** (it checks all 76 buttons of this kind; these three were the only offenders).
-
-- **Fixed the label of a selected option being unreadable in some themes (#292):** In Graphite, a **selected option (radio button) such as "Don't upload" on Settings → Challenges was drawn black on black**. A selected option carries separate keys for its fill and its text; Graphite darkened the fill but never defined the text colour, so the text **inherited the dark colour used for a selected row**. The same gap existed on two more surfaces — a selected option under the mouse, and a checkbox under the mouse — and among the bundled themes 4 and 16 of them respectively were hard to read there. The safeguard added in v1.14.3 that **lifts text brightness when it sinks into its background, which until now only covered buttons and the settings menu**, now covers these three surfaces as well. Graphite's own colours were corrected, and AI theme generation and the quality audit now check the selected-option surface too.
+- **Nav Pane Layout could become impossible to close on a short display:** The window reopens at the size you last left it. If you sized it on a **wide display, it simply does not fit one with less vertical room**. Because it opens centred, the overflow is split between top and bottom, so **not only Apply and Cancel at the bottom but the title bar itself ended up off-screen — no way to commit the change, and no way to close the window**. It is now **shrunk to fit the work area (the screen minus the taskbar) of the display it opens on** before it is shown. The remembered size is left untouched, so it opens at your usual size again on a larger display. Its position is pulled back inside the screen as well.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.14.11] - 2026-09-06 : 大きなフォルダを開くのを速くし、フォルダ移動の引っかかりと読めないボタンを直した
+## 最新の変更履歴 — [1.14.12] - 2026-09-08 : スマートフォンやカメラの中を開けるようにし、狭い画面で閉じられなくなるウィンドウを直した
 
-### Changed
+### Added
 
-- **アイコン表示のサムネイルを、画面に見えている範囲から順に取得するようにした (#291):** これまでは**フォルダを開いた時点で先頭から 200 件まで**を一括で取得していました。件数の多いフォルダでは、**その 200 件が並び順と無関係に決まる**ため、先頭を見ているのに 1 枚も出ず、200 件を超えた分は永久に汎用のアイコンのままでした（PNG 1271 件のフォルダで全カードが汎用アイコンになった実例）。**いま見えている行とその前後 2 行**だけを取得し、スクロール・拡縮・並べ替え・ペイン幅の変更のたびに取り直す形へ変えています。画面外へ流れた分の取得は取り消し、要求は表示順で出すので、**見ている場所に絵が先に来ます**。件数の上限は撤廃しました。頼む大きさも表示サイズに合わせて Windows が持つ段（96px / 256px）から選ぶようにし、小さい表示では取得も軽くなります。
+- **スマートフォンやカメラをつないだときに、一覧とツリーへ出るようにした (#297):** Pixel や iPhone をつないでも、エクスプローラーには出るのに当アプリには出てきませんでした。これらは USB メモリと違って**ドライブレター（D: など）を持たない**繋がり方をしており、アプリがドライブを数える仕組みからは見えなかったためです。Windows がこうした機器を管理している場所を直接見に行くようにして、**「PC」の一覧とフォルダツリーの両方に並ぶ**ようにしました。中に入って写真などのフォルダをたどることもでき、**ファイルの大きさと更新日時も一覧に出ます**（並べ替えもできます）。**ファイルはダブルクリックで開けます**（Windows がいったん取り出してから、関連付けのアプリへ渡します）。ドライブレターを持つ USB メモリはこれまでどおりです。
 
-- **大きなフォルダをアイコン表示で開くのが速くなった (#291):** アイコン表示は、**フォルダ内のすべてのカードを一度に作ってから**描いていました。PNG 1271 件のフォルダでは、一覧が差し替わってから画面が落ち着くまで**実測で 12〜21 秒**かかり、その間はスクロールもクリックも効きません。一覧ビューと同じく**見えている行のカードだけを作る**仮想化に変え、画面外へ流れたカードは使い回すようにしました。件数が何千件でも、作るカードは画面に収まる枚数だけです。同じフォルダで **1.5〜3 秒**まで縮み、最初のサムネイルは約 0.1 秒で出るようになりました。矩形選択・キー操作・名前変更・ドラッグ＆ドロップの動きは変わりません。
-
-- **ファイル数の多いフォルダを開く負担を大きく減らした (#293):** フォルダを開くとき、**中身の件数に比例する処理をすべて画面の裏側へ移しました**。並べ替え・前回の絵の引き継ぎ・切り取り中の表示・新着の判定・サイズバーの基準値は、いずれもこれまで画面を止めて行っていたもので、3 万件のフォルダでは合計 1 秒近くかかっていました。いまは画面側の仕事が「出来上がった一覧に差し替える」ことだけになり、**件数が増えても画面が止まる時間はほとんど変わりません**（実測: 3 万件のフォルダで画面側の処理は 4〜8 ミリ秒。1,271 件のときと同じ水準です）。並べ替えの比較も軽くし（1 回の比較あたり 4 つ作っていた文字列をゼロに）、サムネイルは**表示される大きさに合った解像度**で取るようにしたので（これまでは小さく表示していても常に最大解像度で取得）、メモリの山を作らなくなりました。
+  なお、これらの機器はファイルとしての実体を持たないため、**インデックス作成・ファイル内容検索・ターミナルの対象にはなりません**。ファイルのコピーや削除も、いまのところ対応していません。
 
 ### Fixed
 
-- **チャレンジの画面を開いたあと、フォルダ移動のたびに待たされる問題を修正 (#296):** 設定画面のチャレンジを一度開くと、**その後フォルダを移動するたびに約 1 秒待たされる**状態になっていました（実測 547〜797ms）。フォルダの中身の数とは関係なく、数個しか入っていないフォルダでも起きます。原因は、フォルダ移動のたびに走るチャレンジの進行記録が、**設定画面を閉じたあとも見えていないカードを数百枚作り直していた**ことです。「いまチャレンジの画面を見ているか」の判定に、設定ウィンドウが出ているかどうかが含まれていませんでした。**進捗の数字を増やすためだけにカードを作り直すのをやめました。** 作り直すのは新しくチャレンジを達成した瞬間だけで、そのときはこれまでどおりお知らせと同時にカードが変わります。数字の更新は、チャレンジのページに入り直したときにまとめて反映されます。なお読み上げソフトなどの支援技術を使っていると、この作り直しに合わせて画面構造の情報も作り直されるため、影響がさらに大きくなっていました。
-
-- **インデックス作成中にフォルダを開くと数秒固まることがあった問題を修正 (#293):** インデックスを作っている最中にフォルダを開くと、**フォルダの件数に関係なく 2〜3 秒間、操作を一切受け付けなくなる**ことがありました（実測 2828ms）。フォルダを開くときに「このフォルダはインデックス済みか」を確かめる処理が、**インデックスの保存（ディスクへの書き出し）と同じ順番待ちの列に並んでいた**のが原因です。10 万件規模のインデックスでは書き出しに数秒かかるため、その間フォルダを開く操作ごと待たされていました。問い合わせと書き出しの列を分け、さらに問い合わせ自体を裏側へ移したので、**インデックスを作りながらでもフォルダの表示は止まりません**。
-
-- **OneDrive の「ファイル オンデマンド」でダウンロード済みのファイルにサムネイルが出なかった問題を修正 (#291):** 端末に実体があるファイルまで、一律にサムネイル対象外にしていました。ダウンロードを誘発する「オンラインのみ」のファイルだけを対象外にし、ダウンロード済みのものはエクスプローラーと同じように表示します。
-
-- **設定画面のチャレンジで、選択中の選択肢の文字が読めなかった問題を修正 (#292):** 前回の修正で色の仕組みは直しましたが、**チャレンジ画面の 3 つの選択肢だけがその仕組みを通っていませんでした**。ラベルの渡し方が他の画面と違い、内部で作られる文字が「選択中の文字色」ではなくアプリ共通の文字色を使っていたためです。選択中の背景が暗いテーマ（Graphite など）では、黒地に黒で読めないままでした。書き方を他の画面と揃えて修正し、**同じ間違いを機械的に見つけるテストを追加**しました（同種のボタン 76 か所を検査し、該当したのはこの 3 か所だけでした）。
-
-- **一部のテーマで、設定画面の選択中の選択肢の文字が読めなかった問題を修正 (#292):** Graphite で、設定画面 → チャレンジの「アップロードしない」のように**選択中の選択肢（ラジオボタン）が黒地に黒**になり、文字が読めませんでした。選択中の選択肢は背景色と文字色を別々のキーで持っていて、Graphite は背景だけを暗い色へ変えたのに文字色を定義しておらず、**選択行の文字色（暗い色）をそのまま継承**していたのが原因です。同じ形の穴は、選択中の選択肢にマウスを乗せたときの面と、チェックボックスにマウスを乗せたときの面にもありました（同梱テーマのうち前者は 4 テーマ、後者は 16 テーマで読みづらい状態でした）。v1.14.3 から**ボタンと設定画面の左メニューにだけ効いていた「文字が背景に沈んだら明度を自動で持ち上げる」仕組み**を、この 3 つの面へ広げています。Graphite 自体の配色も直し、AI テーマ生成と品質監査も選択中の選択肢の面を検査するようにしました。
+- **画面の縦が狭いディスプレイで、「ナビペインの配置」を閉じられなくなることがあった問題を修正:** この画面は前に開いたときの大きさを覚えて開きます。その大きさを**広いディスプレイで決めていると、縦の狭いディスプレイには収まりません**。中央に開くため、はみ出した分は上下へ等分され、**下端の「適用」「キャンセル」だけでなくタイトルバーまで画面の外に出て、決めることも閉じることもできない**状態になっていました。開くときに、**そのディスプレイの作業領域（タスクバーを除いた範囲）に収まる大きさまで縮めてから**見せるようにしています。覚えている大きさ自体は書き換えないので、広いディスプレイへ戻せばこれまでどおりの大きさで開きます。あわせて、ウィンドウの位置も画面の中へ引き戻すようにしました。
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
