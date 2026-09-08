@@ -62,8 +62,8 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.14.12.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.14.12_delta_from_1.14.11.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.14.13.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.14.13_delta_from_1.14.12.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -277,33 +277,45 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.14.12] - 2026-09-08 : Phones and cameras can now be browsed; a window that could not be closed on a short display is fixed
+## Latest Changes — [1.14.13] - 2026-09-08 : The selected row now carries an outline, and connections can be handled straight from the address bar
 
 ### Added
 
-- **Phones and cameras now appear in the list and the tree (#297):** Connecting a Pixel or an iPhone showed nothing in the app, even though Explorer listed the device. Unlike a USB stick, these connect **without a drive letter**, so the app's drive enumeration could never see them. The app now reads the place where Windows keeps such devices, and they appear **both in the "PC" listing and in the folder tree**. You can go inside and browse folders such as your photos, and **file sizes and modified dates are listed too** (and can be sorted on). **Double-clicking a file opens it** — Windows pulls it off the device first, then hands it to the associated app. USB sticks with a drive letter behave exactly as before.
+- **The selected row is now marked with an outline as well (#298):** People found it hard to tell the row under the pointer from the row picked with the keyboard. Both were shown **by fill alone**, and in some themes the two are barely different in strength (measuring the bundled themes, one shows the selection at 1.35× the background and the hovered row at 1.13× — and since your eyes are already on the row under the pointer, that gap makes the selection look like the weaker of the two). The selected row now also gets an accent-coloured outline, so there is **a cue beyond the fill**, much like Explorer. Toggle it under **Settings → Display → Outline on the selected row** (on by default).
 
-  Because these devices hold no real files on disk, they are **excluded from indexing, in-file search and the terminal**. Copying and deleting files on them is not supported yet.
+- **A connection typed into the address bar can be saved right there (#300):** Type something like `sftp://user@host/path`, and **if that connection is not registered yet, "Add connection" opens with the details already filled in**. All that is left is the password. Until now nothing happened at all, and there was no hint that connections are registered somewhere else (the "Connections" view in the nav pane).
+
+- **The address bar suggests connections you have already saved (#300):** Type three characters or more and any saved connection whose **name, host or address** matches appears below. Press `↓` then `Enter`, or click, to open it.
 
 ### Fixed
 
-- **Nav Pane Layout could become impossible to close on a short display:** The window reopens at the size you last left it. If you sized it on a **wide display, it simply does not fit one with less vertical room**. Because it opens centred, the overflow is split between top and bottom, so **not only Apply and Cancel at the bottom but the title bar itself ended up off-screen — no way to commit the change, and no way to close the window**. It is now **shrunk to fit the work area (the screen minus the taskbar) of the display it opens on** before it is shown. The remembered size is left untouched, so it opens at your usual size again on a larger display. Its position is pulled back inside the screen as well.
+- **Nothing happened when a remote address could not be read (#300):** If the form was slightly off — say `sftp://user@host:22:/path`, with one colon too many after the port — **the input was discarded without a word**. Remote addresses are passed through without checking that they exist, so an unreadable one still counted as "we got there", and an empty listing was all you saw. The app now tells you **which part it could not read** (the port, a missing host, or a password that cannot go in an address).
+
+- **The sort button on the toolbar raised an error instead of opening its menu (#299):** Pressing the sort button showed an error dialog rather than the menu. That menu holds two separator lines, and **only when opened from the button** did the app try to give those separators the look meant for menu entries, which fails. Opened from the right-click menu the separators sit one level deeper, so it never happened there — **the button was the only way to hit it**. Separators are now left alone.
+
+- **An error could appear when the window was resized with a popup open (#299):** If the window changed size while some popup was on screen, an error dialog could appear. It comes from inside the Windows drawing machinery, **recovers by itself on the next redraw, and touches neither your files nor your settings**. Since the dialog only interrupts what you were doing, this one specific case is now recorded in the log and passed over silently.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.14.12] - 2026-09-08 : スマートフォンやカメラの中を開けるようにし、狭い画面で閉じられなくなるウィンドウを直した
+## 最新の変更履歴 — [1.14.13] - 2026-09-08 : 選択中の行を外枠でも示し、アドレスバーから接続先を扱えるようにした
 
 ### Added
 
-- **スマートフォンやカメラをつないだときに、一覧とツリーへ出るようにした (#297):** Pixel や iPhone をつないでも、エクスプローラーには出るのに当アプリには出てきませんでした。これらは USB メモリと違って**ドライブレター（D: など）を持たない**繋がり方をしており、アプリがドライブを数える仕組みからは見えなかったためです。Windows がこうした機器を管理している場所を直接見に行くようにして、**「PC」の一覧とフォルダツリーの両方に並ぶ**ようにしました。中に入って写真などのフォルダをたどることもでき、**ファイルの大きさと更新日時も一覧に出ます**（並べ替えもできます）。**ファイルはダブルクリックで開けます**（Windows がいったん取り出してから、関連付けのアプリへ渡します）。ドライブレターを持つ USB メモリはこれまでどおりです。
+- **一覧で選択中の行を、外枠でも示すようにした (#298):** マウスを乗せた行と、キーボードで選んだ行の見分けが付きにくいという声がありました。どちらも**塗りだけ**で示していて、テーマによっては濃さがほとんど変わらないためです（同梱テーマを測ると、背景との差は選択が 1.35 倍・カーソルの下の行が 1.13 倍というものもありました。カーソルのある行には必ず目が行くぶん、この差では選択のほうが弱く見えます）。選択中の行にアクセント色の外枠を足し、**塗り以外の手がかり**でも分かるようにしています。標準のエクスプローラーに近い見え方です。**設定 → 表示 → 選択中の行の外枠**で切り替えられます（既定は表示）。
 
-  なお、これらの機器はファイルとしての実体を持たないため、**インデックス作成・ファイル内容検索・ターミナルの対象にはなりません**。ファイルのコピーや削除も、いまのところ対応していません。
+- **アドレスバーに打ち込んだ接続先を、その場で登録できるようにした (#300):** `sftp://user@host/path` のように打ち込んだとき、**その接続先がまだ登録されていなければ「接続先の追加」がその内容を埋めた状態で開きます**。あとはパスワードを入れるだけです。これまでは打ち込んでも何も起きず、接続先の登録が別の場所（ナビペインの「接続先」）にあることに気づけないままでした。
+
+- **アドレスバーで、登録済みの接続先を候補に出すようにした (#300):** アドレスバーに 3 文字以上打つと、登録済みの接続先のうち**名前・ホスト名・アドレスのどれかに当てはまるもの**が下に並びます。`↓` で降りて `Enter`、またはクリックでそのまま開けます。
 
 ### Fixed
 
-- **画面の縦が狭いディスプレイで、「ナビペインの配置」を閉じられなくなることがあった問題を修正:** この画面は前に開いたときの大きさを覚えて開きます。その大きさを**広いディスプレイで決めていると、縦の狭いディスプレイには収まりません**。中央に開くため、はみ出した分は上下へ等分され、**下端の「適用」「キャンセル」だけでなくタイトルバーまで画面の外に出て、決めることも閉じることもできない**状態になっていました。開くときに、**そのディスプレイの作業領域（タスクバーを除いた範囲）に収まる大きさまで縮めてから**見せるようにしています。覚えている大きさ自体は書き換えないので、広いディスプレイへ戻せばこれまでどおりの大きさで開きます。あわせて、ウィンドウの位置も画面の中へ引き戻すようにしました。
+- **リモートのアドレスが読めないとき、何も起きなかった問題を修正 (#300):** `sftp://user@host:22:/path` のように書式がわずかにずれていると（この例はポートの後ろにコロンが 1 つ余分）、**何の反応もないまま入力が捨てられていました**。リモートのアドレスは実体を確かめずに通す作りのため、読めなくても「移動できたこと」になり、空の一覧が出て終わっていたのが原因です。**どこが読めなかったか**（ポートの書き方・ホスト名の不足・アドレスに書けないパスワード）をその場でお知らせします。
+
+- **ツールバーの並べ替えボタンを押すとエラーが出ていた問題を修正 (#299):** ツールバーの並べ替えボタンを押すと、メニューが出る代わりにエラーの画面が出ていました。このメニューには区切り線が 2 本入っていますが、**ボタンから出すときだけ、その区切り線に項目用の見た目を当てにいって失敗していた**のが原因です。右クリックから同じメニューを出すときは区切り線が一段内側にあるため起きず、**このボタンからだけ**起きていました。区切り線には見た目を当てないようにして直しています。
+
+- **ポップアップを開いたままウィンドウの大きさを変えるとエラーが出ることがあった問題を修正 (#299):** 何かのポップアップが開いている最中にウィンドウの大きさが変わると、エラーの画面が出ることがありました。これは Windows の画面描画の仕組みの中で起きるもので、**次の描画で自然に元へ戻り、ファイルにも設定にも影響しません**。それでもエラーの画面が出ると作業が中断してしまうため、この 1 種類に限ってはお知らせを出さず、記録だけ残して続けるようにしました。
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
