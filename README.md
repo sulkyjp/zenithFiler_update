@@ -62,8 +62,8 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.14.13.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.14.13_delta_from_1.14.12.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.14.14.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.14.14_delta_from_1.14.13.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -277,45 +277,53 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.14.13] - 2026-09-08 : The selected row now carries an outline, and connections can be handled straight from the address bar
+## Latest Changes — [1.14.14] - 2026-09-09 : Terminal settings work again, with tab duplication and a clearer selected row
 
 ### Added
 
-- **The selected row is now marked with an outline as well (#298):** People found it hard to tell the row under the pointer from the row picked with the keyboard. Both were shown **by fill alone**, and in some themes the two are barely different in strength (measuring the bundled themes, one shows the selection at 1.35× the background and the hovered row at 1.13× — and since your eyes are already on the row under the pointer, that gap makes the selection look like the weaker of the two). The selected row now also gets an accent-coloured outline, so there is **a cue beyond the fill**, much like Explorer. Toggle it under **Settings → Display → Outline on the selected row** (on by default).
+- **"Duplicate tab" and "Duplicate to other pane" in the tab right-click menu (#302):** Right-click a tab to **open the same folder a second time** — either in the same pane or in the other one. It acts on **the tab you right-clicked**, so you can duplicate a tab that is not currently selected. Duplicating into the other pane switches to dual-pane when only one is shown.
 
-- **A connection typed into the address bar can be saved right there (#300):** Type something like `sftp://user@host/path`, and **if that connection is not registered yet, "Add connection" opens with the details already filled in**. All that is left is the password. Until now nothing happened at all, and there was no hint that connections are registered somewhere else (the "Connections" view in the nav pane).
+- **A shortcut for opening the same folder in the other pane (#301):** `Ctrl + N` **opens the folder you are in as a new tab in the other pane** — the way you would open a second Explorer window to branch off your work. If only one pane is shown, the app switches to two. `Ctrl + Shift + D`, which duplicates into the same pane, is unchanged. The key can be reassigned under **Settings → Keyboard**.
 
-- **The address bar suggests connections you have already saved (#300):** Type three characters or more and any saved connection whose **name, host or address** matches appears below. Press `↓` then `Enter`, or click, to open it.
+### Changed
+
+- **The hovered row is outlined as well (#298):** When "outline on the selected row" is on, **the row under the pointer now carries an outline too**. It is drawn fainter than the one on the selected row, so which row is actually selected stays just as clear. With the outline turned off, neither row is outlined. This applies to both the list and the icon (thumbnail) view.
 
 ### Fixed
 
-- **Nothing happened when a remote address could not be read (#300):** If the form was slightly off — say `sftp://user@host:22:/path`, with one colon too many after the port — **the input was discarded without a word**. Remote addresses are passed through without checking that they exist, so an unreadable one still counted as "we got there", and an empty listing was all you saw. The app now tells you **which part it could not read** (the port, a missing host, or a password that cannot go in an address).
+- **Changing the terminal font size did nothing (#304):** In the Pane A/B terminal, picking a different font size **changed nothing, and the old size came back after a restart**. Choosing an item from the drop-down closed the settings panel at that very moment, so **the old value was saved before the new one was committed**. The font, scrollback and cd-follow drop-downs in the same panel behaved the same way. The panel now stays open while a drop-down is in use.
 
-- **The sort button on the toolbar raised an error instead of opening its menu (#299):** Pressing the sort button showed an error dialog rather than the menu. That menu holds two separator lines, and **only when opened from the button** did the app try to give those separators the look meant for menu entries, which fails. Opened from the right-click menu the separators sit one level deeper, so it never happened there — **the button was the only way to hit it**. Separators are now left alone.
+- **Tabs on Box were reset on every restart (#303):** A tab left open on a Box Drive or OneDrive folder **turned into the desktop every time the app restarted**. Those folders **do not exist at all** until their background program mounts them, so an app that starts first sees a folder that is gone and moves the tab somewhere safe. Worse, **that new location was then saved on exit**, so once it happened the original folder never came back, even with Box running normally. The tab now **stays where it was and waits**, filling in by itself once the location becomes available (up to two minutes). While waiting, the list says the location is not available yet.
 
-- **An error could appear when the window was resized with a popup open (#299):** If the window changed size while some popup was on screen, an error dialog could appear. It comes from inside the Windows drawing machinery, **recovers by itself on the next redraw, and touches neither your files nor your settings**. Since the dialog only interrupts what you were doing, this one specific case is now recorded in the log and passed over silently.
+- **The active choice under "Recent activity marker" was never shown as selected (#287):** Whichever range was in effect — off / today / 24 hours / 3 days / 7 days — **none of the choices appeared selected**. Switching worked, so the setting could be changed but never read back. The value and the comparison used different types when the setting was reflected into the display.
+
+- **The outline on the selected row never reached the file list (#298):** The "outline on the selected row" added in v1.14.13 **did not appear in the file list or the icon view**. Toggling the setting, or restarting, changed nothing on screen. The outline had been added to the shared definition that governs how lists look, but **the file list does not use that shared definition — it carries its own**, so the outline never reached it. Both the file list and the icon view now draw it. Note that a selected row in the pane you are **not** working in is left without an outline, so it stays clear which pane you are in.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.14.13] - 2026-09-08 : 選択中の行を外枠でも示し、アドレスバーから接続先を扱えるようにした
+## 最新の変更履歴 — [1.14.14] - 2026-09-09 : ターミナルの設定を直し、タブの複製と選択中の行の見え方を整えた
 
 ### Added
 
-- **一覧で選択中の行を、外枠でも示すようにした (#298):** マウスを乗せた行と、キーボードで選んだ行の見分けが付きにくいという声がありました。どちらも**塗りだけ**で示していて、テーマによっては濃さがほとんど変わらないためです（同梱テーマを測ると、背景との差は選択が 1.35 倍・カーソルの下の行が 1.13 倍というものもありました。カーソルのある行には必ず目が行くぶん、この差では選択のほうが弱く見えます）。選択中の行にアクセント色の外枠を足し、**塗り以外の手がかり**でも分かるようにしています。標準のエクスプローラーに近い見え方です。**設定 → 表示 → 選択中の行の外枠**で切り替えられます（既定は表示）。
+- **タブの右クリックに「タブを複製」「反対ペインに複製」を追加した (#302):** タブを右クリックすると、**そのタブと同じフォルダーをもう 1 枚開けます**。同じペインに開くか、反対側のペインに開くかを選べます。**右クリックしたタブが対象**なので、いま選んでいないタブからも複製できます。反対ペインへの複製は、1画面表示のときは2画面に切り替わります。
 
-- **アドレスバーに打ち込んだ接続先を、その場で登録できるようにした (#300):** `sftp://user@host/path` のように打ち込んだとき、**その接続先がまだ登録されていなければ「接続先の追加」がその内容を埋めた状態で開きます**。あとはパスワードを入れるだけです。これまでは打ち込んでも何も起きず、接続先の登録が別の場所（ナビペインの「接続先」）にあることに気づけないままでした。
+- **同じフォルダーを反対のペインに開くショートカットを追加した (#301):** `Ctrl + N` で、**いま開いているフォルダーと同じ場所を、もう一方のペインに新しいタブで開けます**。エクスプローラーで新しいウィンドウを開いて作業を枝分かれさせるのと同じ使い方ができます。1画面表示のときは2画面に切り替わります。同じペインに複製する `Ctrl + Shift + D` はこれまでどおりです。キーの割り当ては **設定 → キーボード** から変更できます。
 
-- **アドレスバーで、登録済みの接続先を候補に出すようにした (#300):** アドレスバーに 3 文字以上打つと、登録済みの接続先のうち**名前・ホスト名・アドレスのどれかに当てはまるもの**が下に並びます。`↓` で降りて `Enter`、またはクリックでそのまま開けます。
+### Changed
+
+- **マウスを乗せた行にも外枠を出すようにした (#298):** 「選択中の行の外枠」を表示にしているとき、**マウスを乗せた行にも枠が出ます**。選択中の行の枠より薄く描くので、どちらが選ばれているのかは変わらず分かります。外枠を非表示にしているときは、どちらにも枠は出ません。一覧とアイコン（サムネイル）表示の両方が対象です。
 
 ### Fixed
 
-- **リモートのアドレスが読めないとき、何も起きなかった問題を修正 (#300):** `sftp://user@host:22:/path` のように書式がわずかにずれていると（この例はポートの後ろにコロンが 1 つ余分）、**何の反応もないまま入力が捨てられていました**。リモートのアドレスは実体を確かめずに通す作りのため、読めなくても「移動できたこと」になり、空の一覧が出て終わっていたのが原因です。**どこが読めなかったか**（ポートの書き方・ホスト名の不足・アドレスに書けないパスワード）をその場でお知らせします。
+- **ターミナルのフォントサイズを変えても反映されなかった問題を修正 (#304):** A・Bペインのターミナルで、設定からフォントサイズを選び直しても**大きさが変わらず、再起動しても元のまま**でした。一覧から選んだその瞬間に設定画面が閉じてしまい、**選んだ値が確定する前に、変更前の値で保存されていた**のが原因です。同じ設定画面にあるフォント・スクロールバック行数・cd の追従先なども同じ状態でした。一覧を開いている間は設定画面が閉じないようにして直しています。
 
-- **ツールバーの並べ替えボタンを押すとエラーが出ていた問題を修正 (#299):** ツールバーの並べ替えボタンを押すと、メニューが出る代わりにエラーの画面が出ていました。このメニューには区切り線が 2 本入っていますが、**ボタンから出すときだけ、その区切り線に項目用の見た目を当てにいって失敗していた**のが原因です。右クリックから同じメニューを出すときは区切り線が一段内側にあるため起きず、**このボタンからだけ**起きていました。区切り線には見た目を当てないようにして直しています。
+- **再起動すると Box のタブが初期化されていた問題を修正 (#303):** Box Drive や OneDrive のフォルダーを開いていたタブが、**再起動のたびにデスクトップへ変わってしまう**問題を直しました。これらは常駐プログラムが用意するまで**フォルダー自体が存在しない**ため、アプリの起動が先だと「無くなったフォルダー」と判断され、足元へ移されていました。しかも**移された先が終了時に保存される**ので、一度これが起きると、その後 Box が正常に動いていても二度と戻りませんでした。今は**タブをその場所のまま開いて待ち**、用意ができ次第ひとりでに中身が出ます（最大 2 分）。待っている間は「この場所はまだ利用できません」と一覧に出ます。
 
-- **ポップアップを開いたままウィンドウの大きさを変えるとエラーが出ることがあった問題を修正 (#299):** 何かのポップアップが開いている最中にウィンドウの大きさが変わると、エラーの画面が出ることがありました。これは Windows の画面描画の仕組みの中で起きるもので、**次の描画で自然に元へ戻り、ファイルにも設定にも影響しません**。それでもエラーの画面が出ると作業が中断してしまうため、この 1 種類に限ってはお知らせを出さず、記録だけ残して続けるようにしました。
+- **設定の「新着の目印」で、今選んでいる範囲に印が付かなかった問題を修正 (#287):** 「強調しない／今日／24時間／3日／7日」のうち**どれを選んでいても、選択中の印がどこにも付いていませんでした**。切り替え自体は効いていたため、設定し直すたびに「今どれになっているのか」が分からない状態でした。設定の値を画面に反映するとき、値の種類が食い違っていたのが原因です。
+
+- **選択中の行の外枠が、肝心のファイル一覧に出ていなかった問題を修正 (#298):** v1.14.13 で追加した「選択中の行の外枠」が、**ファイル一覧とアイコンビューでは出ていませんでした**。設定を切り替えても、再起動しても、見た目が変わらない状態です。外枠は一覧の見た目を決める共通の定義に足していましたが、**ファイル一覧はその共通の定義を使わず、独自の見た目を持っている**ため、そこには届いていませんでした。一覧とアイコンビューの両方で外枠が出るようにしています。なお、**操作していない側のペインには枠を出しません**（どちらのペインを操作しているかの手がかりを残すためです）。
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
