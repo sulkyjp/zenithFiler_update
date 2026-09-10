@@ -62,8 +62,8 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.14.14.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.14.14_delta_from_1.14.13.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.14.15.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.14.15_delta_from_1.14.14.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -277,53 +277,37 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.14.14] - 2026-09-09 : Terminal settings work again, with tab duplication and a clearer selected row
+## Latest Changes — [1.14.15] - 2026-09-10 : Toolbar overflow moves into a "≫" menu, and right-click menus show their shortcuts
 
 ### Added
 
-- **"Duplicate tab" and "Duplicate to other pane" in the tab right-click menu (#302):** Right-click a tab to **open the same folder a second time** — either in the same pane or in the other one. It acts on **the tab you right-clicked**, so you can duplicate a tab that is not currently selected. Duplicating into the other pane switches to dual-pane when only one is shown.
+- **Buttons that no longer fit on the toolbar are now reachable from a "≫" button (#307):** When a pane is narrow — a dual-pane layout on a 1920-wide screen, for example — **buttons disappeared from the right end and the search box was squeezed away**. No arrow or scrollbar appeared, so the hidden commands were simply out of reach unless you removed buttons or dragged the splitter. Everything that does not fit is now collected under a **"≫" button** that opens them as a list, complete with **icon, name and assigned key**, ready to run. The check runs **per pane**, so if only one side is narrow the "≫" appears only there. Widen the splitter and it disappears again. **Buttons you hid under Settings → Toolbar stay hidden**, including inside the "≫" list.
 
-- **A shortcut for opening the same folder in the other pane (#301):** `Ctrl + N` **opens the folder you are in as a new tab in the other pane** — the way you would open a second Explorer window to branch off your work. If only one pane is shown, the app switches to two. `Ctrl + Shift + D`, which duplicates into the same pane, is unchanged. The key can be reassigned under **Settings → Keyboard**.
-
-### Changed
-
-- **The hovered row is outlined as well (#298):** When "outline on the selected row" is on, **the row under the pointer now carries an outline too**. It is drawn fainter than the one on the selected row, so which row is actually selected stays just as clear. With the outline turned off, neither row is outlined. This applies to both the list and the icon (thumbnail) view.
+- **Right-click menus now show their keyboard shortcuts (#306):** Right-clicking a file, the empty area of a list, or a tab now shows **the key assigned to each command on the right-hand side of the menu**. Until now only "Quick Jump" showed one; copy, paste and rename all had keys but displayed nothing. **Change a key under Settings → Keyboard and the menu follows suit** — the same goes for switching languages. Commands **with no key assigned show nothing**, which is the case for entries like "Show in pane A" in the navigation pane.
 
 ### Fixed
 
-- **Changing the terminal font size did nothing (#304):** In the Pane A/B terminal, picking a different font size **changed nothing, and the old size came back after a restart**. Choosing an item from the drop-down closed the settings panel at that very moment, so **the old value was saved before the new one was committed**. The font, scrollback and cd-follow drop-downs in the same panel behaved the same way. The panel now stays open while a drop-down is in use.
+- **Fixed tooltips that would not switch when moving the mouse right to left (#305):** Hovering the icons above a pane shows a tooltip, but **moving right to left left the tooltip stuck for about four icons**. Tooltips are positioned relative to the mouse, so near the edge of the screen they flip to the other side and **the cursor ends up inside the tooltip itself**, which stops the next icon from registering a hover. Tooltips are now pinned directly above their button, so they switch from either direction. **They also appear noticeably sooner** — the first one shows shortly after you hover, and moving to a neighbouring icon switches without any wait. This covers **every button on that row**, including the search mode switch (Search / Grep / Index / Filter), the filter buttons, and the ★ / copy-path buttons.
 
-- **Tabs on Box were reset on every restart (#303):** A tab left open on a Box Drive or OneDrive folder **turned into the desktop every time the app restarted**. Those folders **do not exist at all** until their background program mounts them, so an app that starts first sees a folder that is gone and moves the tab somewhere safe. Worse, **that new location was then saved on exit**, so once it happened the original folder never came back, even with Box running normally. The tab now **stays where it was and waits**, filling in by itself once the location becomes available (up to two minutes). While waiting, the list says the location is not available yet.
-
-- **The active choice under "Recent activity marker" was never shown as selected (#287):** Whichever range was in effect — off / today / 24 hours / 3 days / 7 days — **none of the choices appeared selected**. Switching worked, so the setting could be changed but never read back. The value and the comparison used different types when the setting was reflected into the display.
-
-- **The outline on the selected row never reached the file list (#298):** The "outline on the selected row" added in v1.14.13 **did not appear in the file list or the icon view**. Toggling the setting, or restarting, changed nothing on screen. The outline had been added to the shared definition that governs how lists look, but **the file list does not use that shared definition — it carries its own**, so the outline never reached it. Both the file list and the icon view now draw it. Note that a selected row in the pane you are **not** working in is left without an outline, so it stays clear which pane you are in.
+- **Fixed an extra outline appearing while you selected with the keyboard (#298):** When extending a selection with `Shift + ↓`, **the number of outlined rows did not match the number of times you pressed the key**. Starting keyboard operation hides the mouse cursor, but **the pointer itself stays where it was**, so the row underneath it kept showing the hover outline. Scrolling with the keyboard made that outline appear to wander to a different row. The hover fill and outline are now suppressed while you are working from the keyboard. Two related problems are fixed as well: **the inactive pane no longer draws an outline** (fill only), and **hovering a selected row no longer stacks two outlines** on top of each other.
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.14.14] - 2026-09-09 : ターミナルの設定を直し、タブの複製と選択中の行の見え方を整えた
+## 最新の変更履歴 — [1.14.15] - 2026-09-10 : 入りきらないツールバーを「≫」にまとめ、メニューにショートカットを併記した
 
 ### Added
 
-- **タブの右クリックに「タブを複製」「反対ペインに複製」を追加した (#302):** タブを右クリックすると、**そのタブと同じフォルダーをもう 1 枚開けます**。同じペインに開くか、反対側のペインに開くかを選べます。**右クリックしたタブが対象**なので、いま選んでいないタブからも複製できます。反対ペインへの複製は、1画面表示のときは2画面に切り替わります。
+- **ツールバーが入りきらないとき、はみ出したボタンを「≫」から開けるようにした (#307):** ペインの幅が狭いとき（FHD の画面で 2 画面にしたときなど）、上に並ぶボタンが**右から順に見えなくなり、検索ボックスまで潰れていました**。矢印もスクロールバーも出ないため、隠れた機能には手が届かず、ボタンを減らすか分割バーを動かすしかありませんでした。入りきらないぶんを **「≫」ボタン**にまとめ、押すと一覧で出るようにしています。**アイコン・名前・割り当てられているキー**が並ぶので、そのまま実行できます。判定は**A・B のペインごと**に行うので、片方だけ狭いときはその側にだけ「≫」が出ます。分割バーを広げれば「≫」は消えて元どおりに並びます。**設定 → ツールバーで非表示にしたボタンは、「≫」の中にも出ません**（設定は今までどおりです）。
 
-- **同じフォルダーを反対のペインに開くショートカットを追加した (#301):** `Ctrl + N` で、**いま開いているフォルダーと同じ場所を、もう一方のペインに新しいタブで開けます**。エクスプローラーで新しいウィンドウを開いて作業を枝分かれさせるのと同じ使い方ができます。1画面表示のときは2画面に切り替わります。同じペインに複製する `Ctrl + Shift + D` はこれまでどおりです。キーの割り当ては **設定 → キーボード** から変更できます。
-
-### Changed
-
-- **マウスを乗せた行にも外枠を出すようにした (#298):** 「選択中の行の外枠」を表示にしているとき、**マウスを乗せた行にも枠が出ます**。選択中の行の枠より薄く描くので、どちらが選ばれているのかは変わらず分かります。外枠を非表示にしているときは、どちらにも枠は出ません。一覧とアイコン（サムネイル）表示の両方が対象です。
+- **右クリックメニューにショートカットキーを併記するようにした (#306):** ファイルや一覧の余白、タブを右クリックしたときのメニューで、**その操作に割り当てられているキーが右端に出る**ようになりました。これまでは「クイックジャンプ」の 1 つだけが表示されていて、コピーも貼り付けも名前の変更も、キーがあるのに何も出ていませんでした。**設定 → キーボードでキーを変えれば、メニューの表記もそのまま変わります**（言語を切り替えたときも同じです）。なお、**キーが割り当てられていない操作には何も出ません**。ナビペインの「A に表示」のように、そもそもキーを持たない操作がこれにあたります。
 
 ### Fixed
 
-- **ターミナルのフォントサイズを変えても反映されなかった問題を修正 (#304):** A・Bペインのターミナルで、設定からフォントサイズを選び直しても**大きさが変わらず、再起動しても元のまま**でした。一覧から選んだその瞬間に設定画面が閉じてしまい、**選んだ値が確定する前に、変更前の値で保存されていた**のが原因です。同じ設定画面にあるフォント・スクロールバック行数・cd の追従先なども同じ状態でした。一覧を開いている間は設定画面が閉じないようにして直しています。
+- **アイコンの説明が、右から左へマウスを動かすと切り替わらなかった問題を修正 (#305):** ペインの上に並ぶアイコンにマウスを乗せると説明が出ますが、**右から左へ動かしたときだけ、4 つ分ほど説明が切り替わらない**ことがありました。説明の吹き出しはマウスの位置を基準に出るため、画面の端では左右が反転して**カーソル自身が吹き出しの中に入ってしまい**、隣のアイコンに乗ったと見なされなくなるのが原因です。吹き出しをアイコンの真上に固定し、どちらの向きから動かしても切り替わるようにしました。**あわせて、説明が出るまでの待ち時間を短くしています**（マウスを乗せてすぐ出て、隣のアイコンへ移ったときは待たずに切り替わります）。検索の切り替え（Search / Grep / Index / Filter）や絞り込みのボタン、★・パスのコピーなど、**同じ行に並ぶボタン全部**が対象です。
 
-- **再起動すると Box のタブが初期化されていた問題を修正 (#303):** Box Drive や OneDrive のフォルダーを開いていたタブが、**再起動のたびにデスクトップへ変わってしまう**問題を直しました。これらは常駐プログラムが用意するまで**フォルダー自体が存在しない**ため、アプリの起動が先だと「無くなったフォルダー」と判断され、足元へ移されていました。しかも**移された先が終了時に保存される**ので、一度これが起きると、その後 Box が正常に動いていても二度と戻りませんでした。今は**タブをその場所のまま開いて待ち**、用意ができ次第ひとりでに中身が出ます（最大 2 分）。待っている間は「この場所はまだ利用できません」と一覧に出ます。
-
-- **設定の「新着の目印」で、今選んでいる範囲に印が付かなかった問題を修正 (#287):** 「強調しない／今日／24時間／3日／7日」のうち**どれを選んでいても、選択中の印がどこにも付いていませんでした**。切り替え自体は効いていたため、設定し直すたびに「今どれになっているのか」が分からない状態でした。設定の値を画面に反映するとき、値の種類が食い違っていたのが原因です。
-
-- **選択中の行の外枠が、肝心のファイル一覧に出ていなかった問題を修正 (#298):** v1.14.13 で追加した「選択中の行の外枠」が、**ファイル一覧とアイコンビューでは出ていませんでした**。設定を切り替えても、再起動しても、見た目が変わらない状態です。外枠は一覧の見た目を決める共通の定義に足していましたが、**ファイル一覧はその共通の定義を使わず、独自の見た目を持っている**ため、そこには届いていませんでした。一覧とアイコンビューの両方で外枠が出るようにしています。なお、**操作していない側のペインには枠を出しません**（どちらのペインを操作しているかの手がかりを残すためです）。
+- **キーボードで選んでいる間、余分な外枠が出ていた問題を修正 (#298):** `Shift + ↓` などで複数のファイルを選んでいくと、**押した回数と、枠が付いて見える行の数が合わない**ことがありました。キー操作を始めるとマウスカーソルは消えますが、**マウスの位置そのものは残っている**ため、その下の行に「マウスを乗せた行の枠」が出たままになっていたのが原因です。一覧がスクロールすると、動かしていないはずの枠が別の行へ移っても見えます。キーで操作している間は、マウスを乗せた行の色と枠を出さないようにしました。あわせて、**操作していない側のペインには枠を出さない**（塗りだけにする）、**選んでいる行にマウスを乗せても枠が二重に濃くならない**の 2 点も直しています。
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
