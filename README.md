@@ -62,8 +62,8 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.14.15.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.14.15_delta_from_1.14.14.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.14.16.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.14.16_delta_from_1.14.15.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -277,37 +277,31 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.14.15] - 2026-09-10 : Toolbar overflow moves into a "≫" menu, and right-click menus show their shortcuts
+## Latest Changes — [1.14.16] - 2026-09-12 : Shortcut targets are now shown on hover and honored during drag & drop, and the toolbar overflow fix is fixed for real
 
 ### Added
+- **Hovering a shortcut (.lnk) now shows its target in a tooltip (#308)** — works in both detail and icon view, with a warning when the target can no longer be found. The Properties view also gains a "Target" field
 
-- **Buttons that no longer fit on the toolbar are now reachable from a "≫" button (#307):** When a pane is narrow — a dual-pane layout on a 1920-wide screen, for example — **buttons disappeared from the right end and the search box was squeezed away**. No arrow or scrollbar appeared, so the hidden commands were simply out of reach unless you removed buttons or dragged the splitter. Everything that does not fit is now collected under a **"≫" button** that opens them as a list, complete with **icon, name and assigned key**, ready to run. The check runs **per pane**, so if only one side is narrow the "≫" appears only there. Widen the splitter and it disappears again. **Buttons you hid under Settings → Toolbar stay hidden**, including inside the "≫" list.
-
-- **Right-click menus now show their keyboard shortcuts (#306):** Right-clicking a file, the empty area of a list, or a tab now shows **the key assigned to each command on the right-hand side of the menu**. Until now only "Quick Jump" showed one; copy, paste and rename all had keys but displayed nothing. **Change a key under Settings → Keyboard and the menu follows suit** — the same goes for switching languages. Commands **with no key assigned show nothing**, which is the case for entries like "Show in pane A" in the navigation pane.
+### Changed
+- **Dropping files onto a folder shortcut now moves/copies them into the target folder (#309)** — previously they landed in the folder that held the shortcut. The copy-vs-move decision is now also based on the target's location
 
 ### Fixed
-
-- **Fixed tooltips that would not switch when moving the mouse right to left (#305):** Hovering the icons above a pane shows a tooltip, but **moving right to left left the tooltip stuck for about four icons**. Tooltips are positioned relative to the mouse, so near the edge of the screen they flip to the other side and **the cursor ends up inside the tooltip itself**, which stops the next icon from registering a hover. Tooltips are now pinned directly above their button, so they switch from either direction. **They also appear noticeably sooner** — the first one shows shortly after you hover, and moving to a neighbouring icon switches without any wait. This covers **every button on that row**, including the search mode switch (Search / Grep / Index / Filter), the filter buttons, and the ★ / copy-path buttons.
-
-- **Fixed an extra outline appearing while you selected with the keyboard (#298):** When extending a selection with `Shift + ↓`, **the number of outlined rows did not match the number of times you pressed the key**. Starting keyboard operation hides the mouse cursor, but **the pointer itself stays where it was**, so the row underneath it kept showing the hover outline. Scrolling with the keyboard made that outline appear to wander to a different row. The hover fill and outline are now suppressed while you are working from the keyboard. Two related problems are fixed as well: **the inactive pane no longer draws an outline** (fill only), and **hovering a selected row no longer stacks two outlines** on top of each other.
+- **Fixed the search box still overflowing when the toolbar couldn't fit (#307)** — the previous fix (the "≫" overflow button) reserved a fixed amount of space for the search box without accounting for its actual minimum width, so it could still spill out of its box at some widths. The search box's required width is now measured first, and the toolbar gets whatever is left; when space is tight, the mode segment labels are dropped to icons only
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.14.15] - 2026-09-10 : 入りきらないツールバーを「≫」にまとめ、メニューにショートカットを併記した
+## 最新の変更履歴 — [1.14.16] - 2026-09-12 : ショートカットのリンク先をホバー・D&Dで扱えるようにし、ツールバーのはみ出しを直した
 
 ### Added
+- **ショートカット（.lnk）にマウスを乗せるとリンク先を表示するようにした (#308)** — 詳細ビュー・アイコンビューのどちらでもツールチップにリンク先のフルパスが出る。リンク先が見つからない場合は警告も表示。プロパティビューにも「リンク先」欄を追加
 
-- **ツールバーが入りきらないとき、はみ出したボタンを「≫」から開けるようにした (#307):** ペインの幅が狭いとき（FHD の画面で 2 画面にしたときなど）、上に並ぶボタンが**右から順に見えなくなり、検索ボックスまで潰れていました**。矢印もスクロールバーも出ないため、隠れた機能には手が届かず、ボタンを減らすか分割バーを動かすしかありませんでした。入りきらないぶんを **「≫」ボタン**にまとめ、押すと一覧で出るようにしています。**アイコン・名前・割り当てられているキー**が並ぶので、そのまま実行できます。判定は**A・B のペインごと**に行うので、片方だけ狭いときはその側にだけ「≫」が出ます。分割バーを広げれば「≫」は消えて元どおりに並びます。**設定 → ツールバーで非表示にしたボタンは、「≫」の中にも出ません**（設定は今までどおりです）。
-
-- **右クリックメニューにショートカットキーを併記するようにした (#306):** ファイルや一覧の余白、タブを右クリックしたときのメニューで、**その操作に割り当てられているキーが右端に出る**ようになりました。これまでは「クイックジャンプ」の 1 つだけが表示されていて、コピーも貼り付けも名前の変更も、キーがあるのに何も出ていませんでした。**設定 → キーボードでキーを変えれば、メニューの表記もそのまま変わります**（言語を切り替えたときも同じです）。なお、**キーが割り当てられていない操作には何も出ません**。ナビペインの「A に表示」のように、そもそもキーを持たない操作がこれにあたります。
+### Changed
+- **フォルダのショートカットへファイルをドロップすると、リンク先のフォルダへ入るようにした (#309)** — 従来はショートカットのあるフォルダへ入っていた。コピー・移動の判定もリンク先の場所を基準にするよう修正
 
 ### Fixed
-
-- **アイコンの説明が、右から左へマウスを動かすと切り替わらなかった問題を修正 (#305):** ペインの上に並ぶアイコンにマウスを乗せると説明が出ますが、**右から左へ動かしたときだけ、4 つ分ほど説明が切り替わらない**ことがありました。説明の吹き出しはマウスの位置を基準に出るため、画面の端では左右が反転して**カーソル自身が吹き出しの中に入ってしまい**、隣のアイコンに乗ったと見なされなくなるのが原因です。吹き出しをアイコンの真上に固定し、どちらの向きから動かしても切り替わるようにしました。**あわせて、説明が出るまでの待ち時間を短くしています**（マウスを乗せてすぐ出て、隣のアイコンへ移ったときは待たずに切り替わります）。検索の切り替え（Search / Grep / Index / Filter）や絞り込みのボタン、★・パスのコピーなど、**同じ行に並ぶボタン全部**が対象です。
-
-- **キーボードで選んでいる間、余分な外枠が出ていた問題を修正 (#298):** `Shift + ↓` などで複数のファイルを選んでいくと、**押した回数と、枠が付いて見える行の数が合わない**ことがありました。キー操作を始めるとマウスカーソルは消えますが、**マウスの位置そのものは残っている**ため、その下の行に「マウスを乗せた行の枠」が出たままになっていたのが原因です。一覧がスクロールすると、動かしていないはずの枠が別の行へ移っても見えます。キーで操作している間は、マウスを乗せた行の色と枠を出さないようにしました。あわせて、**操作していない側のペインには枠を出さない**（塗りだけにする）、**選んでいる行にマウスを乗せても枠が二重に濃くならない**の 2 点も直しています。
+- **ツールバーが入りきらないとき、検索ボックスがはみ出す問題を修正 (#307)** — 前回の対応（≫ ボタン）では、検索ボックスの実際の最小幅を考慮せずに一定の余白しか確保していなかったため、幅によっては相変わらず箱からはみ出していた。検索ボックスの必要幅を測ってから残りをツールバーへ配るよう修正し、幅が足りないときはセグメントの文字ラベルを外して詰められるようにした
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
