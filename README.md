@@ -62,8 +62,8 @@
 <!-- download-table:begin -->
 | File<br>ファイル | Description<br>説明 |
 |---|---|
-| `ZenithFiler_v1.14.16.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
-| `ZenithFiler_v1.14.16_delta_from_1.14.15.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
+| `ZenithFiler_v1.14.17.zip` | **Full** — includes the .NET runtime. Best for first-time installs or moving to a new machine<br>**完全版** — .NET ランタイム同梱。初回導入や環境移行に |
+| `ZenithFiler_v1.14.17_delta_from_1.14.16.zip` | **Delta** — only the files that changed since the previous version<br>**差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table:end -->
 
 Supported OS: Windows 10 / 11 (x64) / 対応 OS | Stays current via automatic delta updates / 導入後は差分自動アップデートで常に最新
@@ -277,31 +277,37 @@ Automatic updates<br>
 <summary><b>📋 Latest Changes<br>最新の変更履歴</b></summary>
 
 <!-- latest-changes:begin -->
-## Latest Changes — [1.14.16] - 2026-09-12 : Shortcut targets are now shown on hover and honored during drag & drop, and the toolbar overflow fix is fixed for real
+## Latest Changes — [1.14.17] - 2026-09-15 : Recycle Bin in the Tree view, favorites that follow Windows account switches, and fixes for drag-selection, tooltips, and dark-theme text compare
 
 ### Added
-- **Hovering a shortcut (.lnk) now shows its target in a tooltip (#308)** — works in both detail and icon view, with a warning when the target can no longer be found. The Properties view also gains a "Target" field
+- **The Tree view now lists the Recycle Bin, and Import from Explorer tells you it can't import it (#312)** — the Recycle Bin is not a real folder, so Import from Explorer silently skipped any File Explorer window showing it, and if that was the only window open it claimed that no Explorer windows were found. There was also no way to reach the Recycle Bin from inside the app. The Tree view now shows "Recycle Bin" after the drives; double-click it, press Enter, or choose "Open in Explorer" from its right-click menu to open it in File Explorer. When importing, you are told that the Recycle Bin can't be imported, and the File Explorer window showing it is left open
 
 ### Changed
-- **Dropping files onto a folder shortcut now moves/copies them into the target folder (#309)** — previously they landed in the folder that held the shortcut. The copy-vs-move decision is now also based on the target's location
+- **Favorites inside Box, OneDrive, and SharePoint now open the same place after switching Windows accounts (#314)** — ZenithFiler can be shared by several Windows accounts from the same folder, but favorites stored their paths as-is, so a `C:\Users\<main account>\Box\...` favorite added in the main account showed "not found" in the other account. Favorites inside Box, OneDrive, and SharePoint sync folders now open the same place in the account you are using, including ones added before this update. Locations whose contents differ per account, such as Desktop and Documents, are not remapped. Favorites that point to another account's location and can't be opened are now kept instead of being offered for deletion, so they don't vanish from the settings the accounts share
 
 ### Fixed
-- **Fixed the search box still overflowing when the toolbar couldn't fit (#307)** — the previous fix (the "≫" overflow button) reserved a fixed amount of space for the search box without accounting for its actual minimum width, so it could still spill out of its box at some widths. The search box's required width is now measured first, and the toolbar gets whatever is left; when space is tight, the mode segment labels are dropped to icons only
+- **Text compare no longer shows black, unreadable text on dark themes (#313)** — the body of the compare window (unchanged, added, and removed lines) was drawn in black regardless of the theme. The diff component remembers the text color from the very first moment it draws, before the theme colors had been applied, and never picked them up afterwards. The body, line numbers, "+ / -" markers, and the file names on both sides now use the theme's text colors and follow theme changes even while the window is open. The checkboxes in Folder Compare also now match the theme
+- **The sort menu from the toolbar no longer pops up far away or off-screen when maximized (#310)** — the menu was anchored to the bottom-left corner of the whole pane rather than to the button you pressed, so it appeared far from the button. When the window was maximized there was no room below the pane, and the menu got pushed off-screen or over the taskbar. It now opens right below the button, or below "≫" when the button has been folded into it
+- **The shortcut target tooltip no longer lingers and gets in the way of the mouse (#308)** — the previous version attached the tooltip to the whole row, popped it up above the row almost instantly, and kept showing it on the next row without delay for 3 seconds after it closed. Modern Windows tooltips stay open until the pointer leaves the area spanning the row and the tooltip, and never time out, so moving up to the row above left the target path in the way, and sweeping across rows dragged it along. In detail view it is now attached to the name only and appears to its right; in both views it shows only after resting for 0.7 seconds and disappears after 5 seconds. In icon view, the name tooltip on regular (non-shortcut) cards had been changed to the same behavior by mistake and is restored
+- **You can now drag-select just a few files in the middle of the list (#311)** — a rubber-band selection has to start from empty space, but detail view packed rows edge to edge with no gaps, and icon view kept the card spacing inside each card so neighboring cards touched. The only place to start was below the last item. Detail view now has a narrow strip along the left edge of the list, and icon view has real gaps between cards, so you can start a drag-selection from either. Right-clicking a gap opens the folder background menu, and double-clicking it no longer opens the neighboring file
 
 > See [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) for the full history.
 
 ---
 
-## 最新の変更履歴 — [1.14.16] - 2026-09-12 : ショートカットのリンク先をホバー・D&Dで扱えるようにし、ツールバーのはみ出しを直した
+## 最新の変更履歴 — [1.14.17] - 2026-09-15 : ツリーにごみ箱を加え、お気に入りをアカウント切り替えに追随させ、範囲選択やツールチップの使い勝手を直した
 
 ### Added
-- **ショートカット（.lnk）にマウスを乗せるとリンク先を表示するようにした (#308)** — 詳細ビュー・アイコンビューのどちらでもツールチップにリンク先のフルパスが出る。リンク先が見つからない場合は警告も表示。プロパティビューにも「リンク先」欄を追加
+- **ナビペインのツリーに「ごみ箱」を表示し、フォルダを取り込むではごみ箱を取り込めないことを知らせるようにした (#312)** — ごみ箱はフォルダではないため、「フォルダを取り込む」ではごみ箱を表示しているエクスプローラーが黙って対象から外れ、ごみ箱しか開いていないと「エクスプローラーウィンドウが見つかりません」と表示されていた。アプリの中からごみ箱へたどる手段も無かった。ツリービューのドライブの並びの最後に「ごみ箱」を出し、ダブルクリック・Enter・右クリックの「エクスプローラーで開く」でエクスプローラーのごみ箱を開けるようにした。取り込むときは、ごみ箱は取り込めない旨を知らせ、ごみ箱を表示しているエクスプローラーは閉じずに残す
 
 ### Changed
-- **フォルダのショートカットへファイルをドロップすると、リンク先のフォルダへ入るようにした (#309)** — 従来はショートカットのあるフォルダへ入っていた。コピー・移動の判定もリンク先の場所を基準にするよう修正
+- **Box・OneDrive・SharePoint の中のお気に入りが、Windows のアカウントを切り替えても同じ場所を開くようにした (#314)** — ZenithFiler は同じフォルダを複数の Windows アカウントで共用できるが、お気に入りはパスをそのまま保存していたため、主アカウントで登録した `C:\Users\<主アカウント>\Box\…` がサブアカウントでは「見つかりません」になっていた。Box・OneDrive・SharePoint 同期フォルダの中のお気に入りは、使っているアカウントの同じ場所へ読み替えて開くようにした（これまでに登録したものも対象）。デスクトップやドキュメントなど、アカウントごとに中身が別の場所は読み替えない。あわせて、別アカウントの場所で開けないお気に入りは削除を勧めずに残すようにした（共用している設定から、持ち主のアカウントのお気に入りまで消してしまわないため）
 
 ### Fixed
-- **ツールバーが入りきらないとき、検索ボックスがはみ出す問題を修正 (#307)** — 前回の対応（≫ ボタン）では、検索ボックスの実際の最小幅を考慮せずに一定の余白しか確保していなかったため、幅によっては相変わらず箱からはみ出していた。検索ボックスの必要幅を測ってから残りをツールバーへ配るよう修正し、幅が足りないときはセグメントの文字ラベルを外して詰められるようにした
+- **ダークテーマでテキスト比較の本文が黒いまま読めない問題を修正 (#313)** — 比較ウィンドウの本文（変更なし・追加・削除の各行）が、テーマに関係なく黒い文字で描かれていた。比較部品は最初に描いた瞬間の文字色を覚えてしまう作りで、その時点ではまだテーマの色が入っておらず、後から色を当てても戻らなかったため。本文・行番号・「+ / -」の記号・左右のファイル名をテーマの文字色で描くようにし、比較を開いたままテーマが切り替わっても追随する。あわせて、フォルダ比較のチェックボックスもテーマの見た目にそろえた
+- **ツールバーの並べ替えボタンを押すと、メニューが離れた場所に出て全画面ではみ出す問題を修正 (#310)** — メニューが押したボタンではなくペイン全体の左下を基準に開いていたため、ボタンから遠い位置に出ていた。全画面ではペインの下に入りきらず、画面の外やタスクバーに掛かる位置へ押し出されていた。押したボタンの真下に出すようにし、ボタンが「≫」にまとめられているときは「≫」の下に出す
+- **ショートカットのリンク先ツールチップが長く残ってマウス操作の邪魔になる問題を修正 (#308)** — 前回のリンク先表示は、行全体に付けたうえで行の上側へすぐ出し、閉じてから 3 秒間は次の行でも待たずに出す設定だった。Windows の新しいツールチップは「行とツールチップを包む範囲」からマウスが出るまで閉じず、時間でも消えないため、上の行へ動かしてもリンク先が居座り、行をなぞると付いて回っていた。詳細ビューでは名前の部分に絞って右側に出し、どちらの表示でも 0.7 秒止めたときだけ出して 5 秒で消えるようにした。アイコンビューでショートカット以外のカードの名前表示まで同じ出方に変わっていたのも、以前の出方に戻した
+- **マウスのドラッグで一覧の途中のファイルだけを範囲選択できない問題を修正 (#311)** — 範囲選択は「何もない場所」から始める必要があるが、詳細ビューは行が端から端まで隙間なく並び、アイコンビューもカードの余白がカードの内側にあって隣と接していたため、始められる場所が一覧の末尾より下にしか無かった。詳細ビューには一覧の左端に細い帯を設け、アイコンビューはカード同士の隙間を本当の隙間にしたので、どちらからでもドラッグで範囲選択を始められる。隙間を右クリックするとフォルダの背景メニューが出て、ダブルクリックしても隣のファイルは開かない
 
 > 過去の変更履歴は [Releases](https://github.com/sulkyjp/zenithFiler_update/releases) を参照してください。
 <!-- latest-changes:end -->
