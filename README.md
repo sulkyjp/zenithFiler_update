@@ -354,6 +354,20 @@ Automatic updates<br>
 
 ---
 
+## Feedback & bug reports / フィードバック・不具合報告
+
+Please send requests and bug reports from **inside the app**: **Settings → Feedback**.
+
+要望・不具合は、**アプリ内の「設定 → フィードバック」**からお送りください。
+
+| Why from inside the app / アプリから送っていただきたい理由 |
+|---|
+| Replies come back to you in the app's **Feedback history**, so you actually get an answer<br>作者からの回答が**アプリ内の「フィードバック履歴」に届きます** |
+| When a fix ships, the app asks whether it is fixed — a report is followed through to the end<br>修正版が出ると「直った／まだ直っていない」を知らせるボタンが出るので、**最後まで追えます** |
+| It reaches me directly. This repository only hosts the release files and is not a support channel<br>確実に届きます。このリポジトリは配布物を置くためだけのもので、問い合わせ窓口ではありません |
+
+---
+
 <p align="center">
-  <sub>Developed by <a href="https://github.com/sulkyjp">sulkyjp</a> ・ <a href="https://github.com/sulkyjp/zenithFiler_feedback/issues">Feedback & bug reports / フィードバック・不具合報告</a></sub>
+  <sub>Developed by <a href="https://github.com/sulkyjp">sulkyjp</a> ・ <a href="#feedback--bug-reports--フィードバック不具合報告">Feedback & bug reports / フィードバック・不具合報告</a></sub>
 </p>
