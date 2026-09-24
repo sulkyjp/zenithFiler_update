@@ -30,6 +30,7 @@
   <a href="#free--pro"><b>Free &amp; Pro</b></a> ·
   <a href="#features"><b>Features</b></a> ·
   <a href="#latest-changes"><b>Latest changes</b></a> ·
+  <a href="#license"><b>License</b></a> ·
   <a href="#feedback"><b>Feedback</b></a>
 </p>
 
@@ -350,6 +351,18 @@ Automatic updates<br>
 
 </details>
 
+<a id="license"></a>
+
+## License
+
+Zenith Filer is **proprietary software, not open source**. © 2024-2026 K.AKASAKA. All rights reserved.
+
+- Free to download and try. **Personal and commercial use** are both allowed
+- **One license key per person** — install it on the devices you use yourself, one at a time
+- Redistribution, resale, and reverse engineering are not permitted
+
+Read the full terms in the [EULA](EULA_en.md) · Summary: [LICENSE](LICENSE.md)
+
 <a id="feedback"></a>
 
 ## Feedback
@@ -373,6 +386,7 @@ Automatic updates<br>
   <a href="#ja-pro"><b>無料版と Pro</b></a> ·
   <a href="#ja-features"><b>主な機能</b></a> ·
   <a href="#ja-changes"><b>最新の変更履歴</b></a> ·
+  <a href="#ja-license"><b>ライセンス</b></a> ·
   <a href="#ja-feedback"><b>フィードバック</b></a>
 </p>
 
@@ -514,6 +528,18 @@ Automatic updates<br>
 
 </details>
 
+<a id="ja-license"></a>
+
+## ライセンス
+
+Zenith Filer は**著作者が権利を持つ商用ソフトウェアで、オープンソースではありません**。© 2024-2026 K.AKASAKA. All rights reserved.
+
+- 無料でダウンロードして試せます。**個人でも仕事でも**使えます
+- **ライセンスキーは 1 人に 1 本**。自分で使う PC に入れられ、同時に使うのは 1 台までです
+- 再配布・転売・リバースエンジニアリングは禁止です
+
+全文は[使用許諾契約書（EULA）](EULA_ja.md)、要約は [LICENSE](LICENSE.md) をご覧ください。
+
 <a id="ja-feedback"></a>
 
 ## フィードバック
@@ -529,5 +555,5 @@ Automatic updates<br>
 ---
 
 <p align="center">
-  <sub>Developed by <a href="https://github.com/sulkyjp">sulkyjp</a> · <a href="#english">English</a> · <a href="#japanese">日本語</a></sub>
+  <sub>© 2024-2026 K.AKASAKA · <a href="LICENSE.md">License</a> · <a href="https://github.com/sulkyjp">sulkyjp</a> · <a href="#english">English</a> · <a href="#japanese">日本語</a></sub>
 </p>
