@@ -102,8 +102,13 @@
 | Exports, batch operations, folder sync, theme customization | Daily limit | ✅ Unlimited |
 | Macros and AI features | Daily limit | ✅ Unlimited |
 
+<p align="center">
+  <a href="https://buy.polar.sh/polar_cl_u02Y6qn9QQJCPLre0LwBv58I8Ll2Cg7XYl7pj3PXcyt"><img src="https://img.shields.io/badge/Buy%20Pro-%2415%20one--time%2C%20tax%20included-0891B2?style=for-the-badge&labelColor=0B1220" alt="Buy Zenith Filer Pro — $15, one-time, tax included" /></a>
+</p>
+
 > [!NOTE]
-> **An international purchase page for Pro is being prepared** and will be linked here when it opens. Until then, everything can be tried for free.
+> **$15, one-time, tax included.** Checkout is handled by [Polar](https://buy.polar.sh/polar_cl_u02Y6qn9QQJCPLre0LwBv58I8Ll2Cg7XYl7pj3PXcyt), which acts as the merchant of record. Your license key is emailed to you within 24 hours; enter it in Control Deck (`Ctrl+Shift+O`) → License.
+> Buying from Japan? Use [Vector](https://www.vector.co.jp/soft/winnt/util/se528637.html) instead.
 
 <a id="features"></a>
 
