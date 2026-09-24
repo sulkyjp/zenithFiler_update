@@ -363,6 +363,8 @@ Zenith Filer is **proprietary software, not open source**. © 2024-2026 K.AKASAK
 
 Read the full terms in the [EULA](EULA_en.md) · Summary: [LICENSE](LICENSE.md)
 
+<sub>Windows is a trademark of the Microsoft group of companies. Claude, OpenAI, Azure, Gemini, Ollama, Box, and other product and company names mentioned are trademarks or registered trademarks of their respective owners. Zenith Filer is an independent product and is not affiliated with or endorsed by them.</sub>
+
 <a id="feedback"></a>
 
 ## Feedback
@@ -539,6 +541,8 @@ Zenith Filer は**著作者が権利を持つ商用ソフトウェアで、オ�
 - 再配布・転売・リバースエンジニアリングは禁止です
 
 全文は[使用許諾契約書（EULA）](EULA_ja.md)、要約は [LICENSE](LICENSE.md) をご覧ください。
+
+<sub>Windows は Microsoft グループの商標です。Claude・OpenAI・Azure・Gemini・Ollama・Box など、記載の製品名・会社名は各社の商標または登録商標です。Zenith Filer は独立した製品であり、これらの会社と提携しておらず、推奨も受けていません。</sub>
 
 <a id="ja-feedback"></a>
 
