@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <img width="2022" height="863" alt="Zenith Filer main window" src="https://github.com/user-attachments/assets/6452538c-e111-4e6a-92b3-67034978ee22" />
+  <img width="2344" height="964" alt="Zenith Filer main window" src="assets/main_window.png" />
 </p>
 
 <br>
