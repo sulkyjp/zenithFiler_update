@@ -1,35 +1,64 @@
 <p align="center">
+  <img src="assets/hero.svg" width="100%" alt="Zenith Filer — a fast, themeable dual-pane file manager for Windows" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/sulkyjp/zenithFiler_update/releases/latest"><img src="https://img.shields.io/github/v/release/sulkyjp/zenithFiler_update?style=for-the-badge&label=Download&logo=windows&logoColor=white&color=0891B2&labelColor=0B1220" alt="Download the latest release" /></a>
+  <img src="https://img.shields.io/badge/Windows-10%20%2F%2011-3B82F6?style=for-the-badge&labelColor=0B1220" alt="Windows 10 / 11" />
+  <img src="https://img.shields.io/badge/Portable-no%20install-10B981?style=for-the-badge&labelColor=0B1220" alt="Portable, no install required" />
+  <img src="https://img.shields.io/badge/Languages-10-8B5CF6?style=for-the-badge&labelColor=0B1220" alt="10 languages" />
+</p>
+
+<p align="center">
+  <a href="#english"><img src="https://img.shields.io/badge/English-Read%20in%20English-22D3EE?style=flat-square&labelColor=0B1220" alt="English" /></a>
+  &nbsp;
+  <a href="#japanese"><img src="https://img.shields.io/badge/%E6%97%A5%E6%9C%AC%E8%AA%9E-%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%A7%E8%AA%AD%E3%82%80-C084FC?style=flat-square&labelColor=0B1220" alt="日本語" /></a>
+</p>
+
+<p align="center">
   <img width="2022" height="863" alt="Zenith Filer main window" src="https://github.com/user-attachments/assets/6452538c-e111-4e6a-92b3-67034978ee22" />
 </p>
 
-<h1 align="center">Zenith Filer</h1>
+<br>
+
+<a id="english"></a>
+<img src="assets/section_en.svg" width="100%" alt="English section" />
 
 <p align="center">
-  <b>A fast, themeable dual-pane file manager for Windows — with a terminal, macros, and AI built in.</b>
+  <a href="#highlights"><b>Highlights</b></a> ·
+  <a href="#download"><b>Download</b></a> ·
+  <a href="#free--pro"><b>Free &amp; Pro</b></a> ·
+  <a href="#features"><b>Features</b></a> ·
+  <a href="#latest-changes"><b>Latest changes</b></a> ·
+  <a href="#feedback"><b>Feedback</b></a>
 </p>
 
-<p align="center">
-  <a href="https://github.com/sulkyjp/zenithFiler_update/releases/latest"><img src="https://img.shields.io/github/v/release/sulkyjp/zenithFiler_update?style=flat-square&color=blue" alt="Latest Release"></a>
-  <img src="https://img.shields.io/badge/platform-Windows%2010%2F11-0078D6?style=flat-square&logo=windows" alt="Windows 10/11">
-  <img src="https://img.shields.io/badge/install-not%20required%20(Portable)-brightgreen?style=flat-square" alt="Portable, no install required">
-  <img src="https://img.shields.io/badge/languages-10-blueviolet?style=flat-square" alt="10 languages">
-  <img src="https://img.shields.io/badge/price-Free%20trial%20%2B%20Pro-orange?style=flat-square" alt="Free trial + Pro">
-</p>
+<a id="highlights"></a>
 
-<p align="center">
-  <a href="https://github.com/sulkyjp/zenithFiler_update/releases/latest"><b>⬇ Download (Free)</b></a>
-  ・
-  <a href="#japanese">日本語はこちら</a>
-</p>
+## Highlights
 
----
-
-## Zenith Filer in 4 Lines
-
-- ⚡ **Fast** — starts in about a second, and every operation runs asynchronously. Tuned on real measurements to stay responsive even on corporate PCs weighed down by antivirus software
-- 🧭 **Reach anything without breaking your flow** — a ring launcher that opens around the cursor, a command palette that finds every action by name, and a keyboard shortcut for everything
-- 🖥 **A terminal, macros, and AI live inside it** — a ConPTY terminal in up to four panes that follows your folders, JavaScript macros you can build without code, and AI features that also run fully locally with Ollama. Everything still works with AI turned off
-- 🎨 **Make it yours** — 57 built-in themes, a community theme store, AI theme generation, and 150 achievements that unlock as you use it
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>⚡ Fast</h3>
+      Starts in about a second, and every operation runs asynchronously. Tuned on real measurements to stay responsive even on corporate PCs weighed down by antivirus software.
+    </td>
+    <td width="50%" valign="top">
+      <h3>🧭 Never breaks your flow</h3>
+      A ring launcher that opens around the cursor, a command palette that finds every action by name, and a shortcut for everything.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🖥 Terminal, macros &amp; AI inside</h3>
+      Up to four ConPTY terminals that follow your folders, macros you build without code, and AI that can run fully locally with Ollama. Everything works with AI off.
+    </td>
+    <td width="50%" valign="top">
+      <h3>🎨 Make it yours</h3>
+      57 built-in themes, a community theme store, AI theme generation, and 150 achievements that unlock as you use it.
+    </td>
+  </tr>
+</table>
 
 <table>
   <tr>
@@ -45,19 +74,9 @@
 </table>
 <p align="center"><sub>Same app, different theme — switch with one click from 57 built-in themes</sub></p>
 
-<table>
-  <tr>
-    <td width="50%"><img alt="Built-in theme catalog" src="assets/theme_catalog.png"/></td>
-    <td width="50%"><img alt="Achievements page" src="assets/challenges.png"/></td>
-  </tr>
-</table>
-<p align="center"><sub>Left: the built-in theme catalog / Right: 150 achievements that unlock as you use the app, each earning an AI-generated title</sub></p>
-
----
+<a id="download"></a>
 
 ## Download
-
-**[Download the latest release](https://github.com/sulkyjp/zenithFiler_update/releases/latest)** — unzip and run. No installation required.
 
 <!-- download-table-en:begin -->
 | File | Description |
@@ -66,19 +85,28 @@
 | `ZenithFiler_v1.16.4_delta_from_1.16.3.zip` | **Delta** — only the files that changed since the previous version |
 <!-- download-table-en:end -->
 
-Supported OS: Windows 10 / 11 (x64). Once installed, the app keeps itself current with automatic delta updates.
+> [!TIP]
+> **No installer.** Unzip and run `ZenithFiler.exe`. Settings stay next to the app, so it runs from a USB stick too. Once installed, it keeps itself current with automatic delta updates.
+> Supported OS: Windows 10 / 11 (x64).
 
-## Free & Pro
+<a id="free--pro"></a>
 
-**Everything can be tried for free.** Browsing, file operations, the terminal, themes, and search have no limits. A daily usage limit applies only to features that produce something or run on your behalf — exporting, batch operations, folder sync, theme customization, macros, and AI features.
+## Free &amp; Pro
 
-A Pro license removes every limit. **An international purchase page is being prepared** and will be linked here when it opens.
+|  | Free | Pro |
+|---|:---:|:---:|
+| Browsing, file operations, terminal, themes, search | ✅ Unlimited | ✅ Unlimited |
+| Exports, batch operations, folder sync, theme customization | Daily limit | ✅ Unlimited |
+| Macros and AI features | Daily limit | ✅ Unlimited |
 
----
+> [!NOTE]
+> **An international purchase page for Pro is being prepared** and will be linked here when it opens. Until then, everything can be tried for free.
 
-## Key Features
+<a id="features"></a>
 
-<sub>Click any item to expand its details</sub>
+## Features
+
+<sub>Click a category to expand it</sub>
 
 <details open>
 <summary><b>🧭 Reach features without moving your hand</b></summary>
@@ -93,7 +121,7 @@ A Pro license removes every limit. **An international purchase page is being pre
 
 </details>
 
-<details open>
+<details>
 <summary><b>📁 File management</b></summary>
 
 | Feature | Description |
@@ -111,7 +139,7 @@ A Pro license removes every limit. **An international purchase page is being pre
 
 </details>
 
-<details open>
+<details>
 <summary><b>🖥 Built-in terminal — up to 4 panes, ConPTY</b></summary>
 
 | Feature | Description |
@@ -124,7 +152,7 @@ A Pro license removes every limit. **An international purchase page is being pre
 
 </details>
 
-<details open>
+<details>
 <summary><b>🤖 AI integration (optional — every feature works with it off)</b></summary>
 
 | Feature | Description |
@@ -259,8 +287,12 @@ Automatic updates<br>
 
 </details>
 
+<a id="latest-changes"></a>
+
+## Latest changes
+
 <details>
-<summary><b>📋 Latest changes</b></summary>
+<summary><b>Show the notes for the latest release</b></summary>
 
 <!-- latest-changes-en:begin -->
 **[1.16.4] - 2026-09-24 : The manual is split into per-feature articles so you reach what you want at once, a plain default theme with no theme color is added, and index syncing plus paste and delete problems are fixed**
@@ -318,34 +350,62 @@ Automatic updates<br>
 
 </details>
 
----
+<a id="feedback"></a>
 
-## Feedback & bug reports
+## Feedback
 
-Please send requests and bug reports from **inside the app**: **Settings → Feedback**. No account is needed.
+> [!IMPORTANT]
+> Please send requests and bug reports from **inside the app: Settings → Feedback**. No account is needed. This repository only hosts the release files and is not monitored as a support channel.
 
 - **Replies reach you in the app**, under *Feedback history*
 - **When a fix ships, the app asks whether it worked**, so a report is followed through to the end
-- **It reaches the developer directly.** This repository only hosts the release files and is not monitored as a support channel
 
----
+<p align="right"><a href="#japanese">日本語のご案内へ ↓</a></p>
+
+<br>
 
 <a id="japanese"></a>
+<img src="assets/section_ja.svg" width="100%" alt="日本語のご案内" />
 
-## 日本語
+<p align="center">
+  <a href="#ja-highlights"><b>特長</b></a> ·
+  <a href="#ja-download"><b>ダウンロード</b></a> ·
+  <a href="#ja-pro"><b>無料版と Pro</b></a> ·
+  <a href="#ja-features"><b>主な機能</b></a> ·
+  <a href="#ja-changes"><b>最新の変更履歴</b></a> ·
+  <a href="#ja-feedback"><b>フィードバック</b></a>
+</p>
 
-**速くて、育てられる。Windows 用タブ型 2 ペインファイラー**
+<a id="ja-highlights"></a>
 
-### 4 行でわかる Zenith Filer
+## 特長
 
-- ⚡ **速い** — 起動は約 1 秒、すべての操作を非同期で処理。ウイルス対策ソフトで重い社用 PC でも軽快に動くよう、実測にもとづいて最適化しています
-- 🧭 **手を止めずに届く** — カーソルのまわりに開くリングランチャー、名前で全機能を探せるコマンドパレット、すべての操作に割り当てられるショートカット
-- 🖥 **ターミナル・マクロ・AI が中にある** — フォルダに追従する ConPTY ターミナルを最大 4 面、コードを書かずに作れる JavaScript マクロ、Ollama なら完全ローカルで動く AI 機能。AI をオフにしても全機能そのまま使えます
-- 🎨 **育てられる** — 内蔵テーマ 57 種、コミュニティのテーマストア、AI によるテーマ生成、使い込むほど解除される実績 150 種
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>⚡ 速い</h3>
+      起動は約 1 秒、すべての操作を非同期で処理。ウイルス対策ソフトで重い社用 PC でも軽快に動くよう、実測にもとづいて最適化しています。
+    </td>
+    <td width="50%" valign="top">
+      <h3>🧭 手を止めずに届く</h3>
+      カーソルのまわりに開くリングランチャー、名前で全機能を探せるコマンドパレット、すべての操作に割り当てられるショートカット。
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>🖥 ターミナル・マクロ・AI が中にある</h3>
+      フォルダに追従する ConPTY ターミナルを最大 4 面、コードを書かずに作れるマクロ、Ollama なら完全ローカルで動く AI。AI をオフにしても全機能そのまま使えます。
+    </td>
+    <td width="50%" valign="top">
+      <h3>🎨 育てられる</h3>
+      内蔵テーマ 57 種、コミュニティのテーマストア、AI によるテーマ生成、使い込むほど解除される実績 150 種。
+    </td>
+  </tr>
+</table>
 
-### ダウンロード
+<a id="ja-download"></a>
 
-**[最新版をダウンロード](https://github.com/sulkyjp/zenithFiler_update/releases/latest)** — ZIP を展開するだけ。インストールは不要です。
+## ダウンロード
 
 <!-- download-table-ja:begin -->
 | ファイル | 説明 |
@@ -354,36 +414,49 @@ Please send requests and bug reports from **inside the app**: **Settings → Fee
 | `ZenithFiler_v1.16.4_delta_from_1.16.3.zip` | **差分版** — 前バージョンから変更されたファイルのみ |
 <!-- download-table-ja:end -->
 
-対応 OS: Windows 10 / 11（x64）。導入後は差分の自動アップデートで最新に保たれます。
+> [!TIP]
+> **インストール不要。** ZIP を展開して `ZenithFiler.exe` を起動するだけです。設定はアプリの隣に保存されるので、USB メモリからも使えます。導入後は差分の自動アップデートで最新に保たれます。
+> 対応 OS: Windows 10 / 11（x64）
 
-### 無料版と Pro
+<a id="ja-pro"></a>
 
-**すべての機能を無料で試せます。** 閲覧・ファイル操作・ターミナル・テーマ・検索に制限はありません。1 日あたりの回数制限が掛かるのは、書き出し・一括処理・フォルダ同期・テーマのカスタマイズ・マクロ・AI 機能など、成果物を作ったり代わりに処理したりする機能だけです。
+## 無料版と Pro
 
-Pro ライセンスを購入すると、すべての制限がなくなります。
+|  | 無料版 | Pro |
+|---|:---:|:---:|
+| 閲覧・ファイル操作・ターミナル・テーマ・検索 | ✅ 無制限 | ✅ 無制限 |
+| 書き出し・一括処理・フォルダ同期・テーマのカスタマイズ | 1 日の回数制限 | ✅ 無制限 |
+| マクロ・AI 機能 | 1 日の回数制限 | ✅ 無制限 |
 
-**[Vector で Pro ライセンスを購入](https://www.vector.co.jp/soft/winnt/util/se528637.html)**（Vector からのダウンロードも可能です）
+> [!NOTE]
+> **Pro ライセンスは [Vector](https://www.vector.co.jp/soft/winnt/util/se528637.html) で購入できます**（Vector からのダウンロードも可能です）。
 
-### 主な機能
+<a id="ja-features"></a>
 
-機能の詳細は、英語の [Key Features](#key-features) の各表と、アプリ内のマニュアル（日本語）をご覧ください。
+## 主な機能
 
 | 分野 | できること |
 |---|---|
-| 手を止めずに届く | リングランチャー（左右ボタン同時押し）、コマンドパレット（`Ctrl+Shift+P`）、全操作のキー割り当て、ワーキングセット |
-| ファイル管理 | 取り消し付きのファイル操作と進捗ウィンドウ、一括リネーム、日時・属性の一括変更、書庫の展開・圧縮、フォルダ比較・同期、ハッシュ照合、FTP / SFTP / FTPS、スマホ・カメラの閲覧、画像・動画サムネイル |
-| 内蔵ターミナル | ConPTY で最大 4 面、ペインとのパス連動、コマンド履歴の検索、Claude Code 連携 |
-| AI 連携 | Claude / OpenAI / Azure OpenAI / Gemini / Ollama / Claude Code。AI リネーム、フォルダ整理、文章からのマクロ生成、AI マニュアル |
-| マクロ | Macro Studio のブロック組み立て・操作の記録・文章からの生成。中身は JavaScript |
-| ナビペイン | 約 20 のビューを好きな位置へ、2 段重ね、別ウィンドウへの切り離し、よく開くフォルダの自動お気に入り |
-| 検索 | Lucene.NET と日本語形態素解析による全文検索、ripgrep による内容検索、プリセットとフィルタ |
-| プレビュー | テキスト・コード、PDF、HTML、画像、Excel / CSV / Word / PowerPoint、テキスト差分 |
-| テーマ | 内蔵 57 種（既定はテーマカラーを持たない Plain）、テーマストア、AI 生成、ペイン別テーマ、130 色キーの編集 |
-| 実績と Stickman | 実績 150 種、XP・レベル・AI が授ける二つ名、操作に反応するマスコット |
-| システム統合 | 差分自動アップデート、タスクトレイ常駐、ウィンドウスナップと配置プリセット、Explorer のメニュー、Box Drive、10 言語 |
+| 🧭 手を止めずに届く | リングランチャー（左右ボタン同時押し）、コマンドパレット（`Ctrl+Shift+P`）、全操作のキー割り当て、ワーキングセット |
+| 📁 ファイル管理 | 取り消し付きのファイル操作と進捗ウィンドウ、一括リネーム、日時・属性の一括変更、書庫の展開・圧縮、フォルダ比較・同期、ハッシュ照合、FTP / SFTP / FTPS、スマホ・カメラの閲覧、画像・動画サムネイル |
+| 🖥 内蔵ターミナル | ConPTY で最大 4 面、ペインとのパス連動、コマンド履歴の検索、Claude Code 連携 |
+| 🤖 AI 連携 | Claude / OpenAI / Azure OpenAI / Gemini / Ollama / Claude Code。AI リネーム、フォルダ整理、文章からのマクロ生成、AI マニュアル |
+| ⚙️ マクロ | Macro Studio のブロック組み立て・操作の記録・文章からの生成。中身は JavaScript |
+| 🧩 ナビペイン | 約 20 のビューを好きな位置へ、2 段重ね、別ウィンドウへの切り離し、よく開くフォルダの自動お気に入り |
+| 🔍 検索 | Lucene.NET と日本語形態素解析による全文検索、ripgrep による内容検索、プリセットとフィルタ |
+| 👁 プレビュー | テキスト・コード、PDF、HTML、画像、Excel / CSV / Word / PowerPoint、テキスト差分 |
+| 🎨 テーマ | 内蔵 57 種（既定はテーマカラーを持たない Plain）、テーマストア、AI 生成、ペイン別テーマ、130 色キーの編集 |
+| 🏆 実績と Stickman | 実績 150 種、XP・レベル・AI が授ける二つ名、操作に反応するマスコット |
+| 🪟 システム統合 | 差分自動アップデート、タスクトレイ常駐、ウィンドウスナップと配置プリセット、Explorer のメニュー、Box Drive、10 言語 |
+
+<sub>各機能の詳細は、英語の <a href="#features">Features</a> とアプリ内のマニュアル（日本語）をご覧ください。</sub>
+
+<a id="ja-changes"></a>
+
+## 最新の変更履歴
 
 <details>
-<summary><b>📋 最新の変更履歴</b></summary>
+<summary><b>最新リリースの内容を表示</b></summary>
 
 <!-- latest-changes-ja:begin -->
 **[1.16.4] - 2026-09-24 : マニュアルを機能ごとの記事に分けて読みたいところへすぐ届くようにし、テーマカラーを持たない標準テーマ Plain を加え、インデックスへの反映や貼り付け・削除まわりの不具合を直した**
@@ -441,16 +514,20 @@ Pro ライセンスを購入すると、すべての制限がなくなります�
 
 </details>
 
-### フィードバック・不具合報告
+<a id="ja-feedback"></a>
 
-要望・不具合は、**アプリ内の「設定 → フィードバック」**からお送りください。アカウント登録は不要です。
+## フィードバック
+
+> [!IMPORTANT]
+> 要望・不具合は、**アプリ内の「設定 → フィードバック」**からお送りください。アカウント登録は不要です。このリポジトリは配布物を置くためだけのもので、問い合わせ窓口ではありません。
 
 - 作者からの回答が**アプリ内の「フィードバック履歴」に届きます**
 - 修正版が出ると「直った／まだ直っていない」を知らせるボタンが出るので、**最後まで追えます**
-- 確実に作者へ届きます。このリポジトリは配布物を置くためだけのもので、問い合わせ窓口ではありません
+
+<p align="right"><a href="#english">↑ Back to English</a></p>
 
 ---
 
 <p align="center">
-  <sub>Developed by <a href="https://github.com/sulkyjp">sulkyjp</a> ・ <a href="#feedback--bug-reports">Feedback & bug reports</a> ・ <a href="#japanese">日本語</a></sub>
+  <sub>Developed by <a href="https://github.com/sulkyjp">sulkyjp</a> · <a href="#english">English</a> · <a href="#japanese">日本語</a></sub>
 </p>
