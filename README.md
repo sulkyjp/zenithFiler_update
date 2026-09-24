@@ -7,6 +7,7 @@
   <img src="https://img.shields.io/badge/Windows-10%20%2F%2011-3B82F6?style=for-the-badge&labelColor=0B1220" alt="Windows 10 / 11" />
   <img src="https://img.shields.io/badge/Portable-no%20install-10B981?style=for-the-badge&labelColor=0B1220" alt="Portable, no install required" />
   <img src="https://img.shields.io/badge/Languages-10-8B5CF6?style=for-the-badge&labelColor=0B1220" alt="10 languages" />
+  <a href="https://sulkyjp.github.io/zenithFiler_update/"><img src="https://img.shields.io/badge/Manual-Read%20online-22D3EE?style=for-the-badge&labelColor=0B1220" alt="Online manual" /></a>
 </p>
 
 <p align="center">
@@ -29,6 +30,7 @@
   <a href="#download"><b>Download</b></a> ·
   <a href="#free--pro"><b>Free &amp; Pro</b></a> ·
   <a href="#features"><b>Features</b></a> ·
+  <a href="https://sulkyjp.github.io/zenithFiler_update/"><b>Manual</b></a> ·
   <a href="#latest-changes"><b>Latest changes</b></a> ·
   <a href="#license"><b>License</b></a> ·
   <a href="#feedback"><b>Feedback</b></a>
@@ -107,7 +109,7 @@
 
 ## Features
 
-<sub>Click a category to expand it</sub>
+<sub>Click a category to expand it · Every feature is explained in the <a href="https://sulkyjp.github.io/zenithFiler_update/">online manual</a></sub>
 
 <details open>
 <summary><b>🧭 Reach features without moving your hand</b></summary>
@@ -387,6 +389,7 @@ Read the full terms in the [EULA](EULA_en.md) · Summary: [LICENSE](LICENSE.md)
   <a href="#ja-download"><b>ダウンロード</b></a> ·
   <a href="#ja-pro"><b>無料版と Pro</b></a> ·
   <a href="#ja-features"><b>主な機能</b></a> ·
+  <a href="https://sulkyjp.github.io/zenithFiler_update/ja/"><b>マニュアル</b></a> ·
   <a href="#ja-changes"><b>最新の変更履歴</b></a> ·
   <a href="#ja-license"><b>ライセンス</b></a> ·
   <a href="#ja-feedback"><b>フィードバック</b></a>
@@ -465,7 +468,7 @@ Read the full terms in the [EULA](EULA_en.md) · Summary: [LICENSE](LICENSE.md)
 | 🏆 実績と Stickman | 実績 150 種、XP・レベル・AI が授ける二つ名、操作に反応するマスコット |
 | 🪟 システム統合 | 差分自動アップデート、タスクトレイ常駐、ウィンドウスナップと配置プリセット、Explorer のメニュー、Box Drive、10 言語 |
 
-<sub>各機能の詳細は、英語の <a href="#features">Features</a> とアプリ内のマニュアル（日本語）をご覧ください。</sub>
+<sub>各機能の詳細は、<a href="https://sulkyjp.github.io/zenithFiler_update/ja/">オンラインのマニュアル</a>（アプリ内のマニュアルと同じ内容）をご覧ください。</sub>
 
 <a id="ja-changes"></a>
 
