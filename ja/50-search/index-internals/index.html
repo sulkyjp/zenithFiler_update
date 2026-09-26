@@ -1,0 +1,3553 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://sulkyjp.github.io/zenithFiler_update/ja/50-search/index-internals/">
+      
+      
+        <link rel="prev" href="../index-settings/">
+      
+      
+        <link rel="next" href="../../60-ai/ai-setup/">
+      
+      
+        
+          <link rel="alternate" href="../../../50-search/index-internals/" hreflang="en">
+        
+          <link rel="alternate" href="./" hreflang="ja">
+        
+      
+      
+      <link rel="icon" href="../../../assets/icon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>インデックス検索のしくみ - Zenith Filer マニュアル</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#インデックス検索のしくみ" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../" title="Zenith Filer マニュアル" class="md-header__button md-logo" aria-label="Zenith Filer マニュアル" data-md-component="logo">
+      
+  <img src="../../../assets/icon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Zenith Filer マニュアル
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              インデックス検索のしくみ
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="言語切り替え">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../50-search/index-internals/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="ja" class="md-select__link">
+              日本語
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sulkyjp/zenithFiler_update" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sulkyjp/zenithFiler_update
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="Zenith Filer マニュアル" class="md-nav__button md-logo" aria-label="Zenith Filer マニュアル" data-md-component="logo">
+      
+  <img src="../../../assets/icon.png" alt="logo">
+
+    </a>
+    Zenith Filer マニュアル
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sulkyjp/zenithFiler_update" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sulkyjp/zenithFiler_update
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    はじめに
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    はじめに
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-start/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zenith Filer とは
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    画面構成
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    画面構成
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/titlebar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タイトルバー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/file-pane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ファイルペイン（A ペイン / B ペイン）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/nav-pane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ナビペイン
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/status-bar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ステータスバー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/dialogs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    確認・エラーダイアログ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/help-viewer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ヘルプ・ドキュメントビューア
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本操作
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基本操作
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    フォルダの移動（ナビゲーション）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/address-bar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    アドレスバーとパンくず
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/tabs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タブ操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/file-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準的なファイル操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/batch-rename/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    一括リネーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/context-menu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    右クリックメニュー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/drag-drop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ドラッグ＆ドロップ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/command-palette/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コマンドパレット
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/ring-launcher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    リングランチャー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ファイルツール
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ファイルツール
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/diff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テキスト比較（Diff）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/folder-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    フォルダの比較
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ハッシュ計算・照合
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/timestamps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タイムスタンプ・属性の一括変更
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/archives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    アーカイブの展開・圧縮
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/terminal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ターミナル
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/send-to-terminal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    選択項目をターミナル・Claude Code へ渡す
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/ftp-sftp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    サーバー（FTP / SFTP）への接続
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    整理と表示
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    整理と表示
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/favorites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    お気に入り管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/view-options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    表示オプション
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/themes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テーマ（配色カスタマイズ）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/theme-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テーマ一覧とカテゴリ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/theme-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テーマストア
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/theme-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テーマのしくみ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/working-sets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ワーキングセット
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/presets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プリセット（ウィンドウ配置・ナビペイン配置・検索条件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検索
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    検索
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検索機能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-filters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    サイズ・日付フィルタ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-presets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検索プリセット
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    インデックス検索
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    インデックスの設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    インデックス検索のしくみ
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    インデックス検索のしくみ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#使用ライブラリとバージョン" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用ライブラリとバージョン
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#インデックスの物理構造" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        インデックスの物理構造
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ドキュメントスキーマlucene-フィールド定義" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ドキュメントスキーマ（Lucene フィールド定義）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#日本語トークナイズ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        日本語トークナイズ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#クエリ構築パイプライン" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        クエリ構築パイプライン
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#通常検索とインデックス検索の実装差異" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通常検索とインデックス検索の実装差異
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#インデクシングパイプライン" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        インデクシングパイプライン
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#同時実行制御とスレッド管理" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        同時実行制御とスレッド管理
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sqlite-データベースzenithdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQLite データベース（zenith.db）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filesystemwatcher-連携フォルダ監視" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FileSystemWatcher 連携（フォルダ監視）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#アイドル実行cpu-負荷回避" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        アイドル実行（CPU 負荷回避）
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI とマクロ
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI とマクロ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-ai/ai-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生成 AI の設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-ai/ai-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生成 AI の機能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-ai/macros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    マクロ（操作の自動化）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボード
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    キーボード
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-keyboard/keyboard-mouse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボードとマウスの連携
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-keyboard/shortcuts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボードショートカット一覧
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-keyboard/keybinding-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーバインドのしくみ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定とデータ
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    設定とデータ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../80-settings/settings-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    アプリ設定（Control Deck）の全項目
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../80-settings/backup-recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定バックアップ・リカバリ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../80-settings/settings-files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定ファイル構造
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../80-settings/log-spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ログ仕様
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    インストールと更新
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    インストールと更新
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    インストールとフォルダ構成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/auto-update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自動アップデート
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/resident-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常駐モード
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/screen-capture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    スクリーンキャプチャ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/startup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    起動シーケンス
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    お楽しみ要素
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    お楽しみ要素
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/challenges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チャレンジ・実績
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    マスコット（Stickman）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-behavior-json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    行動 JSON の書き方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-poses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ポーズ・犬コマンド・小道具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    イベントと性格
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-rewards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    報酬行動
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-export-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIF 書き出しと AI 生成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#使用ライブラリとバージョン" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用ライブラリとバージョン
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#インデックスの物理構造" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        インデックスの物理構造
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ドキュメントスキーマlucene-フィールド定義" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ドキュメントスキーマ（Lucene フィールド定義）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#日本語トークナイズ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        日本語トークナイズ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#クエリ構築パイプライン" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        クエリ構築パイプライン
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#通常検索とインデックス検索の実装差異" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通常検索とインデックス検索の実装差異
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#インデクシングパイプライン" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        インデクシングパイプライン
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#同時実行制御とスレッド管理" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        同時実行制御とスレッド管理
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sqlite-データベースzenithdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SQLite データベース（zenith.db）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filesystemwatcher-連携フォルダ監視" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FileSystemWatcher 連携（フォルダ監視）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#アイドル実行cpu-負荷回避" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        アイドル実行（CPU 負荷回避）
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="インデックス検索のしくみ">インデックス検索のしくみ<a class="headerlink" href="#インデックス検索のしくみ" title="Permanent link">&para;</a></h1>
+<p>このセクションは技術的な詳細に興味がある方向けです。操作や設定の理解には不要です。</p>
+<h2 id="使用ライブラリとバージョン">使用ライブラリとバージョン<a class="headerlink" href="#使用ライブラリとバージョン" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ライブラリ</th>
+<th>バージョン</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lucene.Net</td>
+<td>4.8.0-beta00017</td>
+<td>全文検索エンジン本体</td>
+</tr>
+<tr>
+<td>Lucene.Net.Analysis.Kuromoji</td>
+<td>4.8.0-beta00017</td>
+<td>日本語形態素解析（トークナイズ）</td>
+</tr>
+<tr>
+<td>Lucene.Net.QueryParser</td>
+<td>4.8.0-beta00017</td>
+<td>クエリ文字列のパース</td>
+</tr>
+<tr>
+<td>sqlite-net-pcl</td>
+<td>1.9.172</td>
+<td>SQLite 非同期データベースアクセス</td>
+</tr>
+<tr>
+<td>SQLitePCLRaw.bundle_green</td>
+<td>2.1.11</td>
+<td>SQLite ネイティブバインディング</td>
+</tr>
+<tr>
+<td>.NET 8 / WPF</td>
+<td>—</td>
+<td>アプリケーション基盤</td>
+</tr>
+<tr>
+<td>CommunityToolkit.Mvvm</td>
+<td>8.2.2</td>
+<td>MVVM フレームワーク</td>
+</tr>
+</tbody>
+</table>
+<h2 id="インデックスの物理構造">インデックスの物理構造<a class="headerlink" href="#インデックスの物理構造" title="Permanent link">&para;</a></h2>
+<p>インデックスはアプリ実行フォルダの <code>data</code> フォルダ内の <code>index/</code> ディレクトリに保存されます。Lucene の <code>FSDirectory</code>（ファイルシステムベース）を使用し、<code>CREATE_OR_APPEND</code> モードで開きます。</p>
+<p><strong>ディレクトリ内のファイル構成:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ファイル</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>segments_N</code></td>
+<td>Lucene セグメントマニフェスト（N はジェネレーション番号）</td>
+</tr>
+<tr>
+<td><code>_N.cfs</code></td>
+<td>Compound File Storage（セグメントデータ本体）</td>
+</tr>
+<tr>
+<td><code>write.lock</code></td>
+<td>Lucene ライターの排他ロックファイル</td>
+</tr>
+<tr>
+<td><code>indexed_roots.json</code></td>
+<td>インデックス済みルートの永続化データ</td>
+</tr>
+<tr>
+<td><code>last_full_rebuild.txt</code></td>
+<td>最終フルリビルドの ISO8601 タイムスタンプ</td>
+</tr>
+<tr>
+<td><code>zenith.db</code></td>
+<td>SQLite データベース（履歴・検索履歴・利用統計等）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>indexed_roots.json のフォーマット:</strong></p>
+<div class="highlight"><pre><span></span><code>{
+  "C:\\Users\\example\\Documents": "2026-03-07T10:30:00|locked|5428"
+}
+</code></pre></div>
+<p>値は <code>|</code> 区切りで、ISO8601 タイムスタンプ（最終インデックス日時）、<code>locked</code> フラグ（アーカイブロック時のみ）、ドキュメント数スナップショットの 3 要素で構成されます。</p>
+<h2 id="ドキュメントスキーマlucene-フィールド定義">ドキュメントスキーマ（Lucene フィールド定義）<a class="headerlink" href="#ドキュメントスキーマlucene-フィールド定義" title="Permanent link">&para;</a></h2>
+<p>各ファイル・フォルダは 1 つの Lucene ドキュメントとして登録されます。フィールド構成は以下の通りです。</p>
+<table>
+<thead>
+<tr>
+<th>フィールド名</th>
+<th>型</th>
+<th>トークン化</th>
+<th>格納</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>path</code></td>
+<td>StringField</td>
+<td>No</td>
+<td>Yes</td>
+<td>ファイル/フォルダのフルパス。一意識別子として <code>UpdateDocument</code> の Term に使用。<code>PrefixQuery</code> によるパススコープ絞り込みにも利用</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>TextField</td>
+<td>Yes（JapaneseAnalyzer）</td>
+<td>Yes</td>
+<td>ファイル名/フォルダ名。メイン検索対象。Kuromoji 形態素解析でトークン化される</td>
+</tr>
+<tr>
+<td><code>name_raw</code></td>
+<td>StringField</td>
+<td>No</td>
+<td>Yes</td>
+<td>ファイル名の小文字化コピー（トークン化なし）。<code>WildcardQuery</code> による部分一致検索のフォールバック用</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>Int64Field</td>
+<td>—</td>
+<td>Yes</td>
+<td>ファイルサイズ（バイト単位）。フォルダは 0。<code>NumericRangeQuery</code> によるサイズフィルタで使用</td>
+</tr>
+<tr>
+<td><code>modified</code></td>
+<td>StringField</td>
+<td>No</td>
+<td>Yes</td>
+<td>最終更新日時。<code>DateTools.DateToString</code> で SECOND 精度の文字列に変換して格納。<code>TermRangeQuery</code> による日付フィルタで使用</td>
+</tr>
+<tr>
+<td><code>is_dir</code></td>
+<td>Int32Field</td>
+<td>—</td>
+<td>Yes</td>
+<td>ディレクトリフラグ（0=ファイル、1=フォルダ）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="日本語トークナイズ">日本語トークナイズ<a class="headerlink" href="#日本語トークナイズ" title="Permanent link">&para;</a></h2>
+<p>検索の <code>name</code> フィールドには <code>JapaneseAnalyzer</code>（Kuromoji 形態素解析エンジン）を使用しています。これにより、日本語テキストを意味のある単語単位に分割し、「議事録」で「第3回議事録.docx」がヒットするといった自然な検索が可能です。</p>
+<p><strong>トークナイズの流れ:</strong></p>
+<ol>
+<li><code>JapaneseAnalyzer</code> で <code>GetTokenStream("name", keyword)</code> を呼び出す</li>
+<li><code>ICharTermAttribute</code> を取得し、<code>IncrementToken()</code> でトークンを順次読み出す</li>
+<li>得られたトークン列から <code>PhraseQuery</code>（複数トークン時）または <code>TermQuery</code>（単一トークン時）を構築する</li>
+</ol>
+<p>この処理は <code>QueryParser.Parse()</code> が <code>ParseException</code> を投げた場合のフォールバックとして <code>BuildQueryFromTokenized()</code> メソッドで実行されます。ワイルドカード文字（<code>*</code>、<code>?</code>）やブーリアン演算子を含むクエリがパースエラーになった場合でも、トークナイズベースの検索に自動的に切り替わります。</p>
+<h2 id="クエリ構築パイプライン">クエリ構築パイプライン<a class="headerlink" href="#クエリ構築パイプライン" title="Permanent link">&para;</a></h2>
+<p>検索キーワードからLuceneクエリが構築されるまでの全過程を解説します。</p>
+<p><strong>ステップ 1: クエリパース</strong></p>
+<p><code>QueryParser</code>（フィールド: <code>name</code>、アナライザ: <code>JapaneseAnalyzer</code>）でキーワードをパースします。初期設定は以下の通りです。</p>
+<ul>
+<li><code>DefaultOperator = Operator.AND</code>（すべてのキーワードを含む結果のみ）</li>
+<li><code>AllowLeadingWildcard = true</code>（<code>*報告書</code> のような先頭ワイルドカードを許可）</li>
+</ul>
+<p><strong>ステップ 2: パースエラー時のフォールバック</strong></p>
+<p><code>ParseException</code> が発生した場合、<code>BuildQueryFromTokenized()</code> でキーワードを形態素解析し、トークンベースのクエリを構築します（<a href="#日本語トークナイズ">日本語トークナイズ</a> 参照）。</p>
+<p><strong>ステップ 3: ハイブリッドクエリの構築</strong></p>
+<p>パース結果に加え、<code>name_raw</code> フィールドへの <code>WildcardQuery</code>（<code>*keyword*</code>）を SHOULD 条件で組み合わせます。</p>
+<div class="highlight"><pre><span></span><code>BooleanQuery {
+  SHOULD: parsedQuery        ← name フィールド（形態素解析済み）
+  SHOULD: WildcardQuery      ← name_raw フィールド（部分一致）
+}
+</code></pre></div>
+<p>これにより、形態素解析で分割できない英数字やカタカナの部分一致も確実にヒットします。</p>
+<p><strong>ステップ 4: パススコープの適用</strong></p>
+<ul>
+<li><strong>通常検索</strong>: 現在のフォルダパスを <code>PrefixQuery("path", "C:\\current\\path\\")</code> として MUST 条件で追加。そのフォルダ配下のみに限定</li>
+<li><strong>インデックス検索</strong>: <code>GetScopePathsForSearch()</code> で取得した複数のインデックスルートを、各ルートの <code>PrefixQuery</code> を SHOULD で結合した <code>BooleanQuery</code> として MUST 条件で追加</li>
+</ul>
+<p><strong>ステップ 5: フィルタの適用（<code>ApplySearchFilter</code>）</strong></p>
+<p>検索フィルタが設定されている場合、以下のクエリが MUST 条件で追加されます。</p>
+<ul>
+<li><strong>サイズフィルタ</strong>: <code>NumericRangeQuery.NewInt64Range("size", min, max, true, true)</code></li>
+<li><strong>日付フィルタ</strong>: <code>TermRangeQuery("modified", minStr, maxStr, true, true)</code> — 日付は <code>DateTools.DateToString</code> で SECOND 精度文字列に変換</li>
+</ul>
+<p><strong>ステップ 6: AND→OR フォールバック</strong></p>
+<p>AND 検索で結果が 0 件かつキーワードにスペースが含まれる場合、<code>DefaultOperator</code> を <code>Operator.OR</code> に切り替えて自動的に再検索します。「会議 報告」で AND ヒットなしでも、「会議」または「報告」を含むファイルが表示されます。</p>
+<p><strong>検索結果の上限とソート:</strong></p>
+<ul>
+<li>通常検索: 最大 500 件</li>
+<li>検証用（キーワードなし）: 最大 1,000 件</li>
+<li>CSV エクスポート: <code>maxResultsOverride</code> パラメータで上限を指定可能</li>
+<li>ソート順: 更新日時の降順（<code>SortField("modified", SortFieldType.STRING, true)</code>）</li>
+</ul>
+<p><strong>具体例:</strong></p>
+<table>
+<thead>
+<tr>
+<th>入力</th>
+<th>構築されるクエリ</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>議事録</code></td>
+<td><code>name:議事録 OR name_raw:*議事録*</code></td>
+<td>形態素解析 + 部分一致の OR</td>
+</tr>
+<tr>
+<td><code>会議 資料</code></td>
+<td><code>(name:会議 AND name:資料) OR name_raw:*会議 資料*</code></td>
+<td>AND で検索、0 件なら OR に切り替え</td>
+</tr>
+<tr>
+<td><code>*.xlsx</code>（フォルダ C:\Work 内）</td>
+<td><code>name_raw:*.xlsx* AND path:C:\Work\*</code></td>
+<td>ワイルドカード + パススコープ</td>
+</tr>
+<tr>
+<td>サイズ 1MB 以上 + 今月</td>
+<td>メインクエリ <code>AND size:[1048576 TO *] AND modified:[20260301… TO 20260307…]</code></td>
+<td>Lucene レベルでフィルタ適用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="通常検索とインデックス検索の実装差異">通常検索とインデックス検索の実装差異<a class="headerlink" href="#通常検索とインデックス検索の実装差異" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>通常検索</th>
+<th>インデックス検索</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>スコープ</td>
+<td>現在のフォルダ 1 つ（<code>PrefixQuery</code> で限定）</td>
+<td>登録済み全ルート（複数 <code>PrefixQuery</code> の OR 結合）</td>
+</tr>
+<tr>
+<td>データソース</td>
+<td>Lucene インデックス（同一エンジン）</td>
+<td>Lucene インデックス（同一エンジン）</td>
+</tr>
+<tr>
+<td>フィルタ方式</td>
+<td>サイズ・日付: Lucene クエリレベル</td>
+<td>サイズ・日付: Lucene クエリレベル</td>
+</tr>
+<tr>
+<td>拡張子フィルタ</td>
+<td>UI レベル（<code>ICollectionView</code> フィルタ、11 カテゴリ）</td>
+<td>UI レベル（<code>ICollectionView</code> フィルタ、11 カテゴリ）</td>
+</tr>
+<tr>
+<td>最大件数</td>
+<td>500 件</td>
+<td>500 件</td>
+</tr>
+</tbody>
+</table>
+<p>通常検索・インデックス検索ともに同じ Lucene エンジンを使用しますが、スコープの広さが異なります。通常検索は <code>rootPath = CurrentPath</code> で単一フォルダ配下に限定されるのに対し、インデックス検索は登録された全ルートを横断して検索します。</p>
+<h2 id="インデクシングパイプライン">インデクシングパイプライン<a class="headerlink" href="#インデクシングパイプライン" title="Permanent link">&para;</a></h2>
+<p>フォルダをインデックスに登録してから完了するまでの処理フローです。</p>
+<ol>
+<li><strong>登録</strong>: フォルダを <code>_pendingRoots</code> キューに追加</li>
+<li><strong>排他制御</strong>: <code>SemaphoreSlim(1,1)</code> で 1 タスクのみ実行。取得後 <code>_inProgressRoots</code> に移動</li>
+<li><strong>Box Drive 暖気運転</strong>: Box Drive パスの場合、<code>WarmUpBoxDirectoryAsync()</code> で全ディレクトリを事前に再帰列挙。スタブファイルの実体化を促し、本スキャン時の「アクセス不能」エラーを防止</li>
+<li><strong>ツリー走査</strong>: スタックベースの非再帰走査でフォルダツリーを深さ優先で探索</li>
+<li><strong>列挙オプション</strong>: <code>EnumerationOptions</code> で <code>IgnoreInaccessible = true</code>、<code>AttributesToSkip = FileAttributes.System | FileAttributes.Temporary</code> を指定</li>
+<li><strong>ドキュメント登録</strong>: <code>UpdateDocument</code>（upsert）でファイル/フォルダを Lucene ドキュメントとして追加・更新</li>
+<li><strong>コミット</strong>: 一定件数ごとに <code>IndexWriter.Commit()</code> を実行。コミット間隔はドライブ種別で異なる:</li>
+<li>ローカルドライブ: 500 件ごと</li>
+<li>ネットワークドライブ: 100 件ごと</li>
+<li>Box Drive: 50 件ごと</li>
+<li><strong>スロットリング</strong>: バッチ処理後に待機時間を挿入し、CPU・ディスク・ネットワークへの負荷を制御:</li>
+<li>ローカル: 15ms（省エネモード時 50ms）</li>
+<li>ネットワーク: 50ms（省エネモード時 100ms）</li>
+<li>Box Drive: 200ms（ネットワーク低優先モード時 +150ms、省エネモード時 +50ms、最大 400ms）</li>
+<li><strong>スレッド優先度</strong>: スキャン中は <code>Thread.CurrentThread.Priority = ThreadPriority.BelowNormal</code> に下げ、完了後に元に戻す</li>
+<li><strong>完了処理</strong>: <code>_indexedRoots</code> に追加し、<code>indexed_roots.json</code> に永続化。タイムスタンプとドキュメント数を記録</li>
+</ol>
+<p><strong>除外対象（自動スキップ）:</strong></p>
+<p>以下のフォルダ・ファイルはインデックス対象から自動的に除外されます。</p>
+<ul>
+<li><strong>フォルダ</strong>: <code>.git</code>、<code>.svn</code>、<code>.hg</code>、<code>node_modules</code>、<code>bower_components</code>、<code>.vs</code>、<code>obj</code>、<code>bin</code>、<code>.nuget</code>、<code>__pycache__</code>、<code>.mypy_cache</code>、<code>venv</code>、<code>.venv</code>、<code>.next</code>、<code>.nuxt</code>、<code>.gradle</code>、<code>$Recycle.Bin</code>、<code>System Volume Information</code>、<code>Recovery</code>、<code>PerfLogs</code>、<code>$</code> で始まるフォルダ全般</li>
+<li><strong>ファイル</strong>: <code>desktop.ini</code>、<code>Thumbs.db</code>、<code>.DS_Store</code>、<code>NTUSER.DAT</code>、<code>~$</code> で始まる Office 一時ファイル、拡張子 <code>.tmp</code>/<code>.temp</code>/<code>.bak</code>/<code>.swp</code>/<code>.swo</code>、拡張子なしのファイル</li>
+</ul>
+<h2 id="同時実行制御とスレッド管理">同時実行制御とスレッド管理<a class="headerlink" href="#同時実行制御とスレッド管理" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>SemaphoreSlim(1, 1)</strong>: インデックス作成タスクを同時 1 件に制限。ステータスバーの進捗表示の安定とサーバ負荷の軽減を実現</li>
+<li><strong>lock(_lockObj)</strong>: <code>IndexWriter</code> やコレクション（<code>_indexedRoots</code>、<code>_inProgressRoots</code> 等）への同時アクセスを保護</li>
+<li><strong>Thread.Priority = BelowNormal</strong>: スキャン中はスレッド優先度を下げ、UI の応答性を維持</li>
+<li><strong>CancellationToken の連鎖</strong>: <code>CancellationTokenSource.CreateLinkedTokenSource</code> でグローバルキャンセルトークンとユーザー操作のキャンセルトークンを結合。どちらからでもキャンセル可能</li>
+<li><strong>CpuIdleService 連携</strong>: Interval モードで <code>IdleOnlyExecution</code> が有効な場合、CPU 使用率が閾値（既定 20%）以下になるまでインデックス実行を待機</li>
+<li><strong>fire-and-forget の例外処理</strong>: Auto モードの差分更新タスクには <code>ContinueWith(OnlyOnFaulted)</code> で例外を観測し、<code>UnobservedTaskException</code> を防止</li>
+</ul>
+<h2 id="sqlite-データベースzenithdb">SQLite データベース（zenith.db）<a class="headerlink" href="#sqlite-データベースzenithdb" title="Permanent link">&para;</a></h2>
+<p>アプリの各種履歴・統計データは <code>data/index/zenith.db</code>（SQLite）に保存されます。</p>
+<table>
+<thead>
+<tr>
+<th>テーブル名</th>
+<th>用途</th>
+<th>主なカラム</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HistoryRecord</code></td>
+<td>フォルダ参照履歴</td>
+<td><code>Path</code>(PK)、<code>LastAccessed</code>、<code>SourceType</code>（Local/Server/Box/SPO）、<code>AccessCount</code></td>
+</tr>
+<tr>
+<td><code>SearchHistoryRecord</code></td>
+<td>検索履歴</td>
+<td><code>Key</code>(PK)、<code>Keyword</code>、<code>IsIndexSearch</code>、<code>IsGrepSearch</code>、<code>LastSearched</code>、<code>PresetName</code>、<code>MinSizeText</code>、<code>MaxSizeText</code>、<code>StartDateText</code>、<code>EndDateText</code></td>
+</tr>
+<tr>
+<td><code>RenameHistory</code></td>
+<td>リネーム履歴</td>
+<td><code>Name</code>、<code>LastUsed</code></td>
+</tr>
+<tr>
+<td><code>CustomRenameButton</code></td>
+<td>カスタムリネームボタン定義</td>
+<td>ユーザー定義のリネームテンプレート</td>
+</tr>
+<tr>
+<td><code>UsageRecord</code></td>
+<td>ライセンス使用記録</td>
+<td><code>Id</code>(PK, AutoIncrement)、<code>FeatureKey</code>(indexed)、<code>UsedAt</code>(ISO8601)</td>
+</tr>
+<tr>
+<td><code>ActionStat</code></td>
+<td>利用統計</td>
+<td><code>ActionKey</code>、<code>Count</code>、<code>LastUsedAt</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>SearchHistoryRecord</code> の <code>Key</code> は <code>keyword + "\u0001" + (isIndexSearch ? "1" : "0")</code> の複合キーで、同じキーワードでも通常検索とインデックス検索を区別して保存します。V2 マイグレーションでフィルタ条件カラム（<code>PresetName</code>、サイズ・日付テキスト）が追加されています。</p>
+<h2 id="filesystemwatcher-連携フォルダ監視">FileSystemWatcher 連携（フォルダ監視）<a class="headerlink" href="#filesystemwatcher-連携フォルダ監視" title="Permanent link">&para;</a></h2>
+<p>各タブは <code>FileSystemWatcher</code> で現在のフォルダを監視し、外部からのファイル変更をリアルタイムに反映します。</p>
+<p><strong>監視設定:</strong></p>
+<ul>
+<li><code>NotifyFilter</code>: <code>FileName</code>、<code>DirectoryName</code>、<code>LastWrite</code>、<code>Size</code></li>
+<li><code>InternalBufferSize</code>: 64KB（65,536 バイト）</li>
+<li>監視イベント: <code>Created</code>、<code>Deleted</code>、<code>Changed</code>、<code>Renamed</code></li>
+</ul>
+<p><strong>Auto モード時のインデックス連携:</strong></p>
+<p>インデックスの更新モードが Auto の場合、ファイル変更イベントに応じてインデックスを即時更新します。</p>
+<ul>
+<li><code>Created</code> / <code>Changed</code> → <code>AddFileToIndex(fullPath)</code></li>
+<li><code>Deleted</code> → <code>RemoveFileFromIndex(fullPath)</code></li>
+<li><code>Renamed</code> → <code>RemoveFileFromIndex(oldPath)</code> + <code>AddFileToIndex(newPath)</code></li>
+</ul>
+<p>Interval / Manual モードでは、定例スケジュールまたは手動トリガーのみでインデックスが更新されます。Interval の定例は前回の実行時刻を <code>index/last_interval_update.txt</code> に残し、起動時にそこから数えて最初の待ち時間を決めます（間隔を過ぎていれば最短 2 分後）。</p>
+<p><strong>アプリ自身の移動・コピーの反映:</strong></p>
+<p>モードにかかわらず、移動・コピー・削除・名前の変更が終わると、<code>IndexSync</code> が反映を 1 本の列に積み、<code>IndexService</code> が無くなった場所の文書を配下ごと削除し、新しい場所を配下ごと追加します（対象は、登録フォルダの配下で、ロック中でない場所だけ）。列に積むのは、一括リネームの「A → 仮の名前 → B」を順番どおりに反映するためです。転送のあとは一覧のフォルダサイズを引き直します。インデックスに文書の無いフォルダのサイズは 0 ではなく不明（空欄）として扱います。</p>
+<p>開いているフォルダの監視で見えた変更は、Auto と Interval のときに反映します（Manual は反映しない。フォルダの <code>Changed</code> は見送る）。監視から届く分と名前の変更は、コミットを 1 秒まとめます。</p>
+<p><strong>エラー時の自動再接続:</strong></p>
+<p>監視エラー発生時は指数バックオフで自動再接続を試みます。</p>
+<ul>
+<li>待機時間: 1 秒 → 2 秒 → 4 秒 → 8 秒 → … → 最大 30 秒</li>
+<li>最大リトライ回数: 10 回</li>
+<li>全リトライ失敗後は監視を停止し、タブがアクティブになった際にリフレッシュで補完</li>
+</ul>
+<h2 id="アイドル実行cpu-負荷回避">アイドル実行（CPU 負荷回避）<a class="headerlink" href="#アイドル実行cpu-負荷回避" title="Permanent link">&para;</a></h2>
+<p>ユーザー操作中にインデックス作成が走って他アプリを巻き添えにしないよう、<strong>アイドル時のみ実行</strong>する負荷制御を備えています。</p>
+<ul>
+<li><strong>設定</strong>: Control Deck → インデックス → 「省エネモードでインデックスを更新する」（<code>WindowSettings.IdleOnlyExecution</code>）＋「CPU 使用率しきい値」（<code>IdleCpuThreshold</code>、デフォルト 30%）。</li>
+<li><strong>CPU 監視</strong>: <code>CpuIdleService</code> が <code>PerformanceCounter("Processor", "% Processor Time", "_Total")</code> を一定間隔でサンプリングし、直近の平均値を保持。</li>
+<li><strong>判定フロー</strong>:</li>
+<li>インデクサは 1 バッチ処理前に <code>CpuIdleService.IsIdle</code> を参照。</li>
+<li><code>CpuIdleService.IsIdle == false</code>（しきい値を超えている）なら指数バックオフで待機し、再判定。</li>
+<li>連続待機中もユーザー操作による検索要求は<strong>ブロックしない</strong>（検索は別キュー）。</li>
+<li><strong>ネットワークドライブ軽量処理</strong>: <code>NetworkDriveSlowIndex</code> が ON のとき UNC / マップドドライブに対して追加のスロットリングを適用し、LAN・クラウド帯域の圧迫を抑制。</li>
+<li><strong>フル再構築最短間隔</strong>: <code>FullRebuildMinInterval</code>（6h / 12h / 24h）により、手動のフル再構築要求をしきい値時間内は差分更新に置換。</li>
+</ul>
+<p>この仕組みは起動直後にもアイドル評価が入るため、起動フリーズに寄与しません（起動時のインデクシングは <code>StartupInitTask</code> に乗らず、<code>IndexService</code> 自体の初期化後の遅延キューで実行）。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+        
+          
+          <a href="../index-settings/" class="md-footer__link md-footer__link--prev" aria-label="前: インデックスの設定">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                前
+              </span>
+              <div class="md-ellipsis">
+                インデックスの設定
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../60-ai/ai-setup/" class="md-footer__link md-footer__link--next" aria-label="次: 生成 AI の設定">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                次
+              </span>
+              <div class="md-ellipsis">
+                生成 AI の設定
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024-2026 K.AKASAKA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tracking", "navigation.top", "navigation.footer", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

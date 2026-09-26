@@ -1,0 +1,3631 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://sulkyjp.github.io/zenithFiler_update/ja/80-settings/settings-reference/">
+      
+      
+        <link rel="prev" href="../../70-keyboard/keybinding-internals/">
+      
+      
+        <link rel="next" href="../backup-recovery/">
+      
+      
+        
+          <link rel="alternate" href="../../../80-settings/settings-reference/" hreflang="en">
+        
+          <link rel="alternate" href="./" hreflang="ja">
+        
+      
+      
+      <link rel="icon" href="../../../assets/icon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>アプリ設定（Control Deck）の全項目 - Zenith Filer マニュアル</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#アプリ設定control-deckの全項目" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../" title="Zenith Filer マニュアル" class="md-header__button md-logo" aria-label="Zenith Filer マニュアル" data-md-component="logo">
+      
+  <img src="../../../assets/icon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Zenith Filer マニュアル
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              アプリ設定（Control Deck）の全項目
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="言語切り替え">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../80-settings/settings-reference/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="ja" class="md-select__link">
+              日本語
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sulkyjp/zenithFiler_update" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sulkyjp/zenithFiler_update
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="Zenith Filer マニュアル" class="md-nav__button md-logo" aria-label="Zenith Filer マニュアル" data-md-component="logo">
+      
+  <img src="../../../assets/icon.png" alt="logo">
+
+    </a>
+    Zenith Filer マニュアル
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sulkyjp/zenithFiler_update" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sulkyjp/zenithFiler_update
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ホーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    はじめに
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    はじめに
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-start/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zenith Filer とは
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    画面構成
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    画面構成
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/titlebar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タイトルバー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/file-pane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ファイルペイン（A ペイン / B ペイン）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/nav-pane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ナビペイン
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/status-bar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ステータスバー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/dialogs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    確認・エラーダイアログ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/help-viewer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ヘルプ・ドキュメントビューア
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本操作
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基本操作
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    フォルダの移動（ナビゲーション）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/address-bar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    アドレスバーとパンくず
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/tabs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タブ操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/file-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    標準的なファイル操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/batch-rename/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    一括リネーム
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/context-menu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    右クリックメニュー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/drag-drop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ドラッグ＆ドロップ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/command-palette/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    コマンドパレット
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/ring-launcher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    リングランチャー
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ファイルツール
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ファイルツール
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/diff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テキスト比較（Diff）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/folder-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    フォルダの比較
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ハッシュ計算・照合
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/timestamps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    タイムスタンプ・属性の一括変更
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/archives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    アーカイブの展開・圧縮
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/terminal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ターミナル
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/send-to-terminal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    選択項目をターミナル・Claude Code へ渡す
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/ftp-sftp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    サーバー（FTP / SFTP）への接続
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    整理と表示
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    整理と表示
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/favorites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    お気に入り管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/view-options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    表示オプション
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/themes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テーマ（配色カスタマイズ）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/theme-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テーマ一覧とカテゴリ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/theme-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テーマストア
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/theme-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    テーマのしくみ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/working-sets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ワーキングセット
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/presets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    プリセット（ウィンドウ配置・ナビペイン配置・検索条件）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検索
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    検索
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-search/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検索機能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-search/search-filters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    サイズ・日付フィルタ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-search/search-presets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    検索プリセット
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-search/index-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    インデックス検索
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-search/index-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    インデックスの設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-search/index-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    インデックス検索のしくみ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI とマクロ
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI とマクロ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-ai/ai-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生成 AI の設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-ai/ai-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生成 AI の機能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-ai/macros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    マクロ（操作の自動化）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボード
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    キーボード
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-keyboard/keyboard-mouse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボードとマウスの連携
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-keyboard/shortcuts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーボードショートカット一覧
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-keyboard/keybinding-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    キーバインドのしくみ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定とデータ
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    設定とデータ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    アプリ設定（Control Deck）の全項目
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    アプリ設定（Control Deck）の全項目
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#基本設定-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本設定 (General)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#検索-search-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        検索 (Search UI)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#インデックス-indexing-freshness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        インデックス (Indexing &amp; Freshness)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#表示-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        表示 (Display)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ファイル種別の色分け-file-type-colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ファイル種別の色分け (File Type Colors)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#演出-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        演出 (Effects)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ショートカットキー-shortcut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ショートカットキー (Shortcut)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ショートカットキー (Shortcut)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#目的のキーを探す" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目的のキーを探す
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#キーマッププリセット" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        キーマッププリセット
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#マクロのキー" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        マクロのキー
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-でのペイン移動" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ← → でのペイン移動
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#アプリの呼び出しキーが効かないとき" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        アプリの呼び出しキーが効かないとき
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-画面ならではの操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 画面ならではの操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ツールバー-toolbar-pro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ツールバー (Toolbar) 【Pro】
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#リングランチャー-ring-launcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        リングランチャー (Ring Launcher)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#生成ai-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生成AI (AI)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#利用統計-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        利用統計 (Statistics)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#このアプリについて-about" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        このアプリについて (About)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backup-recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定バックアップ・リカバリ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../settings-files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    設定ファイル構造
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../log-spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ログ仕様
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    インストールと更新
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    インストールと更新
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    インストールとフォルダ構成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/auto-update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自動アップデート
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/resident-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常駐モード
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/screen-capture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    スクリーンキャプチャ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/startup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    起動シーケンス
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    お楽しみ要素
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    お楽しみ要素
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/challenges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    チャレンジ・実績
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    マスコット（Stickman）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-behavior-json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    行動 JSON の書き方
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-poses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ポーズ・犬コマンド・小道具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    イベントと性格
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-rewards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    報酬行動
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-export-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIF 書き出しと AI 生成
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#基本設定-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本設定 (General)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#検索-search-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        検索 (Search UI)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#インデックス-indexing-freshness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        インデックス (Indexing &amp; Freshness)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#表示-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        表示 (Display)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ファイル種別の色分け-file-type-colors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ファイル種別の色分け (File Type Colors)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#演出-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        演出 (Effects)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ショートカットキー-shortcut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ショートカットキー (Shortcut)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ショートカットキー (Shortcut)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#目的のキーを探す" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目的のキーを探す
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#キーマッププリセット" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        キーマッププリセット
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#マクロのキー" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        マクロのキー
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-でのペイン移動" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ← → でのペイン移動
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#アプリの呼び出しキーが効かないとき" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        アプリの呼び出しキーが効かないとき
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-画面ならではの操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 画面ならではの操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ツールバー-toolbar-pro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ツールバー (Toolbar) 【Pro】
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#リングランチャー-ring-launcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        リングランチャー (Ring Launcher)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#生成ai-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生成AI (AI)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#利用統計-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        利用統計 (Statistics)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#このアプリについて-about" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        このアプリについて (About)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="アプリ設定control-deckの全項目">アプリ設定（Control Deck）の全項目<a class="headerlink" href="#アプリ設定control-deckの全項目" title="Permanent link">&para;</a></h1>
+<p><code>Ctrl+Shift+O</code> で開く設定ビューは 11 カテゴリに分かれています。各カテゴリの主要項目を以下にまとめます。</p>
+<p><img alt="Control Deck の基本設定タブ。左側に 11 カテゴリのナビゲーション、中央にコンテキストメニュー選択・ホームフォルダ・操作・表示・常駐モード・通知時間のセクションが並ぶ" src="../../../screenshots/control_deck_general.png" /></p>
+<h2 id="基本設定-general">基本設定 (General)<a class="headerlink" href="#基本設定-general" title="Permanent link">&para;</a></h2>
+<p><strong>作者のおすすめ</strong></p>
+<p>作者がふだん使っている環境をまとめて当てます。当てるのは、ナビペインの配置（プリセットの「作者構成」）、ツールバーの全部のボタン、タイトルバーのレベルと二つ名のバナー、AI / Pro バッジ、機能推薦、起動時のテーマ適用通知、リングランチャーの既定の配置です。はじめて使う方の既定は普通のファイラーに近い控えめなものにしてあるので、このアプリらしい使い方を試したいときの入口になります。当てる前に確かめます。リングランチャーの割り当てを自分で変えていて、どこにも保存していないときは、失われることも知らせます。XP ランキングへの送信は変えません。どれも後から個別に設定し直せます。</p>
+<p><strong>コンテキストメニュー</strong></p>
+<p>ファイル一覧の右クリック時に表示するメニューを選択します。</p>
+<ul>
+<li><strong>アプリ独自メニュー（推奨）</strong>: 開く・コピー・削除・名前の変更・お気に入り・インデックス検索など基本操作を即座に表示。Shift+右クリックでエクスプローラ互換メニューへ一時切替できます。</li>
+<li><strong>エクスプローラ互換メニュー</strong>: 7-Zip など Windows の標準右クリックメニュー（シェル拡張含む）を表示。</li>
+</ul>
+<p><strong>ホームフォルダ</strong></p>
+<p>A ペイン・B ペインのホームアドレスを個別に設定します。</p>
+<ul>
+<li><strong>表示中のフォルダを設定</strong>: A/B ペインで表示中のフォルダをホームに設定。</li>
+<li><strong>フォルダを選択</strong>: ダイアログからフォルダを選択して設定。</li>
+</ul>
+<p><strong>操作</strong></p>
+<ul>
+<li><strong>シングルクリックでフォルダを開く</strong>: オンでシングルクリック、オフでダブルクリック遷移。</li>
+<li><strong>ファイル削除時に確認ダイアログを表示する</strong>: オフでシェルの確認を省略してごみ箱へ移動。</li>
+<li><strong>起動時に前回のタブを復元する</strong>: オフでホームフォルダのみで起動。</li>
+</ul>
+<p><strong>ナビペイン（エッジホバー自動表示）</strong></p>
+<ul>
+<li><strong>左ナビペインを自動的に隠す</strong>: オンにすると左ナビペインを通常は閉じておき、ウィンドウ左端の細い領域（12px）にマウスカーソルが入ったとき、約 0.15 秒後にオーバーレイとしてスライドイン表示します。<strong>その外側 32px までの範囲も、1 秒とどまれば同じように開きます</strong> — 端を狙い損ねても拾えるようにするための保険なので、通りすがりに横切っただけでは開きません。カーソルが離れると約 0.4 秒後にスライドアウトします。A ペイン・B ペインの表示領域を最大限に使いたい場合に有効です。</li>
+<li><strong>右ナビペインを自動的に隠す</strong>: 右側のナビペインに対する同様のトグル。左右独立して ON/OFF できます。</li>
+<li><strong>ピン留め</strong>: 自動表示中のナビペインヘッダ右上にピン留めボタンが表示されます。クリックすると以後カーソルが離れても閉じなくなり、もう一度クリックすると解除されて通常の自動隠しに戻ります。ピン状態はアプリ再起動でリセットされます。</li>
+<li><strong>表示切替のキー・リングランチャーから開く</strong>: 自動的に隠している側でも、「左ペインの表示切替」「右ペインの表示切替」（既定 <code>Ctrl+Shift+[</code> / <code>Ctrl+Shift+]</code>、リングランチャーの ◀ ▶）で一時的に出せます。もう一度同じ操作をするか、<strong>ナビペインの外をクリック</strong>すると閉じます。ピン留めしていても、表示切替で閉じるとピン留めは外れます。自動的に隠す設定そのものは変わりません。</li>
+<li><strong>D&amp;D／コンテキストメニュー中の保護</strong>: ナビペイン上でドラッグ＆ドロップ中、または右クリックメニューを開いている間は、自動的な閉じる動作が抑制されます。</li>
+<li>既定値はどちらも OFF（v0.48.3 以前と同じ「常時表示／手動トグル」挙動）です。</li>
+</ul>
+<p><strong>表示</strong></p>
+<ul>
+<li><strong>タイトルバーにパスを表示する</strong>: フォーカス中のペインのフルパスをタイトルバーに表示。</li>
+<li><strong>拡張子を表示する</strong>: オフでファイル名から拡張子を非表示。</li>
+<li><strong>隠しファイル・フォルダを表示する</strong>: Windows の隠し属性ファイルの表示切替。</li>
+<li><strong>一覧の行を交互に色分け</strong>: オンで一覧の行を1行おきにごく淡く色分けし、横に長い一覧でも行を目で追いやすくします（既定オフ）。表示色は固定値ではなく現在のテーマの背景色に対して自動計算されるため、どのテーマに切り替えても自然に馴染みます。</li>
+<li><strong>ダウンロードフォルダを更新日時で並べる</strong>: オンでダウンロードフォルダに移動した際、自動的に更新日時の新しい順にソート（他フォルダへ移動すると元の並びに戻る）。</li>
+</ul>
+<p><strong>常駐モード</strong></p>
+<p>ウィンドウの×ボタンを押してもアプリが終了せずシステムトレイに最小化されます。詳細な操作対応表は <strong><a href="../../90-install/resident-mode/">常駐モード</a></strong>を参照。</p>
+<p><strong>Windows のサインイン時に起動する</strong></p>
+<p>Windows にサインインしたときに Zenith Filer を起動します。既定はオフです。</p>
+<p>スタートアップフォルダにショートカットを置くだけの仕組みで、<strong>レジストリは変更しません</strong>。解除はこのチェックを外すほか、Windows の <strong>「設定 &gt; アプリ &gt; スタートアップ」</strong> からも行えます。</p>
+<p>オンにすると<strong>常駐モードも同時に有効</strong>になります。常駐していないとウィンドウを閉じた時点でアプリが終了し、アプリ呼び出しキー（<strong><a href="#アプリの呼び出しキーが効かないとき">アプリの呼び出しキーが効かないとき</a></strong>）が効かなくなるためです。起動は最小化状態で行うため、サインインのたびにウィンドウが前面に出ることはありません。</p>
+<p><strong>ウィンドウを画面端にスナップする</strong></p>
+<p>オンのとき、ウィンドウをドラッグして画面端（タスクバーを除いたワークエリア）に 15px 以内まで近づけると、磁石のようにピタッと端へ吸着します。上下左右の各辺と四隅に対応し、ウィンドウが表示されているモニタを基準に判定するためマルチモニタ環境や高 DPI でも自然に揃います。そのままドラッグを続ければ引き剥がせます。リサイズ時は吸着せず、Windows 標準の Aero Snap（Win + 矢印など）とも併用できます。既定はオン。</p>
+<p><strong>通知の表示時間</strong></p>
+<p>短め（1.5 秒）／標準（3 秒）／長め（5 秒）から選択。</p>
+<p><strong>テキストエディタ</strong></p>
+<p>「テキストエディタで開く」コンテキストメニューで使用する実行ファイルを明示指定できます。OS の <code>.txt</code> 関連付けに依存せず、お好みのエディタ（VS Code / Notepad++ / サクラ / Notepad など）を直接起動します。</p>
+<ul>
+<li><strong>実行ファイルパス</strong>: エディタの <code>.exe</code> パスを直接入力するか、<code>[参照…]</code> ボタンで選択。空欄にすると OS の既定アプリにフォールバックします。</li>
+<li><strong><code>[自動検出]</code></strong>: PATH 上の VS Code → <code>%LOCALAPPDATA%\Programs\Microsoft VS Code\Code.exe</code> → Notepad++ → サクラ → Windows 標準 Notepad の順に探索し、最初に見つかった実行ファイルを設定します。</li>
+<li>指定したパスが存在しない場合は安全側に倒れ、OS 既定アプリで開きます。</li>
+<li><strong>対象に足す拡張子</strong>: 「テキストエディタで開く」を出す拡張子を、カンマ区切りで足せます（例: <code>csv, dat</code>）。先頭の <code>.</code> や <code>*.</code> は付けても付けなくても構いません。既定で対象の拡張子（<code>.txt</code>・<code>.md</code>・<code>.json</code> など）はそのまま残り、欄の下に一覧が出ます。足した拡張子は、2 つのファイルを並べる「テキスト比較」の対象にもなります。</li>
+</ul>
+<h2 id="検索-search-ui">検索 (Search UI)<a class="headerlink" href="#検索-search-ui" title="Permanent link">&para;</a></h2>
+<p><strong>検索の挙動</strong>（検索実行時の表示先を 3 パターンから選択）</p>
+<ul>
+<li><strong>同一ペイン・新規タブ</strong>: Enter で新規タブに検索結果を表示（従来どおり）。</li>
+<li><strong>同一ペイン・現在タブで即時検索</strong>: Enter で現在のタブに検索結果を表示、クリアで一覧に戻る。</li>
+<li><strong>反対ペイン・新規タブ</strong>: Enter で反対ペインに新規タブ表示。1 ペイン時は自動で 2 ペインに切替。</li>
+</ul>
+<p><strong>検索結果のパスクリック時の挙動</strong>（パス列クリック時の表示先を 3 パターンから選択）</p>
+<ul>
+<li><strong>同一タブで表示</strong>: 検索結果ビューから通常一覧に切替。</li>
+<li><strong>同一ペイン・新規タブ</strong>: 同一ペインに新規タブで表示。</li>
+<li><strong>反対ペイン・新規タブ</strong>: 反対ペインに新規タブで表示（1 ペイン時は自動で 2 ペインに切替）。</li>
+</ul>
+<p><strong>検索時の表示設定</strong></p>
+<ul>
+<li><strong>検索時に自動的に 1 画面モードに切り替える</strong>: オンで検索実行時に 1 ペインモードへ自動切替し検索結果を広く表示。B ペインで検索した場合は検索タブが A ペインに表示されます。</li>
+</ul>
+<h2 id="インデックス-indexing-freshness">インデックス (Indexing &amp; Freshness)<a class="headerlink" href="#インデックス-indexing-freshness" title="Permanent link">&para;</a></h2>
+<p><strong>インデックスの更新タイミングと負荷</strong></p>
+<ul>
+<li><strong>変更を自動で取り込む</strong>: <code>FileSystemWatcher</code> でファイル変更を監視して即時差分更新。</li>
+<li><strong>一定間隔でまとめて更新する</strong>: 1 時間／2 時間／4 時間／1 日ごとに登録フォルダ全体を再スキャン。</li>
+<li><strong>必要なときだけ更新する</strong>: インデックスビューの「未インデックスを作成」または「フル再構築…」を押したときのみ更新。起動時の自動インデックスなし。</li>
+</ul>
+<p><strong>パフォーマンスと負荷</strong></p>
+<ul>
+<li><strong>省エネモードでインデックスを更新する</strong>: CPU とディスク使用を抑え、他アプリへの影響を小さくします（<code>CpuIdleService</code> 経由、<a href="../../50-search/index-internals/#アイドル実行cpu-負荷回避">アイドル実行（CPU 負荷回避）</a> 参照）。</li>
+<li><strong>ネットワークドライブは軽めに処理する</strong>: UNC やマップドドライブをローカルよりゆっくり処理し、帯域・サーバ負荷を抑えます。</li>
+<li><strong>フル再インデックス最短間隔</strong>: 6 時間／12 時間／24 時間。間隔内の手動フル再構築は差分更新に置換されます。</li>
+</ul>
+<p><strong>検索結果の鮮度</strong></p>
+<ul>
+<li><strong>できるだけ最新の状態を保つ（鮮度優先）</strong>: インデックス検索時に全ターゲットフォルダの差分更新・未インデックス作成をバックグラウンド開始し、検索と並行してインデックス更新。</li>
+<li><strong>インデックスが古い可能性があるときにメッセージを表示する</strong>: 未インデックスフォルダがある場合、検索結果ビュー上に注意メッセージを表示。右端の × で閉じられます。</li>
+</ul>
+<h2 id="表示-display">表示 (Display)<a class="headerlink" href="#表示-display" title="Permanent link">&para;</a></h2>
+<p><strong>新規タブのデフォルト表示</strong></p>
+<ul>
+<li><strong>フォルダを先頭に表示する</strong>（ON/OFF）。</li>
+<li><strong>デフォルトのソート順</strong>: 名前／更新日／サイズ／拡張子 × 昇順／降順。<code>Ctrl+T</code> やパス指定で開いた新規タブに適用、検索結果タブと既存タブには適用されません。</li>
+</ul>
+<p><strong>ファイル一覧の行高</strong></p>
+<p>超コンパクト（20px）／コンパクト（24px）／標準（32px）／ゆったり（40px）。変更は即座に A/B 両ペインに反映され、再起動後も保持されます。</p>
+<p><strong>コピー中のウィンドウ</strong></p>
+<p>コピーや移動を始めると、進み具合のウィンドウが出ます。1 つのウィンドウに操作が行として並び、それぞれに<strong>速度・残り時間・件数・サイズ・いま処理しているファイル</strong>が出ます。行ごとに<strong>一時停止・再開・中止</strong>ができ、下段に「すべて中止」「終わった分を消す」があります。<strong>ウィンドウを閉じても転送は続きます</strong>（画面左下のバーが引き継ぎます）。タスクバーのアイコンにも進み具合が出るので、ほかのアプリで作業していても分かります。すべて成功すると少し待ってから自動で閉じ、<strong>中止や失敗があった回はそのまま残ります</strong>（結果を読めるようにするためです）。</p>
+<p><img alt="ファイル操作のウィンドウ。「trash_candidates → archive」の行に進み具合のバーと「5 / 5」「完了」が出ていて、下段に「終わった分を消す」「すべて中止」「閉じる」がある" src="../../../screenshots/1-3-1_copy-progress.png" /></p>
+<p>出し方は 3 つから選べます。<strong>常に出す</strong>（既定）／<strong>大きいときだけ出す</strong>（50 件または 50MB 以上）／<strong>出さない</strong>（左下のバーだけ）。</p>
+<p><strong>文字とアイコンの大きさ</strong></p>
+<p>一覧の文字・一覧のアイコン・タブの文字の大きさを、それぞれ個別に決められます。いずれも既定は <strong>「自動（行の高さに合わせる）」</strong> で、これまでと同じ見た目です。自分で選ぶと、行の高さを変えても文字の大きさはそのまま保たれます。タブの文字は A/B ペインのタブと、ナビペインのタブ一覧の両方に効きます。読めない大きさにならないよう、文字は 8〜32、アイコンは 8〜48 の範囲に収められます。</p>
+<p><strong>選択中の行の外枠</strong></p>
+<p>選択中の行を、背景の塗りに加えてアクセント色の外枠でも示します（既定でオン）。マウスを乗せた行と、キーボードで選んだ行を見分けやすくするためのもので、テーマによって塗りの濃さが近い場合でも「いまどこを選んでいるか」が分かります。塗りだけの表示に戻したいときはオフにしてください。</p>
+<h2 id="ファイル種別の色分け-file-type-colors">ファイル種別の色分け (File Type Colors)<a class="headerlink" href="#ファイル種別の色分け-file-type-colors" title="Permanent link">&para;</a></h2>
+<p>ファイル一覧のファイル名の文字色を、拡張子に基づくファイル種別ごとに変えられる機能です（既定オフ）。専用の設定ページから、以下を設定できます。</p>
+<ul>
+<li><strong>有効化</strong>: マスタートグルをオンにすると、ルールに従って一覧の文字色が種類ごとに変わります。</li>
+<li><strong>おすすめルール（7カテゴリ）</strong>: 画像・動画・音声・圧縮ファイル・実行ファイル・書類・コードの7カテゴリについて、拡張子と色の組み合わせをあらかじめ用意しています。</li>
+<li><strong>自由編集</strong>: 各ルールの対象拡張子・色（<code>#RRGGBB</code>）・有効/無効はすべて編集できます。「ルールを追加」で新しいルールを作成でき、ユーザーが追加したルールは削除も可能です（ビルトインの7ルールは無効化のみで削除は不可）。</li>
+<li><strong>既定に戻す</strong>: ボタン1つでおすすめのルールセットに一括で戻せます。</li>
+<li>一覧の交互色分けと同じく、実際に表示される色は現在のテーマの背景に対して自動調整されるため、どのテーマに切り替えても読みづらくなりません。</li>
+</ul>
+<h2 id="演出-effects">演出 (Effects)<a class="headerlink" href="#演出-effects" title="Permanent link">&para;</a></h2>
+<p><img alt="Control Deck の演出タブ。A 起動〜L ドラッグ＆ドロップの 12 カテゴリが縦に並び、各カテゴリに ON/OFF トグルスイッチと説明文が表示されている" src="../../../screenshots/1-3-1_settings-effects.png" /></p>
+<p>アプリ内の演出効果を 12 カテゴリに分類し、カテゴリ別に ON/OFF トグルで制御できます。各カテゴリの詳細と対象 UI は <strong><a href="../../40-organize/view-options/#演出カテゴリeffects-12-カテゴリの詳細">演出カテゴリ（Effects）— 12 カテゴリの詳細</a></strong> の表を参照してください。</p>
+<p><strong>低速環境で演出を自動的に軽量化</strong>（既定オン）: リモートデスクトップやソフトウェア描画の環境、実際の画面切替が遅い環境を自動検出し、装飾的な演出（タブ操作・ペイン・トランジション・テーマ・プレビュー・一覧・ドラッグ＆ドロップ）を一括でオフにして操作の速さを優先します。自動軽量化が働いたときはトーストで通知されます。進捗表示（GlowBar・スキャンバー）と起動演出は対象外です。自動軽量化された場合も、この設定をオフにすれば従来どおり各カテゴリの設定で演出が有効になります。</p>
+<p><strong>動画サムネイル（追加ダウンロード）</strong>: mp4・mov・mkv など <strong>Windows が対応している形式のサムネイルは、追加の導入なしで表示されます</strong>。flv のように Windows がサムネイルを作れない形式でも表示したい場合だけ、このボタンから拡張を導入してください。約 130MB をダウンロードし、<code>data\ffmpeg\</code> に配置します。導入すると、Windows が作れなかった形式に限って自動的にこちらで生成します（対応済みの形式は従来どおり Windows 側で処理するため、速度は変わりません）。<strong>使わない方に容量を負担させないため、本体には同梱していません。</strong> 取得するのは LGPL 版で、改変せず別のプログラムとして呼び出すだけなので、本アプリのライセンスには影響しません。不要になったら「削除する」で消せます（ご自身で PATH に入れた FFmpeg には触れません）。</p>
+<p><strong>I/O の自動間引き</strong>（既定オン）: ファイル I/O が遅いドライブを通常操作中の実測値から自動検出し、サムネイルの生成・大きな画像（2MB 超）のプレビュー・フォルダツリーのアイコン取得前に行う先読み（Box Drive の暖気）を見送ります。対象になるのは Box・OneDrive などのクラウド同期ドライブ、低速な共有フォルダ、監視ソフトの影響で遅くなっているローカルドライブなどです。<strong>判定はドライブごとに保持される</strong>ため、A ペインにクラウド同期フォルダ・B ペインにローカルドライブを並べても、速い側の操作は一切影響を受けません。遅い状態が解消されれば自動的に元へ戻ります。判定のためにディスクへの新しい問い合わせは追加していないため、この機能自体が遅延の原因になることはありません。判断には所要時間だけでなく<strong>処理したデータ量あたりの時間</strong>も使うため、「大きな画像なので時間がかかった」ケースをドライブの遅さと取り違えることはありません。<strong>クラウド同期ドライブ（Box）の画像サムネイルは、以前はパスの形だけで一律に非表示でしたが、実測して遅いときだけ控えるようになりました</strong>（同期が済んでいないファイルは従来どおり対象外です）。2MB 以下の画像は遅いドライブでもそのまま表示するので、プレビュー機能が失われることはありません。フォルダツリーのアイコン自体も従来どおり取得します（省くのは取得前の先読みだけです）。前項の「低速環境で演出を自動的に軽量化」とは<strong>別の設定</strong>です（あちらは画面描画の速さを、こちらはファイル I/O の速さを見ます）。</p>
+<p>旧設定（マイクロアニメーション・一覧表示アニメーション・ウェルカムアニメーション）からの自動マイグレーションに対応しています。</p>
+<h2 id="ショートカットキー-shortcut">ショートカットキー (Shortcut)<a class="headerlink" href="#ショートカットキー-shortcut" title="Permanent link">&para;</a></h2>
+<ul>
+<li>各アクションに対してキーボードショートカットを自由にカスタマイズできます。</li>
+<li>各アクションの入力欄をクリックしてキーを押すだけで変更でき、個別にリセットすることも可能。</li>
+<li><strong>エクスポート</strong> / <strong>インポート</strong>ボタンで JSON 形式で設定を移行できます（構造・運用は <strong><a href="../../70-keyboard/keybinding-internals/">キーバインドのしくみ</a></strong> を参照）。</li>
+</ul>
+<h3 id="目的のキーを探す">目的のキーを探す<a class="headerlink" href="#目的のキーを探す" title="Permanent link">&para;</a></h3>
+<p>割り当てられる操作は 50 を超え、5 つのグループに分かれています。ページ上部の<strong>スクロールしても消えないバー</strong>から探せます。</p>
+<ul>
+<li><strong>絞り込み</strong> — 名前からでもキーからでも引けます。</li>
+<li>「コピー」→ <code>Ctrl+C</code> が出ます</li>
+<li><code>Ctrl+D</code> → <strong>そのキーが今どの操作に使われているか</strong>が分かります（空いているキーを探すときはこちら）</li>
+<li><code>+</code> は省けます（<code>ctrlc</code> でも <code>Ctrl+C</code> に当たります）</li>
+<li>空白で区切ると、<strong>すべての語を含むもの</strong>だけに絞られます（全角空白でも同じ）</li>
+<li>説明文・グループ名でも引けます</li>
+<li><strong>件数</strong> — 絞り込み中は「3 / 52 件」と出ます。0 件になったときに「無い」のか「絞り込めていない」のかが分かります。</li>
+<li><strong>グループへのジャンプ</strong> — バーのグループ名を押すと、その見出しまでスクロールします。絞り込み中は残っているグループだけが並びます。</li>
+</ul>
+<h3 id="キーマッププリセット">キーマッププリセット<a class="headerlink" href="#キーマッププリセット" title="Permanent link">&para;</a></h3>
+<p>他のファイラーの操作体系を<strong>まとめて当てられます</strong>。ページ先頭のボタンから選びます。</p>
+<ul>
+<li><strong>Zenith 標準</strong> — すべて既定の割り当てに戻します</li>
+<li><strong>Total Commander 風</strong> — <code>F5</code> でコピー、<code>F6</code> で移動、<code>F7</code> でフォルダ作成、<code>F8</code> で削除、<code>Shift+F6</code> で名前の変更、<code>F3</code> でクイックプレビュー、<code>Ctrl+R</code> で更新、<code>Ctrl+D</code> でお気に入り、<code>Alt+F7</code> で検索</li>
+<li><strong>Zenith 2（2 打鍵）</strong> — <code>Ctrl+K</code> に続けて 1 打鍵でビューを開き、<code>Ctrl+B</code> に続けて 1 打鍵でペインを操作します。覚えるのは入口の 2 つだけで、押したまま少し待つと次に押せるキーの一覧が出ます。詳しくは <strong><a href="../../70-keyboard/shortcuts/#zenith-2-の-2-打鍵キー">Zenith 2 の 2 打鍵キー</a></strong></li>
+<li><strong>あふw 風</strong> — <code>C</code> でコピー、<code>M</code> で移動、<code>D</code> で削除、<code>K</code> でフォルダ作成、<code>R</code> で名前の変更。<strong>修飾キーを使わない 1 打鍵</strong>の操作系です。この形の割り当ては<strong>ファイル一覧にいるときだけ</strong>効きます — パス欄・検索欄・名前の変更のような文字を打つ場所では、そのまま文字として入ります。一覧では<strong>頭文字を打っての絞り込みより割り当ての方が優先</strong>されるので、<code>C</code> を押すと絞り込みではなくコピーになります</li>
+<li>
+<p><strong>エクスプローラー風</strong> — <code>Backspace</code> で「戻る」、<code>Alt+↑</code> で「上へ」。既定との差は小さく見えますが、<strong>Zenith では <code>Backspace</code> が「上へ」なのに対し Windows のエクスプローラーでは「戻る」</strong>という、移ってきた方がいちばん最初につまずく食い違いを埋めます</p>
+</li>
+<li>
+<p><strong>押す前に必ず内訳が出ます。</strong> 「何件の割り当てが変わるか」「そのうち何件がご自身で変更した割り当てを置き換えるか」を確認画面に出します。当てたあとに同じキーが 2 つのアクションに載る場合は、その組み合わせも一緒に示します。</p>
+</li>
+<li>
+<p><strong>プリセットが指定していない操作には手を出しません。</strong> 他のファイラーには Zenith 固有の機能（AI・マクロ・テーマなど）に当たるキーがありません。そこは今の割り当てがそのまま残り、<strong>ご自身で個別に変更した割り当ても生き残ります</strong>。</p>
+</li>
+<li>
+<p><strong>「Zenith 標準」を押せばいつでも元に戻せます。</strong> 気軽に試してください。</p>
+</li>
+<li>
+<p><strong>プリセットを自分で増やせます。</strong> テーマや言語ファイルと同じく、実行フォルダの <code>data\keymaps\</code> に置かれた JSON を読んでいます。同じ形式でファイルを 1 つ置けば、設定画面のボタンが増えます。</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my_layout"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"nameKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"keymap.preset.total_commander"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"descriptionKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"keymap.preset.total_commander_desc"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"bindings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"actionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FileList.Delete"</span><span class="p">,</span><span class="w"> </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F8"</span><span class="p">,</span><span class="w"> </span><span class="nt">"modifiers"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"actionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FileList.AddToFavorites"</span><span class="p">,</span><span class="w"> </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="nt">"modifiers"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>key</code> を空にすると「割り当てなし」になります（既定のキーを空けて別のアクションへ譲るときに使います）。<code>modifiers</code> は <code>Control</code> / <code>Alt</code> / <code>Shift</code> を <code>+</code> で連結します。</p>
+<h3 id="マクロのキー">マクロのキー<a class="headerlink" href="#マクロのキー" title="Permanent link">&para;</a></h3>
+<p>登録したマクロも、この画面の<strong>「マクロ」グループ</strong>に並びます。ほかの操作とまったく同じ形でキーを記録して割り当てられ、<strong>すでに使われているキーなら警告が出ます</strong>。<code>Ctrl+K</code> のような 2 打鍵の起点に割り当ててしまった場合も「このままでは実行されません」と知らせます。2 打鍵のキー（<code>Ctrl+K</code> → <code>M</code> など）も割り当てられます。</p>
+<p>なお<strong>修飾キーを使わない 1 文字のキー</strong>（<code>M</code> だけ、など）はマクロに割り当てられません。ファイル名の入力や絞り込みで、その文字が打てなくなるためです。</p>
+<h3 id="-でのペイン移動"><code>←</code> <code>→</code> でのペイン移動<a class="headerlink" href="#-でのペイン移動" title="Permanent link">&para;</a></h3>
+<p><code>←</code> <code>→</code> で A / B ペインを行き来する動作は、この画面から変更できます。フォルダ階層の移動に <code>←</code> <code>→</code> を使いたい方は、割り当てを外すか別のキーへ移してください。</p>
+<p>なお<strong>アイコンビュー（小・中・大アイコン）では、ファイル一覧に居るあいだ <code>←</code> <code>→</code> はペイン移動を行いません</strong>。アイコンは横にも並ぶため、選択を左右へ動かすほうを優先します。ペイン移動には <code>Tab</code> か <code>F6</code> を使ってください。ペイン移動へ <code>←</code> <code>→</code> 以外のキーを割り当てている場合は、アイコンビューでもそのキーで移動できます。</p>
+<h3 id="アプリの呼び出しキーが効かないとき">アプリの呼び出しキーが効かないとき<a class="headerlink" href="#アプリの呼び出しキーが効かないとき" title="Permanent link">&para;</a></h3>
+<p>アプリを外から呼び出すキー（既定は <code>Ctrl+Shift+E</code>）は、<strong>Windows 全体で 1 つのアプリしか押さえられません</strong>。ほかの常駐ソフトが先に同じキーを使っていると、Zenith Filer 側では登録できません。</p>
+<p>その場合は<strong>この画面に警告が出ます</strong>。キーを変更した直後であれば通知でもお知らせします。別のキーに変えるか、先に使っているソフトの設定を見直してください。</p>
+<h3 id="2-画面ならではの操作">2 画面ならではの操作<a class="headerlink" href="#2-画面ならではの操作" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>反対ペインへコピー</strong> / <strong>反対ペインへ移動</strong> — 選択項目を、もう一方のペインで開いているフォルダへ運びます。ドラッグ＆ドロップとまったく同じ処理を通るので、同じ名前のファイルがあるときの確認画面・進捗・<code>Ctrl+Z</code> での取り消しもそのまま使えます。<strong>1 画面表示のときは運びません</strong> —— 行き先が画面に出ていないと、どこへ行ったのか分からなくなるためです。そのときはステータスバーに理由が出ます。</li>
+<li><strong>テキストエディタで開く</strong> — 選択したファイルをテキストエディタで開きます。</li>
+<li>この 3 つは<strong>既定ではどのキーにも割り当てていません</strong>。<code>F5</code> は現在「更新」で、Explorer から来た方の指を裏切ってしまうためです。Total Commander 風プリセットを当てるか、この画面で好きなキーを割り当ててください。</li>
+</ul>
+<h2 id="ツールバー-toolbar-pro">ツールバー (Toolbar) 【Pro】<a class="headerlink" href="#ツールバー-toolbar-pro" title="Permanent link">&para;</a></h2>
+<p>ペインヘッダーのクイックアクセスツールバー（戻る／進む／更新、表示モード切替など）を自由にカスタマイズできます。</p>
+<ul>
+<li><strong>ボタンの数（無料版でも使えます）</strong>: 「少ない」はエクスプローラーにもある 9 個（戻る・進む・上へ・更新・新しいフォルダ・詳細／中アイコン／大アイコン・並べ替え）、「標準」は全部のボタンです。はじめて使う方は「少ない」で始まります。</li>
+<li><strong>並べ替え</strong>: ボタンをドラッグして並び順を入れ替えます。</li>
+<li><strong>表示／非表示</strong>: ボタン単位で表示・非表示を切り替えます（最低 1 ボタンは残ります）。</li>
+<li><strong>セパレータ</strong>: 区切り線を追加・削除してグループ分けできます。</li>
+<li>変更はアプリ全体（A ペイン・B ペイン両方）へ即時反映され、再起動後も保持されます。<strong>デフォルト配置に戻す</strong>ボタンで初期状態に復帰できます。</li>
+<li>並べ替え・表示／非表示・セパレータは <strong>Pro 機能</strong>です。無料版では「ボタンの数」だけを選べ、それ以外はロック表示となり案内が出ます。</li>
+</ul>
+<h2 id="リングランチャー-ring-launcher">リングランチャー (Ring Launcher)<a class="headerlink" href="#リングランチャー-ring-launcher" title="Permanent link">&para;</a></h2>
+<p><strong>マウスの左右同時押し</strong>（または <code>Ctrl+Shift+Space</code>）でカーソルの周りに出る円（<a href="../../20-basics/ring-launcher/">リングランチャー</a> 参照）の中身を決めます。画面は<strong>基本／割り当て／デザイン</strong>の 3 つに分かれています。</p>
+<p><strong>基本</strong></p>
+<ul>
+<li><strong>呼び出し方</strong>の説明と、現在の呼び出しキーを表示します。変えるときは「ショートカット設定へ」から<strong>ショートカットキー</strong>の画面へ移ります（その行を絞り込んだ状態で開きます）。</li>
+<li><strong>モード</strong>: <strong>8 項目（単層）</strong> と <strong>複数階層</strong> から選びます。単層は円をひとつだけ使う、いちばん覚えることの少ない形です。複数階層にすると「割り当て」タブで<strong>サブリング</strong>を作れるようになります。</li>
+<li>サブリングが 1 つでも付いている間は<strong>単層へ戻せません</strong>（戻すと「切ったのにまだ外へ開く」状態になるためです）。そのときは理由と <strong>[サブリングをすべて外す]</strong> が出ます。</li>
+<li><strong>すべてデフォルトに戻す</strong>で初期配置（8 個・サブリングなし）へ戻せます。<strong>サブリングは削除されます</strong>（割り当てだけを戻したいときは「割り当て」タブのボタンを使ってください）。デザインは変わりません。</li>
+</ul>
+<p><strong>割り当て</strong></p>
+<ul>
+<li><strong>8 つのスロット</strong>に好きな機能を割り当てます。「変更」を押すと<strong>コマンドパレットと同じ検索窓</strong>が開き、アプリのすべての機能と、ご自分で保存したマクロから名前で探せます。</li>
+<li><strong>左側のプレビューは実物と同じ円</strong>です。行にカーソルを乗せると、その機能が円のどこに出るかが光って分かります。</li>
+<li>各行の先頭に方角（上・右上・右…）と番号を出しています。<strong>番号はリングが残っているときに押す数字キーと同じ</strong>です。</li>
+<li><strong>×</strong> でそのスロットを空にできます。空いた枠は薄い「＋」として残り、リングでは選べません（<strong>枠の数は変わりません</strong>。方角に意味があるためです）。</li>
+<li><strong>サブリング</strong>（複数階層モードのときだけ表示）: その枠の先にもう 1 枚の輪を作ります。元から入っていた機能は<strong>子の 1 番へ移ります</strong>。作るとそのまま中身の編集に切り替わり、上部に<strong>ルート › サブリング 1</strong> のような道のりが出ます。クリックで遡れます。</li>
+<li><strong>リング名</strong>: サブリングを編集しているときだけ出ます。空にすると既定名に戻ります。</li>
+<li><strong>開く</strong>: サブリングの入口になっている枠から、その中身の編集へ降ります。</li>
+<li><strong>↺</strong>（各行）: <strong>その枠だけ</strong>を既定へ戻します。既定のままの枠ではボタンが無効になります（押し間違いで列がずれないよう、消さずに残しています）。サブリングを編集しているあいだは出ません。</li>
+<li><strong>割り当てをデフォルトに戻す</strong>: <strong>8 つの枠だけ</strong>をまとめて初期配置へ戻します。<strong>デザインもモードも変わらず、サブリングも削除されません</strong> —— 外れた輪は「未使用のリング」に残ります。サブリングには既定の配置が無いので、ルートを編集しているときだけ押せます。</li>
+<li><strong>定義保存</strong>（画面のいちばん下）: いまの割り当てに名前を付けて取っておけます。<strong>[いまの割り当てを保存]</strong> で残し、<strong>[呼び出す]</strong> で戻します。<strong>サブリングも名前ごと丸ごと</strong>取っておくので、組み上げた形がそのまま復元されます。<strong>[上書き保存]</strong> で今の状態を取り直し、鉛筆で名前を変え、ゴミ箱で消せます（<strong>削除は必ず確認します</strong>）。</li>
+<li>いちばん上の 2 本は最初から入っている同梱で、<strong>消したり名前を変えたりはできません</strong>。いじり倒したあとでも、ここからいつでも戻せます<ul>
+<li><strong>🔒 プリセット（単層8項目）</strong>: 出荷時の 8 個の並びです</li>
+<li><strong>🔒 プリセット（2段・64項目）</strong>: <strong>二重の輪が組み上がった状態</strong>です。呼び出すと<strong>モードが自動で「複数階層」に変わり</strong>、ルートの 8 枠が <strong>画面／タブ／ナビの機能／さがす／ファイル操作／ペイン／移動／道具</strong> になります。その先にそれぞれ 8 個、合わせて 64 個が入っていて、<strong>空いている枠はひとつもありません</strong>。方角の意味は単層版から引き継いでいるので（「画面」の輪は左上が 1 画面、上が左右 2 画面、左が左ナビ…）、これまでの手癖がそのまま通じます。気に入らない枠だけ入れ替えて [いまの割り当てを保存] で別名にしておけば、行き来もできます</li>
+</ul>
+</li>
+<li><strong>いまの割り当てがどの定義にも入っていないときだけ、呼び出す前に確認</strong>が出ます。取ってあるなら往復できるので確認は出ません</li>
+<li>自分で取っておけるのは 20 件までです。デザインは含みません（別のタブの話です）</li>
+<li>この節を画面のいちばん下に置いているのは、<strong>取っておいた定義が増えても割り当ての設定が下へ押しやられない</strong>ようにするためです</li>
+<li><strong>未使用のリング</strong>: どの枠からも指されていないリングの一覧です。<strong><code>×</code> で枠を空にしてもリング本体は消えず</strong>、ここに残ります。付け直すのも削除するのもご自分で決められます。</li>
+<li><strong>入れ替えとサブリングが Pro 機能</strong>です。無料版でも<strong>リングの呼び出しと初期配置の 8 個はそのまま使えます</strong>。</li>
+</ul>
+<p><strong>デザイン</strong>（どなたでもお使いいただけます）</p>
+<p>円の形と動き方を 5 種類から選びます。<strong>色はお使いのテーマからそのまま取る</strong>ので、テーマを替えても浮きません。</p>
+<table>
+<thead>
+<tr>
+<th>デザイン</th>
+<th>性格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>標準</td>
+<td>中心から咲くように開き、指した先がふわりと持ち上がります</td>
+</tr>
+<tr>
+<td>疾風</td>
+<td>跳ねずに最短で出ます。リモートデスクトップや非力な機械でも素直に動きます</td>
+</tr>
+<tr>
+<td>開花</td>
+<td>大きく開いて、指した先がはっきり応えます</td>
+</tr>
+<tr>
+<td>石板</td>
+<td>動かず、静かに色だけが変わります。隙間を詰めた平らな見た目</td>
+</tr>
+<tr>
+<td>鼓動</td>
+<td>選んだ場所が強い色で光ります</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>選ぶと<strong>その場でプレビューが再生</strong>されます。<strong>動きを見る</strong>でいつでも見直せます。</li>
+<li>設定 →「表示効果」で一覧の演出を切っているときは、どのデザインを選んでもリングは即座に表示されます（その旨が画面に出ます）。</li>
+</ul>
+<h2 id="生成ai-ai">生成AI (AI)<a class="headerlink" href="#生成ai-ai" title="Permanent link">&para;</a></h2>
+<p><img alt="Control Deck の生成 AI タブ。プロバイダ選択（Claude/OpenAI/Azure OpenAI/Gemini）、API キー入力欄、テスト接続ボタン、モデル選択ドロップダウンが縦に配置されている" src="../../../screenshots/1-3-1_settings-ai.png" /></p>
+<p>AI 機能で使用する API の設定を行います。</p>
+<ul>
+<li><strong>プロバイダ</strong>: Claude / OpenAI / Azure OpenAI / Gemini / Ollama / Claude Code (CLI) の 6 種類。</li>
+<li><strong>API キー</strong>: 入力して「保存」で保存。キーは DPAPI で暗号化されローカルに保存され、外部に送信されることはありません。「削除」で保存済みキーをクリア（Ollama / Claude Code (CLI) はキー不要）。</li>
+<li><strong>エンドポイント</strong>（Azure OpenAI 選択時のみ表示）: Azure リソースの URL を指定。</li>
+<li><strong>テスト接続</strong>: API キーの有効性を検証。</li>
+<li><strong>モデル</strong>: プロバイダごとに利用可能なモデルをドロップダウンから選択（空の場合はデフォルトモデル）。GPT-5 系等の新世代モデルも指定可能で、API 形式（Chat Completions / Responses）は自動判定される。</li>
+<li><strong>応答を待つ時間</strong>: AI の返事を待つ秒数。<strong>おまかせ</strong>（既定）／30 秒／1 分／2 分／5 分／10 分から選ぶ。おまかせは接続先に合わせて変わり（クラウドのプロバイダ 30 秒、じっくり考えるモデル 2 分、Claude Code 4 分、Ollama などローカル実行 5 分）、返事が途中で打ち切られるときだけ長くする。</li>
+</ul>
+<h2 id="利用統計-statistics">利用統計 (Statistics)<a class="headerlink" href="#利用統計-statistics" title="Permanent link">&para;</a></h2>
+<ul>
+<li>検索・ファイル操作・タブ操作・テーマ変更など 21 種類のアクションの使用回数を確認できます。</li>
+<li><strong>リセット</strong>ボタンで全統計をクリア。</li>
+<li><strong>フォルダ TOP50</strong>（最も多く閲覧したフォルダのランキング）も表示されます。</li>
+</ul>
+<h2 id="このアプリについて-about">このアプリについて (About)<a class="headerlink" href="#このアプリについて-about" title="Permanent link">&para;</a></h2>
+<ul>
+<li>現在のバージョン、このバージョンの更新内容（CHANGELOG から自動取得）を表示。</li>
+<li><strong>自動アップデートを有効にする</strong>（チェックボックス）: 定期チェックの ON/OFF。</li>
+<li><strong>アップデートを確認</strong>ボタン: 手動チェック。</li>
+<li>新バージョンのダウンロード完了後は「再起動して適用」ボタンが表示されます（詳細は <strong><a href="../../90-install/auto-update/">自動アップデート</a></strong>）。</li>
+</ul>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  ページトップへ戻る
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="フッター" >
+        
+          
+          <a href="../../70-keyboard/keybinding-internals/" class="md-footer__link md-footer__link--prev" aria-label="前: キーバインドのしくみ">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                前
+              </span>
+              <div class="md-ellipsis">
+                キーバインドのしくみ
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../backup-recovery/" class="md-footer__link md-footer__link--next" aria-label="次: 設定バックアップ・リカバリ">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                次
+              </span>
+              <div class="md-ellipsis">
+                設定バックアップ・リカバリ
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024-2026 K.AKASAKA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tracking", "navigation.top", "navigation.footer", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

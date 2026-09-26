@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/00-start/overview/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/00-start/overview/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/00-start/overview/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/10-layout/dialogs/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/10-layout/dialogs/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/dialogs/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/10-layout/file-pane/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/10-layout/file-pane/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/file-pane/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/10-layout/help-viewer/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/10-layout/help-viewer/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/help-viewer/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/10-layout/nav-pane/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/10-layout/nav-pane/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/nav-pane/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/10-layout/status-bar/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/10-layout/status-bar/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/status-bar/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/10-layout/titlebar/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/10-layout/titlebar/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/titlebar/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/20-basics/address-bar/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/address-bar/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/address-bar/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/20-basics/batch-rename/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/batch-rename/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/batch-rename/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/20-basics/command-palette/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/command-palette/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/command-palette/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/20-basics/context-menu/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/context-menu/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/context-menu/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/20-basics/drag-drop/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/drag-drop/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/drag-drop/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/20-basics/file-operations/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/file-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/file-operations/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/20-basics/navigation/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/navigation/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/navigation/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/20-basics/ring-launcher/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/ring-launcher/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/ring-launcher/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/20-basics/tabs/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/tabs/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/tabs/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/30-tools/archives/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/archives/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/archives/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/30-tools/diff/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/diff/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/diff/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/30-tools/folder-compare/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/folder-compare/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/folder-compare/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/30-tools/ftp-sftp/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/ftp-sftp/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/ftp-sftp/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/30-tools/hash/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/hash/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/hash/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/30-tools/send-to-terminal/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/send-to-terminal/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/send-to-terminal/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/30-tools/terminal/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/terminal/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/terminal/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/30-tools/timestamps/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/timestamps/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/timestamps/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/40-organize/favorites/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/favorites/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/favorites/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/40-organize/presets/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/presets/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/presets/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/40-organize/theme-internals/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/theme-internals/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/theme-internals/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/40-organize/theme-list/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/theme-list/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/theme-list/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/40-organize/theme-store/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/theme-store/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/theme-store/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/40-organize/themes/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/themes/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/themes/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/40-organize/view-options/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/view-options/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/view-options/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/40-organize/working-sets/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/working-sets/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/working-sets/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/50-search/index-internals/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/50-search/index-internals/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/50-search/index-internals/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/50-search/index-search/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/50-search/index-search/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/50-search/index-search/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/50-search/index-settings/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/50-search/index-settings/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/50-search/index-settings/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/50-search/search-filters/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/50-search/search-filters/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/50-search/search-filters/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/50-search/search-presets/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/50-search/search-presets/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/50-search/search-presets/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/50-search/search/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/50-search/search/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/50-search/search/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/60-ai/ai-features/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/60-ai/ai-features/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/60-ai/ai-features/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/60-ai/ai-setup/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/60-ai/ai-setup/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/60-ai/ai-setup/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/60-ai/macros/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/60-ai/macros/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/60-ai/macros/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/70-keyboard/keybinding-internals/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/70-keyboard/keybinding-internals/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/70-keyboard/keybinding-internals/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/70-keyboard/keyboard-mouse/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/70-keyboard/keyboard-mouse/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/70-keyboard/keyboard-mouse/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/70-keyboard/shortcuts/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/70-keyboard/shortcuts/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/70-keyboard/shortcuts/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/80-settings/backup-recovery/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/80-settings/backup-recovery/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/80-settings/backup-recovery/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/80-settings/log-spec/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/80-settings/log-spec/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/80-settings/log-spec/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/80-settings/settings-files/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/80-settings/settings-files/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/80-settings/settings-files/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/80-settings/settings-reference/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/80-settings/settings-reference/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/80-settings/settings-reference/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/90-install/auto-update/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/90-install/auto-update/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/90-install/auto-update/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/90-install/install/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/90-install/install/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/90-install/install/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/90-install/resident-mode/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/90-install/resident-mode/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/90-install/resident-mode/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/90-install/screen-capture/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/90-install/screen-capture/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/90-install/screen-capture/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/90-install/startup/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/90-install/startup/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/90-install/startup/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/95-extras/challenges/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/95-extras/challenges/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/challenges/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-behavior-json/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-behavior-json/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-behavior-json/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-events/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-events/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-events/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-export-ai/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-export-ai/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-export-ai/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-poses/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-poses/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-poses/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-rewards/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-rewards/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-rewards/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/00-start/overview/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/00-start/overview/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/00-start/overview/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/dialogs/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/dialogs/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/10-layout/dialogs/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/file-pane/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/file-pane/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/10-layout/file-pane/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/help-viewer/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/help-viewer/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/10-layout/help-viewer/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/nav-pane/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/nav-pane/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/10-layout/nav-pane/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/status-bar/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/status-bar/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/10-layout/status-bar/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/titlebar/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/10-layout/titlebar/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/10-layout/titlebar/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/address-bar/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/address-bar/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/address-bar/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/batch-rename/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/batch-rename/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/batch-rename/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/command-palette/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/command-palette/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/command-palette/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/context-menu/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/context-menu/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/context-menu/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/drag-drop/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/drag-drop/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/drag-drop/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/file-operations/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/file-operations/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/file-operations/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/navigation/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/navigation/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/navigation/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/ring-launcher/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/ring-launcher/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/ring-launcher/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/tabs/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/20-basics/tabs/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/20-basics/tabs/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/archives/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/archives/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/archives/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/diff/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/diff/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/diff/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/folder-compare/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/folder-compare/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/folder-compare/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/ftp-sftp/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/ftp-sftp/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/ftp-sftp/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/hash/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/hash/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/hash/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/send-to-terminal/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/send-to-terminal/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/send-to-terminal/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/terminal/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/terminal/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/terminal/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/timestamps/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/30-tools/timestamps/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/timestamps/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/favorites/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/favorites/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/favorites/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/presets/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/presets/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/presets/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/theme-internals/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/theme-internals/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/theme-internals/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/theme-list/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/theme-list/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/theme-list/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/theme-store/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/theme-store/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/theme-store/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/themes/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/themes/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/themes/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/view-options/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/view-options/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/view-options/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/working-sets/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/40-organize/working-sets/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/40-organize/working-sets/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/50-search/index-internals/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/50-search/index-internals/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/50-search/index-internals/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/50-search/index-search/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/50-search/index-search/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/50-search/index-search/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/50-search/index-settings/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/50-search/index-settings/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/50-search/index-settings/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/50-search/search-filters/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/50-search/search-filters/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/50-search/search-filters/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/50-search/search-presets/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/50-search/search-presets/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/50-search/search-presets/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/50-search/search/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/50-search/search/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/50-search/search/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/60-ai/ai-features/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/60-ai/ai-features/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/60-ai/ai-features/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/60-ai/ai-setup/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/60-ai/ai-setup/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/60-ai/ai-setup/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/60-ai/macros/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/60-ai/macros/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/60-ai/macros/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/70-keyboard/keybinding-internals/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/70-keyboard/keybinding-internals/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/70-keyboard/keybinding-internals/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/70-keyboard/keyboard-mouse/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/70-keyboard/keyboard-mouse/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/70-keyboard/keyboard-mouse/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/70-keyboard/shortcuts/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/70-keyboard/shortcuts/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/70-keyboard/shortcuts/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/80-settings/backup-recovery/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/80-settings/backup-recovery/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/80-settings/backup-recovery/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/80-settings/log-spec/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/80-settings/log-spec/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/80-settings/log-spec/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/80-settings/settings-files/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/80-settings/settings-files/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/80-settings/settings-files/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/80-settings/settings-reference/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/80-settings/settings-reference/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/80-settings/settings-reference/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/90-install/auto-update/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/90-install/auto-update/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/90-install/auto-update/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/90-install/install/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/90-install/install/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/90-install/install/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/90-install/resident-mode/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/90-install/resident-mode/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/90-install/resident-mode/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/90-install/screen-capture/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/90-install/screen-capture/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/90-install/screen-capture/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/90-install/startup/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/90-install/startup/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/90-install/startup/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/challenges/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/challenges/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/95-extras/challenges/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-behavior-json/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-behavior-json/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-behavior-json/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-events/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-events/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-events/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-export-ai/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-export-ai/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-export-ai/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-poses/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-poses/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-poses/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-rewards/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman-rewards/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman-rewards/"/>
+    </url>
+    <url>
+        <loc>https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman/</loc>
+        <lastmod>2026-09-26</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://sulkyjp.github.io/zenithFiler_update/ja/95-extras/stickman/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://sulkyjp.github.io/zenithFiler_update/95-extras/stickman/"/>
+    </url>
+</urlset>
