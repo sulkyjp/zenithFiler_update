@@ -1,0 +1,3581 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://sulkyjp.github.io/zenithFiler_update/30-tools/terminal/">
+      
+      
+        <link rel="prev" href="../archives/">
+      
+      
+        <link rel="next" href="../send-to-terminal/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+          <link rel="alternate" href="../../ja/30-tools/terminal/" hreflang="ja">
+        
+      
+      
+      <link rel="icon" href="../../assets/icon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Terminal - Zenith Filer Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#terminal" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Zenith Filer Manual" class="md-header__button md-logo" aria-label="Zenith Filer Manual" data-md-component="logo">
+      
+  <img src="../../assets/icon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Zenith Filer Manual
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Terminal
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ja/30-tools/terminal/" hreflang="ja" class="md-select__link">
+              日本語
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sulkyjp/zenithFiler_update" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sulkyjp/zenithFiler_update
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Zenith Filer Manual" class="md-nav__button md-logo" aria-label="Zenith Filer Manual" data-md-component="logo">
+      
+  <img src="../../assets/icon.png" alt="logo">
+
+    </a>
+    Zenith Filer Manual
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sulkyjp/zenithFiler_update" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sulkyjp/zenithFiler_update
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-start/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About Zenith Filer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Screen Layout
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Screen Layout
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/titlebar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Title Bar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/file-pane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Panes (Pane A / Pane B)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/nav-pane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nav Pane
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/status-bar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Status Bar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/dialogs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Confirmation & Error Dialogs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/help-viewer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Help & Document Viewer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basic Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/address-bar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Address Bar and Breadcrumb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/tabs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tabs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/file-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standard File Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/batch-rename/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Rename
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/context-menu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Context Menu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/drag-drop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Drag & Drop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/command-palette/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command Palette
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/ring-launcher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ring Launcher
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    File Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Text Comparison (Diff)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../folder-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Folder Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hash Calculation and Verification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../timestamps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Timestamp and Attribute Change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../archives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archives (Extract and Compress)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminal
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-can-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can do
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to use it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How it works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-a-terminal-is-made-of" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What a terminal is made of
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-the-current-folder-is-tracked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the current folder is tracked
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-long-a-terminal-lives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How long a terminal lives
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../send-to-terminal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sending the Selection to the Terminal or Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ftp-sftp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connecting to a Server (FTP / SFTP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Organizing & Display
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Organizing & Display
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/favorites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Favorites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/view-options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    View Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/themes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Themes (Color Customization)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/theme-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theme List and Categories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/theme-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theme Store
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/theme-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Themes Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/working-sets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working Sets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/presets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presets (window placement / nav pane layout / search conditions)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Search
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-search/search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-search/search-filters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Size and Date Filters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-search/search-presets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search Presets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-search/index-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-search/index-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-search/index-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Index Search Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Macros
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Macros
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-ai/ai-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting Up Generative AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-ai/ai-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-ai/macros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macros (Automating Actions)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keyboard
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Keyboard
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-keyboard/keyboard-mouse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keyboard and Mouse Interaction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-keyboard/shortcuts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keyboard Shortcut Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-keyboard/keybinding-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Keybindings Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings & Data
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Settings & Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../80-settings/settings-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Full List of App Settings (Control Deck)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../80-settings/backup-recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings Backup & Recovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../80-settings/settings-files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration File Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../80-settings/log-spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Log Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation & Updates
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation & Updates
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Folder Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/auto-update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auto-Update
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/resident-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resident Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/screen-capture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Screen Capture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/startup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Startup Sequence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extras
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extras
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/challenges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenges & Achievements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mascot (Stickman)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-behavior-json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Writing Behavior JSON
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-poses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Poses, Dog Commands and Props
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events and Personality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-rewards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reward Behaviors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-export-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIF Export and AI Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-can-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you can do
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to use it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How it works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-a-terminal-is-made-of" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What a terminal is made of
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-the-current-folder-is-tracked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the current folder is tracked
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-long-a-terminal-lives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How long a terminal lives
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="terminal">Terminal<a class="headerlink" href="#terminal" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>The built-in terminal, available as a tab in Panes A and B and as a view in the nav pane. It starts in the current folder, and Claude Code is one button away.</p>
+</blockquote>
+<h2 id="what-you-can-do">What you can do<a class="headerlink" href="#what-you-can-do" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>To do this</th>
+<th>Do this</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use a terminal in Pane A or B</td>
+<td>The terminal button to the right of "+" on the tab bar</td>
+</tr>
+<tr>
+<td>Use a terminal in the nav pane</td>
+<td>Place the terminal view in the nav pane (up to four, left/right and top/bottom)</td>
+</tr>
+<tr>
+<td>Go to the folder shown in a pane / open the terminal's location in a pane</td>
+<td>"Folder" in the action bar</td>
+</tr>
+<tr>
+<td>Start Claude Code</td>
+<td>"Claude" or "Skip" in the action bar</td>
+</tr>
+<tr>
+<td>Pass the selected files' paths</td>
+<td>Right-click in the file list → "More actions ▶" (see <a href="../send-to-terminal/">Sending the Selection to the Terminal or Claude Code</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>The shell is <strong>Command Prompt (<code>cmd.exe</code>)</strong>. It starts in the current folder and works in UTF-8.</p>
+<h2 id="how-to-use-it">How to use it<a class="headerlink" href="#how-to-use-it" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Terminal Tabs (A/B Pane)</strong>: Click the SquareTerminal icon in the file list tab bar to add a terminal (cmd) tab within A/B panes. <strong>The same button is also in the "Pane A" and "Pane B" headings of the nav pane's "Tab Management" view</strong> (showing Tab Management hides the tab bar itself).</p>
+<p>Launches with the currently displayed folder as the working directory, enabling seamless switching between file-browser tabs and terminal tabs. Multiple terminal tabs can be open simultaneously and work with working sets.</p>
+</li>
+<li>
+<p><strong>Terminal View (Nav Pane)</strong>: Displays an embedded terminal (cmd) in the nav pane. You can directly execute CLI tools (Claude Code, etc.) using the folder currently viewed in the A/B pane as the working directory.</p>
+</li>
+<li><strong>Up to four at once</strong>: Nav-pane terminals are <strong>independent per slot</strong>. You can place one above and one below in each of the left and right nav panes — four in total, or six counting the terminal tabs in the A and B panes.<ul>
+<li><strong>How</strong>: open the <strong>cross-shaped layout screen</strong> (<a href="../../40-organize/presets/#setting-all-four-nav-pane-slots-at-once-the-cross-shaped-layout-window">Setting all four nav-pane slots at once (the cross-shaped layout window)</a>) from the <code>∨</code> button at the end of an icon bar, pick "Terminal" for the top left, "<strong>Terminal 2</strong>" for the bottom left, "Terminal" for the top right and "Terminal 2" for the bottom right, then press Apply. All four are set in one pass.</li>
+<li>The two entries exist purely so you can stack them; they are otherwise identical, and either can go in either slot.</li>
+<li><strong>Choosing a terminal in the right nav pane does not remove the one on the left.</strong> Every other view still moves (disappearing from wherever it was) as before.</li>
+<li>Each is a fully independent session, and the Claude Code usage readout shows that slot's own figures.</li>
+<li>Nav pane terminals always share one set of settings (font, colours, scrollback and so on). Terminals in Panes A and B can have their own when "Sync all terminals" is turned off (see below).</li>
+</ul>
+</li>
+<li><strong>Tab management</strong>: Manage multiple terminal sessions via the tab bar at the top. Use the "+" button to add a new tab, and the "X" button on each tab to terminate the session. Each tab has an independent cmd process.</li>
+<li><strong>Keyboard focus</strong>: a nav pane terminal appearing does not move your typing into it; focus follows only when you add a tab or click one yourself. A terminal tab in Pane A or B takes focus when it opens (including when a tab restored at startup finishes connecting).</li>
+<li><strong>Full-featured terminal</strong>: Uses the same rendering engine as the A/B panes (WebView2 + xterm.js), supporting ANSI colors, mouse operations, copy/paste, scrollback (5000 lines by default, configurable), URL clicking, and more.</li>
+<li><strong>Terminal Common Features (All Panes)</strong>:</li>
+<li>
+<p><strong>Action bar (the buttons along the bottom)</strong>: The commands are gathered into <strong>five groups</strong>. Every button <strong>only opens a menu</strong> — nothing runs until you pick an item from it, so hitting the wrong button never runs a command you did not intend.</p>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Folder</strong></td>
+<td><code>cd</code> to a folder open in pane A or B / open the current location in pane A or B</td>
+</tr>
+<tr>
+<td><strong>Claude</strong></td>
+<td>Launch Claude Code in the current folder / pick a folder you have launched it in before</td>
+</tr>
+<tr>
+<td><strong>Skip</strong></td>
+<td>The same, with <code>--dangerously-skip-permissions</code></td>
+</tr>
+<tr>
+<td><strong>History</strong></td>
+<td>Command history (<code>Ctrl+R</code>) / Claude prompt history</td>
+</tr>
+<tr>
+<td><strong>Run</strong></td>
+<td><code>dotnet run</code> / <code>dotnet publish -c Release</code> (nav pane only) / clear the screen</td>
+</tr>
+<tr>
+<td><strong>Options</strong></td>
+<td>Show the usage meter / Enter for a newline / key reference / terminal settings</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Folder pickers</strong> show the full path dimmed to the right of each folder name, so a run of similar names is never ambiguous. In the Claude and Skip menus, the first entry, "Launch in the current folder", carries a <strong>"Current" badge</strong></li>
+<li><strong>The first nine entries can be picked with the number keys 1–9</strong>, so once the menu is open there is nothing to aim at</li>
+<li><strong>While either option toggle (usage meter, Enter for a newline) is on, the Options button's icon turns the accent colour</strong>, so you can see it is lit without opening the menu</li>
+<li><strong>Key reference</strong>: Keys that act while the terminal has focus. <strong>Anything not listed here is passed straight through to the shell (Command Prompt).</strong> See the entries below for details on each feature. The same list is available at any time from <strong>Options → "Show the key reference"</strong> in the action bar.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+<th>Conditions / notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>→</code></td>
+<td>Accept the inline suggestion</td>
+<td>Only while a suggestion is showing and the cursor is at the end of the line; otherwise passed to the shell</td>
+</tr>
+<tr>
+<td><code>Ctrl+R</code></td>
+<td>Open the command history</td>
+<td>Only at the shell prompt; goes to the tool itself while vi or a CLI tool is running</td>
+</tr>
+<tr>
+<td><code>Ctrl+↑</code> / <code>Ctrl+↓</code></td>
+<td>Jump between commands</td>
+<td>Passed to the shell when no command markers exist</td>
+</tr>
+<tr>
+<td><code>Ctrl+C</code></td>
+<td>Copy when text was freshly selected / interrupt (^C) otherwise</td>
+<td>When "Copy and paste with Ctrl+C / Ctrl+V" is on (the default)</td>
+</tr>
+<tr>
+<td><code>Ctrl+V</code></td>
+<td>Paste</td>
+<td>Same as above; passed through to full-screen apps such as vi</td>
+</tr>
+<tr>
+<td><code>Ctrl+Shift+C</code> / <code>Ctrl+Shift+V</code></td>
+<td>Copy / paste</td>
+<td>Always available, even with the setting above turned off</td>
+</tr>
+<tr>
+<td><code>Ctrl+F</code></td>
+<td>Search within the terminal</td>
+<td>Enter for next, Shift+Enter for previous, Esc to close</td>
+</tr>
+<tr>
+<td><code>Esc</code></td>
+<td>Close search, history, or the paste confirmation</td>
+<td>Passed to the shell when none of them is open</td>
+</tr>
+<tr>
+<td><code>↑</code> / <code>↓</code> / <code>F7</code></td>
+<td>Command Prompt's own history (doskey)</td>
+<td>The app does nothing with these</td>
+</tr>
+</tbody>
+</table>
+<p>Note that pressing <code>End</code> does nothing (the app stops it on arrival). cmd's own "move to end of line" has never worked in this terminal either. Use <code>→</code> to move to the end of the line.
+  - <strong>Moving to a folder open in pane A or B (Folder group)</strong>: All terminals (A/B pane and nav pane) have a "Folder" button in the action bar. Pressing it lists the folder tabs open in pane A and pane B <strong>in one menu, under a heading for each pane</strong>; picking one instantly <code>cd</code>s to it. Leveraging the dual-pane file manager design, any terminal can access folders from both panes.
+  - <strong>Launching Claude Code (Claude / Skip buttons)</strong>: Pressing "Claude" opens a menu <strong>for choosing where to launch</strong>. The first entry launches <strong>in the current folder</strong>; below it are <strong>all the folders you have started Claude Code in</strong>. Picking one changes to that folder and launches Claude Code (it runs <code>cd /d "path" &amp;&amp; claude</code> as a single line, so it also leaves a single entry in the command history).
+- <strong>The target folder is always chosen from the menu.</strong> The button alone never launches anything, so a mis-click cannot start Claude Code in a folder you did not intend
+- Entries are ordered <strong>most recently used first</strong>, up to 15 of them. Each shows <strong>the full path to the right of the folder name</strong>, so a run of similar names is never ambiguous, and <strong>the first nine can be picked with the number keys 1–9</strong>
+- The list comes from Claude Code's own records (<code>~/.claude.json</code>), so <strong>sessions you started in a terminal outside this app are included too</strong>. Folders that no longer exist are left out
+- The folder you are currently in is omitted from the list below, since the first entry already covers it
+- If you have never started Claude Code, the menu reads "No workspaces yet"
+- <strong>The skip-permissions launcher is the "Skip" button next to it.</strong> The menu is identical; the only difference is that the launch adds <code>--dangerously-skip-permissions</code>
+  - <strong>Claude prompt history (History group)</strong>: "History" → "Claude prompt history" lists the prompts you have sent to Claude Code, <strong>newest first, each with its date and time</strong>. Picking one <strong>does not send it</strong> — it drops the text into the terminal's input so you can adjust the wording first.
+- Entries read <code>08/02 01:53  the start of the prompt…</code>. Hovering shows <strong>the full text</strong> and the folder you were working in at the time
+- The list is read from Claude Code's own conversation logs (under <code>~/.claude/projects</code>). That means <strong>prompts you typed in a terminal outside this app are included</strong>, and they survive a reinstall. <strong>The app does not keep a separate record of its own</strong>
+- Only <strong>lines you typed yourself</strong> are picked up. Tool results, hook output, sub-agent internal exchanges and task notifications never appear in the list
+- Identical wording is collapsed to its most recent entry, and the <strong>30 most recent</strong> are shown
+- If you drop a prompt into a terminal where Claude Code is not running (a plain Command Prompt), a prompt containing newlines goes through the "confirm multi-line paste" step, because there a newline means execution. Dropping into Claude Code's input skips the confirmation, since a newline there is not execution
+  - <strong>Opening session logs (History group)</strong>: The "Session logs" group at the bottom of the "History" menu opens the logs collecting in <code>data\logs\terminal\</code> directly, with no need to walk the path by hand.
+- <strong>Open log folder</strong>: a submenu of four destinations — <strong>the opposite pane</strong> (pane B if the terminal sits in pane A, pane A if it sits in B), <strong>pane A</strong>, <strong>pane B</strong>, and <strong>Explorer</strong>. Pick the opposite pane and the logs line up without displacing the terminal you are looking at
+- Choosing <strong>pane B</strong> while in single-pane view widens to two panes first. In a pane with no folder tab (only terminal tabs) it opens as a new tab
+- <strong>Terminals in the nav pane do not offer "the opposite pane"</strong>, because the nav pane belongs to neither pane A nor pane B, so there is nothing for it to be opposite to
+- <strong>Open the current terminal log</strong> / <strong>Open the current Claude Code log</strong>: opens the running session's screen log (<code>.log</code>) or Claude Code conversation log (<code>.md</code>) in the associated application
+- While nothing has been recorded yet the entries are <strong>disabled</strong>, with the reason in a tooltip. The screen log is written within 15 seconds of the first output; the Claude Code conversation log is created once the usage-meter mechanism is registered and the first response comes back (see "Session logs" below)
+  - <strong>Opening the current location in a pane (Folder group)</strong>: "Folder" → "Open the current location in pane A" (or B) opens the terminal's current working directory in a folder tab of that pane — the reverse of the <code>cd</code> entries above. If that pane currently has a terminal tab selected, the folder tab you were on most recently is the one that moves.
+  - <strong>Notice when a pane moves</strong>: Whenever a pane actually moves — whether by following or by the buttons — a cyan line such as <code>Moved to "C:\..." in pane B</code> appears in the blank line below the command. Long paths are elided from the front so the line always fits the width. If that line already holds command output, the notice is skipped rather than overwriting it, and is shown briefly overlaid on the terminal instead.
+  - <strong>Follow target for cd</strong>: Pick A or B (the default is "Don't follow") and that pane follows every <code>cd</code> without pressing a button. The target is shared by all terminals. <strong>Working in a terminal in pane A while pane B follows</strong> is the setup worth recommending, because the moves stay visible — if you point the target at the terminal's own pane, that pane is showing the terminal, so the folder tab moves behind it and nothing appears to change. Moves caused by following are not pushed onto the back/forward history, so that history does not fill up with every <code>cd</code>. Moves from "Open the current location in pane A/B" are explicit actions and are recorded in the history.
+  - <strong>Click a path to open it in a pane</strong>: Paths printed on screen <strong>are underlined when they actually exist</strong>, and a single click shows them in pane A or B — no selecting, copying and pasting into the address bar.
+- <strong>Click opens pane A, Ctrl+click opens pane B.</strong> Hovering shows the resolved full path and this hint in a tooltip.
+- Shift+click is deliberately not used: the terminal needs Shift for selecting text, which is the only way to select inside a full-screen app such as Claude Code.
+- <strong>Relative paths work too</strong> (<code>src\Foo.cs</code>, <code>..\other</code>), resolved against that terminal's current directory — so they keep working after you <code>cd</code>.
+- <strong>Line-number forms such as <code>Services/Foo.cs:123</code></strong> (Claude Code, compilers) are recognised as just the path part. Surrounding brackets and punctuation are excluded from the link too.
+- <strong>A path pointing at a file opens its parent folder with that file selected.</strong>
+- <strong>Only paths that exist are underlined.</strong> Verification runs asynchronously and only for the line under the cursor, so it never stalls the terminal — including on cloud storage folders.
+- Paths containing spaces are recognised when quoted, as in <code>"C:\Program Files\..."</code>. URLs still open in the browser on click as before.
+  - <strong>Copy &amp; paste</strong>: right-click copies the selection (and clears it) if there is one, or pastes otherwise, the same as Windows Terminal. Ctrl+Shift+C / Ctrl+Shift+V also work. <strong>A selection only counts if it was made after the last output on screen, or within the last 5 seconds</strong>; with an older selection still showing, right-click pastes and Ctrl+C interrupts.
+  - <strong>Ctrl+C / Ctrl+V</strong>: When "Copy and paste with Ctrl+C / Ctrl+V" is on (the default), the plain Ctrl+C and Ctrl+V also work as copy and paste. <strong>Ctrl+C only copies when text is selected</strong>; with nothing selected it still sends the interrupt (^C) to the running command, so interrupting keeps working. Even with an old selection still showing, interrupting works (see "Copy &amp; paste" above). In full-screen apps such as vi, Ctrl+V is passed through to the app.
+  - <strong>Command history (Ctrl+R)</strong>: Commands you run are recorded and kept across restarts, in a single history shared by every tab and pane. Press Ctrl+R — or History → "Command history" in the action bar — to open the list: type to filter, use ↑↓ to select, press <strong>Enter to run</strong>, <strong>Shift+Enter to insert it at the prompt without running</strong>, and Esc to close. Up to 1000 entries are kept, and repeating a command moves the existing entry to the top rather than duplicating it. The ↑↓ keys themselves are unchanged, so Command Prompt's own history (doskey) and F7 work exactly as before.
+- The history is stored as plain text in <code>terminal_history.json</code> in the <code>data</code> folder. If you would rather not keep commands that contain passwords or similar, turn off "Record command history" in the settings or wipe it with the "Clear history" button.
+  - <strong>Command colorization</strong>: The prompt and the command you are typing are colored by syntax (on by default). <strong>Colored parts take priority over the "Foreground" setting.</strong> The coloring follows your keystrokes and stays in place after you press Enter. It is suspended while an IME conversion is in progress (so the text being composed is never disturbed) and does not run inside full-screen apps such as vi.</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Current path in the prompt</td>
+<td>bright blue</td>
+</tr>
+<tr>
+<td><code>&gt;</code> in the prompt</td>
+<td>gray</td>
+</tr>
+<tr>
+<td>Built-in commands (<code>cd</code>, <code>dir</code>, <code>set</code>, …)</td>
+<td>bright yellow</td>
+</tr>
+<tr>
+<td>External commands (<code>git</code>, <code>dotnet</code>, …)</td>
+<td>bright green</td>
+</tr>
+<tr>
+<td>Subcommands (<code>status</code> in <code>git status</code>)</td>
+<td>bright cyan</td>
+</tr>
+<tr>
+<td><code>&amp;</code> <code>&amp;&amp;</code> <code>\|</code> <code>\|\|</code> <code>&gt;</code> <code>&gt;&gt;</code> <code>&lt;</code></td>
+<td>bright magenta</td>
+</tr>
+<tr>
+<td><code>"..."</code></td>
+<td>cyan</td>
+</tr>
+<tr>
+<td><code>%PATH%</code> / the name in <code>set NAME=</code></td>
+<td>magenta</td>
+</tr>
+<tr>
+<td><code>/w</code> <code>--force</code> <code>-x</code></td>
+<td>gray</td>
+</tr>
+<tr>
+<td>Paths (<code>C:\dir\file</code>, <code>..\foo</code>)</td>
+<td>bright blue</td>
+</tr>
+<tr>
+<td>Numbers</td>
+<td>yellow</td>
+</tr>
+<tr>
+<td>Other arguments</td>
+<td>your configured foreground color</td>
+</tr>
+<tr>
+<td>- <strong>Error messages in red</strong>: While "Colorize commands as you type" is on, output lines that look like errors are shown in red. A mistyped command name ("… is not recognized as …") is detected reliably. Everything else — "Access is denied" and friends — is matched against a list of known error phrasings, so <strong>a log file containing the same wording can also come out red</strong>. Note that <strong>Command Prompt cannot report a command's exit code to the terminal</strong>, so coloring every failed command's output red is not possible in principle.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Inline suggestions while typing</strong>: A past command that starts with what you have typed is shown dimmed as the rest of the line (on by default). Press <strong>→</strong> while the cursor is at the end of the line to accept it. When no suggestion is showing, → is passed through to Command Prompt as usual (where it pulls one character from the previous command). Suggestions are hidden during IME composition, while text is selected, while scrolled, and when the cursor is in the middle of the line. They are drawn on top of the terminal rather than written into it, so they never end up in copied text or the scrollback.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Confirmation for multi-line pastes</strong>: Pasting text that contains line breaks asks for confirmation first (on by default), because Command Prompt runs each line break as a command. The dialog shows the line count and a preview of the first three lines; "Don't ask again" skips it from then on (and updates the setting). Lines that are actually executed by the paste are added to the command history.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Pasting an image (converted to a file path)</strong>: When the clipboard holds <strong>an image but no text</strong>, a paste (<code>Ctrl+V</code> / <code>Ctrl+Shift+V</code> / right-click) saves that image as a PNG and pastes <strong>the quoted path to that file</strong> instead. Claude Code running in a terminal cannot take an image directly, but it can read one from a path. Snip the screen with <code>Win + Shift + S</code> and paste straight away.</td>
+<td></td>
+</tr>
+<tr>
+<td>- Files go to the Windows temporary folder (<code>%TEMP%\ZenithFiler_TerminalPaste</code>), named <code>paste_&lt;date&gt;_&lt;time&gt;.png</code>. <strong>Anything older than seven days is deleted automatically</strong> — enough of a window to refer back to the same image later in a conversation</td>
+<td></td>
+</tr>
+<tr>
+<td>- If the clipboard holds text, the text is pasted as before, even when an image is present alongside it</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Jump between commands (Ctrl+↑ / Ctrl+↓)</strong>: Move through long output one command at a time. When there is nothing to jump to, the keys are passed through to the shell as usual.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Marks at the start of each command</strong>: Turn this on (<strong>off by default</strong>) to get a thin bar at the left edge of the line where you typed each command, with a matching tick in the scrollbar. Only a mistyped command is marked in red. The terminal has no gutter, so the bar <strong>overlaps the first character of the prompt</strong>; since the prompt colorization already shows you where a command line is, the marks are off by default. Turn them on when you want an overview of command positions in the scrollbar. Note that <strong>Command Prompt does not expose a command's exit code</strong>, so unlike VS Code the marks cannot be colored by success or failure.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Pin the command to the top while scrolling</strong>: Turn this on (off by default) and, while you are scrolled into the middle of some output, the line holding the command that produced it stays pinned at the top. Click it to jump back to that position.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Search (Ctrl+F)</strong>: Press Ctrl+F inside a terminal to open a search box in the top-right corner. Enter moves to the next match, Shift+Enter to the previous, with a match-count indicator. Press Esc to close it.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Show backslash as ￥</strong>: Turn this on to render a path such as <code>C:\work</code> with the yen-sign glyph, as <code>C:￥work</code> (off by default). <strong>Only the appearance changes, not the character</strong>, so copying the text and pasting it elsewhere gives you a normal <code>\</code>. The glyph comes from a Japanese font (MS Gothic and friends); on systems without one, backslashes keep rendering as <code>\</code>.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Per-pane settings</strong>: choose Options → "Terminal settings" in the action bar to open the settings window. With "Sync all terminals" off, terminals in Panes A and B can each have their own font, font size, background, foreground and theme sync (copy-on-select and scrollback lines are always shared). Nav pane terminals always use the shared settings. The color picker previews changes live.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Confirming/discarding settings</strong>: changes in the settings window are not saved right away. OK confirms them and Cancel returns to how things were when you opened it (the preview still updates as you edit). Closing the window with × confirms, the same as OK.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Copy on select</strong>: Turn on "Copy on select" in the settings popup to automatically copy text to the clipboard the moment you select it (off by default).</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Font</strong>: The "Font" list in the settings popup offers <strong>every font installed on your system</strong>, split into two groups: "Monospace (recommended)" at the top and "All fonts" below. The default is <strong>Consolas</strong>, the same font VS Code uses on Windows out of the box. With the dropdown open, typing the first letters of a name jumps to it. Note that a proportional font makes columns fail to line up, so the monospace group at the top is normally the better choice.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Scrollback lines</strong>: Choose how many lines to retain — 1000/5000/10000/50000 — in the settings popup (default 5000).</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Session logs</strong>: Terminal activity is recorded automatically to <code>data\logs\terminal\</code>. No setting is needed — it is always on.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>How to open them</strong>: "History" → "Session logs" opens the log folder in a pane of your choice, or opens the running session's <code>.log</code> / <code>.md</code> directly (see "Opening session logs (History group)" above).</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Screen log (<code>.log</code>)</strong>: Records what was actually shown on screen. It is appended when a tab closes, when the shell exits, every 15 seconds, and written up to the moment you quit the app. The file name is "date and time plus the folder the terminal was started in". Nothing is written while the terminal is visible, so this has no effect on terminal speed. If older output was lost because the scrollback limit was reached, that is noted at the top of the log. For a full-screen, interactive app like Claude Code, this record <strong>will not contain the conversation</strong> (see below) — use it as a record of ordinary command-line activity instead.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Claude Code conversation log (<code>.md</code>)</strong>: While you're using Claude Code in the terminal, the conversation is recorded automatically as Markdown. Unlike the screen log, this cannot come from the screen buffer — Claude Code works by redrawing only "the current screen", a mode the screen log has no way to capture text from. Instead, the Markdown is built <strong>directly from the record Claude Code itself keeps of the conversation</strong>. Your messages and Claude's response text are kept in full; actions such as running a command or editing a file are recorded as <strong>a one-line summary</strong>, like <code>&gt; Bash: git status</code> (the results of those actions are not included). Each of your messages gets its own heading, making it easy to read back and searchable with Grep from inside the app. The file name follows the same convention as the screen log with <code>_claude_</code> and part of the session ID appended, and the extension is <code>.md</code>. This works regardless of whether the usage meter is displayed — all it needs is the usage meter's underlying mechanism (the statusLine hook in <code>~/.claude/settings.json</code>) to be registered. Claude Code used outside Zenith Filer (in VS Code or Windows Terminal, for instance) is not covered.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Retention</strong>: Both the screen log and the conversation log are deleted automatically after <strong>30 days</strong>.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Options shared by all terminals</strong>: "Record command history", "Copy and paste with Ctrl+C / Ctrl+V", "Show inline suggestions while typing", "Confirm before pasting multiple lines", "Show backslash as ￥", and "Follow target for cd" apply to every terminal rather than per pane — regardless of the "Sync all terminals" checkbox.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Sync all terminals</strong>: the "Sync all terminals" checkbox in the settings window switches the terminals in Panes A and B between one shared set of settings and separate settings per pane. It is on (shared) by default.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Theme integration</strong>: Enable "Sync with theme" to automatically match terminal colors with the app theme. When disabled, custom colors are preserved.</td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>Claude Code usage</strong>: When you are running Claude Code in the terminal, the current model, context usage and how much of the 5-hour and weekly windows you have spent are shown on <strong>a single line just above the action bar</strong>: <code>Opus 5 │ ctx ■□□□□□□□□□ 8% │ 5h ■□□□□□□□□□ 6% (2h33m left) │ 7d ■■□□□□□□□□ 21% (2d3h left)</code>. The bar and the figure shift from gradually from green through amber to red (blended around 0%, 50% and 100%), and hovering shows the exact reset times along with when the reading was last updated.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The line is drawn by the app rather than as terminal text, so the bar characters stay crisp whatever font you have chosen. It appears the same way in the nav pane and in the A/B pane terminals.</p>
+<p><strong>Each terminal reports on itself.</strong> Run Fable in the A pane, Opus in the B pane and Sonnet in the nav pane, and each terminal shows the figures of the Claude Code session running <em>in that terminal</em>. Switching tabs switches the reading with it, and closing a terminal removes its line. A Claude Code session started outside ZenithFiler (in Command Prompt, Windows Terminal, …) belongs to no terminal here and is therefore not shown.</p>
+<ul>
+<li><strong>Turning it on</strong>: press <strong>Options → "Show the usage meter"</strong> in the action bar once. If the hook is not registered yet, that same press registers it. Registering means adding a small relay program, shipped with the app, as the <code>statusLine</code> entry in Claude Code's config file (<code>~/.claude/settings.json</code>). There is no separate tool to install. Backups of the original file are made first (<code>settings.json.zenithfiler.bak</code>, plus <code>settings.json.zenithfiler.orig.bak</code> the first time). The <strong>"Register hook"</strong> button under "Claude Code usage" in the settings popup does the same thing.</li>
+<li><strong>The entry in the Options menu</strong>: while the readout is on, the entry shows <code>ON</code> at its right edge and <strong>the Options button's icon turns the accent colour</strong>. Pressing it again stops the readout but <strong>leaves the hook registered</strong>, so the figures come straight back the next time you press it. To remove the hook entirely, use "Unregister hook" in the settings popup. Registering or unregistering from the settings keeps this display in sync.</li>
+<li><strong>What each figure means</strong>: the values are exactly what Claude Code reports, and they line up with the "Usage" tab of <code>/status</code> as follows.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Shown</th>
+<th>Row in <code>/status</code></th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ctx</code></td>
+<td>context usage</td>
+<td>How much of the context window the current conversation occupies (counted from input tokens only)</td>
+</tr>
+<tr>
+<td><code>5h</code></td>
+<td>Current session</td>
+<td>Consumption of the rolling 5-hour window</td>
+</tr>
+<tr>
+<td><code>7d</code></td>
+<td>Current week (all models)</td>
+<td>Consumption of the weekly window across all models</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>per-model weekly windows</strong> that <code>/status</code> also lists ("Current week (Fable)" and the like) are not sent over this channel, so they cannot be shown. <code>5h</code> and <code>7d</code> are only reported on a Claude subscription (Pro / Max).
+- <strong>When it takes effect</strong>: registration applies <strong>from the next terminal you open</strong>. The per-terminal identifier is handed over when the terminal starts, so <strong>terminals already open will not show anything</strong> — open a new terminal tab, or restart the app.
+- <strong>How it fills in</strong>: right after you launch <code>claude</code>, Claude Code only reports the model, so the line reads <strong>the model name plus "usage appears after your first message"</strong>. Exchange one message and <code>5h</code> and <code>7d</code> join it; <code>ctx</code> follows once the conversation actually starts consuming context. If nothing appears at all, either the hook is not registered or Claude Code is not running in that terminal.
+- <strong>If you already have your own status line</strong>: it <strong>keeps working</strong>. The app stores your original command, calls it, and passes its output straight back to Claude Code, so what you see in the terminal does not change (except while this meter is on screen inside the app, where relaying is stopped — see below).
+- <strong>The numbers never double up, and the freed-up line becomes a cumulative-work meter</strong>: while this meter is on screen, the line Claude Code prints in the terminal is <strong>replaced with something the app's meter does not show</strong>. Claude Code always reserves that line while a status line is configured, so printing nothing would leave <strong>an empty row</strong> rather than closing the gap. What goes there instead is the <strong>total tokens used since this session began</strong>, as a single gauge (<code>Work ■■■■■□□□□□ 2.5M tok</code>). The meter stretches to <strong>the full width of the terminal</strong> and the gauge runs as a <strong>left-to-right gradient</strong>, so how far along you are reads from both length and hue; resizing the window or the pane redraws it on the next turn. <strong>No text is ever cut off</strong> — the width is worked out so the line cannot wrap, and where space runs short the padding, then the label, then the unit are dropped so the figure survives. The gauge is scaled so that <strong>a full five-hour budget's worth of work reads as exactly 75%</strong> (going past the budget still leaves headroom, so it never pins). It grows logarithmically, so it <strong>starts moving in the tens of thousands of tokens and never goes backwards</strong> (for reference: 9% at 17k, 47% at 1M, 66% at 4.2M). How many tokens a five-hour budget amounts to is <strong>learned automatically</strong> from the growth in the rate-limit percentage against the growth in tokens, since a percentage costs very different numbers of tokens from one model to another. Unlike the usage figures (ctx / 5h / 7d) it never goes down, so you can watch the work pile up. The gauge's full mark steps up as you pass it — 100k, 250k, 500k, 1M, 2.5M and so on — so it never sits pinned at full. Tokens spent <strong>re-reading the same content (cache reads) are not counted</strong>, since those would grow to drown out the work actually added. If you have your own status line configured, relaying it stops inside the app too. This replacement applies <strong>only inside Zenith Filer's terminal</strong> — Claude Code <strong>used outside the app, in VS Code for instance, is unaffected</strong>. To get Claude Code's own line back inside the app as well, turn "Show usage meter" off.
+- <strong>Turning it off</strong>: the same button ("Unregister hook") writes your original setting back. If you had none, the <code>statusLine</code> entry is removed entirely.
+- <strong>If you move the app folder</strong>: the registered path no longer matches, and the status reads "Path changed. Please re-register". Pressing "Re-register hook" fixes it.
+- <strong>Hiding the line</strong>: press Options → "Show the usage meter" again, or clear "Show usage widget", to stop displaying it while leaving the hook registered. The line also hides itself automatically once the last reading is more than 24 hours old.
+- <strong>Gauge length</strong>: the gauges stretch to fill whatever width is left on the line, so the wider the pane or window, the longer they get and the easier they are to read as a scale (where there is not enough room they fall back to the default length). A faint outline runs around each gauge so you can see where the 100% mark sits.
+- On a system without Claude Code installed (no <code>~/.claude</code>), the status reads "Claude Code not found" and the button is disabled.
+- <strong>Entrance animation</strong>: when the gauges appear they sweep all the way up and settle back to the real figure, like a car's speedometer at ignition, with each of the three starting a beat after the last. <strong>With Windows animation effects turned off (Settings &gt; Accessibility &gt; Visual effects), or in lightweight mode, the sweep is skipped and the final values show immediately</strong> — the app respects the OS setting throughout.
+- <strong>Gauge design</strong>: eight to choose from. Besides the default blocks (<code>■■■□□□□□□□</code>) there are fine blocks that render each cell in eight steps, dots, diamonds, arrows and more. <strong>Braille</strong> splits every cell into two columns, giving twice the resolution in the same width. The settings list shows a live preview of each.
+- <strong>Gauge colors</strong>: four to choose from.</p>
+<table>
+<thead>
+<tr>
+<th>Scheme</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>By usage (default)</td>
+<td>Shifts green → amber → red <strong>continuously</strong> as it approaches 100%, so you can see the danger zone coming rather than crossing fixed steps</td>
+</tr>
+<tr>
+<td>Gradient</td>
+<td>Runs between <strong>two colours derived from the theme's accent colour</strong>, left to right. Colour reaches the right-hand end even at low usage, so it reads like a dial. The cumulative-work meter on Claude Code's status line uses the same colours</td>
+</tr>
+<tr>
+<td>Rainbow</td>
+<td>Hues spread evenly for a rainbow-leaning look</td>
+</tr>
+<tr>
+<td>Theme color</td>
+<td>The app theme's accent colour in varying brightness — the closest fit to whichever theme you use</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Reset time format</strong>: choose "time left" (<code>(2h33m left)</code>, the default) or "clock time" (<code>(00:29)</code>, or <code>(8/3 20:00)</code> when it falls on another day).</li>
+<li><strong>Enter for a newline, Ctrl+Enter to send</strong>: Writing a longer instruction for Claude Code, <code>Enter</code> sends by default, so reaching for a line break can fire off a half-written message. Turn this setting on (<strong>off by default</strong>) and <code>Enter</code> inserts a newline while <code>Ctrl+Enter</code> sends. <strong>Options → "Enter inserts a newline (Claude Code)"</strong> in the action bar does the same thing; while it is on the entry shows <code>ON</code> and the Options button's icon turns the accent colour.</li>
+<li><strong>The swap applies only while Claude Code is running.</strong> At the Command Prompt <code>Enter</code> still runs the command as always, so you can never end up unable to type a command</li>
+<li><strong>The swap is suspended while a list of choices is on screen.</strong> For a confirmation like "Do you want to proceed? 1. Yes / 2. No", model selection, <code>@</code> file suggestions and anywhere else Claude Code asks you to pick, <code>Enter</code> confirms as usual — reaching for <code>Ctrl+Enter</code> on every confirmation is more of a nuisance than it is while typing</li>
+<li><strong>The swap is also suspended while you are typing a slash command.</strong> When the input is just a command such as <code>/status</code>, <code>Enter</code> runs it. There is never a reason to break a command across lines, so this holds even after the suggestion list has narrowed away. Ordinary text that happens to start with a slash, such as <code>/path/to/file — take a look</code>, is not affected and still takes a newline</li>
+<li>The check runs only at the moment you press <code>Enter</code> and looks at the cursor's line and below it. The conversation above is never scanned, so stray symbols in the output cannot trigger it, and typing stays as responsive as before</li>
+<li>Detection uses both "was <code>claude</code> launched from the prompt" and "is that CLI presenting its own input box". Chained launches such as <code>cd /d "path" &amp;&amp; claude</code> count too, as do launches from the Claude or Skip menus in the action bar</li>
+<li><code>Alt+Enter</code> (Claude Code's own newline key) keeps working regardless of this setting</li>
+<li>This setting is shared by all terminals</li>
+</ul>
+</li>
+</ul>
+<h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
+<h3 id="what-a-terminal-is-made-of">What a terminal is made of<a class="headerlink" href="#what-a-terminal-is-made-of" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Each tab runs <strong>one helper program (<code>conpty_host.exe</code>)</strong>, which runs Command Prompt through Windows' pseudo console (ConPTY). Running Command Prompt straight from the app lost its output on some Windows 11 builds, hence the extra step in between.</li>
+<li>Command Prompt is switched to UTF-8 with <code>chcp 65001</code> before it starts. The bundled, newer pseudo console (from node-pty) is used first, with Windows' built-in one as the fallback.</li>
+<li>The screen is drawn by <strong>xterm.js</strong> inside WebView2, on the GPU (WebGL) when available and with ordinary drawing otherwise. WebView2 is prepared while the app is idle, so even the first terminal opens quickly.</li>
+<li>The shell gets <code>TERM=xterm-256color</code> and similar settings so colour output works. Variables starting with <code>CLAUDE</code> in the environment the app was started from are removed, so a Claude Code session outside the app doesn't leak in.</li>
+</ul>
+<h3 id="how-the-current-folder-is-tracked">How the current folder is tracked<a class="headerlink" href="#how-the-current-folder-is-tracked" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Invisible markers</strong> are embedded in the prompt, so Command Prompt reports the current folder every time it shows a prompt. The first report is only kept as a starting point; the app acts only when the folder changes.</li>
+<li>When you type <code>cd</code> with an absolute path, the destination is also read from what you typed (only if that folder exists).</li>
+<li>With a pane chosen in "Follow target for cd", that pane follows your moves in the terminal. Those moves are not added to the pane's Back history (opening a folder with the action bar button is).</li>
+</ul>
+<h3 id="how-long-a-terminal-lives">How long a terminal lives<a class="headerlink" href="#how-long-a-terminal-lives" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A nav pane terminal is created the first time its slot is shown (left/right × Terminal/Terminal 2, up to four). Switching to another view does not end it; the session lasts until the app exits. <strong>Nav pane terminals do not come back the next time the app starts.</strong></li>
+<li>A terminal tab in Pane A or B starts afresh the next time the app starts, <strong>in the folder it was opened in</strong> (not the last folder you <code>cd</code>'d to). Terminal tabs are exempt from the six-tab view cache (see <a href="../../20-basics/tabs/#what-makes-switching-fast">Tabs</a>) and are always kept.</li>
+<li>On closing, the helper program is told to exit; if it hasn't after 0.5 seconds, it is stopped along with everything running under it.</li>
+</ul>
+<h3 id="keys">Keys<a class="headerlink" href="#keys" title="Permanent link">&para;</a></h3>
+<ul>
+<li>While you are typing in a terminal, <strong>input to the terminal takes priority</strong> over the app's shortcut keys (browser keys are disabled too, so <code>Ctrl + R</code> doesn't reload the page).</li>
+<li>The <code>End</code> key would take focus away from WebView2, so the app catches it and passes it on to the terminal.</li>
+</ul>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../send-to-terminal/">Sending the Selection to the Terminal or Claude Code</a> — pass the selected files' paths to the terminal</li>
+<li><a href="../../10-layout/nav-pane/">Nav Pane</a> — choose which slot shows the terminal view</li>
+<li><a href="../../20-basics/tabs/">Tabs</a> — open a terminal tab</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../archives/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Archives (Extract and Compress)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Archives (Extract and Compress)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../send-to-terminal/" class="md-footer__link md-footer__link--next" aria-label="Next: Sending the Selection to the Terminal or Claude Code">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Sending the Selection to the Terminal or Claude Code
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024-2026 K.AKASAKA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tracking", "navigation.top", "navigation.footer", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
