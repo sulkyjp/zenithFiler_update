@@ -364,6 +364,8 @@ Read the full terms in the [EULA](EULA_en.md) · Summary: [LICENSE](LICENSE.md)
 - **Replies reach you in the app**, under *Feedback history*
 - **When a fix ships, the app asks whether it worked**, so a report is followed through to the end
 
+**Enjoying Zenith Filer?** A like or a short review on [AlternativeTo](https://alternativeto.net/software/zenith-filer/about/) helps other people looking for a file manager find it.
+
 <p align="right"><a href="#japanese">日本語のご案内へ ↓</a></p>
 
 <br>
