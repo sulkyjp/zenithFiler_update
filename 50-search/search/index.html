@@ -1,0 +1,3476 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://sulkyjp.github.io/zenithFiler_update/50-search/search/">
+      
+      
+        <link rel="prev" href="../../40-organize/presets/">
+      
+      
+        <link rel="next" href="../search-filters/">
+      
+      
+        
+          <link rel="alternate" href="./" hreflang="en">
+        
+          <link rel="alternate" href="../../ja/50-search/search/" hreflang="ja">
+        
+      
+      
+      <link rel="icon" href="../../assets/icon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Search Features - Zenith Filer Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#search-features" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Zenith Filer Manual" class="md-header__button md-logo" aria-label="Zenith Filer Manual" data-md-component="logo">
+      
+  <img src="../../assets/icon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Zenith Filer Manual
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Search Features
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ja/50-search/search/" hreflang="ja" class="md-select__link">
+              日本語
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sulkyjp/zenithFiler_update" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sulkyjp/zenithFiler_update
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Zenith Filer Manual" class="md-nav__button md-logo" aria-label="Zenith Filer Manual" data-md-component="logo">
+      
+  <img src="../../assets/icon.png" alt="logo">
+
+    </a>
+    Zenith Filer Manual
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sulkyjp/zenithFiler_update" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sulkyjp/zenithFiler_update
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-start/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About Zenith Filer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Screen Layout
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Screen Layout
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/titlebar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Title Bar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/file-pane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Panes (Pane A / Pane B)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/nav-pane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nav Pane
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/status-bar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Status Bar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/dialogs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Confirmation & Error Dialogs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-layout/help-viewer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Help & Document Viewer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basic Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/address-bar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Address Bar and Breadcrumb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/tabs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tabs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/file-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standard File Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/batch-rename/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Rename
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/context-menu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Context Menu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/drag-drop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Drag & Drop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/command-palette/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command Palette
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-basics/ring-launcher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ring Launcher
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    File Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/diff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Text Comparison (Diff)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/folder-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Folder Comparison
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/hash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hash Calculation and Verification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/timestamps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Batch Timestamp and Attribute Change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/archives/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archives (Extract and Compress)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/terminal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/send-to-terminal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sending the Selection to the Terminal or Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-tools/ftp-sftp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connecting to a Server (FTP / SFTP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Organizing & Display
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Organizing & Display
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/favorites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Favorites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/view-options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    View Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/themes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Themes (Color Customization)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/theme-list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theme List and Categories
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/theme-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theme Store
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/theme-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Themes Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/working-sets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Working Sets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-organize/presets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presets (window placement / nav pane layout / search conditions)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Search
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search Features
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#normal-search-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normal search (Search)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#index-search-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Index search (Index)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-search-grep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content search (Grep)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filter-in-place-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter in place (Filter)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search history
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clearing-the-search-box-esc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clearing the search box (Esc)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#size-and-date-filters-and-search-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Size and date filters and search presets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering-by-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filtering by properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#searching-with-regular-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Searching with regular expressions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-behavior-configurable-in-control-deck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Behavior (Configurable in Control Deck)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Search Behavior (Configurable in Control Deck)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#searching-file-contents-with-the-windows-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Searching file contents with the Windows index
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path-click-behavior-in-search-results-configurable-in-control-deck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path Click Behavior in Search Results (Configurable in Control Deck)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-filters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Size and Date Filters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search-presets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search Presets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Index Search Works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI & Macros
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI & Macros
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-ai/ai-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting Up Generative AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-ai/ai-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI Features
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-ai/macros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macros (Automating Actions)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keyboard
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Keyboard
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-keyboard/keyboard-mouse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keyboard and Mouse Interaction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-keyboard/shortcuts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keyboard Shortcut Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-keyboard/keybinding-internals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Keybindings Work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings & Data
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Settings & Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../80-settings/settings-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Full List of App Settings (Control Deck)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../80-settings/backup-recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings Backup & Recovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../80-settings/settings-files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration File Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../80-settings/log-spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Log Specification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../80-settings/privacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy Policy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation & Updates
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation & Updates
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Folder Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/auto-update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auto-Update
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/resident-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resident Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/screen-capture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Screen Capture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../90-install/startup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Startup Sequence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extras
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extras
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/challenges/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Challenges & Achievements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mascot (Stickman)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-behavior-json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Writing Behavior JSON
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-poses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Poses, Dog Commands and Props
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events and Personality
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-rewards/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reward Behaviors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../95-extras/stickman-export-ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GIF Export and AI Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#normal-search-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normal search (Search)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#index-search-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Index search (Index)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-search-grep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content search (Grep)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filter-in-place-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter in place (Filter)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search history
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clearing-the-search-box-esc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clearing the search box (Esc)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#size-and-date-filters-and-search-presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Size and date filters and search presets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering-by-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filtering by properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#searching-with-regular-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Searching with regular expressions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-behavior-configurable-in-control-deck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Behavior (Configurable in Control Deck)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Search Behavior (Configurable in Control Deck)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#searching-file-contents-with-the-windows-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Searching file contents with the Windows index
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path-click-behavior-in-search-results-configurable-in-control-deck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path Click Behavior in Search Results (Configurable in Control Deck)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="search-features">Search Features<a class="headerlink" href="#search-features" title="Permanent link">&para;</a></h1>
+<p><img alt="Search results: typing &quot;md&quot; in the search box switches to a results tab listing 4 items with Name, Path, Date modified and Size columns, with type filters such as &quot;Folder&quot;, &quot;Excel&quot; and &quot;Word&quot; and the count (4 items) above them" src="../../screenshots/3-3_search-result.png" /></p>
+<p>The four buttons at the left end of the search bar choose how you search.</p>
+<table>
+<thead>
+<tr>
+<th>Button</th>
+<th>How it searches</th>
+<th>Key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Search</strong></td>
+<td><strong>Normal search</strong>. Finds items by name in the current folder and all its subfolders</td>
+<td><code>Ctrl+F</code> (or <code>Ctrl+E</code>)</td>
+</tr>
+<tr>
+<td><strong>Grep</strong></td>
+<td><strong>Content search</strong>. Finds text inside the files in the current folder</td>
+<td><code>Ctrl+Shift+G</code></td>
+</tr>
+<tr>
+<td><strong>Index</strong></td>
+<td><strong>Index search</strong>. Finds items by name across all the folders you have registered</td>
+<td><code>Ctrl+Shift+F</code></td>
+</tr>
+<tr>
+<td><strong>Filter</strong></td>
+<td><strong>Filter in place</strong>. Narrows the current list to what you type</td>
+<td><code>Ctrl+I</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>Ctrl+F</code> moves to the search box, and brings you back to normal search if you are in index search. Type words in the search box and press <strong>Enter</strong> to search. Where the results appear is set by "Search Behavior" (<a href="#search-behavior-configurable-in-control-deck">Search Behavior</a>).</p>
+<h2 id="normal-search-search">Normal search (Search)<a class="headerlink" href="#normal-search-search" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Scope</strong>: The folder you have open and every subfolder inside it, searched on the spot by walking the folders.</li>
+<li><strong>Syntax</strong>: Separate words with spaces for AND (must contain all), with <code>|</code> for OR (any of them), use <code>-word</code> to exclude, <code>ext:pdf</code> to pick an extension, and wildcards such as <code>*.pdf</code> and <code>report?.txt</code>. You can also filter by type, date modified and size (<a href="#filtering-by-properties">Filtering by properties</a>). Turn on ".*" in the search bar to treat everything you type as a regular expression (<a href="#searching-with-regular-expressions">Searching with regular expressions</a>).</li>
+<li><strong>Results</strong>: Both files and folders are found, newest modified first. Click a column heading to sort differently, by name for example. Above the results are type filters (Folder, Excel, Word, PPT, PDF, TXT, EXE, BAT, JSON, Image, Other) and the count.</li>
+<li><strong>Windows index</strong>: A setting lets normal search also look inside files through the Windows index (<a href="#searching-file-contents-with-the-windows-index">Searching file contents with the Windows index</a>).</li>
+<li><strong>Second search bar row</strong>: When enabled, the search bar moves to the second row of the header <strong>only in a side-by-side dual-pane layout</strong>, giving the search field and filters more width (<a href="../../40-organize/view-options/">View Options</a>).</li>
+</ul>
+<h2 id="index-search-index">Index search (Index)<a class="headerlink" href="#index-search-index" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Scope</strong>: Every folder registered in the "<strong>Index Search</strong>" view of the nav pane, searched together wherever you happen to be. Open the view with <code>Ctrl+Shift+4</code> (with the "Zenith 2" keymap, <code>Ctrl+K</code> then <code>I</code>).</li>
+<li>Both files and folders are indexed. Files without an extension (temporary files, caches and the like) are not indexed, so index search cannot find them (normal search can). Large working folders such as <code>.git</code> and <code>node_modules</code> are skipped as well.</li>
+<li><strong>Results</strong>: Up to 500, newest modified first.</li>
+<li><strong>Narrowing the folders (scope)</strong>: In index search, a folder icon with a badge (such as 3/10) appears in the search bar. Click it to list the registered folders and tick the ones to search. "Select all" and "Deselect all" switch them all at once. The icon and badge are highlighted while the scope is narrowed. Results refresh as soon as you change the selection, and the selection is kept after you close the app. Locked folders can be selected too and are searched as they were when locked.</li>
+<li><strong>While the index is being built</strong>: What has been indexed so far is already searchable. The status bar shows progress as "Updating index (N)...".</li>
+</ul>
+<p>How to register folders, keep them up to date and read their states is covered in <a href="../index-settings/">Index Settings</a> and <a href="../index-search/">Index Search</a>.</p>
+<h2 id="content-search-grep">Content search (Grep)<a class="headerlink" href="#content-search-grep" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Purpose</strong>: Finds words in the <strong>contents</strong> (text) of files in the folder you have open. Unlike normal search, it looks at the text inside files rather than their names.</li>
+<li><strong>How it works</strong>: It uses the copy of ripgrep that comes with the app.</li>
+<li><strong>Case and regular expressions</strong>: Only in content search, an "Aa" button (match case) appears in the search bar. Turn on ".*" to search with a regular expression (<a href="#searching-with-regular-expressions">Searching with regular expressions</a>).</li>
+<li><strong>Results</strong>: Matching files are listed. The Match column shows the first matching line (line number and text) and how many matches the file has.</li>
+<li><strong>Limits</strong>: Files up to 50 MB are read, and up to 1,000 files are listed. Binary files, anything hidden (hidden files and the insides of hidden folders) and files listed in <code>.gitignore</code> inside a Git repository are skipped. UTF-8 is recognised, as are files with a BOM (such as UTF-16).</li>
+</ul>
+<h2 id="filter-in-place-filter">Filter in place (Filter)<a class="headerlink" href="#filter-in-place-filter" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Purpose</strong>: Narrows the list of the folder you have open <strong>on the spot</strong> as you type. No results tab opens, and subfolders are not searched.</li>
+<li><strong>How</strong>: Press <code>Ctrl+I</code> or the <strong>Filter</strong> button in the search bar; the cursor moves to the search box and Filter mode starts. Each keystroke narrows the list to items whose names contain what you typed (case is ignored). With ".*" on, only items whose names match the regular expression remain. While the expression you are typing has an error, the list stays as it was filtered last.</li>
+<li>While in Filter mode, the size and date filter buttons and the search presets button cannot be used.</li>
+<li><strong>Clearing</strong>: Erase the text with the × in the search box or <code>Esc</code> to bring the list back and return to normal search. Pressing another mode's button also clears it.</li>
+</ul>
+<h2 id="search-history">Search history<a class="headerlink" href="#search-history" title="Permanent link">&para;</a></h2>
+<p>Click the search box to see your earlier searches. Normal, content and index searches share one history list (up to 100 entries), and the icon on each row shows which kind of search it was.</p>
+<p>If a preset, size filter or date filter was in use, "Search Presets: name", "Size: …" and "Date: …" appear to the right of the words. The preset name is found by matching the saved presets' conditions, so it also appears when you set the same conditions by hand.</p>
+<p>Choosing an entry brings back the search mode, size filter and date filter as they were and searches again.</p>
+<h2 id="clearing-the-search-box-esc">Clearing the search box (Esc)<a class="headerlink" href="#clearing-the-search-box-esc" title="Permanent link">&para;</a></h2>
+<p>Pressing <code>Esc</code> in the search box first clears the text; pressing it again also clears the size and date filters and the scope and ends the search. Turn on "<strong>One-press full reset with Esc</strong>" under Control Deck → "Search" → "Search bar" (off by default) to clear everything with one press.</p>
+<h2 id="size-and-date-filters-and-search-presets">Size and date filters and search presets<a class="headerlink" href="#size-and-date-filters-and-search-presets" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Size and date filters</strong>: The size and date buttons in the search bar narrow results by file size and by date modified. They apply to normal, index and content searches, and a button is filled with the selection color while its filter is on. Right-click a button to clear just that filter. See <a href="../search-filters/">Size and Date Filters</a>.</li>
+<li><strong>Search presets</strong>: The ★ in the search bar saves frequently used conditions under a name and brings them back. Right-click the ★ to clear the search text, size, date and scope all at once. See <a href="../search-presets/">Search Presets</a>.</li>
+</ul>
+<h2 id="filtering-by-properties">Filtering by properties<a class="headerlink" href="#filtering-by-properties" title="Permanent link">&para;</a></h2>
+<p>Write <code>name:value</code> in the search box to filter by type, date modified and size as well as by file name (the same idea as File Explorer's search). These combine with plain words, <code>|</code> OR, <code>-word</code> exclusion, <code>ext:</code> and wildcards, and apply to file name search (including subfolders).</p>
+<table>
+<thead>
+<tr>
+<th>Write</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>kind:folder</code> / <code>kind:file</code></td>
+<td>Folders only / files only</td>
+</tr>
+<tr>
+<td><code>kind:picture</code>, <code>kind:video</code>, <code>kind:music</code>, <code>kind:document</code>, <code>kind:archive</code>, <code>kind:program</code></td>
+<td>Pictures, videos, music, documents (Office, PDF, text and so on), archives, programs</td>
+</tr>
+<tr>
+<td><code>date:today</code>, <code>yesterday</code>, <code>thisweek</code>, <code>lastweek</code>, <code>thismonth</code>, <code>lastmonth</code>, <code>thisyear</code>, <code>lastyear</code></td>
+<td>Modified today, yesterday, this week (from Sunday), last week, this month, last month, this year, last year</td>
+</tr>
+<tr>
+<td><code>date:2026-10-01</code> / <code>date:&gt;2026-10-01</code> / <code>date:&lt;=2026-10-01</code> / <code>date:2026/10/01..2026/10/03</code></td>
+<td>That day, after it, up to it, between them (both ends included)</td>
+</tr>
+<tr>
+<td><code>size:empty</code>, <code>tiny</code>, <code>small</code>, <code>medium</code>, <code>large</code>, <code>huge</code>, <code>gigantic</code></td>
+<td>File Explorer's size groups (empty, up to 16 KB, up to 1 MB, up to 128 MB, up to 1 GB, up to 4 GB, over 4 GB)</td>
+</tr>
+<tr>
+<td><code>size:&gt;10MB</code> / <code>size:&lt;1.5KB</code> / <code>size:&gt;=500</code></td>
+<td>Larger than, smaller than, at least (units KB, MB, GB; bytes without one)</td>
+</tr>
+<tr>
+<td><code>name:report</code></td>
+<td>The name contains it (same as a plain word)</td>
+</tr>
+<tr>
+<td><code>tags:travel</code></td>
+<td>A tag starts with it. <strong>Only when the Windows index is used</strong> (see below)</td>
+</tr>
+<tr>
+<td><code>rating:4</code> / <code>rating:&gt;=4</code></td>
+<td>Rated 4 stars / at least 4 stars. <strong>Only when the Windows index is used</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Japanese names work too</strong>: <code>種類:</code> (kind), <code>更新日時:</code> or <code>日付:</code> (date), <code>サイズ:</code> (size), <code>名前:</code> (name), with Japanese values such as <code>画像</code>, <code>今週</code> and <code>中</code>.</li>
+<li>Examples: <code>report kind:document date:thismonth</code> (documents modified this month with "report" in the name) / <code>kind:music | kind:video</code> / <code>ext:pdf size:&lt;1MB</code>.</li>
+<li>Filtering by size leaves folders out (a folder's size is not known while searching).</li>
+<li>Values that cannot be read (such as <code>kind:unknown</code>) are matched against the name as plain words.</li>
+<li><strong>Tags and rating</strong> (<code>tags:</code>, <code>タグ:</code>, <code>rating:</code>, <code>評価:</code>) only filter when "Search file contents with the Windows index" is on in Settings and the place you search is indexed (like File Explorer's search, they use the index's information). Otherwise the status bar tells you so, and the search skips those words and uses the rest (reading each file's properties while walking folders would be very slow).</li>
+<li>While ".*" (regular expressions) is on, these are taken literally as well.</li>
+</ul>
+<h2 id="searching-with-regular-expressions">Searching with regular expressions<a class="headerlink" href="#searching-with-regular-expressions" title="Permanent link">&para;</a></h2>
+<p>Turn on <em><em>".<em>"</em></em> in the search bar to treat what you type as a <strong>regular expression</strong>. It works in normal search, index search, Filter in place, and content search (Grep). There is one ".</em>" switch per pane, and it stays as it is when you change modes. If searches open in the opposite pane, the pane you searched from passes its setting along.</p>
+<ul>
+<li><strong>Name searches</strong> (normal search, index search, Filter): Everything you type is one expression, matched against the <strong>name including its extension</strong>. A match anywhere in the name counts (add <code>^</code> and <code>$</code> to match the whole name). Folder paths are not matched.<ul>
+<li>While ".*" is on, spaces (AND), <code>|</code> (OR), <code>-word</code> (exclude), and <code>ext:</code> are taken <strong>literally as regular expression text</strong> (<code>|</code> works as the regular expression "or"). To narrow by extension, write something like <code>\.pdf$</code>.</li>
+<li>Case is ignored. To match case, start the expression with <code>(?-i)</code>.</li>
+<li>All .NET regular expression syntax is available (lookahead, lookbehind, backreferences, named groups, conditionals, <code>\p{…}</code>, and more).</li>
+</ul>
+</li>
+<li><strong>Content search (Grep)</strong>: Uses ripgrep's regular expressions. Expressions with backreferences, lookahead, or lookbehind automatically switch to PCRE2. Use "Aa" to match case. Syntax that only .NET has (balancing groups, character class subtraction <code>[a-z-[aeiou]]</code>) is not available.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>To find</th>
+<th>Expression</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JPEGs starting with <code>IMG_</code> and 4 digits</td>
+<td><code>^IMG_\d{4}\.jpe?g$</code></td>
+</tr>
+<tr>
+<td>Excel files without <code>old</code></td>
+<td><code>^(?!.*old).*\.xlsx$</code></td>
+</tr>
+<tr>
+<td>Names with the same digit twice in a row</td>
+<td><code>(\d)\1</code></td>
+</tr>
+<tr>
+<td>Only <code>Report</code> with a capital R at the start</td>
+<td><code>(?-i)^Report</code></td>
+</tr>
+<tr>
+<td>Text files named only in hiragana</td>
+<td><code>^\p{IsHiragana}+\.txt$</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>When the expression has an error</strong>: The search box border turns red as you type, and "Invalid regular expression (near character N)" appears on the right. Point at it to see the detailed reason. Pressing Enter in this state does not search, and a notification tells you so. In content search, if ripgrep rejects the expression, "ripgrep rejected the expression" appears, and pointing at it shows ripgrep's message.</p>
+<p><strong>Time limit</strong>: Matching each name stops after 0.1 seconds. If an expression is too complex and hits the limit, the search stops there and "Matching stopped because the expression is too complex" appears (matches found until then stay).</p>
+<p>Search presets also save the ".<em>" and "Aa" states and restore them when applied (see <a href="../search-presets/">Search Presets</a>). Search history does not save them; picking from history searches with the current ".</em>" setting.</p>
+<h2 id="search-behavior-configurable-in-control-deck">Search Behavior (Configurable in Control Deck)<a class="headerlink" href="#search-behavior-configurable-in-control-deck" title="Permanent link">&para;</a></h2>
+<p>In Control Deck (default: <code>Ctrl+Shift+O</code>) &gt; "Search" &gt; "Opening search results", "<strong>Search Behavior</strong>" offers three choices for where search results appear. <strong>The default is "Same pane, new tab".</strong> All of them search when you press Enter.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Option</th>
+<th style="text-align: left;">Behavior</th>
+<th style="text-align: left;">Best suited for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Same pane, new tab</strong></td>
+<td style="text-align: left;">Opens a new results tab in the same pane. Typing new words in the results tab and pressing Enter searches again in that tab.</td>
+<td style="text-align: left;">Results stay within the same pane, keeping context predictable. Recommended default for beginners.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Same pane, current tab</strong></td>
+<td style="text-align: left;">Shows the results in the current tab.</td>
+<td style="text-align: left;">No extra tabs, and quick switching between search and the normal view.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Other pane, new tab</strong></td>
+<td style="text-align: left;">Searching in Pane A shows the results in a new tab in Pane B, and vice versa. Switches to dual-pane automatically in single-pane mode.</td>
+<td style="text-align: left;">For comparison work and advanced users. Useful when viewing search results alongside the original listing.</td>
+</tr>
+</tbody>
+</table>
+<p>Whichever you choose, pressing × at the right end of the search bar ends the search and shows that tab's searched folder again (the tab is not closed).</p>
+<p>Turn on <strong>Auto-switch to single pane mode when searching</strong> ("Search" &gt; "Search bar", off by default) to switch to a single pane when you search, so the results get the full width. A search started in Pane B appears in Pane A. Ending the search brings back the dual-pane layout.</p>
+<h3 id="searching-file-contents-with-the-windows-index">Searching file contents with the Windows index<a class="headerlink" href="#searching-file-contents-with-the-windows-index" title="Permanent link">&para;</a></h3>
+<p>Turn on <strong>"Search file contents with the Windows index"</strong> under Control Deck → "Search" → "Search bar" (off by default) and normal search uses the Windows index (Windows Search, the same one File Explorer's search uses). Besides names, it also finds <strong>files whose contents contain the words</strong> (text, PDFs, Office documents and other formats Windows indexes the contents of).</p>
+<ul>
+<li>The index is used <strong>when the place is fully indexed</strong> (Documents, Downloads, Desktop and so on; Windows' "Indexing Options" decide what is indexed) <strong>and you type plain words</strong>. Searches with <code>|</code> OR, wildcards (<code>*</code> <code>?</code>) or regular expressions (".*"), and places outside the index, still walk the folders and match names as before.</li>
+<li><code>kind:</code>, <code>date:</code>, <code>size:</code>, <code>ext:</code> and <code>-word</code> filters apply to the index results too.</li>
+<li>Up to 5,000 results are shown. Windows builds the index in the background, so a file you have just created may not show up for a while.</li>
+</ul>
+<h2 id="path-click-behavior-in-search-results-configurable-in-control-deck">Path Click Behavior in Search Results (Configurable in Control Deck)<a class="headerlink" href="#path-click-behavior-in-search-results-configurable-in-control-deck" title="Permanent link">&para;</a></h2>
+<p>In Control Deck &gt; "Search" &gt; "Opening search results", "<strong>Search Result Path Click Behavior</strong>" offers three choices for what happens when you click the path column in search results. <strong>The default is "Same pane, new tab".</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Option</th>
+<th style="text-align: left;">Behavior</th>
+<th style="text-align: left;">Best suited for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Show in same tab</strong></td>
+<td style="text-align: left;">Switches from the search results to the normal listing and shows the path in the same tab.</td>
+<td style="text-align: left;">Navigate quickly to folders without adding tabs.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Same pane, new tab</strong></td>
+<td style="text-align: left;">Opens a new tab in the same pane.</td>
+<td style="text-align: left;">Keep the search results tab while opening clicked paths in separate tabs. The default, and handy alongside search.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Other pane, new tab</strong></td>
+<td style="text-align: left;">Results from Pane A open in a new tab in Pane B, and vice versa. Switches to dual-pane automatically in single-pane mode.</td>
+<td style="text-align: left;">For comparison work and advanced users. View search results and opened folders side by side.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../40-organize/presets/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Presets (window placement / nav pane layout / search conditions)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Presets (window placement / nav pane layout / search conditions)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../search-filters/" class="md-footer__link md-footer__link--next" aria-label="Next: Size and Date Filters">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Size and Date Filters
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024-2026 K.AKASAKA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tracking", "navigation.top", "navigation.footer", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
