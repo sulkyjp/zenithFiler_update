@@ -226,11 +226,11 @@
 
 | Feature | Description |
 |---|---|
-| 57 built-in themes | 5 categories: Standard / Lifestyle / Professional / Premium / RetroTech. The default, Plain, is white and light gray with no theme color |
+| 57 built-in themes | 5 categories: Standard / Lifestyle / Professional / Premium / RetroTech, including Plain — white and light gray with no theme color |
 | Theme store | Download and rate community themes, or submit your own |
 | AI theme generation | Generate a theme from a prompt like "dusk cyberpunk vibes" |
 | Per-pane themes | Give the A pane, B pane, and nav panes different themes |
-| Customization | Edit any of 130 color keys; changes are saved separately and never overwrite the original |
+| Customization | Edit any of about 150 color keys; changes are saved separately and never overwrite the original |
 | Random / schedule | A random theme on every launch, or automatic day/night switching |
 | Fonts and icons | Set font and icon sizes per element |
 
@@ -455,7 +455,7 @@ Read the full terms in the [EULA](EULA_en.md) · Summary: [LICENSE](LICENSE.md)
 | 🧩 ナビペイン | 約 20 のビューを好きな位置へ、2 段重ね、別ウィンドウへの切り離し、よく開くフォルダの自動お気に入り |
 | 🔍 検索 | Lucene.NET と日本語形態素解析による全文検索、ripgrep による内容検索、プリセットとフィルタ |
 | 👁 プレビュー | テキスト・コード、PDF、HTML、画像、Excel / CSV / Word / PowerPoint、テキスト差分 |
-| 🎨 テーマ | 内蔵 57 種（既定はテーマカラーを持たない Plain）、テーマストア、AI 生成、ペイン別テーマ、130 色キーの編集 |
+| 🎨 テーマ | 内蔵 57 種（テーマカラーを持たない白とライトグレーの Plain も）、テーマストア、AI 生成、ペイン別テーマ、約 150 の色キーの編集 |
 | 🏆 実績と Stickman | 実績 150 種、XP・レベル・AI が授ける二つ名、操作に反応するマスコット |
 | 🪟 システム統合 | 差分自動アップデート、タスクトレイ常駐、ウィンドウスナップと配置プリセット、Explorer のメニュー、Box Drive、10 言語 |
 
