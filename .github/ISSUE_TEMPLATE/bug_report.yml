@@ -52,4 +52,4 @@ body:
     id: extra
     attributes:
       label: Screenshots or logs
-      description: Drag and drop images here. Logs are in the logs folder next to ZenithFiler.exe.
+      description: Drag and drop images here. Logs are in the dataogs folder inside the Zenith Filer folder.
