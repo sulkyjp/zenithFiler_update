@@ -1,0 +1,30 @@
+name: Feature request
+description: Suggest an idea or an improvement
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea. Japanese is welcome too (日本語でも大丈夫です).
+        Other people can join the discussion here, so feel free to add your thoughts to an existing request instead of opening a new one.
+  - type: textarea
+    id: want
+    attributes:
+      label: What you want to do
+      description: Describe the task you're trying to get done, not only the feature.
+    validations:
+      required: true
+  - type: textarea
+    id: now
+    attributes:
+      label: How you do it today
+      description: Your current workaround, or why it's hard now.
+  - type: textarea
+    id: elsewhere
+    attributes:
+      label: Other apps that do this (optional)
+  - type: input
+    id: version
+    attributes:
+      label: Zenith Filer version (optional)
+      description: Shown in Control Deck › About.
