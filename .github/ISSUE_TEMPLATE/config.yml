@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: User manual
+    url: https://sulkyjp.github.io/zenithFiler_update/
+    about: How each feature works. You can also send feedback from inside the app (Control Deck › Feedback).
+  - name: Releases
+    url: https://github.com/sulkyjp/zenithFiler_update/releases
+    about: Download the latest version and see what changed.
