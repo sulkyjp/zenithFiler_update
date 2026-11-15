@@ -1,0 +1,55 @@
+name: Bug report
+description: Something doesn't work as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. Japanese is welcome too (日本語でも大丈夫です).
+        This page is public. Please remove personal information (for example, your user name inside folder paths) from text, logs and screenshots before posting.
+  - type: input
+    id: version
+    attributes:
+      label: Zenith Filer version
+      description: Shown in Control Deck › About.
+      placeholder: "2.1.1"
+    validations:
+      required: true
+  - type: dropdown
+    id: channel
+    attributes:
+      label: Build
+      options:
+        - Regular release
+        - Preview build
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: "Windows 11 24H2"
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Click ...
+        3. ...
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+  - type: textarea
+    id: extra
+    attributes:
+      label: Screenshots or logs
+      description: Drag and drop images here. Logs are in the logs folder next to ZenithFiler.exe.
