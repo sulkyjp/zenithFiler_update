@@ -1,0 +1,27 @@
+# Reopen a closed issue when someone other than the maintainer comments on it.
+#
+# Why: comments on closed issues are easy to miss. Reopening puts the issue
+# back in the open list so the reply gets noticed and answered.
+# The maintainer's own comments (and bots) never reopen an issue.
+name: Reopen on comment
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+
+jobs:
+  reopen:
+    if: >-
+      !github.event.issue.pull_request
+      && github.event.issue.state == 'closed'
+      && github.event.comment.user.login != github.repository_owner
+      && github.event.comment.user.type != 'Bot'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Reopen issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue reopen "${{ github.event.issue.number }}" --repo "${{ github.repository }}"
