@@ -4,6 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/sulkyjp/zenithFiler_update/releases/latest"><img src="https://img.shields.io/github/v/release/sulkyjp/zenithFiler_update?style=for-the-badge&label=Download&logo=windows&logoColor=white&color=0891B2&labelColor=0B1220" alt="Download the latest release" /></a>
+  <a href="https://apps.microsoft.com/detail/9NT1B8XT11GB?mode=direct"><img src="https://img.shields.io/badge/Microsoft%20Store-Get%20it-0078D4?style=for-the-badge&logo=microsoft&logoColor=white&labelColor=0B1220" alt="Get it from Microsoft Store" /></a>
   <img src="https://img.shields.io/badge/Windows-10%20%2F%2011-3B82F6?style=for-the-badge&labelColor=0B1220" alt="Windows 10 / 11" />
   <img src="https://img.shields.io/badge/Portable-no%20install-10B981?style=for-the-badge&labelColor=0B1220" alt="Portable, no install required" />
   <img src="https://img.shields.io/badge/Languages-10-8B5CF6?style=for-the-badge&labelColor=0B1220" alt="10 languages" />
@@ -80,6 +81,18 @@
 <a id="download"></a>
 
 ## Download
+
+Three ways to get it — the app is the same in all of them:
+
+<p align="center">
+  <a href="https://apps.microsoft.com/detail/9NT1B8XT11GB?mode=direct"><img src="https://get.microsoft.com/images/en-us%20dark.svg" width="200" alt="Get it from Microsoft" /></a>
+</p>
+
+| How | Best for |
+|---|---|
+| **[Microsoft Store](https://apps.microsoft.com/detail/9NT1B8XT11GB?mode=direct)** | The easiest install. Updates arrive through the Store |
+| **winget** — `winget install sulkyjp.ZenithFiler` | One line in a terminal |
+| **ZIP** (below) | Portable: no install, runs from a USB stick, updates itself |
 
 <!-- download-table-en:begin -->
 | File | Description |
@@ -403,6 +416,18 @@ Read the full terms in the [EULA](EULA_en.md) · Summary: [LICENSE](LICENSE.md)
 <a id="ja-download"></a>
 
 ## ダウンロード
+
+入れ方は 3 つあります（中身はどれも同じです）。
+
+<p align="center">
+  <a href="https://apps.microsoft.com/detail/9NT1B8XT11GB?mode=direct"><img src="https://get.microsoft.com/images/ja%20dark.svg" width="200" alt="Microsoft から入手" /></a>
+</p>
+
+| 入れ方 | 向いている人 |
+|---|---|
+| **[Microsoft Store](https://apps.microsoft.com/detail/9NT1B8XT11GB?mode=direct)** | いちばん手軽。更新は Store から届きます |
+| **winget** — `winget install sulkyjp.ZenithFiler` | ターミナルで 1 行 |
+| **ZIP**（下の表） | ポータブル。インストール不要・USB メモリから使え、更新はアプリが自分で行います |
 
 <!-- download-table-ja:begin -->
 | ファイル | 説明 |
