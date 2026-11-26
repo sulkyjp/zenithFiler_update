@@ -94,6 +94,9 @@ Three ways to get it — the app is the same in all of them:
 | **winget** — `winget install sulkyjp.ZenithFiler` | One line in a terminal |
 | **ZIP** (below) | Portable: no install, runs from a USB stick, updates itself |
 
+> [!WARNING]
+> **Installed with winget?** Until the next release, please don't run `winget upgrade` for Zenith Filer. winget removes the install folder and reinstalls it, which deletes your settings, logs and backups. The app updates itself, so just use the in-app update.
+
 <!-- download-table-en:begin -->
 | File | Description |
 |---|---|
@@ -428,6 +431,9 @@ Read the full terms in the [EULA](EULA_en.md) · Summary: [LICENSE](LICENSE.md)
 | **[Microsoft Store](https://apps.microsoft.com/detail/9NT1B8XT11GB?mode=direct)** | いちばん手軽。更新は Store から届きます |
 | **winget** — `winget install sulkyjp.ZenithFiler` | ターミナルで 1 行 |
 | **ZIP**（下の表） | ポータブル。インストール不要・USB メモリから使え、更新はアプリが自分で行います |
+
+> [!WARNING]
+> **winget で入れた方へ**: 次の版が出るまで、Zenith Filer では `winget upgrade` を使わないでください。winget が入れたフォルダを消して入れ直すため、設定・ログ・バックアップが消えてしまいます。更新はアプリが自分で行うので、アプリの中の更新を使ってください。
 
 <!-- download-table-ja:begin -->
 | ファイル | 説明 |
